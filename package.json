@@ -1,0 +1,24 @@
+{
+  "name": "people-counter-system",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit -p management-app/tsconfig.app.json && tsc --noEmit -p counter-app/tsconfig.app.json && vite build --config counter-app/vite.config.ts",
+    "test": "node --test *counter*.test.mjs adaptive-*.test.mjs luxnora*.test.mjs"
+  },
+  "dependencies": {
+    "firebase": "^12.16.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.0.4",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9",
+    "fake-indexeddb": "^6.0.0",
+    "react-test-renderer": "^19.2.7",
+    "@types/node": "^22.0.0"
+  }
+}

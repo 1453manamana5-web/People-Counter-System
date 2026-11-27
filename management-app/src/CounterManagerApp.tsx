@@ -4,7 +4,7 @@ import {LuxnoraPanel} from "./luxnora/LuxnoraPanel";
 import {diagnose,type Target} from "./luxnora/assistant";
 import {forecast,type Forecast} from "./luxnora/forecast";
 import {useEffect, useMemo, useRef, useState, type FormEvent} from "react";
-import {bounded, counterEvents, permissionDenied, verifyManager, watchCounterAuth, type CounterEvent, type CounterManager} from "./counterAuth";
+import {bounded, counterEvents, permissionDenied, verifyManager, watchCounterAuth, signInManager, signOutManager, type CounterEvent, type CounterManager} from "./counterAuth";
 import {
   addCounterPassage, analyze, csv, pauseCounterEvent, reviseCounterPassage, saveCounterConfig, saveCounterStation,
   subscribeCounterEvent, type CounterConfig, type CounterMode, type CounterOperation, type CounterSnapshot, type CounterStation,
@@ -84,6 +84,8 @@ function useManager(locked: boolean) {
 export function CounterManagerApp({suggest}: {suggest?:LuxnoraEventProvider} = {}) {
   const [locked,setLocked] = useState(() => {try {return sessionStorage.getItem("pcs-counter-manager-lock") === "1";} catch {return false;}});
   const {state,retry,clear} = useManager(locked);
+  const [loginError,setLoginError]=useState("");const [loginBusy,setLoginBusy]=useState(false);
+  async function login(e:FormEvent<HTMLFormElement>){e.preventDefault();if(loginBusy)return;const form=new FormData(e.currentTarget);setLoginBusy(true);setLoginError("");try{await signInManager(String(form.get("email")??""),String(form.get("password")??""));clear();retry();}catch{setLoginError("ログインできません。専用アカウントと接続を確認してください。");}finally{setLoginBusy(false);}}
   function lock(value: boolean) {
     clear(); setLocked(value);
     try {sessionStorage.setItem("pcs-counter-manager-lock",value ? "1" : "0");} catch { /* browser-only lock */ }
@@ -99,7 +101,7 @@ export function CounterManagerApp({suggest}: {suggest?:LuxnoraEventProvider} = {
       : state.kind === "loading" ? <div className="cm-gate-state" role="status"><strong>管理端末の権限を確認しています</strong><p>初回はインターネット接続が必要です。</p></div>
       : <div className="cm-gate-state" role="status"><strong>{state.kind === "denied" ? "この端末に管理権限がありません" : "サーバーに接続できません"}</strong>
         <p>{state.kind === "denied" ? "人数カウント専用の管理者・副管理者アカウントでログインしてください。" : state.message}</p>
-        <button className="cm-primary" onClick={() => {clear();retry();}}>接続を再確認</button></div>}
+        <form className="cm-form" onSubmit={e=>void login(e)}><label>メールアドレス<input name="email" type="email" autoComplete="username" required/></label><label>パスワード<input name="password" type="password" autoComplete="current-password" required/></label><button className="cm-primary" disabled={loginBusy}>{loginBusy?"確認中…":"ログイン"}</button></form>{loginError&&<p role="alert">{loginError}</p>}<p className="cm-caption">事前登録・メール確認・管理権限の承認が必要です。</p><button onClick={()=>{clear();retry();}}>接続を再確認</button></div>}
       <div className="cm-gate-links"><a href={base + "people-counter/"}>計測端末を開く</a></div>
     </main>
   </div>;
@@ -420,7 +422,7 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
         {!authReady && <p className="cm-warning" role="status">管理端末の権限を現在確認できません。表示済みの情報は古い可能性があります。 <button onClick={recheck}>再確認</button></p>}
         <div ref={detailSurface} className={"cm-detail-surface"+(page==="home"&&!create?" cm-home-surface":"")}>{create ? <NewCounterEvent owner={manager.uid} busy={createBusy} onSave={saveNew} onClose={()=>setCreate(false)} provider={suggest??eventSuggestions}/>
         : page === "settings" ? <section className="cm-section"><h2>この管理端末</h2><dl className="cm-definition"><dt>名称</dt><dd>{manager.name}</dd><dt>権限</dt><dd>{admin ? "管理者" : "副管理者"}</dd><dt>承認先</dt><dd>人数カウント専用認証</dd></dl>
-          <p>管理者・副管理者は人数カウント専用の権限管理で登録します。</p></section>
+          <p>管理者・副管理者は人数カウント専用の権限管理で登録します。</p><button onClick={()=>void signOutManager().catch(()=>setNotice("ログアウトを確認できませんでした。"))}>ログアウト</button></section>
         : !eventId ? <p className="cm-empty">{events?.length === 0 && catalog?.days.length === 0 ? "イベント名のメニューから新規作成できます。" : "イベントを読み込んでいます。"}</p>
         : denied ? <p className="cm-warning" role="alert">人数カウントの閲覧権限をサーバーで確認できません。 <button onClick={() => {recheck();fetchEvents();}}>再確認</button></p>
         : <>

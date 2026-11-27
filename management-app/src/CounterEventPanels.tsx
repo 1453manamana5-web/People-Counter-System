@@ -22,7 +22,7 @@ function readDraft(key:string): EventDraft {
 export function NewCounterEvent({owner,busy,onSave,onClose,provider}:{
   owner:string;busy:boolean;onSave:(draft:EventDraft)=>Promise<boolean>;onClose:()=>void;provider?:LuxnoraEventProvider;
 }) {
-  const key="counter-event-draft:"+owner;
+  const key="pcs-counter-event-draft:"+owner;
   const [draft,setDraft]=useState(()=>readDraft(key));
   const [suggestion,setSuggestion]=useState<LuxnoraSuggestion|null>(null);
   const [note,setNote]=useState("");

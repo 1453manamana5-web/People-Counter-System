@@ -10,7 +10,7 @@ const modes = {
 };
 const episodeNames = {single:'正方向に1人', reverse:'逆方向に1人', group:'正方向に2人以上で横並び', idle:'立ち止まり・引き返し・荷物の移動'};
 const required = Object.keys(episodeNames);
-const key = 'counter-adaptive-v12';
+const key = 'pcs-counter-adaptive-v12';
 let hooks, scope, state = restoreProfileState(null);
 let wizard = null, episode = null;
 let lastFault = '';

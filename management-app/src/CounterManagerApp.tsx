@@ -4,7 +4,7 @@ import {LuxnoraPanel} from "./luxnora/LuxnoraPanel";
 import {diagnose,type Target} from "./luxnora/assistant";
 import {forecast,type Forecast} from "./luxnora/forecast";
 import {useEffect, useMemo, useRef, useState, type FormEvent} from "react";
-import {bounded, counterEvents, authCode, loginErrorMessage, permissionDenied, verifyManager, watchCounterAuth, signInManager, signOutManager, requestManagerVerification, type CounterEvent, type CounterManager} from "./counterAuth";
+import {bounded, counterEvents, authCode, loginErrorMessage, permissionDenied, verifyManager, watchCounterAuth, signInManager, signOutManager, type CounterEvent, type CounterManager} from "./counterAuth";
 import {
   addCounterPassage, analyze, csv, pauseCounterEvent, reviseCounterPassage, saveCounterConfig, saveCounterStation,
   subscribeCounterEvent, type CounterConfig, type CounterMode, type CounterOperation, type CounterSnapshot, type CounterStation,
@@ -84,11 +84,9 @@ function useManager(locked: boolean) {
 export function CounterManagerApp({suggest}: {suggest?:LuxnoraEventProvider} = {}) {
   const [locked,setLocked] = useState(() => {try {return sessionStorage.getItem("pcs-counter-manager-lock") === "1";} catch {return false;}});
   const {state,retry,clear} = useManager(locked);
-  const [loginError,setLoginError]=useState("");const [loginBusy,setLoginBusy]=useState(false);const [verificationNeeded,setVerificationNeeded]=useState(false);
-  const needsVerification=verificationNeeded||state.code==="manager/email-unverified";
+  const [loginError,setLoginError]=useState("");const [loginBusy,setLoginBusy]=useState(false);
   const signedInDenied=state.kind==="denied"&&!!state.code&&state.code!=="manager/login-required";
-  async function sendVerification(){if(loginBusy)return;setLoginBusy(true);try{const sent=await requestManagerVerification();setLoginError(sent?"確認メールを送信しました。メールのリンクを開いた後、再度ログインしてください。":"メール確認済みです。管理権限を再確認します。");if(!sent){setVerificationNeeded(false);retry();}}catch(error){setLoginError(loginErrorMessage(error));}finally{setLoginBusy(false);}}
-  async function login(e:FormEvent<HTMLFormElement>){e.preventDefault();if(loginBusy)return;const form=new FormData(e.currentTarget);setLoginBusy(true);setLoginError("");try{const verified=await signInManager(String(form.get("email")??""),String(form.get("password")??""));setVerificationNeeded(!verified);if(!verified)setLoginError("メールアドレスの確認が必要です。");clear();retry();}catch(error){setLoginError(loginErrorMessage(error));}finally{setLoginBusy(false);}}
+  async function login(e:FormEvent<HTMLFormElement>){e.preventDefault();if(loginBusy)return;const form=new FormData(e.currentTarget);setLoginBusy(true);setLoginError("");try{await signInManager(String(form.get("email")??""),String(form.get("password")??""));clear();retry();}catch(error){setLoginError(loginErrorMessage(error));}finally{setLoginBusy(false);}}
   function lock(value: boolean) {
     clear(); setLocked(value);
     try {sessionStorage.setItem("pcs-counter-manager-lock",value ? "1" : "0");} catch { /* browser-only lock */ }
@@ -102,9 +100,9 @@ export function CounterManagerApp({suggest}: {suggest?:LuxnoraEventProvider} = {
       <p className="cm-gate-copy">入退場の集計と、入口・出口に設置する端末を管理します。</p>
       {locked ? <div className="cm-gate-state"><strong>管理画面はロックされています</strong><p>再接続時にこの端末の権限を確認します。</p><button className="cm-primary" onClick={() => lock(false)}>管理画面を開く</button></div>
       : state.kind === "loading" ? <div className="cm-gate-state" role="status"><strong>管理端末の権限を確認しています</strong><p>初回はインターネット接続が必要です。</p></div>
-      : <div className="cm-gate-state" role="status"><strong>{needsVerification ? "メールアドレスの確認" : signedInDenied ? "管理者権限の確認" : state.kind === "denied" ? "管理者ログイン" : "サーバーに接続できません"}</strong>
+      : <div className="cm-gate-state" role="status"><strong>{signedInDenied ? "管理者権限の確認" : state.kind === "denied" ? "管理者ログイン" : "サーバーに接続できません"}</strong>
         <p>{state.message || "人数カウント専用の管理者・副管理者アカウントでログインしてください。"}</p>
-        <form className="cm-form" onSubmit={e=>void login(e)}><label>メールアドレス<input name="email" type="email" autoComplete="username" required/></label><label>パスワード<input name="password" type="password" autoComplete="current-password" required/></label><button className="cm-primary" disabled={loginBusy}>{loginBusy?"確認中…":"ログイン"}</button></form>{loginError&&<p role="status">{loginError}</p>}{needsVerification&&<button disabled={loginBusy} onClick={()=>void sendVerification()}>確認メールを送信</button>}{signedInDenied&&<button disabled={loginBusy} onClick={()=>{setVerificationNeeded(false);setLoginError("");void signOutManager().then(()=>{clear();retry();}).catch(error=>setLoginError(loginErrorMessage(error)));}}>別のアカウントでログイン</button>}<p className="cm-caption">事前登録・メール確認・管理権限の承認が必要です。</p><button onClick={()=>{clear();retry();}}>{needsVerification?"メール確認後に再確認":"接続・権限を再確認"}</button></div>}
+        <form className="cm-form" onSubmit={e=>void login(e)}><label>メールアドレス<input name="email" type="email" autoComplete="username" required/></label><label>パスワード<input name="password" type="password" autoComplete="current-password" required/></label><button className="cm-primary" disabled={loginBusy}>{loginBusy?"確認中…":"ログイン"}</button></form>{loginError&&<p role="status">{loginError}</p>}{signedInDenied&&<button disabled={loginBusy} onClick={()=>{setLoginError("");void signOutManager().then(()=>{clear();retry();}).catch(error=>setLoginError(loginErrorMessage(error)));}}>別のアカウントでログイン</button>}<p className="cm-caption">Firebaseで事前登録・管理権限の承認されたアカウントが必要です。</p><button onClick={()=>{clear();retry();}}>接続・権限を再確認</button></div>}
       <div className="cm-gate-links"><a href={base + "people-counter/"}>計測端末を開く</a></div>
     </main>
   </div>;

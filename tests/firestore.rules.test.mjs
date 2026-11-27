@@ -9,15 +9,15 @@ before(async()=>{env=await initializeTestEnvironment({projectId:"demo-people-cou
 after(async()=>{await env?.cleanup()});
 beforeEach(async()=>{await env.clearFirestore();await env.withSecurityRulesDisabled(async ctx=>{
  const db=ctx.firestore();
- for(const [id,role,enabled] of [["admin","admin",true],["deputy","subAdmin",true],["revoked","admin",false],["unverified","admin",true]])await setDoc(doc(db,"counterManagers",id),{name:id,role,enabled});
+ for(const [id,role,enabled] of [["admin","admin",true],["deputy","subAdmin",true],["revoked","admin",false],["unverified","admin",true],["unverifiedDeputy","subAdmin",true],["badRole","other",true]])await setDoc(doc(db,"counterManagers",id),{name:id,role,enabled});
  await setDoc(doc(db,"counterDays",day),{eventId:event,stage:"prepare",version:0});
  await setDoc(doc(db,"events",day,"counterDevices","station"),{name:"entry",device:station,role:"in",status:"pending",requestedAt:new Date(),pairingIssuedAt:new Date()});
 })});
 const manager=(id="admin",verified=true)=>env.authenticatedContext(id,{email:id+"@example.test",email_verified:verified,firebase:{sign_in_provider:"password"}}).firestore();
 const anon=(id="station")=>env.authenticatedContext(id,{firebase:{sign_in_provider:"anonymous"}}).firestore();
-test("only enabled verified managers may list events",async()=>{
- for(const db of [manager(),manager("deputy")])await assertSucceeds(getDocs(collection(db,"counterEvents")));
- for(const db of [manager("unverified",false),manager("revoked"),manager("stranger"),anon(),env.unauthenticatedContext().firestore()])await assertFails(getDocs(collection(db,"counterEvents")));
+test("only enabled password-authenticated managers may list events without email verification",async()=>{
+ for(const db of [manager(),manager("deputy"),manager("unverified",false),manager("unverifiedDeputy",false)])await assertSucceeds(getDocs(collection(db,"counterEvents")));
+ for(const db of [manager("revoked"),manager("stranger",false),manager("badRole",false),anon(),anon("admin"),env.unauthenticatedContext().firestore()])await assertFails(getDocs(collection(db,"counterEvents")));
 });
 test("privileges cannot be granted or altered from any browser",async()=>{
  await assertFails(setDoc(doc(manager("stranger"),"counterManagers","stranger"),{name:"stranger",role:"admin",enabled:true}));
@@ -41,9 +41,16 @@ test("pending station cannot approve itself or receive approval without pairing"
  await assertFails(batch.commit());
 });
 test("native event and both mode configs can be created together",async()=>{
- const db=manager("deputy"),id="87654321-1234-4234-8234-123456789012",d=id+"_2027-11-15",audit={updatedAt:serverTimestamp(),updatedByUid:"deputy"},batch=writeBatch(db);
+ const db=manager("deputy",false),id="87654321-1234-4234-8234-123456789012",d=id+"_2027-11-15",audit={updatedAt:serverTimestamp(),updatedByUid:"deputy"},batch=writeBatch(db);
  batch.set(doc(db,"counterEvents",id),{name:"test",venue:"room",...audit});
  batch.set(doc(db,"counterDays",d),{eventId:id,date:"2027-11-15",start:"09:00",end:"15:00",stage:"prepare",opened:null,trialOpened:null,closing:null,ended:null,emptyConfirmed:null,finalized:null,version:0,operation:"",...audit});
  for(const mode of ["live","test"])batch.set(doc(db,"events",d,"counterConfig",mode),{opened:null,closed:null,paused:true,verified:false,version:0,...audit});
  await assertSucceeds(batch.commit());
+});
+
+test("unverified password account with admin grant may list managers; unverified deputy may not",async()=>{
+ await assertSucceeds(getDocs(collection(manager("unverified",false),"counterManagers")));
+ await assertFails(getDocs(collection(manager("unverifiedDeputy",false),"counterManagers")));
+ await assertFails(getDoc(doc(anon("admin"),"counterManagers","admin")));
+ await assertFails(setDoc(doc(manager("stranger",false),"counterManagers","stranger"),{name:"stranger",role:"admin",enabled:true}));
 });

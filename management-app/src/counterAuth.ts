@@ -1,4 +1,4 @@
-import {onAuthStateChanged,signInWithEmailAndPassword,signOut,sendEmailVerification} from "firebase/auth";
+import {onAuthStateChanged,signInWithEmailAndPassword,signOut} from "firebase/auth";
 import {doc,getDocFromServer} from "firebase/firestore";
 import {ensureFirebaseAuth,getFirebaseDb} from "../../counter-app/src/managerFirebaseClient";
 export type CounterManager={uid:string;terminalId:string;role:"admin"|"subAdmin";name:string};
@@ -9,7 +9,8 @@ export function loginErrorMessage(error:unknown){const code=authCode(error);if([
 export async function verifyManager():Promise<CounterManager>{
  const auth=await ensureFirebaseAuth(),u=auth.currentUser;
  if(!u||u.isAnonymous)throw denied();
- if(!u.emailVerified){await u.reload();if(!u.emailVerified)throw denied("manager/email-unverified","メール確認が完了していません。");await u.getIdToken(true);}
+ const token=await u.getIdTokenResult();
+ if(token.signInProvider!=="password")throw denied();
  let grant;try{grant=(await getDocFromServer(doc(getFirebaseDb(),"counterManagers",u.uid))).data();}catch(error){if(authCode(error)==="permission-denied")throw denied("manager/rules-denied","管理者情報を読み取れません。Firebaseの専用ルールが公開済みか確認してください。");throw error;}
  if(auth.currentUser?.uid!==u.uid)throw denied();
  if(!grant)throw denied("manager/grant-missing","管理者の承認情報がありません。AuthenticationのUIDとcounterManagersのドキュメントIDを確認してください。");
@@ -17,8 +18,7 @@ export async function verifyManager():Promise<CounterManager>{
  return {uid:u.uid,terminalId:u.uid,role:grant.role,name:typeof grant.name==="string"?grant.name:"管理者"};
 }
 export async function watchCounterAuth(change:(uid:string|null)=>void){return onAuthStateChanged(await ensureFirebaseAuth(),u=>change(u?.uid??null));}
-export async function signInManager(email:string,password:string){const a=await ensureFirebaseAuth();const result=await signInWithEmailAndPassword(a,email.trim(),password);await result.user.getIdToken(true);return result.user.emailVerified;}
-export async function requestManagerVerification(){const a=await ensureFirebaseAuth();const u=a.currentUser;if(!u||u.isAnonymous)throw denied();await u.reload();if(u.emailVerified){await u.getIdToken(true);return false;}await sendEmailVerification(u);return true;}
+export async function signInManager(email:string,password:string){const a=await ensureFirebaseAuth();const result=await signInWithEmailAndPassword(a,email.trim(),password);await result.user.getIdToken(true);}
 export async function signOutManager(){await signOut(await ensureFirebaseAuth());}
 export async function counterEvents():Promise<CounterEvent[]>{return [];}
 export function permissionDenied(error:unknown){return /permission-denied|unauthenticated|^manager\//.test(authCode(error));}

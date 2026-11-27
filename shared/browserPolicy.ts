@@ -2,16 +2,10 @@ import type {Plugin} from 'vite';
 
 /** Build-only: development keeps Vite's local refresh/WebSocket behavior. */
 export function productionBrowserPolicy(): Plugin {
-  let authDomain = '', projectId = '';
+  const authDomain = 'people-counter-system-aed75.firebaseapp.com';
   return {
     name: 'production-browser-security',
     apply: 'build',
-    configResolved(config) {
-      const domain = config.env.VITE_COUNTER_FIREBASE_AUTH_DOMAIN;
-      if (typeof domain === 'string' && /^[a-z0-9](?:[a-z0-9.-]{0,251}[a-z0-9])?$/i.test(domain)) authDomain = domain;
-      const project = config.env.VITE_COUNTER_FIREBASE_PROJECT_ID;
-      if (typeof project === 'string' && /^[a-z][a-z0-9-]{4,62}$/.test(project)) projectId = project;
-    },
     transformIndexHtml: {
       order: 'pre',
       handler(_html,context) {
@@ -21,8 +15,7 @@ export function productionBrowserPolicy(): Plugin {
           "img-src 'self' data: blob:", "font-src 'self' data:", "media-src 'self' blob:",
           "worker-src 'self' blob:", "manifest-src 'self'",
           `frame-src 'self'${authDomain ? ' https://' + authDomain : ''}`,
-          "connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firebaseinstallations.googleapis.com" +
-            (projectId ? ` https://us-central1-${projectId}.cloudfunctions.net` : ''),
+          "connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firebaseinstallations.googleapis.com",
           "object-src 'none'", "base-uri 'none'", "form-action 'none'",
         ].join('; ');
         return [

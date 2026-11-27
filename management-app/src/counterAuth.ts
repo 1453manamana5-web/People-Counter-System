@@ -1,4 +1,4 @@
-import {onAuthStateChanged,signInWithEmailAndPassword,signOut} from "firebase/auth";
+import {onAuthStateChanged,signInWithEmailAndPassword,signOut,sendEmailVerification} from "firebase/auth";
 import {doc,getDocFromServer} from "firebase/firestore";
 import {ensureFirebaseAuth,getFirebaseDb} from "../../counter-app/src/managerFirebaseClient";
 export type CounterManager={uid:string;terminalId:string;role:"admin"|"subAdmin";name:string};
@@ -12,7 +12,8 @@ export async function verifyManager():Promise<CounterManager>{
  return {uid:u.uid,terminalId:u.uid,role:grant.role,name:typeof grant.name==="string"?grant.name:"管理者"};
 }
 export async function watchCounterAuth(change:(uid:string|null)=>void){return onAuthStateChanged(await ensureFirebaseAuth(),u=>change(u?.uid??null));}
-export async function signInManager(email:string,password:string){const a=await ensureFirebaseAuth();const result=await signInWithEmailAndPassword(a,email,password);await result.user.getIdToken(true);}
+export async function signInManager(email:string,password:string){const a=await ensureFirebaseAuth();const result=await signInWithEmailAndPassword(a,email,password);await result.user.getIdToken(true);return result.user.emailVerified;}
+export async function requestManagerVerification(){const a=await ensureFirebaseAuth();const u=a.currentUser;if(!u||u.isAnonymous)throw denied();await u.reload();if(u.emailVerified){await u.getIdToken(true);return false;}await sendEmailVerification(u);return true;}
 export async function signOutManager(){await signOut(await ensureFirebaseAuth());}
 export async function counterEvents():Promise<CounterEvent[]>{return [];}
 export function permissionDenied(error:unknown){return /permission-denied|unauthenticated/.test((error as {code?:string}|null)?.code??"");}

@@ -1,7 +1,8 @@
-# 独立バックエンド構築（未実施）
-
-- 新しい Firebase プロジェクトを Spark で作成し、Web アプリを追加する。QR 用のプロジェクトは選択しない。
-- Email/Password と Anonymous を有効化する。管理アカウントと計測端末は異なる Firebase App 名で認証状態を分離する。
-- 初回管理者は Firebase コンソール等の信頼済み操作で作成する。メールの確認を完了し、Firestore の `counterManagers/{uid}` に `name` (string), `role` (`admin`), `enabled` (true) を登録する。クライアントからのロール登録は不可。
-- `docs/firestore.candidate.rules` は未検証の移植案。エミュレータで権限境界を検証し、承認されたルールを適用するまで `firestore.rules` の全拒否を維持する。
-- `.env.example` の専用変数を設定し、ビルドと実機検証を行う。公開ワークフローは準備完了後に追加する。
+# 独立バックエンド構築
+- 専用 Firebase プロジェクト: people-counter-system-aed75。ブラウザ向け設定は登録済み。Analytics SDK は利用しない。
+- Firebase Consoleで Authentication のメール/パスワードおよび匿名認証を有効化する。
+- Firestore Standard、データベース ID (default)、asia-northeast1（東京）、本番モードで開始する。既に作成済みなら変更しない。
+- 初回管理者はコンソールでメール/パスワードのユーザーを作成し、UIDを控える。Firestore の counterManagers/{uid} に name (string), role (string: admin), enabled (boolean: true) を登録する。公開アプリに管理者を自己登録する機能は付けない。
+- 管理アプリのログイン画面から確認メールを送信できる。確認完了後に再ログインする。
+- docs/firestore.candidate.rules は検証前の候補。権限境界のエミュレータ試験が通るまで本番 firestore.rules の全拒否を維持する。
+- GitHub Pages 公開は別途設定する。QRプロジェクトの設定・利用者・データは移行しない。

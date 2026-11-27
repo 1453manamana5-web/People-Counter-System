@@ -4,7 +4,7 @@ import {LuxnoraPanel} from "./luxnora/LuxnoraPanel";
 import {diagnose,type Target} from "./luxnora/assistant";
 import {forecast,type Forecast} from "./luxnora/forecast";
 import {useEffect, useMemo, useRef, useState, type FormEvent} from "react";
-import {bounded, counterEvents, authCode, loginErrorMessage, permissionDenied, verifyManager, watchCounterAuth, signInManager, signOutManager, type CounterEvent, type CounterManager} from "./counterAuth";
+import {bounded, counterEvents, authCode, permissionDenied, verifyManager, watchCounterAuth, type CounterEvent, type CounterManager} from "./counterAuth";
 import {
   addCounterPassage, analyze, csv, pauseCounterEvent, reviseCounterPassage, saveCounterConfig, saveCounterStation,
   subscribeCounterEvent, type CounterConfig, type CounterMode, type CounterOperation, type CounterSnapshot, type CounterStation,
@@ -41,6 +41,7 @@ const initialData = (): DataState => ({config:{data:null,source:"pending"},stati
 function useManager(locked: boolean) {
   const [state,setState] = useState<AuthState>({kind:"loading"});
   const [request,refresh] = useState(0);
+  const [uid,setUid] = useState<string|null>(null);
   useEffect(() => {
     if (locked) return;
     let active = true, version = 0, loading = false, currentUid: string|null|undefined;
@@ -61,6 +62,7 @@ function useManager(locked: boolean) {
     void watchCounterAuth(uid => {
       if (!active || currentUid === uid) return;
       currentUid = uid;
+      setUid(uid);
       setState({kind:"loading"});
       verify(true);
     }).then(stop => {if (active) unsubscribe = stop; else stop();}).catch(() => {});
@@ -78,15 +80,14 @@ function useManager(locked: boolean) {
       window.removeEventListener("offline",offline);
     };
   },[locked,request]);
-  return {state,retry:() => refresh(n => n + 1),clear:() => setState({kind:"loading"})};
+  return {state,uid,retry:() => refresh(n => n + 1),clear:() => setState({kind:"loading"})};
 }
 
 export function CounterManagerApp({suggest}: {suggest?:LuxnoraEventProvider} = {}) {
   const [locked,setLocked] = useState(() => {try {return sessionStorage.getItem("pcs-counter-manager-lock") === "1";} catch {return false;}});
-  const {state,retry,clear} = useManager(locked);
-  const [loginError,setLoginError]=useState("");const [loginBusy,setLoginBusy]=useState(false);
-  const signedInDenied=state.kind==="denied"&&!!state.code&&state.code!=="manager/login-required";
-  async function login(e:FormEvent<HTMLFormElement>){e.preventDefault();if(loginBusy)return;const form=new FormData(e.currentTarget);setLoginBusy(true);setLoginError("");try{await signInManager(String(form.get("email")??""),String(form.get("password")??""));clear();retry();}catch(error){setLoginError(loginErrorMessage(error));}finally{setLoginBusy(false);}}
+  const {state,uid,retry,clear} = useManager(locked);
+  const [copyNotice,setCopyNotice]=useState("");
+  async function copyUid(){if(!uid)return;try{await navigator.clipboard.writeText(uid);setCopyNotice("端末UIDをコピーしました。");}catch{setCopyNotice("端末UIDを選択してコピーしてください。");}}
   function lock(value: boolean) {
     clear(); setLocked(value);
     try {sessionStorage.setItem("pcs-counter-manager-lock",value ? "1" : "0");} catch { /* browser-only lock */ }
@@ -100,9 +101,10 @@ export function CounterManagerApp({suggest}: {suggest?:LuxnoraEventProvider} = {
       <p className="cm-gate-copy">入退場の集計と、入口・出口に設置する端末を管理します。</p>
       {locked ? <div className="cm-gate-state"><strong>管理画面はロックされています</strong><p>再接続時にこの端末の権限を確認します。</p><button className="cm-primary" onClick={() => lock(false)}>管理画面を開く</button></div>
       : state.kind === "loading" ? <div className="cm-gate-state" role="status"><strong>管理端末の権限を確認しています</strong><p>初回はインターネット接続が必要です。</p></div>
-      : <div className="cm-gate-state" role="status"><strong>{signedInDenied ? "管理者権限の確認" : state.kind === "denied" ? "管理者ログイン" : "サーバーに接続できません"}</strong>
-        <p>{state.message || "人数カウント専用の管理者・副管理者アカウントでログインしてください。"}</p>
-        <form className="cm-form" onSubmit={e=>void login(e)}><label>メールアドレス<input name="email" type="email" autoComplete="username" required/></label><label>パスワード<input name="password" type="password" autoComplete="current-password" required/></label><button className="cm-primary" disabled={loginBusy}>{loginBusy?"確認中…":"ログイン"}</button></form>{loginError&&<p role="status">{loginError}</p>}{signedInDenied&&<button disabled={loginBusy} onClick={()=>{setLoginError("");void signOutManager().then(()=>{clear();retry();}).catch(error=>setLoginError(loginErrorMessage(error)));}}>別のアカウントでログイン</button>}<p className="cm-caption">Firebaseで事前登録・管理権限の承認されたアカウントが必要です。</p><button onClick={()=>{clear();retry();}}>接続・権限を再確認</button></div>}
+      : <div className="cm-gate-state" role="status"><strong>{state.kind==="denied"?"管理端末の承認":"サーバーに接続できません"}</strong>
+        <p>{state.message || "Firebaseで承認された管理端末のみ利用できます。"}</p>
+        {uid&&<><label htmlFor="cm-device-uid">端末UID</label><input id="cm-device-uid" readOnly value={uid} onFocus={e=>e.currentTarget.select()} style={{width:"100%",boxSizing:"border-box",fontFamily:"monospace"}}/><button onClick={()=>void copyUid()}>UIDをコピー</button>{copyNotice&&<p role="status">{copyNotice}</p>}<p className="cm-caption">Firebaseの counterManagers にこのUIDを登録してください。メールアドレス・パスワードは不要です。</p></>}
+        <button className="cm-primary" onClick={()=>{clear();retry();}}>承認状況を再確認</button></div>}
       <div className="cm-gate-links"><a href={base + "people-counter/"}>計測端末を開く</a></div>
     </main>
   </div>;
@@ -423,7 +425,7 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
         {!authReady && <p className="cm-warning" role="status">管理端末の権限を現在確認できません。表示済みの情報は古い可能性があります。 <button onClick={recheck}>再確認</button></p>}
         <div ref={detailSurface} className={"cm-detail-surface"+(page==="home"&&!create?" cm-home-surface":"")}>{create ? <NewCounterEvent owner={manager.uid} busy={createBusy} onSave={saveNew} onClose={()=>setCreate(false)} provider={suggest??eventSuggestions}/>
         : page === "settings" ? <section className="cm-section"><h2>この管理端末</h2><dl className="cm-definition"><dt>名称</dt><dd>{manager.name}</dd><dt>権限</dt><dd>{admin ? "管理者" : "副管理者"}</dd><dt>承認先</dt><dd>人数カウント専用認証</dd></dl>
-          <p>管理者・副管理者は人数カウント専用の権限管理で登録します。</p><button onClick={()=>void signOutManager().catch(()=>setNotice("ログアウトを確認できませんでした。"))}>ログアウト</button></section>
+          <p>管理者・副管理者はFirebaseで端末UIDを承認して登録します。</p><p>端末UID：<code>{manager.uid}</code></p></section>
         : !eventId ? <p className="cm-empty">{events?.length === 0 && catalog?.days.length === 0 ? "イベント名のメニューから新規作成できます。" : "イベントを読み込んでいます。"}</p>
         : denied ? <p className="cm-warning" role="alert">人数カウントの閲覧権限をサーバーで確認できません。 <button onClick={() => {recheck();fetchEvents();}}>再確認</button></p>
         : <>

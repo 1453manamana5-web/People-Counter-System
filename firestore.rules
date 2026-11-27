@@ -8,11 +8,11 @@ service cloud.firestore {
     function counterManagerPath() {
       return /databases/$(database)/documents/counterManagers/$(request.auth.uid);
     }
-    function passwordManagerSession() {
-      return signedIn() && request.auth.token.firebase.sign_in_provider == "password";
+    function anonymousManagerSession() {
+      return signedIn() && request.auth.token.firebase.sign_in_provider == "anonymous";
     }
     function counterOperator() {
-      return passwordManagerSession()
+      return anonymousManagerSession()
         && exists(counterManagerPath())
         && get(counterManagerPath()).data.enabled == true
         && get(counterManagerPath()).data.role in ["admin","subAdmin"];
@@ -22,7 +22,7 @@ service cloud.firestore {
     }
     // First administrator and subsequent account grants must be provisioned by a trusted backend/console.
     match /counterManagers/{uid} {
-      allow get: if passwordManagerSession() && request.auth.uid == uid;
+      allow get: if anonymousManagerSession() && request.auth.uid == uid;
       allow list: if counterAdministrator();
       allow write: if false;
     }

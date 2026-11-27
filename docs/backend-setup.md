@@ -1,8 +1,8 @@
 # 独立バックエンド構築
-- 専用 Firebase プロジェクト: people-counter-system-aed75。ブラウザ向け設定は登録済み。Analytics SDK は利用しない。
-- Firebase Consoleで Authentication のメール/パスワードおよび匿名認証を有効化する。
-- Firestore Standard、データベース ID (default)、asia-northeast1（東京）、本番モードで開始する。既に作成済みなら変更しない。
-- 初回管理者はコンソールでメール/パスワードのユーザーを作成し、UIDを控える。Firestore の counterManagers/{uid} に name (string), role (string: admin), enabled (boolean: true) を登録する。公開アプリに管理者を自己登録する機能は付けない。
-- メール確認は不要。メール/パスワード認証とコンソールで事前承認された UID・有効な管理権限の両方を確認する。匿名認証は管理者として認めない。
-- 検証済みの候補を `firestore.rules` に反映済み。実際の Firebase Console のルールは別途、専用プロジェクトで公開する必要がある。新しいコミットの CI も成功していることを確認する。
-- GitHub Pages は Settings → Pages → Source → GitHub Actions を選択し、main の更新時に Deploy independent people counter が自動実行される。公開前に Firebase のルールを適用する。QRプロジェクトの設定・利用者・データは移行しない。
+- 専用 Firebase: people-counter-system-aed75。Spark 無料プラン。
+- Authentication の匿名認証を有効にする。管理アプリ・計測アプリは別の Firebase App 名で端末の認証状態を分離する。
+- 管理アプリを通常の Safari で開き、未承認画面の端末UIDを確認する。UIDはブラウザの認証保存領域に依存し、データ消去やプライベートブラウズでは変わりうる。
+- 信頼できる管理者が Firebase Console で Authentication の匿名ユーザーとUIDを照合し、Firestore の counterManagers/{uid} に name (string), role (admin または subAdmin), enabled (boolean: true) を設定する。UIDの申告だけで承認せず、実際の管理端末上の表示を確認する。
+- メール/パスワードの旧アカウントや権限文書は自動削除しないが、新方式では使用できない。不要なら新端末の承認成功後、コンソールで無効化する。
+- 端末の紛失・交換時は enabled を false にして旧UIDを失効させ、新UIDを別途承認する。ログイン操作は不要、管理画面のロックはUIDを維持する。
+- CI 成功を確認してから firestore.rules を専用 Firebase Console で公開する。GitHub Pages は main 更新時にテスト後自動公開する。既存QRシステムは変更しない。

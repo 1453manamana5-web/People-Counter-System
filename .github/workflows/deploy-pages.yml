@@ -1,5 +1,7 @@
 name: Deploy independent people counter
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read

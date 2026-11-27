@@ -13,7 +13,7 @@ export async function semanticRead(raw:string):Promise<Intent|null> {
   if(!worker) {
     try {
       let check:Response|undefined;
-      const cache=typeof caches==="undefined"?undefined:await caches.open("luxnora-model-index-v1").catch(()=>undefined);
+      const cache=typeof caches==="undefined"?undefined:await caches.open("pcs-luxnora-model-index-v1").catch(()=>undefined);
       try {
         check=await fetch(base+"ready.json",{signal:AbortSignal.timeout(4000)});
         if(check.ok) await cache?.put(base+"ready.json",check.clone()).catch(()=>{});

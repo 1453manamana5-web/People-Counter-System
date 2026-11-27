@@ -1,0 +1,49 @@
+name: Deploy independent people counter
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: independent-pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: npm install
+      - run: npm run build
+      - run: npm test
+      - run: npm run test:rules
+      - name: Prepare local Luxnora model
+        run: node scripts/prepare-luxnora-model.mjs counter-app/dist
+      - name: Verify required output
+        run: |
+          test -f counter-app/dist/index.html
+          test -f counter-app/dist/counter-management/index.html
+          test -f counter-app/dist/people-counter/index.html
+          test -f counter-app/dist/people-counter/counter-sync.js
+          test -f counter-app/dist/luxnora-assets/ready.json
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: counter-app/dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

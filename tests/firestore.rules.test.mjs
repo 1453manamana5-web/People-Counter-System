@@ -5,7 +5,7 @@ import {doc,getDoc,getDocs,collection,setDoc,updateDoc,writeBatch,serverTimestam
 const event="12345678-1234-4234-8234-123456789012", day=event+"_2027-11-14";
 const station="12345678-1234-4234-8234-123456789013";
 let env;
-before(async()=>{env=await initializeTestEnvironment({projectId:"demo-people-counter",firestore:{rules:readFileSync("docs/firestore.candidate.rules","utf8")}})});
+before(async()=>{env=await initializeTestEnvironment({projectId:"demo-people-counter",firestore:{rules:readFileSync("firestore.rules","utf8")}})});
 after(async()=>{await env?.cleanup()});
 beforeEach(async()=>{await env.clearFirestore();await env.withSecurityRulesDisabled(async ctx=>{
  const db=ctx.firestore();

@@ -1,6 +1,6 @@
 {
   "firestore": {
-    "rules": "docs/firestore.candidate.rules"
+    "rules": "firestore.rules"
   },
   "emulators": {
     "firestore": {

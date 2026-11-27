@@ -411,12 +411,14 @@ service cloud.firestore {
             && !("pairingConfirmed" in request.resource.data)
             && request.resource.data.pairingIssuedAt == request.time
             && resource.data.get("pairingIssuedAt", timestamp.date(1970,1,1)) + duration.value(30,"s") <= request.time)
-          || (validCounterDeviceDecision(request.resource.data) &&
-            ((!exists(counterDayPath(eventId)) && counterAdministrator())
-              || (exists(counterDayPath(eventId)) && assignmentMatches(request.resource.data)
-                && (counterAdministrator() || (counterOperator() && resource.data.status in ["pending","approved"]
-                  && request.resource.data.status in ["pending","approved","rejected"]
-                  && (resource.data.status != "approved" || request.resource.data.status == "approved"))))));
+          || (exists(counterDayPath(eventId)) && counterOperator()
+            && validCounterDeviceDecision(request.resource.data)
+            && assignmentMatches(request.resource.data)
+            && (request.resource.data.status != "approved" || resource.data.status == "approved"
+              || (resource.data.status == "pending" && matchesPairing(request.resource.data)))
+            && (counterAdministrator() || (resource.data.status in ["pending","approved"]
+              && request.resource.data.status in ["pending","approved","rejected"]
+              && (resource.data.status != "approved" || request.resource.data.status == "approved"))));
 
       }
 
@@ -432,10 +434,7 @@ service cloud.firestore {
                 && data.paused == (day.stage != "trial"));
         }
         allow create, update: if counterMode(mode) && validCounterConfig(request.resource.data)
-          && ((existsAfter(counterDayPath(eventId)) && counterOperator() && matchesCounterDay(request.resource.data))
-            || (!existsAfter(counterDayPath(eventId)) && exists(/databases/$(database)/documents/events/$(eventId))
-              && (counterAdministrator() || (resource != null && counterOperator()
-                && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["paused","updatedAt","updatedByUid"])))));
+          && existsAfter(counterDayPath(eventId)) && counterOperator() && matchesCounterDay(request.resource.data);
 
       }
 

@@ -25,6 +25,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm test
+      - run: npm run evaluate:luxnora
       - run: npm run test:rules
       - name: Prepare local Luxnora model
         run: node scripts/prepare-luxnora-model.mjs counter-app/dist

@@ -99,3 +99,14 @@ test("a corrected clock warning follows the ledger's certification outcome",()=>
   assert.equal(certified.issues,1);
   assert.equal(aggregateComparison([certified]).average,10*minute);
 });
+
+test("a historical time window excludes its upper boundary and preserves the verified day totals",()=>{
+  const rows=[row("window","a",5,"in"),row("window","b",12,"in"),
+    row("window","c",20,"out"),row("window","d",45,"out")];
+  const result=summarizeCounterDay("window","2027-03-31",config(1),rows,opened+8*hourMs,0,
+    {from:opened+10*minute,to:opened+20*minute});
+  assert.equal(result.status,"verified");
+  assert.equal(result.entries,2);
+  assert.equal(result.exits,2);
+  assert.deepEqual(result.window,{entries:1,exits:0,duration:10*minute});
+});

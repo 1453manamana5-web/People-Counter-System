@@ -49,21 +49,36 @@ export function answer(plan:Plan,data:Evidence):Answer {
     plan.operation?"現在の開催状態で操作できる場合、イベント管理に確認画面を表示します。":
     "イベント管理を表示します。重要な操作は画面上の確認を経て確定できます。"};
   if(plan.intent==="records") return {target:"records",text:"選択中の開催日の通過記録を表示します。"};
-  if(plan.intent==="compare") return {target:"compare",text:"年度比較を表示します。比較する年度とイベントを選ぶと、本番の通過記録と開場1時間あたりの入場回数を確認できます。差の原因を通過記録だけから特定することはできません。"};
+  if(plan.intent==="compare") return {target:"compare",text:"年度比較を表示します。比較する年度とイベントを選ぶと、本番の通過記録と開場1時間あたりの入場回数を確認できます。差の原因を通過記録だけから特定することはできません。"+(plan.period!==undefined?" 年度比較画面で表示する集計は開催日全体です。":"")};
   if(plan.intent==="readiness") {
-    const missing=(["in","out"] as const).filter(role=>!stations.some(row=>row.role===role&&row.status==="approved"));
-    const failed=stations.some(row=>row.status==="approved"&&(row.lastSeen==null||now-row.lastSeen>180000||row.alert==="storage"||row.alert==="camera"));
+    const missing=(["in","out"] as const).filter(role=>!known.some(row=>row.role===role));
+    const failed=known.some(row=>row.lastSeen==null||now-row.lastSeen>180000||row.alert==="storage"||row.alert==="camera");
     return {target:"event",text:!day?"開催日を選ぶと準備状況を確認できます。":(missing.length?
       missing.map(role=>roles[role]).join("・")+"の承認済み端末がありません。":failed?
       "承認済み端末の通信または診断結果を確認してください。":"入口と出口は割り当て済みです。")+
       " 開場前に両端末の方向・試験通過・空室を現地で確認してください。"};
   }
-  if(plan.intent==="forecast") return {target:"graph",text:prediction.length?
-    prediction.map(point=>jst(point.at)+"頃の滞在 約"+point.occupancy+"人（目安 "+point.low+"〜"+point.high+"人）、累計入場 約"+point.entries+"回。").join("\n")
+  if(plan.intent==="forecast") {
+    const points=plan.horizon==="closing"?prediction.filter(point=>day&&point.at===Date.parse(day.date+"T"+day.end+":00+09:00")):prediction;
+    return {target:"graph",text:points.length?
+    points.map(point=>jst(point.at)+"頃の滞在 約"+point.occupancy+"人（目安 "+point.low+"〜"+point.high+"人）、累計入場 約"+point.entries+"回。").join("\n")
+    :plan.horizon==="closing"?"閉場時刻の推計は取得できません。閉場予定時刻・推計可能な時間範囲・端末の同期状態を確認してください。"
     :"予測を表示できません。開場中で安定した両端末の通信と、直近20分の通過記録が必要です。"};
+  }
   if(plan.intent==="graph") return {target:"graph",plan,text:plan.period!==undefined?
     "指定した時間帯のグラフを表示します。":"選択中の開催日のグラフを表示します。"};
   if(!analysis||config?.opened==null) return {text:"集計できる開催日の記録をまだ取得できていません。イベントと試験・本番の区分を確認してください。"};
+  if(plan.intent==="trend") {
+    const minutes=typeof plan.period==="number"?plan.period:15;
+    const cutoff=now-minutes*60_000;
+    if(!data.current||config.closed!=null||cutoff<config.opened||minutes<=0||analysis.issues.length) {
+      return {text:"増減を確認するには、開場中の連続した記録と両端末の同期・整合性確認が必要です。"};
+    }
+    const before=analysis.timeline.filter(point=>point.at<=cutoff).at(-1)?.occupancy??0;
+    const difference=analysis.occupancy-before;
+    return {text:scopeName(data)+"。"+minutes+"分前は"+before+"人、現在は"+analysis.occupancy+"人です。"+
+      (difference===0?"滞在人数は同じです。":Math.abs(difference)+"人"+(difference>0?"増えました。":"減りました。"))};
+  }
   if(plan.intent==="crowd") {
     const {from,to,untilExclusive}=luxRange(plan.period,config.opened,Math.min(now,config.closed??Infinity));
     const points=analysis.timeline.filter(point=>point.at<=to&&!(untilExclusive&&point.at===to));

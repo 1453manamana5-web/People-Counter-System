@@ -10,13 +10,14 @@ export const knowledge = {
   routine: ["入口端末をしばらく見守って","問題が起きたら対応して","出口の通信を監視して"],
   readiness: ["もう開場できる", "準備できたか見て", "開場前のチェック", "始める準備はできた"],
   compare: ["去年より少なくない", "前年度と比べて", "去年との差を知りたい", "開催日ごとに比較"],
+  trend: ["さっきより人増えてる", "滞在人数の増減", "前と比べて今は人が増えた"],
   crowd: ["最大同時滞在の時間帯", "混雑ピーク"],
   graph: ["グラフにして", "グラフを表示して", "入退場の推移を見せて", "チャート開いて"],
   records: ["通過記録を開いて", "入退場履歴を見せて", "記録画面へ移動"],
   event: ["開催設定を開いて", "開場時間を変更して", "イベント編集画面", "閉場の設定を見せて"],
 } as const;
 export type Intent = keyof typeof knowledge;
-export type Plan = {intent:Intent;role?:"in"|"out";period?:"am"|"pm"|number|{from:number;to:number};focus:boolean;readOnly:boolean;operation?:"open"|"close";schedule?:{field:"start"|"end";time:string}};
+export type Plan = {intent:Intent;role?:"in"|"out";horizon?:"closing";comparisonMetric?:"entries"|"exits"|"occupancy";previousYear?:boolean;period?:"am"|"pm"|number|{from:number;to:number};focus:boolean;readOnly:boolean;operation?:"open"|"close";schedule?:{field:"start"|"end";time:string}};
 export type Interpretation = {plans:Plan[];message?:string;reset?:boolean};
 
 const normalize = (raw:string) => raw.normalize("NFKC").toLowerCase().replace(/[\s？！?!。]/g,"")
@@ -24,7 +25,7 @@ const normalize = (raw:string) => raw.normalize("NFKC").toLowerCase().replace(/[
   .replace(/何名|何にん|何ニン/g,"何人").replace(/足を運んだ|お越しになった|来はった|来よった/g,"来た")
   .replace(/帰っちゃった|帰らはった|出ていった/g,"帰った").replace(/この先|このあと/g,"この後")
   .replace(/受付の機械|受付の端末/g,"受付端末")
-  .replace(/いてはる|居てる|居る/g,"いる").replace(/入ってきた|入って来た/g,"入った")
+  .replace(/いてはる|居てる|居る/g,"いる").replace(/入ってきた|入って来た|入りました/g,"入った")
   .replace(/来てくれた|来られた|訪れた|訪問した/g,"来た")
   .replace(/出てった|出て行った|退出した|帰っていった/g,"退場した")
   .replace(/ただ今|現時点|現時刻/g,"今").replace(/さっきから|最近の/g,"直近")
@@ -71,10 +72,13 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     return {plans:[],message:"この管理アプリではイベント運営・人数計測に関する依頼に対応できます。"};
   if(/^(?:人数(?:は|教えて|を教えて)?|何人|何人ですか)$/.test(plain)&&!previous)
     return {plans:[],message:"現在の滞在人数と累計入場回数のどちらを確認しますか？"};
+  if(/^(?:なんか|なんとなく)?今日(?:は|って)?(?:人|来場者|入場者|人数|来場)?(?:が)?少なく(?:ない|ありませんか)$/.test(plain))
+    return {plans:[],message:"何と比べますか？ 直前の時間帯と前年の開催日など、基準を指定してください。"};
   const readOnly=/変えない|変更しない|触らない|そのまま|見るだけ|確認だけ|操作しない|開けない|開場しない|閉場しない|停止しない|しないで|せんといて|しないでください|しないよう|してほしくない|して欲しくない|してはいけない|してはだめ|しなくていい|しなくてよい|しちゃだめ|するな|やめて/.test(raw);
   if (/削除|消去|権限変更|管理者にして|無効化/.test(raw))
     return {plans:[],message:"この操作は該当する管理画面から確認してください。"};
-  const clauses=raw.split(/(?:[。\n；;?!？！]|それから|そのあと|そして|続けて|、(?=(?:あと|ついでに|次に))|(?:あと|ついでに|次に)(?=入口|出口|端末|今|今日|午後|午前|入場|退場|滞在|混雑))/).map(normalize).filter(Boolean);
+  const separated=raw.replace(/(して)、(?=混雑|入口|出口|端末|入場|退場|滞在|来場)/g,"$1；");
+  const clauses=separated.split(/(?:[。\n；;?!？！]|それから|そのあと|そして|続けて|、(?=(?:あと|ついでに|次に))|(?:あと|ついでに|次に)(?=入口|出口|端末|今|今日|午後|午前|入場|退場|滞在|混雑))/).map(normalize).filter(Boolean);
   if (clauses.length>4) return {plans:[],message:"一度に4件まで確認できます。"};
   const plans:Plan[]=[];
   for(const clause of clauses) {
@@ -86,7 +90,7 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     const clock=/((?:午前|午後)?\d{1,2}(?:時|:)(?:半|[0-5]?\d)?(?:分)?)(?:から|〜|~|－|–|—|-)((?:午前|午後)?\d{1,2}(?:時|:)(?:半|[0-5]?\d)?(?:分)?)/.exec(clause);
     const from=clock?timeOfDay(clock[1]):null, to=clock?timeOfDay(clock[2]):null;
     if(clock&&(from===null||to===null||from>=to)) return {plans:[],message:"時刻は同じ開催日で、終了を開始より後に指定してください。"};
-    const period=from!==null&&to!==null?{from,to}:clause.includes("午前")?"am":clause.includes("午後")?"pm":relative?Math.min(1440,Number(relative[1])*(relative[2]==="時間"?60:1)):undefined;
+    const period:Plan["period"]=from!==null&&to!==null?{from,to}:clause.includes("午前")?"am":clause.includes("午後")?"pm":relative?Math.min(1440,Number(relative[1])*(relative[2]==="時間"?60:1)):undefined;
     const operational=/開場して|閉場して|停止して|再起動|再開して|変えて|変更して|切り替えて|変更しよ|変えといて/.test(clause);
     const timed=/(?:午前|午後)?\d{1,2}(?:時|:)(?:半|[0-5]?\d)?(?:分)?/.exec(clause);
     const time=timed?timeOfDay(timed[0]):null;
@@ -125,13 +129,17 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     }
     else if(/端末|入口|出口|カメラ|受付|同期|通信|認識/.test(clause)&&/正常|大丈夫|問題|異常|稼働|動作|動いて|繋が|つなが|接続|状態|診断|調子|同期|未送信|未同期|確認|チェック|見て|調べ|オンライン|オフライン|止ま|反応/.test(clause)&&!/入場|退場|来場|滞在人数|通過記録/.test(clause)) intent="stations";
     else if(/記録|集計|数字|人数|カウント|計測|データ/.test(clause)&&/おかし|合わ|矛盾|不一致|漏れ|誤差|整合性|異常|間違|正しいか|信用/.test(clause)) intent="issues";
-    else if(/この後|これから|今後|後で|何分後|先の|予測|予想/.test(clause)&&/増|減|混|人数|人|来場|滞在|予測|予想|空く/.test(clause)) intent="forecast";
+    else if(/昨年|去年|前年/.test(clause)&&prior&&["entries","exits","occupancy","compare"].includes(prior.intent)&&
+      /^(?:じゃあ|では)?(?:昨年|去年|前年)(?:は|も|と比べて|との比較)?$/.test(clause)) intent="compare";
+    else if(/さっき|先ほど|少し前/.test(clause)&&/増|減|多|少|比/.test(clause)&&/人|来場|滞在/.test(clause)&&!/来場|入場|退場|累計/.test(clause)) intent="trend";
+    else if(/この後|これから|今後|後で|何分後|先の|予測|予想|閉場まで|今のペース/.test(clause)&&/増|減|混|人数|人|来場|滞在|予測|予想|空く|来そう|入りそう/.test(clause)) intent="forecast";
     else if(/混雑|混ん|多かった|最大同時|ピーク|一番人|最高人数/.test(clause)&&/時間|時刻|ピーク|一番|最大|いつ|最も/.test(clause)) intent="crowd";
     else if(/滞在|長居|滞留|居た時間|いる時間/.test(clause)&&/平均|何分|何時間|時間|どれくらい|どのくらい/.test(clause)&&!/人数|何人/.test(clause)) intent="dwell";
-    else if(/昨年|去年|前年|前年度|前年比|年度間|年度比較/.test(clause)&&/比|差|違|増|減|少|多|同じ|比較/.test(clause)) intent="compare";
+    else if(/昨年|去年|前年|前年度|前年比|年度間|年度比較/.test(clause)&&
+      (/比|差|違|増|減|少|多|同じ|比較/.test(clause)||question&&/入場|退場|来場|滞在|帰った/.test(clause))) intent="compare";
     else if(/グラフ|チャート|推移|折れ線|時間帯別/.test(clause)&&!/記録画面/.test(clause)) intent="graph";
     else if(/通過|入退場|入場|退場|計測/.test(clause)&&/履歴|記録一覧|記録を|記録画面|ログ/.test(clause)) intent="records";
-    else if(/状況|実績|結果|運営|全体/.test(clause)&&/まとめ|報告|要約|概況|教えて|どう/.test(clause)) intent="briefing";
+    else if(/状況|実績|結果|運営|全体/.test(clause)&&/まとめ|報告|要約|概況|分析|教えて|どう/.test(clause)) intent="briefing";
     else if((question&&/帰った|退場|退出|出た/.test(clause)&&!/入退場/.test(clause))||/^(?:じゃあ|では)?(?:退場|退出)(?:は|の方|だけ|を教えて|も)?$/.test(clause)) intent="exits";
     else if((question&&/来た|来場|入った|入場|累計/.test(clause)&&!/入退場/.test(clause))||/^(?:じゃあ|では)?(?:入場|来場|累計)(?:は|の方|だけ|を教えて|も)?$/.test(clause)) intent="entries";
     else if(/滞在人数|現在人数|同時滞在|残ってる人|残っている人/.test(clause)||question&&/今|館内|室内|会場内|展示室内|いる|残っ/.test(clause)||/^(?:じゃあ|では)?(?:滞在|現在|今いる人)(?:は|の方|だけ|を教えて|も)?$/.test(clause)) intent="occupancy";
@@ -149,7 +157,12 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     if (!intent) return {plans:[],message:clauses.length>1?"複数の依頼のうち意味を特定できないものがあります。内容を分けて指定してください。":"依頼の対象を特定できませんでした。滞在人数・入場回数・端末状態・混雑予測など、確認したい対象を教えてください。"};
     if (timed&&intent==="event"&&readOnly) return {plans:[],message:"設定は変更しません。イベント管理で現在の予定を確認できます。"};
     plans.push({intent,role:both?undefined:role??(intent==="stations"&&prior?.intent==="stations"?prior.role:undefined),
-      period:allDay?undefined:period??((intent==="occupancy"&&/今|現在/.test(clause))?undefined:(intent===prior?.intent||intent==="graph"?prior?.period:undefined)),
+      period:allDay?undefined:period??((intent==="occupancy"&&/今|現在/.test(clause))?undefined:(intent===prior?.intent||intent==="graph"||intent==="compare"?prior?.period:undefined)),
+      previousYear:intent==="compare"&&/昨年|去年|前年/.test(clause)?true:undefined,
+      comparisonMetric:intent==="compare"?
+        (/退場|帰った/.test(clause)?"exits":/入場|来場/.test(clause)?"entries":/滞在/.test(clause)?"occupancy":
+          prior?.intent==="entries"||prior?.intent==="exits"||prior?.intent==="occupancy"?prior.intent:prior?.comparisonMetric):undefined,
+      horizon:intent==="forecast"&&/閉場まで|閉場時/.test(clause)?"closing":undefined,
       focus:/見せ|確認して|開い|調べ|移動|グラフ/.test(clause)||["forecast","compare","graph","records","event"].includes(intent),readOnly});
   }
   if(plans.length>4)return {plans:[],message:"一度に4件まで確認できます。"};

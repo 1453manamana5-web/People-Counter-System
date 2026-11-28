@@ -6,15 +6,18 @@ export function fiscalYear(date:string) {
   return Number(date.slice(5,7))<4?year-1:year;
 }
 
+export type ComparisonWindow = {from:number;to:number};
+
 type Count = {
   entries:number; exits:number; duration:number; peak:number; peakAt:number|null;
+  window?:{entries:number;exits:number;duration:number};
   area:number|null; status:"verified"|"provisional"; issues:number;
 };
 export type ComparisonDay = {id:string;date:string} &
   (Count | {status:"unavailable"} | {status:"unopened"});
 
 export function summarizeCounterDay(id:string,date:string,config:{opened:number;closed:number|null;verified:boolean},
-  rows:CounterOperation[],now:number,invalid:number):ComparisonDay {
+  rows:CounterOperation[],now:number,invalid:number,window?:ComparisonWindow):ComparisonDay {
   const end=config.closed??now;
   const duration=end-config.opened;
   if (duration<0 || end>now) return {id,date,status:"unavailable"};
@@ -25,7 +28,17 @@ export function summarizeCounterDay(id:string,date:string,config:{opened:number;
   const certifiedEmpty=config.verified&&config.closed!==null&&report.pending===0&&
     report.entries===0&&report.exits===0&&report.issues.length===0;
   const verified=invalid===0&&(certifiedEmpty||report.integralAverage!==null);
-  return {id,date,entries:report.entries,exits:report.exits,duration,peak:peak.occupancy,
+  let windowCount:Count["window"];
+  if (window) {
+    const from=Math.max(config.opened,window.from);
+    const to=Math.min(end,window.to);
+    const duration=Math.max(0,to-from);
+    const events=duration===0?[]:report.effective.filter(row=>row.person==="visitor"&&!row.invalid&&
+      row.at>=from&&row.at<=end&&row.at<window.to);
+    windowCount={duration,entries:events.filter(row=>row.direction==="in").length,
+      exits:events.filter(row=>row.direction==="out").length};
+  }
+  return {id,date,...(windowCount?{window:windowCount}:{}),entries:report.entries,exits:report.exits,duration,peak:peak.occupancy,
     peakAt:peak.occupancy>0?peak.at:null,status:verified?"verified":"provisional",issues,area:verified?report.area:null};
 }
 

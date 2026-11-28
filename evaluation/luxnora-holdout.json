@@ -1,0 +1,16 @@
+[
+  {"name":"来場回数の敬語","turns":[{"text":"ここまでに何名お越しになったんですか","plans":[{"intent":"entries"}]}]},
+  {"name":"出口の通信","turns":[{"text":"出口側の機械、ちゃんと同期できてます？","plans":[{"intent":"stations","role":"out"}]}]},
+  {"name":"条件付きの履歴","turns":[{"text":"9時から11時までで入場は何回？","plans":[{"intent":"entries","period":{"from":540,"to":660}}]}]},
+  {"name":"滞在推移と端末","turns":[{"text":"今何人いる？ それから出口を確認して","plans":[{"intent":"occupancy"},{"intent":"stations","role":"out"}]}]},
+  {"name":"前年度の省略参照","turns":[{"text":"入場回数は？","plans":[{"intent":"entries"}]},{"text":"午前だけ","plans":[{"intent":"entries","period":"am"}]},{"text":"では昨年は？","plans":[{"intent":"compare","period":"am"}]}]},
+  {"name":"比較の省略参照","turns":[{"text":"朝の入場は何回？","plans":[{"intent":"entries"}]},{"text":"午後だけ","plans":[{"intent":"entries","period":"pm"}]},{"text":"去年と比べて","plans":[{"intent":"compare","period":"pm"}]}]},
+  {"name":"取消しで文脈を破棄","turns":[{"text":"午後の退場者数は？","plans":[{"intent":"exits","period":"pm"}]},{"text":"キャンセル","plans":[],"reset":true},{"text":"午前だけ","plans":[]}]},
+  {"name":"複数の対象を継承しない","turns":[{"text":"入場と退場の人数は？","plans":[{"intent":"entries"},{"intent":"exits"}]},{"text":"午前だけ","plans":[]}]},
+  {"name":"報告書内の引用","turns":[{"text":"「開場して」と書かれたメモを要約して","plans":[]}]},
+  {"name":"前提条件のある操作","turns":[{"text":"全員の準備が整っていれば閉場してください","plans":[]}]},
+  {"name":"対象外の依頼","turns":[{"text":"関西の天気予報は？","plans":[]}]},
+  {"name":"明示された閉場候補","turns":[{"text":"今から閉場してください","plans":[{"intent":"event","operation":"close"}]}]},
+  {"name":"設定候補","turns":[{"text":"閉場予定を午後4時半に変更してください","plans":[{"intent":"event","schedule":{"field":"end","time":"16:30"}}]}]},
+  {"name":"予約時刻の取り消し","turns":[{"text":"閉場時刻を午後4時に変更しなくていい","plans":[]}]}
+]

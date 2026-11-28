@@ -2,9 +2,9 @@ import {collection,doc,getDocFromServer,getDocsFromServer} from "firebase/firest
 import {getFirebaseDb} from "../../counter-app/src/managerFirebaseClient";
 import type {Day} from "./counterLifecycle";
 import {decodeConfig,decodeOperation,type CounterOperation} from "./counterManagementData";
-import {summarizeCounterDay,type ComparisonDay} from "./counterComparisonMetrics";
+import {summarizeCounterDay,type ComparisonDay,type ComparisonWindow} from "./counterComparisonMetrics";
 
-export async function readComparisonDays(days:Day[],signal:AbortSignal):Promise<ComparisonDay[]> {
+export async function readComparisonDays(days:Day[],signal:AbortSignal,window?:ComparisonWindow):Promise<ComparisonDay[]> {
   const db=getFirebaseDb();
   const results:ComparisonDay[]=[];
   // Each comparison loads at most two explicitly selected events. Read a day at
@@ -26,7 +26,7 @@ export async function readComparisonDays(days:Day[],signal:AbortSignal):Promise<
         if (operation) rows.push(operation);
         else invalid++;
       }
-      results.push(summarizeCounterDay(day.id,day.date,{...config,opened:config.opened},rows,Date.now(),invalid));
+      results.push(summarizeCounterDay(day.id,day.date,{...config,opened:config.opened},rows,Date.now(),invalid,window));
     } catch {
       results.push({id:day.id,date:day.date,status:"unavailable"});
     }

@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc --noEmit -p management-app/tsconfig.app.json && tsc --noEmit -p counter-app/tsconfig.app.json && vite build --config counter-app/vite.config.ts",
     "test": "node --test *counter*.test.mjs adaptive-*.test.mjs luxnora*.test.mjs",
+    "evaluate:luxnora": "node scripts/evaluate-luxnora.mjs",
     "test:rules": "firebase emulators:exec --project demo-people-counter --only firestore --config firebase.test.json \"node --test --test-concurrency=1 tests/*.test.mjs\""
   },
   "dependencies": {
@@ -17,6 +18,7 @@
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.0.4",
+    "esbuild": "^0.28.2",
     "typescript": "^5.9.3",
     "vite": "^7.1.9",
     "fake-indexeddb": "^6.0.0",

@@ -1,9 +1,13 @@
 import {useEffect,useRef,useState,type FormEvent} from "react";
-import {answer,watchAlerts,type Answer,type Evidence,type Target} from "./assistant";
-import {interpret,type Plan} from "./language";
+import {watchAlerts,type Answer,type Evidence,type Target} from "./assistant";
+import type {Plan} from "./language";
+import {executeRequest,rememberRequest,resolveRequest,type Conversation,type Profile} from "./runtime";
+import {bounded} from "../counterAuth";
+import type {SeriesAndDays} from "../counterEvents";
+import {previousYearAnswer,previousYearDay,previousYearWindow} from "./history";
 import motionAsset from "./motion.svg?url";
 
-export function LuxnoraPanel({evidence,focus,cancel}:{evidence:Evidence;focus:(target:Target,plan?:Plan)=>void;cancel:()=>void}) {
+export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;catalog:SeriesAndDays|null;focus:(target:Target,plan?:Plan)=>void;cancel:()=>void}) {
   const [open,setOpen]=useState(false),[input,setInput]=useState("");
   const isOpen=useRef(false);
   const [motion,setMotion]=useState("idle");
@@ -28,6 +32,9 @@ export function LuxnoraPanel({evidence,focus,cancel}:{evidence:Evidence;focus:(t
       else closeTimer.current=window.setTimeout(()=>setMounted(false),540);
     }
   }
+  const [profile,setProfile]=useState<Profile>(()=>{
+    try {return localStorage.getItem("counter-lux-profile")==="swift"?"swift":"auto";}catch{return "auto";}
+  });
   const [notes,setNotes]=useState<{prompt:string;response:Answer[]}[]>([]);
   const [setting,setSetting]=useState(()=>{
     try {return localStorage.getItem("pcs-counter-lux-support")??"smart";}catch{return "smart";}
@@ -47,35 +54,78 @@ export function LuxnoraPanel({evidence,focus,cancel}:{evidence:Evidence;focus:(t
   },[evidence,monitor]);
   const replies=useRef<HTMLDivElement>(null);
   useEffect(()=>{if(replies.current) replies.current.scrollTop=replies.current.scrollHeight;},[notes,mounted,working]);
-  const inFlight=useRef(false),active=useRef(true);
-  useEffect(()=>{active.current=true;return ()=>{active.current=false;};},[]);
-  const previous=useRef<Plan|undefined>(undefined);
+  const generation=useRef(0),inFlight=useRef(false);
+  const historicalRead=useRef<AbortController|null>(null);
+  useEffect(()=>()=>{generation.current++;inFlight.current=false;historicalRead.current?.abort();},[]);
+  const previous=useRef<Conversation|undefined>(undefined);
+  function cancelRequest() {
+    generation.current++;
+    historicalRead.current?.abort();
+    historicalRead.current=null;
+    inFlight.current=false;
+    setWorking(false);
+    previous.current=undefined;
+    cancel();
+    setOffered(null);
+    setMonitor(null);
+    if(isOpen.current) setMotion("living");
+  }
   const latestEvidence=useRef(evidence);
   useEffect(()=>{latestEvidence.current=evidence;},[evidence]);
   const prompt=useRef<HTMLInputElement>(null);
   const trigger=useRef<HTMLButtonElement>(null);
+  function showWorking() {
+    setWorking(true);
+    clearTimeout(motionTimer.current);
+    motionTimer.current=undefined;
+    if(isOpen.current) setMotion("checking");
+  }
   async function submit(event:FormEvent) {
     event.preventDefault();
     const text=input.trim();
     if(!text||inFlight.current) return;
-    let plan=interpret(text,previous.current);
-    if(!plan.plans.length&&!plan.reset&&plan.message?.startsWith("依頼の対象")) {
-      inFlight.current=true;
-      setWorking(true);
-      clearTimeout(motionTimer.current);
-      if(isOpen.current) setMotion("checking");
-      const intent=await import("./semantic").then(module=>module.semanticRead(text)).catch(()=>null);
-      if(!active.current) return;
-      if(intent) plan={plans:[{intent,focus:/見せ|表示|確認|開い|調べ|移動/.test(text),readOnly:true,role:text.includes("入口")&&text.includes("出口")?undefined:text.includes("入口")?"in":text.includes("出口")?"out":undefined}]};
-      inFlight.current=false;
-      setWorking(false);
-      if(isOpen.current) setMotion("living");
+    const requestId=++generation.current;
+    inFlight.current=true;
+    setOffered(null);
+    cancel();
+    const plan=await resolveRequest(text,previous.current,Date.now(),profile,async raw=>{
+      showWorking();
+      const {semanticRead}=await import("./semantic");
+      return semanticRead(raw);
+    });
+    if(requestId!==generation.current) return;
+    const snapshot=latestEvidence.current;
+    const response=executeRequest(plan,snapshot);
+    const lookup=plan.plans.findIndex(item=>item.intent==="compare"&&item.previousYear&&
+      typeof item.period!=="number"&&item.comparisonMetric!=="occupancy");
+    const selected=snapshot.day;
+    if(lookup>=0&&selected&&snapshot.mode==="live") {
+      const day=previousYearDay(catalog,selected);
+      if(day) {
+        showWorking();
+        const controller=new AbortController();
+        historicalRead.current=controller;
+        try {
+          const {readComparisonDays}=await import("../counterComparisonData");
+          const [summary]=await bounded(readComparisonDays(
+            [day],controller.signal,previousYearWindow(plan.plans[lookup].period,day.date),
+          ));
+          response[lookup]=previousYearAnswer(plan.plans[lookup],summary);
+        } catch {
+          controller.abort();
+          response[lookup]=previousYearAnswer(plan.plans[lookup],undefined);
+        }
+        if(requestId!==generation.current) return;
+        historicalRead.current=null;
+      }
     }
-    const response=plan.plans.map(item=>answer(item,latestEvidence.current));
-    if(plan.reset) {previous.current=undefined;cancel();setOffered(null);setMonitor(null);}
+    inFlight.current=false;
+    setWorking(false);
+    if(isOpen.current&&motionTimer.current===undefined) setMotion("living");
+    if(plan.reset) cancelRequest();
     const routine=plan.plans.find(item=>item.intent==="routine");
     if(routine&&!routine.readOnly) setOffered(routine);
-    if(plan.plans.length) previous.current=plan.plans.at(-1);
+    previous.current=rememberRequest(plan,previous.current,Date.now());
     setNotes(current=>[...current.slice(-11),{prompt:text,response:response.length?response:[{text:plan.message??"対象を指定してください。"}]}]);
     setInput("");
     const item=response.find(result=>result.target);
@@ -92,11 +142,18 @@ export function LuxnoraPanel({evidence,focus,cancel}:{evidence:Evidence;focus:(t
     }}>
       <header><span className="lux-panel-brand"><picture className="lux-header-mark"><source media="(prefers-reduced-motion: reduce)" srcSet={motionAsset+"#idle"}/><img key={motion} alt="" width="42" height="36" src={motionAsset+"#"+motion}/></picture><strong>Luxnora</strong></span><button className="lux-close" onClick={()=>changeOpen(false)} aria-label="会話を閉じる"><span aria-hidden="true">×</span></button></header>
       <div ref={replies} className="lux-answers" role="log" aria-label="会話">
-        {working&&<p className="lux-progress" role="status">依頼を確認しています…</p>}
-        {notes.map((note,i)=><div className="lux-turn" key={i}><p className="lux-question">{note.prompt}</p>{note.response.map((item,index)=><p className="lux-response" key={index}>{item.text}{item.target&&note.response.length>1&&<button type="button" className="cm-text-action" onClick={()=>focus(item.target!,item.plan)}>該当箇所を表示</button>}</p>)}</div>)}
+        {working&&<div className="lux-progress"><p role="status">依頼を確認しています…</p><button type="button" onClick={()=>{
+          cancelRequest();
+          setInput("");
+        }}>取り消す</button></div>}
+        {notes.map((note,i)=><div className="lux-turn" key={i}><p className="lux-question">{note.prompt}</p>{note.response.map((item,index)=><p className="lux-response" key={index}>{item.text}{item.target&&!item.plan?.operation&&!item.plan?.schedule&&note.response.length>1&&<button type="button" className="cm-text-action" onClick={()=>focus(item.target!,item.plan)}>該当箇所を表示</button>}</p>)}</div>)}
       </div>
 
-      <details className="lux-support"><summary>支援設定</summary><label className="lux-setting">支援 <select value={setting} onChange={e=>{setSetting(e.target.value);try {localStorage.setItem("pcs-counter-lux-support",e.target.value);}catch{}}}><option value="onRequest">指示したときのみ</option><option value="smart">スマートサポート</option><option value="active">積極的なサポート</option></select></label></details>
+      <details className="lux-support"><summary>支援設定</summary><label className="lux-setting">支援 <select value={setting} onChange={e=>{setSetting(e.target.value);try {localStorage.setItem("pcs-counter-lux-support",e.target.value);}catch{}}}><option value="onRequest">指示したときのみ</option><option value="smart">スマートサポート</option><option value="active">積極的なサポート</option></select></label><label className="lux-setting">処理モード <select value={profile} onChange={e=>{
+        const next=e.target.value==="swift"?"swift":"auto";
+        setProfile(next);
+        try {localStorage.setItem("counter-lux-profile",next);}catch{}
+      }}><option value="auto">Luxnora Auto</option><option value="swift">Luxnora Swift</option></select></label></details>
       {setting!=="onRequest"&&evidence.config?.opened!=null&&!evidence.current&&<small>端末の通信状態または未同期記録を確認してください。</small>}
       {setting==="active"&&!!evidence.analysis?.issues.length&&<small>整合性の指摘 {evidence.analysis.issues.length}件を通過記録と照合できます。</small>}
       {offered&&<button onClick={()=>{monitorSnapshot.current="";setActivity([]);setMonitor({role:offered.role,until:Date.now()+15*60000});setOffered(null);}}>15分間の見守りを開始</button>}

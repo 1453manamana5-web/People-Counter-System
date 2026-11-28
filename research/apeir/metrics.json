@@ -1,0 +1,107 @@
+{
+  "model": "Apeir α-01",
+  "training_episodes": 10000,
+  "validation_episodes": 1500,
+  "features": [
+    "heartbeat",
+    "camera",
+    "storage",
+    "network",
+    "pending",
+    "visible"
+  ],
+  "labels": [
+    "observe",
+    "check_connection",
+    "check_camera",
+    "check_storage",
+    "ask_operator"
+  ],
+  "threshold": 0.4,
+  "holdout_rules": {
+    "episodes": 2000,
+    "accuracy": 0.392,
+    "operator_review": 948,
+    "false_observe": 17,
+    "confusion": [
+      [
+        195,
+        117,
+        30,
+        33,
+        469
+      ],
+      [
+        1,
+        271,
+        2,
+        21,
+        150
+      ],
+      [
+        14,
+        67,
+        83,
+        16,
+        117
+      ],
+      [
+        2,
+        33,
+        3,
+        111,
+        88
+      ],
+      [
+        0,
+        32,
+        2,
+        19,
+        124
+      ]
+    ]
+  },
+  "holdout_model": {
+    "episodes": 2000,
+    "accuracy": 0.558,
+    "operator_review": 652,
+    "false_observe": 119,
+    "confusion": [
+      [
+        524,
+        35,
+        38,
+        33,
+        214
+      ],
+      [
+        26,
+        244,
+        11,
+        15,
+        149
+      ],
+      [
+        63,
+        18,
+        116,
+        10,
+        90
+      ],
+      [
+        23,
+        18,
+        11,
+        109,
+        76
+      ],
+      [
+        7,
+        20,
+        15,
+        12,
+        123
+      ]
+    ]
+  }
+}

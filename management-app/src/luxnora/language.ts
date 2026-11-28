@@ -24,7 +24,7 @@ const normalize = (raw:string) => raw.normalize("NFKC").toLowerCase().replace(/[
   .replace(/何名|何にん|何ニン/g,"何人").replace(/足を運んだ|お越しになった|来はった|来よった/g,"来た")
   .replace(/帰っちゃった|帰らはった|出ていった/g,"帰った").replace(/この先|このあと/g,"この後")
   .replace(/受付の機械|受付の端末/g,"受付端末")
-  .replace(/いてはる|居てる|居る|いてる/g,"いる").replace(/入ってきた|入って来た/g,"入った")
+  .replace(/いてはる|居てる|居る/g,"いる").replace(/入ってきた|入って来た/g,"入った")
   .replace(/来てくれた|来られた|訪れた|訪問した/g,"来た")
   .replace(/出てった|出て行った|退出した|帰っていった/g,"退場した")
   .replace(/ただ今|現時点|現時刻/g,"今").replace(/さっきから|最近の/g,"直近")
@@ -71,7 +71,7 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     return {plans:[],message:"この管理アプリではイベント運営・人数計測に関する依頼に対応できます。"};
   if(/^(?:人数(?:は|教えて|を教えて)?|何人|何人ですか)$/.test(plain)&&!previous)
     return {plans:[],message:"現在の滞在人数と累計入場回数のどちらを確認しますか？"};
-  const readOnly=/変えない|変更しない|触らない|そのまま|見るだけ|確認だけ|操作しない|開けない|開場しない|閉場しない|停止しない|しないで|せんといて|しないでください/.test(raw);
+  const readOnly=/変えない|変更しない|触らない|そのまま|見るだけ|確認だけ|操作しない|開けない|開場しない|閉場しない|停止しない|しないで|せんといて|しないでください|しないよう|してほしくない|して欲しくない|してはいけない|してはだめ|しなくていい|しなくてよい|しちゃだめ|するな|やめて/.test(raw);
   if (/削除|消去|権限変更|管理者にして|無効化/.test(raw))
     return {plans:[],message:"この操作は該当する管理画面から確認してください。"};
   const clauses=raw.split(/(?:[。\n；;?!？！]|それから|そのあと|そして|続けて|、(?=(?:あと|ついでに|次に))|(?:あと|ついでに|次に)(?=入口|出口|端末|今|今日|午後|午前|入場|退場|滞在|混雑))/).map(normalize).filter(Boolean);
@@ -137,13 +137,13 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     else if(/滞在人数|現在人数|同時滞在|残ってる人|残っている人/.test(clause)||question&&/今|館内|室内|会場内|展示室内|いる|残っ/.test(clause)) intent="occupancy";
     else if(/混雑|混ん/.test(clause)&&/今日|状況|ピーク|一番/.test(clause)) intent="crowd";
     if(!intent&&prior?.intent==="stations"&&(both||role)&&/^(?:じゃあ|それなら|次は|あと|ついでに|あ、)?(?:入口|出口|両方|両端末|全端末)(?:の方|のほう)?(?:は|も|もお願い|も確認|も見て|も調べて|だけ|もどう|はどう|も頼む)?$/.test(clause)) intent="stations";
-    if(!intent&&prior&&(period!==undefined||allDay)&&!/端末|カメラ|受付|開場|閉場|設定|変更|操作/.test(clause)) intent=prior.intent;
-    if(!intent&&prior&&/^(?:じゃあ|それなら|次は|あと)?(?:それ|その結果|この結果)(?:も|は|を|で)?(?:教えて|見せて|お願い|もう一度|再確認)?$/.test(clause)) intent=prior.intent;
+    if(!intent&&prior&&prior.intent!=="event"&&(period!==undefined||allDay)&&!/端末|カメラ|受付|開場|閉場|設定|変更|操作/.test(clause)) intent=prior.intent;
+    if(!intent&&prior&&prior.intent!=="event"&&/^(?:じゃあ|それなら|次は|あと)?(?:それ|その結果|この結果)(?:も|は|を|で)?(?:教えて|見せて|お願い|もう一度|再確認)?$/.test(clause)) intent=prior.intent;
     intent??=classify(clause);
     if (role&&!intent&&/方も|も調べ|も見|はどう/.test(clause)) intent="stations";
     if (!intent&&/見守|監視|異常が起きたら/.test(clause)) intent="routine";
-    if (!intent&&period!==undefined) intent=prior?.intent;
-    if (!intent&&/それ|この結果|その結果/.test(clause)) intent=prior?.intent;
+    if (!intent&&period!==undefined&&prior?.intent!=="event") intent=prior?.intent;
+    if (!intent&&prior?.intent!=="event"&&/^(?:じゃあ|それなら|次は|あと)?(?:それ|この結果|その結果)(?:は|も|を)?(?:教えて|見せて|お願い)?$/.test(clause)) intent=prior?.intent;
     if (!intent&&/何人/.test(clause)&&/今|おる|居る/.test(clause)) intent="occupancy";
     if (!intent&&/何人/.test(clause)&&/入|来/.test(clause)) intent="entries";
     if (!intent) return {plans:[],message:clauses.length>1?"複数の依頼のうち意味を特定できないものがあります。内容を分けて指定してください。":"依頼の対象を特定できませんでした。滞在人数・入場回数・端末状態・混雑予測など、確認したい対象を教えてください。"};

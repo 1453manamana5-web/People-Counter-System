@@ -18,3 +18,4 @@ jobs:
       - run: npm run evaluate:luxnora:reasoning -- --independent
       - run: npm run evaluate:luxnora:v4
       - run: npm run evaluate:luxnora:v41 -- --independent
+      - run: npm run evaluate:luxnora:v5

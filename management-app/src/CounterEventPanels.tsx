@@ -126,11 +126,13 @@ export function CounterDayPanel({day,canOperate,stations,synced,now,onAction,goS
     {!requested&&<div className="cm-form">{actionsFor(day).map(action=><button key={action} disabled={!canOperate || (action==="verify"&&!synced)} onClick={()=>choose(action)}>{commandLabels[action]}</button>)}</div>}
     {requested&&<div className="cm-confirm" role="group" aria-label={commandLabels[requested]}>
       <strong>{commandLabels[requested]}</strong>
+      {fromLuxnora&&<p>対象 {day.date}。現在は{stageLabels[day.stage]}です。確定すると開催段階が切り替わります。</p>}
       {requested==="restrict"&&<p>入場制限中も計測は続きます。来場者への案内は現地で行ってください。</p>}
       {requested==="close"&&<p>退場を数えるため、計測は開催日を終了するまで続きます。</p>}
       {requested==="finish"&&<p>終了すると受付画面を閉じ、未同期記録の回収のみ継続します。集計確定時に入口・出口の端末承認を自動解除します。</p>}
       {(requested==="finish"||requested==="verify")&&<label className="cm-check"><input type="checkbox" checked={empty} onChange={event=>setEmpty(event.target.checked)}/>会場内を確認し、対象の来場者がいないことを確認した</label>}
-      <div className="cm-form"><button className="cm-primary" disabled={!canOperate||((requested==="finish"||requested==="verify")&&!empty)} onClick={()=>{
+      <div className="cm-form"><button className="cm-primary" disabled={!canOperate||(fromLuxnora&&requested!==proposal)||((requested==="finish"||requested==="verify")&&!empty)} onClick={()=>{
+        if(!canOperate||fromLuxnora&&requested!==proposal) return;
         onAction(requested,{empty,synced});setRequested(null);
       }}>確定する</button><button onClick={()=>setRequested(null)}>戻る</button></div>
     </div>}
@@ -156,12 +158,13 @@ export function CounterScheduleEditor({series,day,enabled,onSave,suggestion,sugg
     }
   },[suggestion,suggestionId,day.stage,day.start,day.end,proposed]);
   return <details className="cm-section" open={expanded} onToggle={event=>setExpanded(event.currentTarget.open)}><summary>イベント情報と予定時刻</summary>
+    {suggestion&&day.stage==="prepare"&&<p>対象 {day.date}。{suggestion.field==="start"?"開場予定":"閉場予定"} {suggestion.field==="start"?day.start:day.end} → {suggestion.time}。保存すると開催予定に反映されます。</p>}
     {suggestion&&day.stage!=="prepare"&&<p className="cm-warning">予定時刻は準備中の開催日で変更できます。</p>}
     <form className="cm-form" onSubmit={event=>{
       event.preventDefault();const form=new FormData(event.currentTarget);
       const value = {name:String(form.get("name")).trim(),venue:String(form.get("venue")).trim(),
         start:String(form.get("start")??day.start),end:String(form.get("end")??day.end)};
-      if (enabled) onSave(value);
+      if (enabled && (!proposed || suggestion)) onSave(value);
     }}>
       <label>イベント名<input name="name" required maxLength={100} defaultValue={series.name} disabled={!enabled}/></label>
       <label>会場名<input name="venue" required maxLength={100} defaultValue={series.venue} disabled={!enabled}/></label>

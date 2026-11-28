@@ -1,0 +1,40 @@
+{
+  "training": 75,
+  "cutoff": 0.25,
+  "validation": {
+    "cases": 14,
+    "matched": 14,
+    "false_read": 0,
+    "predictions": [
+      "station.pair",
+      "station.pair",
+      "station.offline",
+      "station.offline",
+      "mode",
+      "mode",
+      "event.create",
+      "event.create",
+      "station.health",
+      "station.health",
+      "abstain",
+      "abstain",
+      "abstain",
+      "abstain"
+    ]
+  },
+  "independent": {
+    "cases": 8,
+    "matched": 7,
+    "false_read": 0,
+    "predictions": [
+      "abstain",
+      "station.offline",
+      "mode",
+      "event.create",
+      "abstain",
+      "abstain",
+      "abstain",
+      "station.health"
+    ]
+  }
+}

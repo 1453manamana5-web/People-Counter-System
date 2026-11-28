@@ -51,6 +51,7 @@ export function recallCorrection(raw: string, memory: ContextMemory, now: number
 
 export function rememberTopics(request: Interpretation, memory: ContextMemory, now: number): ContextMemory {
   if (request.reset) return {topics:{}};
+  if (request.plans.some(plan=>plan.at!==undefined)) return {topics:memory.topics};
   if (request.plans.some(plan=>plan.operation||plan.schedule)) return {topics:{}};
   const topics = {...memory.topics};
   for (const [topic,intent] of [["comparison","compare"],["station","stations"]] as const) {

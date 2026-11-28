@@ -128,6 +128,18 @@ const registry: {[K in Capability]: Definition<K>} = {
       }
       if (ledgerGoal(goal)) {
         const ledger = input("ledger");
+        if(goal.at!==undefined) {
+          const at=goal.at;
+          if(goal.intent!=="occupancy"||!Number.isFinite(at)||ledger.from==null||ledger.to==null||
+            at<ledger.from||at>ledger.to||!ledger.value?.consistent||ledger.value.issues.length||!evidence.analysis) {
+            return {text:"グラフで選んだ時刻の滞在人数を台帳で確認できませんでした。"};
+          }
+          const point=evidence.analysis.timeline.filter(row=>row.at<=at).at(-1);
+          const occupancy=point?.occupancy??0;
+          if(occupancy<0) return {text:"グラフで選んだ時刻の滞在人数を台帳で確認できませんでした。"};
+          const time=new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(at);
+          return {text:time+"の滞在は"+occupancy+"人です。"+(evidence.current||evidence.sealed?"":"取得済みの暫定記録です。"),source:"選択中の開催日の通過台帳"};
+        }
         const recount = ledger.value;
         if (recount && !recount.consistent && recount.timelineMatches && recount.occupancy >= 0 &&
             evidence.ledgerFromServer && evidence.current && recount.pending === 0 && !recount.issues.length &&
@@ -163,6 +175,8 @@ const registry: {[K in Capability]: Definition<K>} = {
 
 export function compilePlan(request: Interpretation) {
   if (request.plans.length > 4) throw new Error("Too many goals");
+  if (request.plans.some(goal=>goal.at!==undefined&&(!Number.isFinite(goal.at)||goal.intent!=="occupancy"||
+    !goal.readOnly||goal.period!==undefined))) throw new Error("Invalid chart selection");
   const edges=request.dependencies??[];
   if (new Set(edges.map(edge=>edge.task)).size!==edges.length || edges.some(edge=>
     !Number.isInteger(edge.task)||!Number.isInteger(edge.after)||edge.after<0||

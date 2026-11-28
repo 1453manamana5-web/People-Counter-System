@@ -1,5 +1,6 @@
 import {useEffect,useRef,useState,type FormEvent} from "react";
 import {watchAlerts,type Answer,type Evidence,type Target} from "./assistant";
+import type {ViewState} from "./capabilities";
 import type {Plan} from "./language";
 import {recognizeCancellation} from "./understanding";
 import type {Profile} from "./runtime";
@@ -11,7 +12,7 @@ import type {SeriesAndDays} from "../counterEvents";
 import {TaskQueue,type QueueState,type Task} from "./taskQueue";
 import motionAsset from "./motion.svg?url";
 
-export function LuxnoraPanel({evidence,catalog,focus,cancel,operator}:{operator:string;evidence:Evidence;catalog:SeriesAndDays|null;focus:(target:Target,plan?:Plan)=>void;cancel:()=>void}) {
+export function LuxnoraPanel({evidence,catalog,focus,cancel,operator,view}:{view?:ViewState;operator:string;evidence:Evidence;catalog:SeriesAndDays|null;focus:(target:Target,plan?:Plan)=>void;cancel:()=>void}) {
   const [open,setOpen]=useState(false),[input,setInput]=useState("");
   const isOpen=useRef(false);
   const [motion,setMotion]=useState("idle");
@@ -65,8 +66,8 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel,operator}:{operator:
   useEffect(()=>{if(replies.current) replies.current.scrollTop=replies.current.scrollHeight;},[notes,mounted,queueState.active]);
   const [queueNotice,setQueueNotice]=useState("");
   const previous=useRef<ContextMemory>({topics:{}});
-  const latest=useRef({evidence,catalog,focus});
-  useEffect(()=>{latest.current={evidence,catalog,focus};},[evidence,catalog,focus]);
+  const latest=useRef({evidence,catalog,focus,view});
+  useEffect(()=>{latest.current={evidence,catalog,focus,view};},[evidence,catalog,focus,view]);
   const prompt=useRef<HTMLInputElement>(null);
   const trigger=useRef<HTMLButtonElement>(null);
   useEffect(()=>{
@@ -153,7 +154,7 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel,operator}:{operator:
           <button type="button" onClick={cancelRequest}>取り消す</button>
         </div>}
         {queueNotice&&<p role="status">{queueNotice}</p>}
-        {notes.map((note,i)=><div className="lux-turn" key={i}><p className="lux-question">{note.prompt}</p>{note.response.map((item,index)=><p className="lux-response" key={index}>{item.text}{item.target&&!item.plan?.operation&&!item.plan?.schedule&&note.response.length>1&&<button type="button" className="cm-text-action" onClick={()=>focus(item.target!,item.plan)}>該当箇所を表示</button>}</p>)}</div>)}
+        {notes.map((note,i)=><div className="lux-turn" key={i}><p className="lux-question">{note.prompt}</p>{note.response.map((item,index)=><p className="lux-response" key={index}>{item.text}{item.source&&<small>（参照 {item.source}）</small>}{item.target&&!item.plan?.operation&&!item.plan?.schedule&&note.response.length>1&&<button type="button" className="cm-text-action" onClick={()=>focus(item.target!,item.plan)}>該当箇所を表示</button>}</p>)}</div>)}
       </div>
 
       <details className="lux-support"><summary>支援設定</summary><label className="lux-setting">支援 <select value={setting} onChange={e=>{setSetting(e.target.value);try {localStorage.setItem("pcs-counter-lux-support",e.target.value);}catch{}}}><option value="onRequest">指示したときのみ</option><option value="smart">スマートサポート</option><option value="active">積極的なサポート</option></select></label><label className="lux-setting">処理モード <select value={profile} onChange={e=>{

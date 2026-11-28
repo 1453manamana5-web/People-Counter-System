@@ -1,9 +1,10 @@
 import {previousOperation} from "./luxnora/adapt";
 import type {Plan} from "./luxnora/language";
 import {LuxnoraPanel} from "./luxnora/LuxnoraPanel";
+import {canOpenTarget,matchesProposal} from "./luxnora/application";
 import {diagnose,type Target} from "./luxnora/assistant";
 import {forecast,type Forecast} from "./luxnora/forecast";
-import {useEffect, useMemo, useRef, useState, type FormEvent} from "react";
+import {useCallback, useEffect, useMemo, useRef, useState, type FormEvent} from "react";
 import {bounded, counterEvents, authCode, permissionDenied, verifyManager, watchCounterAuth, type CounterEvent, type CounterManager} from "./counterAuth";
 import {
   addCounterPassage, analyze, csv, pauseCounterEvent, reviseCounterPassage, saveCounterConfig, saveCounterStation,
@@ -214,7 +215,7 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
       !analysis.issues.length&&scopeStations.every(station=>station.camera===true&&station.ai===true&&station.alert==="none"&&station.pending===0),
     total:analysis.entries,occupancy:analysis.occupancy,events:analysis.effective,
   }):[],[analysis,config,day,current,mode,now,scopeStations]);
-  const [focusRequest,setFocusRequest]=useState<{target:Target;stamp:number;plan?:Plan}|null>(null);
+  const [focusRequest,setFocusRequest]=useState<{target:Target;stamp:number;plan?:Plan;proposalVersion?:number;proposalScope?:string}|null>(null);
   useEffect(()=>{
     if(!focusRequest) return;
     const targetId=focusRequest.target==="graph"&&focusRequest.plan?.period!==undefined?"range":focusRequest.target;
@@ -278,14 +279,24 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
     return ()=>{stopped=true;cancelAnimationFrame(frameId);clearTimeout(timer);target?.classList.remove("lux-highlight");ray?.remove();restorePanel();};
   },[focusRequest,page]);
   const luxFocus=(target:Target,plan?:Plan)=>{
-    if(!eventId||denied||create) return;
+    if(denied||!canOpenTarget(target,Boolean(eventId),authReady,create)) return;
+    if(target==="new-event") {setCreate(true);setFocusRequest(null);return;}
+    const proposed=Boolean(plan?.operation||plan?.schedule);
+    if(proposed&&(!ready||!day||activeDay?.id!==eventId||!activeDay.verified||mode!=="live")) return;
     if(page==="home") homeScroll.current=window.scrollY;
-    setDirection(undefined);
+    setDirection(target==="records"?plan?.role:undefined);
+    setViewStation(target==="in"||target==="out"?{scope,role:target}:undefined);
     if(target==="compare"||target==="graph") setPage("analysis");
     else if(target==="in"||target==="out"||target==="stations") setPage("stations");
     else setPage(target==="occupancy"?"home":target);
-    setFocusRequest({target,plan,stamp:Date.now()});
+    setFocusRequest({target,plan,stamp:Date.now(),
+      proposalScope:proposed?scope:undefined,proposalVersion:proposed?day?.version:undefined});
   };
+  const luxProposal=matchesProposal(focusRequest,scope,day?.version,
+    ready&&!working&&mode==="live"&&activeDay?.id===eventId&&activeDay.verified===true)?focusRequest?.plan:undefined;
+  useEffect(()=>{
+    if(focusRequest?.proposalScope&&!luxProposal) setFocusRequest(null);
+  },[focusRequest,luxProposal]);
   const lastUpdate = denied ? undefined : data?.operations.lastChangeAt;
   useEffect(()=>{
     function closeMenus(e:PointerEvent) {
@@ -325,6 +336,11 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
     if (eventMenu.current) eventMenu.current.open=false;
   };
   const homeScroll=useRef(0);
+  const [viewStation,setViewStation]=useState<{scope:string;role:"in"|"out"}>();
+  const [chartSelection,setChartSelection]=useState<{scope:string;at:number|undefined}>();
+  const selectChartAt=useCallback((at:number|undefined)=>{
+    setChartSelection(at===undefined?undefined:{scope,at});
+  },[scope]);
   const [direction,setDirection]=useState<"in"|"out"|undefined>(undefined);
   const menu=useRef<HTMLDetailsElement>(null);
   const content=useRef<HTMLElement>(null);
@@ -338,6 +354,7 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
         ?selected.getBoundingClientRect():undefined;
     }
     setDirection(next==="records"&&(detail==="in"||detail==="out")?detail:undefined);
+    setViewStation(next==="stations"&&(detail==="in"||detail==="out")?{scope,role:detail}:undefined);
     if(next==="stations"&&(detail==="in"||detail==="out")) setFocusRequest({target:detail,stamp:Date.now()});
     else if(next==="analysis"&&detail==="peak"&&peakPoint!=null) {
       const center=Math.floor((peakPoint+32400000)%86400000/60000);
@@ -436,7 +453,7 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
           {(page === "home" || page === "analysis") && <Home day={day??undefined} navigate={navigate} detailed={page==="analysis"} analysis={analysis} config={config} stations={stations} mode={mode} now={now}
             lastUpdate={lastUpdate} prediction={prediction} current={current||sealed} waiting={updating} inspect={luxFocus} />}
           {page==="analysis"&&analysis&&operations&&config?.opened!=null&&<CounterAnalysisTools key={scope}
-            luxPeriod={focusRequest?.target==="graph"?focusRequest.plan?.period:undefined} luxStamp={focusRequest?.stamp}
+            onSelectAt={selectChartAt} luxPeriod={focusRequest?.target==="graph"?focusRequest.plan?.period:undefined} luxStamp={focusRequest?.stamp}
             report={analysis} rows={operations} from={config.opened} to={config.closed??now} mode={mode} scope={eventId}
             name={eventName} venue={series?.venue} current={ready&&!invalidRows&&stationsCurrent&&pending===0}/>}
           {page==="analysis"&&catalog&&<div data-lux-focus="compare"><CounterComparison key={day?.eventId??"catalog"} catalog={catalog} initialSeriesId={day?.eventId} initialView={focusRequest?.target==="compare"?"year":undefined}/></div>}
@@ -458,11 +475,11 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
           {page==="records"&&admin&&<CounterRestorePanel key={scope} scope={eventId} mode={mode} name={eventName}
             config={config} rows={operations??[]} enabled={ready&&!working}/>}
           {page==="event"&&series&&day&&<CounterScheduleEditor key={day.id+"/"+series.name+"/"+series.venue+"/"+day.start+"/"+day.end}
-            suggestion={focusRequest?.plan?.schedule} suggestionId={focusRequest?.stamp}
+            suggestion={luxProposal?.schedule} suggestionId={focusRequest?.stamp}
             series={series} day={day} enabled={ready&&!working&&activeDay?.id===eventId&&activeDay.verified}
             onSave={fields=>{void perform(async()=>{await editCounterSchedule(series,day,fields);fetchEvents();},"イベント情報を保存しました。");}}/>}
           {page === "event" && <div data-lux-focus="event">{nativeDay && day ? <CounterDayPanel key={day.id+"/"+day.version} day={day} now={now}
-            proposal={focusRequest?.plan?.operation} proposalId={focusRequest?.stamp}
+            proposal={luxProposal?.operation} proposalId={focusRequest?.stamp}
             canOperate={ready&&!working&&activeDay?.id===eventId&&activeDay.verified} stations={stations}
             synced={mode==="live"&&ready&&!invalidRows&&pending===0&&analysis?.occupancy===0&&analysis.issues.length===0&&
               (["in","out"] as const).every(role=>scopeStations.some(station=>station.role===role))&&
@@ -475,7 +492,7 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
         </>}</div>
       </main>
     </div>
-    {!denied&&<LuxnoraPanel key={scope} operator={manager.uid} catalog={catalog} evidence={{scope,sealed,ledgerFromServer:data?.operations.source==="server",stationsFromServer:data?.stations.source==="server",name:eventName,mode,now,config,day,stations,analysis,prediction,current}} focus={luxFocus} cancel={()=>setFocusRequest(null)}/>}
+    {!denied&&<LuxnoraPanel key={scope} operator={manager.uid} view={{page,ready:authReady,chartAt:page==="analysis"&&chartSelection?.scope===scope?chartSelection.at:undefined,stationRole:page==="stations"&&viewStation?.scope===scope?viewStation.role:undefined}} catalog={catalog} evidence={{scope,sealed,ledgerFromServer:data?.operations.source==="server",stationsFromServer:data?.stations.source==="server",name:eventName,mode,now,config,day,stations,analysis,prediction,current}} focus={luxFocus} cancel={()=>setFocusRequest(null)}/>}
   </div>;
 }
 type Analysis = ReturnType<typeof analyze>;

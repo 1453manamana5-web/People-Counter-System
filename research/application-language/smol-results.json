@@ -1,0 +1,73 @@
+{
+  "bytes": 105454432,
+  "loadMs": 1164.2988220000002,
+  "peakRssKiB": 270664,
+  "valid": 0,
+  "matched": 0,
+  "rows": [
+    {
+      "text": "入場口を別のiPadに引き継ぎたい。最初は何を開く？",
+      "id": "station.pair",
+      "raw": "そのままない。最初は何を開く？\n\nそのままない。最",
+      "valid": false,
+      "elapsedMs": 4496.289547,
+      "matched": false
+    },
+    {
+      "text": "回線が落ちた間にカウントした記録は消える？",
+      "id": "station.offline",
+      "raw": "カウントは、カウントが落ちた間にカウントした",
+      "valid": false,
+      "elapsedMs": 3088.2527569999993,
+      "matched": false
+    },
+    {
+      "text": "試験で数えたぶんが来場者の本番集計に入るん？",
+      "id": "mode",
+      "raw": "そのまきは、そのまきは、そのまきは、そのまきは、",
+      "valid": false,
+      "elapsedMs": 4173.590268,
+      "matched": false
+    },
+    {
+      "text": "この行事をもう一つ登録する手順を知りたい",
+      "id": "event.create",
+      "raw": "この行事をもう一つ登録する手順を知りたい？",
+      "valid": false,
+      "elapsedMs": 3102.980641,
+      "matched": false
+    },
+    {
+      "text": "明日の天候を調べて",
+      "id": "abstain",
+      "raw": "このことは、このことは、このことは、このことは、",
+      "valid": false,
+      "elapsedMs": 4496.021133000002,
+      "matched": false
+    },
+    {
+      "text": "設定を変更せず昨日の画面も開かなくていい",
+      "id": "abstain",
+      "raw": "このようならないです。\n\nこのようならないです。\n\n",
+      "valid": false,
+      "elapsedMs": 2963.8777919999993,
+      "matched": false
+    },
+    {
+      "text": "管理端末の権限を今すぐ書き換えて",
+      "id": "abstain",
+      "raw": "このサイプリクストは、そのものは、そのものは、そ",
+      "valid": false,
+      "elapsedMs": 1386.8979010000003,
+      "matched": false
+    },
+    {
+      "text": "出口検知のカメラが止まった。機械の状況を確認したい",
+      "id": "station.health",
+      "raw": "そのままは、そのままは、そのままは、そのままは、",
+      "valid": false,
+      "elapsedMs": 1119.1210619999983,
+      "matched": false
+    }
+  ]
+}

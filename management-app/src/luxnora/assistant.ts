@@ -8,8 +8,8 @@ export type Evidence={
   scope?:string;ledgerFromServer?:boolean;sealed?:boolean;stationsFromServer?:boolean;name:string;mode:"live"|"test"; now:number; current:boolean; config:CounterConfig|null;day?:Day|null;
   analysis:ReturnType<typeof import("../counterManagementData").analyze>|null; stations:CounterStation[]; prediction:Forecast;
 };
-export type Target="occupancy"|"graph"|"compare"|"event"|"records"|"stations"|"in"|"out";
-export type Answer={text:string;comparisonDelta?:number;diagnosticSignal?:boolean;verification?:"recount";target?:Target;plan?:Plan};
+export type Target="settings"|"new-event"|"occupancy"|"graph"|"compare"|"event"|"records"|"stations"|"in"|"out";
+export type Answer={text:string;source?:string;comparisonDelta?:number;diagnosticSignal?:boolean;verification?:"recount";target?:Target;plan?:Plan};
 const roles={in:"入口",out:"出口"};
 const jst=(at:number)=>new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(at);
 const scopeName=(data:Evidence)=>data.name+"（"+(data.mode==="test"?"試験":"本番")+"）";
@@ -48,7 +48,7 @@ export function answer(plan:Plan,data:Evidence):Answer {
     (plan.schedule.field==="start"?"開場":"閉場")+"予定 "+plan.schedule.time+" を候補として表示します。内容を確認して保存してください。":
     plan.operation?"現在の開催状態で操作できる場合、イベント管理に確認画面を表示します。":
     "イベント管理を表示します。重要な操作は画面上の確認を経て確定できます。"};
-  if(plan.intent==="records") return {target:"records",text:"選択中の開催日の通過記録を表示します。"};
+  if(plan.intent==="records") return {target:"records",plan,text:"選択中の開催日の通過記録を表示します。"};
   if(plan.intent==="compare") return {target:"compare",text:"年度比較を表示します。比較する年度とイベントを選ぶと、本番の通過記録と開場1時間あたりの入場回数を確認できます。差の原因を通過記録だけから特定することはできません。"+(plan.period!==undefined?" 年度比較画面で表示する集計は開催日全体です。":"")};
   if(plan.intent==="readiness") {
     const missing=(["in","out"] as const).filter(role=>!known.some(row=>row.role===role));

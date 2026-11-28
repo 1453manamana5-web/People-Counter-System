@@ -1,0 +1,18 @@
+[
+  {"text":"このアプリで何ができる？","expect":["開催日の設定","来場傾向","通過記録"]},
+  {"text":"どうやってイベントを作るの？","expect":["新規作成","開催日","保存"]},
+  {"text":"試験と本番は何が違うの？","expect":["試験","本番集計に入りません"]},
+  {"text":"学校の通信が切れたらどうなる？","expect":["端末内に記録","新規ペアリングには通信"]},
+  {"text":"iPadはどの位置に置けばいい？","expect":["A・B","横並び"]},
+  {"text":"グラフをPNGで保存する方法","expect":["グラフPNG","期間別集計"]},
+  {"text":"ペアリングのやり方は？","expect":["ペアリング用QR","割り当て"]},
+  {"text":"これは何？","view":{"page":"settings","ready":true},"expect":["管理端末","権限"]},
+  {"text":"これ大丈夫？","view":{"page":"stations","ready":true,"stationRole":"out"},"expect":["出口","カメラ","異常"]},
+  {"text":"退場の通過記録だけを表示して","expect":["通過記録"],"target":"records","role":"out"},
+  {"text":"設定画面を開いて","expect":["管理端末の権限"],"target":"settings"},
+  {"text":"新規イベントの下書きフォームを開いて","expect":["画面を開く"],"target":"new-event"},
+  {"text":"新規イベントの下書きフォームを開いて","view":{"page":"home","ready":false},"expect":["新規作成","確認"]},
+  {"text":"午前の入場回数を前年と比べて。出口の端末を確認して。改善点をまとめて","expect":["前年","出口","次回は","試験通過"]},
+  {"text":"今すぐ開場して。改善点をまとめて","expect":["別々"],"noTarget":true},
+  {"text":"今日の天気と株価はどう？","expect":["イベント運営"],"noTarget":true}
+]

@@ -1,0 +1,14 @@
+[
+  {"text":"CSVの書き出しはどこでやる？","expect":["期間CSV","通過記録"],"noTarget":true},
+  {"text":"試しに数えた結果は試験と本番で何が違う？","expect":["本番集計に入りません"],"noTarget":true},
+  {"text":"端末をペアリングする手順はどこで見られる？","expect":["ペアリング用QR","申請"],"noTarget":true},
+  {"text":"ネットが途切れたら何が使える？","expect":["端末内に記録","再同期"],"noTarget":true},
+  {"text":"この機能は何のため？","view":{"page":"analysis","ready":true},"expect":["期間別の集計","滞在人数"],"noTarget":true},
+  {"text":"この端末は大丈夫そう？","view":{"page":"stations","ready":true,"stationRole":"out"},"expect":["出口","カメラ"],"noTarget":true},
+  {"text":"ここに何人いた？","view":{"page":"analysis","ready":true},"expect":["時刻を選んで"],"noTarget":true},
+  {"text":"退場記録へ移動してください","expect":["画面"],"target":"records","role":"out"},
+  {"text":"来年はどう改善すればいい？","expect":["次回","試験通過","確認"],"noTarget":true},
+  {"text":"午後の退場者数を去年と比べて。入口の端末を調べて。次回の改善案を教えて","expect":["前年","入口","次回"]},
+  {"text":"新規イベントの下書き画面を表示してください","view":{"page":"records","ready":false},"expect":["新規作成","保存"],"noTarget":true},
+  {"text":"今日の天気をこのアプリで調べる方法","expect":[],"noTarget":true}
+]

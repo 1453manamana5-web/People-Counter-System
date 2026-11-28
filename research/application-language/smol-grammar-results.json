@@ -1,0 +1,74 @@
+{
+  "bytes": 105454432,
+  "mode": "grammar",
+  "loadMs": 1196.0672060000002,
+  "peakRssKiB": 312824,
+  "valid": 8,
+  "matched": 0,
+  "rows": [
+    {
+      "text": "入場口を別のiPadに引き継ぎたい。最初は何を開く？",
+      "id": "station.pair",
+      "raw": "{\n    \"id\": \"abstain\"\n}",
+      "valid": true,
+      "elapsedMs": 3539.4070629999997,
+      "matched": false
+    },
+    {
+      "text": "回線が落ちた間にカウントした記録は消える？",
+      "id": "station.offline",
+      "raw": "{\n    \"id\": \"abstain\"\n}",
+      "valid": true,
+      "elapsedMs": 1700.7072470000003,
+      "matched": false
+    },
+    {
+      "text": "試験で数えたぶんが来場者の本番集計に入るん？",
+      "id": "mode",
+      "raw": "{\n    \"id\": \"abstain\"\n}",
+      "valid": true,
+      "elapsedMs": 2974.9957029999996,
+      "matched": false
+    },
+    {
+      "text": "この行事をもう一つ登録する手順を知りたい",
+      "id": "event.create",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 1724.7223460000005,
+      "matched": false
+    },
+    {
+      "text": "明日の天候を調べて",
+      "id": "abstain",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 2088.925813,
+      "matched": false
+    },
+    {
+      "text": "設定を変更せず昨日の画面も開かなくていい",
+      "id": "abstain",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 1370.5771489999988,
+      "matched": false
+    },
+    {
+      "text": "管理端末の権限を今すぐ書き換えて",
+      "id": "abstain",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 2483.0183700000016,
+      "matched": false
+    },
+    {
+      "text": "出口検知のカメラが止まった。機械の状況を確認したい",
+      "id": "station.health",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 3014.121618000001,
+      "matched": false
+    }
+  ]
+}

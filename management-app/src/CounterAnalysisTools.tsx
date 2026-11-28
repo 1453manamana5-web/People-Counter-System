@@ -16,21 +16,21 @@ function download(contents:Blob,name:string) {
   setTimeout(()=>URL.revokeObjectURL(url),2000);
 }
 
-export function CounterAnalysisTools({report,rows,from,to,mode,scope,name,venue,current,luxPeriod,luxStamp}: {
+export function CounterAnalysisTools({report,rows,from,to,mode,scope,name,venue,current,luxPeriod,luxStamp,onSelectAt}: {
   report:Analysis; rows:CounterOperation[]; from:number;to:number;mode:CounterMode;scope:string;
-  name:string;venue?:string;current:boolean;luxPeriod?:Plan["period"];luxStamp?:number;
+  name:string;venue?:string;current:boolean;luxPeriod?:Plan["period"];luxStamp?:number;onSelectAt?:(at:number|undefined)=>void;
 }) {
   const [period,setPeriod]=useState("all");
   const [custom,setCustom]=useState<Range|null>(null);
   const [notice,setNotice]=useState("");
   const print=useRef<HTMLElement>(null);
-  const [cursor,setCursor]=useState(0);
+  const [cursor,setCursor]=useState<number|null>(null);
   useEffect(()=>{
     document.body.classList.add("cm-report-ready");
     return ()=>document.body.classList.remove("cm-report-ready");
   },[]);
   useEffect(()=>{
-    if(luxPeriod!==undefined){setPeriod("lux");setCursor(0);}
+    if(luxPeriod!==undefined){setPeriod("lux");setCursor(null);}
   },[luxPeriod,luxStamp]);
   const requested=luxPeriod!==undefined&&period==="lux"?luxRange(luxPeriod,from,to):null;
   const start=requested?.from??(period==="15"?Math.max(from,to-15*60000):period==="60"?Math.max(from,to-3600000):period==="custom"?Math.max(from,custom?.start??from):from);
@@ -47,7 +47,10 @@ export function CounterAnalysisTools({report,rows,from,to,mode,scope,name,venue,
   const duration=(end-start)/3600000;
   const mean=period==="all"?(report.sumAverage??(current?report.estimate:null)):null;
   const graph=[{at:start,occupancy:first},...series,{at:end,occupancy:last}];
-  const highlighted=Math.min(cursor,graph.length-1);
+  const highlighted=Math.min(cursor??0,graph.length-1);
+  const selectedTime=valid&&cursor!==null?graph[highlighted].at:undefined;
+  useEffect(()=>{onSelectAt?.(selectedTime);},[onSelectAt,selectedTime]);
+  useEffect(()=>()=>onSelectAt?.(undefined),[onSelectAt]);
   const min=graph.reduce((value,point)=>Math.min(value,point.occupancy),0);
   const max=graph.reduce((value,point)=>Math.max(value,point.occupancy),1);
   const x=(at:number)=>30+(at-start)*530/Math.max(1,end-start);
@@ -85,12 +88,12 @@ export function CounterAnalysisTools({report,rows,from,to,mode,scope,name,venue,
   }
   return <section className="cm-section cm-analysis-tools" data-lux-focus="range">
     <div className="cm-section-top"><div><h2>期間別の集計</h2><p className="cm-caption">{valid?dateText(start)+" – "+dateText(end):"集計期間がありません"}</p></div>
-      <label>表示期間 <select value={period} onChange={e=>{setPeriod(e.target.value);setCursor(0);}}><option value="all">選択中の開催日</option><option value="15">直近15分</option><option value="60">直近1時間</option><option value="custom">任意期間</option>{luxPeriod!==undefined&&<option value="lux">Luxnoraの指定期間</option>}</select></label></div>
+      <label>表示期間 <select value={period} onChange={e=>{setPeriod(e.target.value);setCursor(null);}}><option value="all">選択中の開催日</option><option value="15">直近15分</option><option value="60">直近1時間</option><option value="custom">任意期間</option>{luxPeriod!==undefined&&<option value="lux">Luxnoraの指定期間</option>}</select></label></div>
     {period==="custom"&&<form className="cm-form" onSubmit={e=>{
       e.preventDefault();const fields=new FormData(e.currentTarget);
       const a=Date.parse(String(fields.get("start"))+":00+09:00"),b=Date.parse(String(fields.get("end"))+":00+09:00");
       if (!Number.isFinite(a)||!Number.isFinite(b)||a>=b) return setNotice("終了を開始より後に指定してください。");
-      setNotice("");setCustom({start:a,end:b});setCursor(0);
+      setNotice("");setCustom({start:a,end:b});setCursor(null);
     }}><label>開始（JST）<input type="datetime-local" name="start" required defaultValue={jstInput(start)}/></label>
       <label>終了（JST）<input type="datetime-local" name="end" required defaultValue={jstInput(end)}/></label><button>期間を適用</button></form>}
     {valid&&<dl className="cm-event-times">{items.map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}

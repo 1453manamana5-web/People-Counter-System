@@ -19,7 +19,7 @@
 </nav>
 <main class="station-main">
 <div id="stationStatus" class="station-status" aria-label="端末の状態"><p id="ledgerState" role="status" hidden></p><p id="stationCameraState" hidden></p><p id="message" hidden class="message" role="alert">初回はAIモデルの読込にインターネット接続が必要です。Safariでカメラの使用を許可してください。</p><p id="ledgerError" role="alert" class="message error"></p></div>
-<section id="pairingIntro" class="pairing-intro"><h1>受付端末を接続</h1><p>管理アプリで開催日を作成し、この端末を入口または出口として承認してください。</p></section>
+<section id="pairingIntro" class="pairing-intro"><h1 id="pairingTitle">受付端末を接続</h1><p id="pairingHint">管理アプリで開催日を作成し、この端末を入口または出口として承認してください。</p></section>
 <div class="station-workspace" id="stationWorkspace">
 <div class="card capture-card" data-screen="capture adjust" hidden>
             <div class="section-head">
@@ -244,9 +244,9 @@
 <footer>人数計測 · 映像は保存しません</footer>
 </main>
 </div>
-<script type="module" src="./ledger-ui.mjs?v=20"></script>
+<script type="module" src="./ledger-ui.mjs?v=21"></script>
 <script type="module" src="./adaptive-ui.mjs?v=17"></script>
 <script type="module" src="./app.js?v=18"></script>
-<script type="module" src="./station-ui.mjs?v=3"></script>
+<script type="module" src="./station-ui.mjs?v=4"></script>
 </body>
 </html>

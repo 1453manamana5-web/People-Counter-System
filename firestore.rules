@@ -39,10 +39,13 @@ service cloud.firestore {
       return get(counterAssignment(eventId, device.role)).data.uid == request.auth.uid;
     }
 
+    function counterDayAcceptsPairing(eventId) {
+      return exists(counterDayPath(eventId)) && get(counterDayPath(eventId)).data.stage != "finished";
+    }
     function approvedCounterDevice(eventId) {
       return signedIn() && exists(counterDevicePath(eventId))
         && get(counterDevicePath(eventId)).data.status == "approved"
-        && exists(counterDayPath(eventId)) && ownCounterAssignment(eventId);
+        && exists(counterDayPath(eventId)) && get(counterDayPath(eventId)).data.get("finalized",null) == null && ownCounterAssignment(eventId);
     }
 
     function counterMode(mode) {
@@ -250,7 +253,7 @@ service cloud.firestore {
       // Pairing reservations are addressed only by a six-digit code. Only the
       // issuing device or an operator with a recent lookup can read a reservation.
       match /counterPairAttempts/{uid} {
-        allow create, update: if counterOperator() && request.auth.uid == uid
+        allow create, update: if counterOperator() && counterDayAcceptsPairing(eventId) && request.auth.uid == uid
           && request.resource.data.keys().hasOnly(["code","at"])
           && request.resource.data.code is string && request.resource.data.code.matches("^[0-9]{6}$")
           && request.resource.data.at == request.time
@@ -272,7 +275,7 @@ service cloud.firestore {
         }
         function consumeReservation() {
           let station = getAfter(/databases/$(database)/documents/events/$(eventId)/counterDevices/$(resource.data.uid)).data;
-          return counterOperator() && attemptedCode(300) && resource.data.usedAt == null
+          return counterOperator() && counterDayAcceptsPairing(eventId) && attemptedCode(300) && resource.data.usedAt == null
             && resource.data.issuedAt + duration.value(5,"m") > request.time
             && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["usedAt"])
             && request.resource.data.usedAt == request.time
@@ -283,8 +286,8 @@ service cloud.firestore {
           || (counterOperator() && attemptedCode(30)
             && (resource == null || (resource.data.usedAt == null
               && resource.data.issuedAt + duration.value(5,"m") > request.time)));
-        allow create: if signedIn() && exists(counterDayPath(eventId)) && validReservation(request.resource.data);
-        allow update: if (signedIn() && exists(counterDayPath(eventId)) && validReservation(request.resource.data))
+        allow create: if signedIn() && counterDayAcceptsPairing(eventId) && validReservation(request.resource.data);
+        allow update: if (signedIn() && counterDayAcceptsPairing(eventId) && validReservation(request.resource.data))
           || consumeReservation();
       }
 
@@ -300,7 +303,7 @@ service cloud.firestore {
             && get(/databases/$(database)/documents/events/$(eventId)/counterConfig/$(data.mode)).data.version == data.configVersion;
         }
         function validIssuedCommand(data) {
-          return exists(counterDayPath(eventId)) && data.keys().hasOnly([
+          return counterDayAcceptsPairing(eventId) && data.keys().hasOnly([
               "id","device","role","mode","configVersion","assignment","action","state","issuedAt","issuedBy"
             ]) && data.id is string && data.id.matches("^[a-f0-9-]{36}$")
             && data.role in ["in","out"] && counterMode(data.mode) && data.configVersion is int
@@ -394,7 +397,7 @@ service cloud.firestore {
 
         allow get: if ownCounterDevice() || counterOperator();
         allow list: if counterOperator();
-        allow create: if ownCounterDevice() && counterScopeExists(eventId)
+        allow create: if ownCounterDevice() && counterDayAcceptsPairing(eventId)
           && request.resource.data.keys().hasAll(["name", "device", "role", "status", "requestedAt"])
           && request.resource.data.keys().hasOnly(["name", "device", "role", "status", "requestedAt", "pairingIssuedAt"])
           && (exists(counterDayPath(eventId))
@@ -409,7 +412,7 @@ service cloud.firestore {
         }
 
         allow update: if (ownCounterDevice() && approvedCounterDevice(eventId) && validCounterHeartbeat(request.resource.data))
-          || (ownCounterDevice() && exists(counterDayPath(eventId)) && resource.data.status in ["pending","rejected","revoked"] && request.resource.data.status == "pending"
+          || (ownCounterDevice() && counterDayAcceptsPairing(eventId) && resource.data.status in ["pending","rejected","revoked"] && request.resource.data.status == "pending"
             && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["pairingIssuedAt","pairingConfirmed","status"])
             && !("pairingConfirmed" in request.resource.data)
             && request.resource.data.pairingIssuedAt == request.time
@@ -419,7 +422,9 @@ service cloud.firestore {
             && assignmentMatches(request.resource.data)
             && (request.resource.data.status != "approved" || resource.data.status == "approved"
               || (resource.data.status == "pending" && matchesPairing(request.resource.data)))
-            && (counterAdministrator() || (resource.data.status in ["pending","approved"]
+            && (counterAdministrator() || (resource.data.status == "approved" && request.resource.data.status == "revoked"
+               && get(counterDayPath(eventId)).data.get("finalized",null) == null && getAfter(counterDayPath(eventId)).data.finalized != null)
+               || (resource.data.status in ["pending","approved"]
               && request.resource.data.status in ["pending","approved","rejected"]
               && (resource.data.status != "approved" || request.resource.data.status == "approved"))));
 

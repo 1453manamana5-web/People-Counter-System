@@ -63,6 +63,16 @@ export async function operateCounterDay(id:string, expected:number, command:Comm
     const next=transition(current,command,Date.now(),review);
     const version=current.version+1;
     const {stage,opened,trialOpened,closing,ended,emptyConfirmed,finalized}=next;
+    // Revoke both assignments in the same transaction as final verification.
+    const assignments=command==='verify' ? await Promise.all(['in','out'].map(role=>transaction.get(doc(db,'events',id,'counterAssignments',role)))) : [];
+    const active=assignments.filter(row=>typeof row.get('uid')==='string');
+    const devices=await Promise.all(active.map(row=>transaction.get(doc(db,'events',id,'counterDevices',row.get('uid')))));
+    for(let i=0;i<active.length;i++){
+      const station=devices[i];
+      if(!station.exists())throw new Error('端末の割り当て情報を確認してください。');
+      transaction.update(station.ref,{status:'revoked',...audit(uid)});
+      transaction.set(active[i].ref,{uid:null,...audit(uid)});
+    }
     transaction.set(ref,{eventId:fields.eventId,date:fields.date,start:fields.start,end:fields.end,
       stage,opened,trialOpened,closing,ended,emptyConfirmed,finalized,version,operation:op,...audit(uid)});
     transaction.set(doc(db,"counterDays",id,"actions",op),{from:current.stage,to:stage,command,version,...audit(uid)});

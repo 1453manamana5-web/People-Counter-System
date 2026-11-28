@@ -128,7 +128,7 @@ export function CounterDayPanel({day,canOperate,stations,synced,now,onAction,goS
       <strong>{commandLabels[requested]}</strong>
       {requested==="restrict"&&<p>入場制限中も計測は続きます。来場者への案内は現地で行ってください。</p>}
       {requested==="close"&&<p>退場を数えるため、計測は開催日を終了するまで続きます。</p>}
-      {requested==="finish"&&<p>終了後は暫定集計になります。遅れて届いた記録を確認した後に確定できます。</p>}
+      {requested==="finish"&&<p>終了すると受付画面を閉じ、未同期記録の回収のみ継続します。集計確定時に入口・出口の端末承認を自動解除します。</p>}
       {(requested==="finish"||requested==="verify")&&<label className="cm-check"><input type="checkbox" checked={empty} onChange={event=>setEmpty(event.target.checked)}/>会場内を確認し、対象の来場者がいないことを確認した</label>}
       <div className="cm-form"><button className="cm-primary" disabled={!canOperate||((requested==="finish"||requested==="verify")&&!empty)} onClick={()=>{
         onAction(requested,{empty,synced});setRequested(null);

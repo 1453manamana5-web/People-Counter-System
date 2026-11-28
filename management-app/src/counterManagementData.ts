@@ -270,6 +270,7 @@ export async function pauseCounterEvent(eventId: string, mode: CounterMode, paus
 export async function findCounterPair(eventId: string, code: string) {
   if (!isPathPart(eventId) || !/^[0-9]{6}$/.test(code)) throw new Error("6桁の接続コードを入力してください。");
   const uid=await getFirebaseUid(),db=getFirebaseDb();
+  if((await getDocFromServer(doc(db,"counterDays",eventId))).get("stage")==="finished")throw new Error("終了した開催日には接続できません。");
   await setDoc(doc(db,"events",eventId,"counterPairAttempts",uid),{code,at:serverTimestamp()});
   let invitation;
   try {invitation=(await getDocFromServer(doc(db,"events",eventId,"counterPairCodes",code))).data();}
@@ -309,7 +310,9 @@ export async function saveCounterStation(eventId: string, stationUid: string, pa
   const reference = doc(db,"events",eventId,"counterDevices",stationUid);
   await runTransaction(db, async transaction => {
     const station=(await transaction.get(reference)).data();
-    const dedicated=(await transaction.get(doc(db,"counterDays",eventId))).exists();
+    const day=await transaction.get(doc(db,"counterDays",eventId));
+    const dedicated=day.exists();
+    if(day.get("stage")==="finished"&&update.status==="approved")throw new Error("終了した開催日は再承認できません。");
     if (!station) throw new Error("端末の登録情報が見つかりません。");
     const pairing=code && /^[0-9]{6}$/.test(code) ? doc(db,"events",eventId,"counterPairCodes",code) : null;
     if (dedicated && station.status==="pending" && update.status==="approved" && !pairing)

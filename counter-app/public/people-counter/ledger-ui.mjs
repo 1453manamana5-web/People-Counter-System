@@ -33,6 +33,7 @@ let remoteModule;
 let remoteAttempts = 0;
 let stationState = 'unchecked';
 let approvalConfirmed = false;
+let dayEnded = loadEnded(settings);
 let assignedRole = loadAssignedRole(settings);
 let deniedStation = loadDeniedStation(settings);
 let stationNote = '';
@@ -73,14 +74,16 @@ function cachedApproval(cfg) {
   const saved=load(approvalKey(cfg));
   return saved?.device===device && ['in','out'].includes(saved.role) ? saved : null;
 }
+function loadEnded(cfg){return !!cfg && load('pcs-counter-ended-v1:'+cfg.eventId)===true;}
 function pairingReady() {
-  if (!dedicatedDay(settings) || !device || deniedStation) return false;
+  if (!dedicatedDay(settings) || !device || deniedStation || dayEnded) return false;
   if (approvalConfirmed && stationState==='approved' && assignedRole===settings.role) return true;
   // On a fresh online launch, always verify on the server first. Explicitly offline
   // launches may use an earlier successful approval of the same installation/day.
   return stationState==='unchecked' && navigator.onLine===false && cachedApproval(settings)?.role===settings.role;
 }
 function captureBlockReason() {
+  if(dayEnded)return '開催日が終了しました。次の開催日は新しくペアリングしてください。';
   if ((settings?.mode === 'live' || dedicatedDay(settings)) && deniedStation) return 'この端末の本番承認を確認してください。管理画面で再承認されるまで計測を待機します。';
   if (!pairingReady()) return '管理アプリで端末のペアリング承認を完了してください。';
   if (dedicatedDay(settings) &&
@@ -92,17 +95,17 @@ function captureBlockReason() {
 }
 function renderStation() {
   const statuses = {
-    unchecked:'端末登録の状態を未確認', missing:'未申請', pending:'承認待ち', approved:'承認済み',
+    ended:'開催日終了・受付解除', unchecked:'端末登録の状態を未確認', missing:'未申請', pending:'承認待ち', approved:'承認済み',
     rejected:'申請が却下されました', revoked:'端末承認が解除されました', mismatch:'このSafariの登録と端末IDが一致しません',
   };
   $('counterStationState').textContent = !settings ? '運用設定を保存すると端末登録を申請できます。'
-    : (statuses[stationState] ?? statuses.unchecked) + (assignedRole ? ' · 管理側の指定 ' + (assignedRole === 'out' ? '出口' : '入口') : '') +
+    : (dayEnded ? statuses.ended : (statuses[stationState] ?? statuses.unchecked)) + (assignedRole ? ' · 管理側の指定 ' + (assignedRole === 'out' ? '出口' : '入口') : '') +
       (stationNote ? ' · ' + stationNote : '');
   const paired = dedicatedDay(settings);
   const invitation = paired ? load(pairingKey(settings)) : null;
   const remaining = invitation && device === invitation.device ? Math.max(0,300000 - (Date.now() - invitation.displayedAt)) : 0;
   $('counterStationApply').textContent = paired ? '接続コードを表示' : '端末登録を申請';
-  $('counterStationApply').disabled = !settings || !device || !['unchecked','missing',...(paired ? ['pending','rejected','revoked'] : [])].includes(stationState) || remaining > 270000;
+  $('counterStationApply').disabled = !settings || !device || dayEnded || !['unchecked','missing',...(paired ? ['pending','rejected','revoked'] : [])].includes(stationState) || remaining > 270000;
   $('counterPairCode').textContent = stationState === 'pending' && remaining > 0 ?
     '管理画面に入力する接続コード　' + invitation.code + '　残り約 ' + Math.ceil(remaining/60000) + '分' :
     stationState === 'pending' && paired ? '接続コードを再発行できます。' : '';
@@ -207,11 +210,16 @@ function checkStation(config, remote) {
     }
     if(settings!==config)return false;
     if(!nextControl || !Number.isSafeInteger(nextControl.version))return false;
+    // Even in trial mode, use the live config to detect the end of the day.
+    const liveControl=config.mode==='live'?nextControl:await deadline(remote.readCounterConfig(config.eventId,'live'));
+    if(settings!==config)return false;
+    if(liveControl?.closed!=null){dayEnded=true;try{localStorage.setItem('pcs-counter-ended-v1:'+config.eventId,'true');localStorage.setItem(approvalKey(config),'null');}catch{}}
+    
     approvalConfirmed=true;
-    try {localStorage.setItem(approvalKey(config),JSON.stringify({device,role:assignedRole}));} catch {}
+    if(!dayEnded)try {localStorage.setItem(approvalKey(config),JSON.stringify({device,role:assignedRole}));} catch {}
     storeControl(config,nextControl);
     renderStation();window.dispatchEvent(new Event('pcs-counter-control-changed'));
-    if (settings === config) pollStationCommand(config,remote,station);
+    if (settings === config && !dayEnded) pollStationCommand(config,remote,station);
     const scope = config.eventId + ':' + config.mode;
     const now = performance.now();
     if (settings === config && (heartbeatScope !== scope || now - lastHeartbeat >= 30000)) {
@@ -506,7 +514,7 @@ $('ledgerSetup').addEventListener('submit', async event => {
     settings = next;
     if (scopeChanged) {
       control = loadControl(settings);
-      if(dayChanged){approvalConfirmed=false;stationState='unchecked';assignedRole=null;}
+      if(dayChanged){approvalConfirmed=false;stationState='unchecked';assignedRole=null;dayEnded=loadEnded(settings);}
       deniedStation = loadDeniedStation(settings);
       stationNote = '';
     }
@@ -622,7 +630,7 @@ function attach(value) {
   schedule(500);
   scheduleControl(500);
 }
-window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, paired: pairingReady, refreshPairing: () => {scheduleControl(0);schedule(0);}, summary: () => result && resultScope === settings ? {entries:result.entries,exits:result.exits,occupancy:result.occupancy,mode:settings.mode} : null, attach, changed, captureBlockReason};
+window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, paired: pairingReady, ended: () => dayEnded, refreshPairing: () => {scheduleControl(0);schedule(0);}, summary: () => result && resultScope === settings ? {entries:result.entries,exits:result.exits,occupancy:result.occupancy,mode:settings.mode} : null, attach, changed, captureBlockReason};
 if (window.counterRecordStore) attach(window.counterRecordStore);
 fillRecord();
 renderState();
@@ -635,7 +643,7 @@ async function offlineLabel() {
   if (navigator.serviceWorker?.controller?.scriptURL.endsWith('/counter-offline.js') && load(preparedKey)) {
     try {
       const requests = await (await caches.open('pcs-counter-model-assets-v1')).keys();
-      ready = (await caches.keys()).includes('pcs-counter-v21') &&
+      ready = (await caches.keys()).includes('pcs-counter-v22') &&
         requests.some(r => r.url.endsWith('/efficientdet_lite0.tflite')) &&
         requests.some(r => r.url.endsWith('/quant2/075/model-stride16.json'));
     } catch {}

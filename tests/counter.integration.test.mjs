@@ -110,12 +110,17 @@ test("real modules: event → two stations → trial → live → offline retry 
   await move("close");
   assert.equal((await entry.readCounterConfig(day,"live")).paused,false);
   await move("finish",{empty:true,synced:false});
+  assert.equal((await exit.readCounterConfig(day,"live")).paused,true);
+  assert.equal((await exit.readCounterStation(day)).status,"approved"); // recovery only until verification
+  await assert.rejects(stationModule(dbFor(env,"late"),"late","552211").enrollCounterStation(day,{name:"late",device:crypto.randomUUID(),role:"out"},true),{code:"permission-denied"});
+  await entry.pushOperations(day,"live",incoming); // retry prior records while awaiting final verification
   const verified=await move("verify",{empty:true,synced:true});
   const final=ledger.analyze(rows,{eventId:day,mode:"live",opened:t,closed:verified.ended,verified:true,now:Date.now()});
   assert.deepEqual([final.entries,final.exits,final.occupancy,final.issues.length],[2,2,0,0]);
   assert.equal(final.integralAverage,1.5);assert.equal(final.sumAverage,1.5);
-  assert.equal((await exit.readCounterConfig(day,"live")).verified,true);
-  await admin.data.saveCounterStation(day,"exit",{status:"revoked"});
+  assert.equal((await firestore.getDoc(firestore.doc(adminDb,"events",day,"counterConfig","live"))).get("verified"),true);
+  for(const [role,station] of [["in",entry],["out",exit]]){assert.equal((await station.readCounterStation(day)).status,"revoked");assert.equal((await firestore.getDoc(firestore.doc(adminDb,"events",day,"counterAssignments",role))).get("uid"),null);}
+  await assert.rejects(admin.data.saveCounterStation(day,"exit",{status:"approved"}),/終了した開催日/);
   await assert.rejects(exit.readCounterConfig(day,"live"),{code:"permission-denied"});
  }finally{for(const store of stores)store.close();await env.cleanup();}
 });

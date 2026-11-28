@@ -19,6 +19,9 @@ function refreshStatus(){
  document.querySelector(".station-shell").dataset.paired=String(approved);
  for(const id of ["stationNav","stationSetupHeading","stationOfflineCard","ledgerState","stationCameraState","message","counterRemoteControl","syncLedger","clockState"])$(id).hidden=!approved;
  $("pairingIntro").hidden=approved;
+ const ended=window.counterLedger?.ended?.()===true;
+ $("pairingTitle").textContent=ended?"開催日が終了しました":"受付端末を接続";
+ $("pairingHint").textContent=ended?"受付は解除されました。未同期記録は保持し、集計確定まで自動同期します。次の開催日のIDを設定してください。":"管理アプリで開催日を作成し、この端末を入口または出口として承認してください。";
  if(approved!==wasPaired){wasPaired=approved;show(approved?"capture":"setup");return;}
  if(!approved&&workspace.dataset.page!=="setup"){show("setup");return;}
 

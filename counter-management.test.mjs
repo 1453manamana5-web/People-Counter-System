@@ -76,18 +76,12 @@ test("confirmed close or pause is restored offline and a reassigned station requ
   const app = station();
   app.control({closed:Date.now()-10});
   await app.check();
-  assert.match(app.gate,/閉場/);
-  assert.match(station({...Object.fromEntries(app.values),offline:true}).gate,/閉場/);
-  app.control({closed:null,paused:true});
-  await app.check();
-  assert.match(station({...Object.fromEntries(app.values),offline:true}).gate,/一時停止/);
-  app.control({paused:false});
-  app.station({role:"out"});
-  await app.check();
-  assert.match(app.gate,/ペアリング承認/);
-  app.station({status:"revoked"});
-  await app.check();
-  assert.match(station({...Object.fromEntries(app.values),offline:true}).gate,/本番承認/);
+  assert.match(app.gate,/開催日が終了/);
+  assert.match(station({...Object.fromEntries(app.values),offline:true}).gate,/開催日が終了/);
+  const next=station();next.control({paused:true});await next.check();
+  assert.match(station({...Object.fromEntries(next.values),offline:true}).gate,/一時停止/);
+  next.control({paused:false});next.station({role:"out"});await next.check();assert.match(next.gate,/ペアリング承認/);
+  next.station({status:"revoked"});await next.check();assert.match(station({...Object.fromEntries(next.values),offline:true}).gate,/本番承認/);
 });
 
 test("reading historical operations with reordered server map keys does not invalidate the local queue",async () => {
@@ -154,3 +148,5 @@ test("station keeps a remote result across a dropped acknowledgment without repe
 });
 
 test("pairing is mandatory, cached approval is scoped and revoked approval cannot reopen offline",async()=>{const a=station();assert.equal(a.paired,false);a.station({status:"pending"});await a.check();assert.equal(a.paired,false);a.station({status:"approved"});await a.check();assert.equal(a.paired,true);assert.equal(station(Object.fromEntries(a.values)).paired,false);assert.equal(station({...Object.fromEntries(a.values),offline:true}).paired,true);a.station({status:"missing"});await a.check();assert.equal(a.paired,false);assert.equal(station({...Object.fromEntries(a.values),offline:true}).paired,false);});
+
+test("finished event locks workspace permanently including offline restart",async()=>{const a=station();await a.check();assert.equal(a.paired,true);a.control({closed:Date.now()-10,paused:true,version:2});await a.check();assert.equal(a.paired,false);assert.equal(station({...Object.fromEntries(a.values),offline:true}).paired,false);});

@@ -1,0 +1,72 @@
+{
+  "cases": 4,
+  "passed": 2,
+  "changesNumber": 0,
+  "rows": [
+    {
+      "question": "今日の入場と退場は？",
+      "verified": "入場 12回。退場 7回。",
+      "must": [
+        "12回",
+        "7回"
+      ],
+      "numbers": [
+        12,
+        7
+      ],
+      "output": "今日の入場は 12回です。退場は 7回です。",
+      "ms": 1761.3259659999999,
+      "unknown": [],
+      "missing": [],
+      "passesCheck": true
+    },
+    {
+      "question": "出口の端末、直った？",
+      "verified": "出口の復旧結果は未確認。",
+      "must": [
+        "出口",
+        "未確認"
+      ],
+      "numbers": [],
+      "output": "出力の端末、直った？",
+      "ms": 1448.9052219999994,
+      "unknown": [],
+      "missing": [
+        "出口",
+        "未確認"
+      ],
+      "passesCheck": false
+    },
+    {
+      "question": "今年の入場は何人になった？",
+      "verified": "取得済みの入場は9回。同期が未確認なので暫定値。",
+      "must": [
+        "9回",
+        "暫定"
+      ],
+      "numbers": [
+        9
+      ],
+      "output": "今年の入場は9回です。",
+      "ms": 1546.004645,
+      "unknown": [],
+      "missing": [
+        "暫定"
+      ],
+      "passesCheck": false
+    },
+    {
+      "question": "設定は変更された？",
+      "verified": "設定は変更されていません。",
+      "must": [
+        "変更されていません"
+      ],
+      "numbers": [],
+      "output": "現在の状態: 設定は変更されていません。",
+      "ms": 1606.8270089999996,
+      "unknown": [],
+      "missing": [],
+      "passesCheck": true
+    }
+  ]
+}

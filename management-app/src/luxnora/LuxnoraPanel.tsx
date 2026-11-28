@@ -6,6 +6,7 @@ import {recognizeCancellation} from "./understanding";
 import type {Profile} from "./runtime";
 import {rememberTopics,type ContextMemory} from "./context";
 import {readComparisonDays} from "../counterComparisonData";
+import {createHistoryMemo} from "./session";
 import {processLuxnoraRequest} from "./core";
 import {clearMemory,loadMemory,rememberExperience,saveProfile} from "./memory";
 import type {SeriesAndDays} from "../counterEvents";
@@ -65,6 +66,8 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel,operator,view}:{view
   const working=queueState.active;
   useEffect(()=>{if(replies.current) replies.current.scrollTop=replies.current.scrollHeight;},[notes,mounted,queueState.active]);
   const [queueNotice,setQueueNotice]=useState("");
+  const [historyMemo]=useState(createHistoryMemo);
+  useEffect(()=>{if(!view?.ready) historyMemo.clear();},[view?.ready,historyMemo]);
   const previous=useRef<ContextMemory>({topics:{}});
   const latest=useRef({evidence,catalog,focus,view});
   useEffect(()=>{latest.current={evidence,catalog,focus,view};},[evidence,catalog,focus,view]);
@@ -85,6 +88,7 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel,operator,view}:{view
   function cancelRequest() {
     queue.current?.cancel();
     previous.current={topics:{}};
+    historyMemo.clear();
     cancel();
     setOffered(null);
     setMonitor(null);
@@ -97,7 +101,7 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel,operator,view}:{view
     const {text,profile}=task.value;
     const allow=()=>Boolean(queue.current?.isLatest(task));
     const result=await processLuxnoraRequest({text,profile,context:previous.current,signal,
-      allowConfirmation:allow,
+      allowConfirmation:allow,memo:historyMemo,
       read:async(day,window,signal)=>(await readComparisonDays([day],signal,window))[0],
       observe:()=>{
         let experiences;

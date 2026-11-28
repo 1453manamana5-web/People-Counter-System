@@ -2,10 +2,10 @@ import {readFile,stat} from "node:fs/promises";
 import {resolve} from "node:path";
 import {pathToFileURL} from "node:url";
 
-const [modelFile,modulePath,mode]=process.argv.slice(2);
-if(!modelFile||!modulePath) throw Error("Usage: node evaluate-gguf.mjs MODEL.gguf NODE_LLAMA_CPP_ENTRY");
+const [modelFile,modulePath,mode,casesPath]=process.argv.slice(2);
+if(!modelFile||!modulePath) throw Error("Usage: node evaluate-gguf.mjs MODEL.gguf NODE_LLAMA_CPP_ENTRY [grammar] [CASES.json]");
 const {getLlama,LlamaChatSession}=await import(pathToFileURL(resolve(modulePath)));
-const data=JSON.parse(await readFile(new URL("./generation-cases.json",import.meta.url),"utf8"));
+const data=JSON.parse(await readFile(casesPath??new URL("./generation-cases.json",import.meta.url),"utf8"));
 const started=performance.now();
 const llama=await getLlama({gpu:false,logLevel:"error"});
 const model=await llama.loadModel({modelPath:resolve(modelFile)});

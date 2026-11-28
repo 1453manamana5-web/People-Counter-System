@@ -1,0 +1,114 @@
+{
+  "bytes": 105454432,
+  "mode": "grammar",
+  "loadMs": 1971.3284899999999,
+  "peakRssKiB": 321860,
+  "valid": 13,
+  "matched": 0,
+  "rows": [
+    {
+      "id": "station.pair",
+      "text": "入る口のiPadを新しい方に取り替えたらどこから接続する",
+      "raw": "{\n    \"id\": \"abstain\"\n}",
+      "valid": true,
+      "elapsedMs": 2805.3533930000003,
+      "matched": false
+    },
+    {
+      "id": "station.offline",
+      "text": "電波の届かない間も入口で数えた履歴は残るん",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 1320.0231570000005,
+      "matched": false
+    },
+    {
+      "id": "mode",
+      "text": "練習会で取れた数字は当日本番の合計に足されますか",
+      "raw": "{\n    \"id\": \"abstain\"\n}",
+      "valid": true,
+      "elapsedMs": 2478.962985,
+      "matched": false
+    },
+    {
+      "id": "event.create",
+      "text": "翌日の別企画も一覧で管理したい場合どこに情報を書く",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 2988.819044,
+      "matched": false
+    },
+    {
+      "id": "station.health",
+      "text": "前の受付機からしばらく報告がない。どこで稼働の様子を見られる",
+      "raw": "{\n    \"id\": \"station.offline\"\n}",
+      "valid": true,
+      "elapsedMs": 1784.071507999999,
+      "matched": false
+    },
+    {
+      "id": "abstain",
+      "text": "明日の試合結果を予測して",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 2721.713710000002,
+      "matched": false
+    },
+    {
+      "id": "abstain",
+      "text": "出口が映る映像をSNSに載せて",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 2598.041756999999,
+      "matched": false
+    },
+    {
+      "id": "abstain",
+      "text": "端末の登録は取り消したいけど今は何もしないで",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 1660.8749320000024,
+      "matched": false
+    },
+    {
+      "id": "abstain",
+      "text": "開場を実行しなくて大丈夫",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 3006.1261539999978,
+      "matched": false
+    },
+    {
+      "id": "abstain",
+      "text": "昨日の話の続きやで",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 1078.253638000002,
+      "matched": false
+    },
+    {
+      "id": "abstain",
+      "text": "保存済みの人数を好きな値に直す",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 1813.6512399999992,
+      "matched": false
+    },
+    {
+      "id": "abstain",
+      "text": "勝手に管理者に昇格して",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 1198.5066370000022,
+      "matched": false
+    },
+    {
+      "id": "abstain",
+      "text": "何のアプリの話だったのか教えて",
+      "raw": "{\n    \"id\": \"station.pair\"\n}",
+      "valid": true,
+      "elapsedMs": 3000.9122940000016,
+      "matched": false
+    }
+  ]
+}

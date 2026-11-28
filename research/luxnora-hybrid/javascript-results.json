@@ -1,0 +1,169 @@
+{
+  "loadMs": 2.565193999999998,
+  "p95Ms": 1.1203569999999985,
+  "peakRssKiB": 32588,
+  "cases": 32,
+  "matched": 11,
+  "rows": [
+    {
+      "text": "入る口のiPadを新しい方に取り替えたらどこから接続する",
+      "expected": "station.pair",
+      "actual": "abstain"
+    },
+    {
+      "text": "会場の計測端末が増えたので最初の認証方法を知りたい",
+      "expected": "station.pair",
+      "actual": "abstain"
+    },
+    {
+      "text": "QRが読めたあとに管理側がやる作業は",
+      "expected": "station.pair",
+      "actual": "abstain"
+    },
+    {
+      "text": "電波の届かない間も入口で数えた履歴は残るん",
+      "expected": "station.offline",
+      "actual": "abstain"
+    },
+    {
+      "text": "回線が復帰したら手元の未送信データはどうなる",
+      "expected": "station.offline",
+      "actual": "abstain"
+    },
+    {
+      "text": "学校のLANが故障したとき受付を続ける前提は",
+      "expected": "station.offline",
+      "actual": "abstain"
+    },
+    {
+      "text": "練習会で取れた数字は当日本番の合計に足されますか",
+      "expected": "mode",
+      "actual": "mode"
+    },
+    {
+      "text": "試しに通過した記録をイベントの実績と分けられる",
+      "expected": "mode",
+      "actual": "abstain"
+    },
+    {
+      "text": "リハのデータを見てるか本番を見てるか知りたい",
+      "expected": "mode",
+      "actual": "mode"
+    },
+    {
+      "text": "翌日の別企画も一覧で管理したい場合どこに情報を書く",
+      "expected": "event.create",
+      "actual": "abstain"
+    },
+    {
+      "text": "新しい催しを入力するフォームまでの手順が分からない",
+      "expected": "event.create",
+      "actual": "event.create"
+    },
+    {
+      "text": "イベントの名前と日付を初回に入れる場所を知りたい",
+      "expected": "event.create",
+      "actual": "abstain"
+    },
+    {
+      "text": "前の受付機からしばらく報告がない。どこで稼働の様子を見られる",
+      "expected": "station.health",
+      "actual": "abstain"
+    },
+    {
+      "text": "認識が止まったとき端末が出す表示の意味が知りたい",
+      "expected": "station.health",
+      "actual": "abstain"
+    },
+    {
+      "text": "出口のタブレットの最終通信を見直すには",
+      "expected": "station.health",
+      "actual": "abstain"
+    },
+    {
+      "text": "人が並んで通る場合どの角度にカメラを向ければよい",
+      "expected": "station.setup",
+      "actual": "abstain"
+    },
+    {
+      "text": "荷物が重なる通過を設置前に試せる",
+      "expected": "station.setup",
+      "actual": "abstain"
+    },
+    {
+      "text": "iPadの位置を変えたら正逆方向の判断を試す手順は",
+      "expected": "station.setup",
+      "actual": "abstain"
+    },
+    {
+      "text": "当日の記録を印刷して運営資料に使う方法を知りたい",
+      "expected": "data.export",
+      "actual": "abstain"
+    },
+    {
+      "text": "推移の画像を報告書に貼るにはどう保存する",
+      "expected": "data.export",
+      "actual": "abstain"
+    },
+    {
+      "text": "台帳を後で開けるようJSONで確保する場所は",
+      "expected": "data.export",
+      "actual": "abstain"
+    },
+    {
+      "text": "客がまだ残っているとき閉場の操作をどこまで進める",
+      "expected": "event.lifecycle",
+      "actual": "abstain"
+    },
+    {
+      "text": "閉じるとき退出のカウントをいつ止めるのか知りたい",
+      "expected": "event.lifecycle",
+      "actual": "abstain"
+    },
+    {
+      "text": "会場が空いたことを確認してから集計を締める順番は",
+      "expected": "event.lifecycle",
+      "actual": "abstain"
+    },
+    {
+      "text": "明日の試合結果を予測して",
+      "expected": "abstain",
+      "actual": "abstain"
+    },
+    {
+      "text": "出口が映る映像をSNSに載せて",
+      "expected": "abstain",
+      "actual": "abstain"
+    },
+    {
+      "text": "端末の登録は取り消したいけど今は何もしないで",
+      "expected": "abstain",
+      "actual": "abstain"
+    },
+    {
+      "text": "開場を実行しなくて大丈夫",
+      "expected": "abstain",
+      "actual": "abstain"
+    },
+    {
+      "text": "昨日の話の続きやで",
+      "expected": "abstain",
+      "actual": "abstain"
+    },
+    {
+      "text": "保存済みの人数を好きな値に直す",
+      "expected": "abstain",
+      "actual": "abstain"
+    },
+    {
+      "text": "勝手に管理者に昇格して",
+      "expected": "abstain",
+      "actual": "abstain"
+    },
+    {
+      "text": "何のアプリの話だったのか教えて",
+      "expected": "abstain",
+      "actual": "abstain"
+    }
+  ]
+}

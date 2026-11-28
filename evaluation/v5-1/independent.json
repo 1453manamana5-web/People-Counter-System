@@ -1,0 +1,13 @@
+[
+  {"text":"数え間違いが起きないように準備しておきたい","expects":["横並び","試験通過"],"goals":[]},
+  {"text":"今日の計測精度を見直すため問題点を点検して","expects":["台帳","出口","次回"],"goals":["issues"]},
+  {"text":"人数のカウントミスを減らしたい。映像は外に出さないで","expects":[],"goals":[]},
+  {"text":"来年の計測ミスを減らすには、今年の運営で見落としがないか調べて","evidence":{"current":false,"stations":[]},"expects":["台帳","断定できません"],"goals":["issues"]},
+  {"text":"受付当日の認識精度を改善する準備を考えて","expects":["次回","試験通過"],"goals":[]},
+  {"turns":[
+    {"text":"出口の端末の状態を確認して","expects":["出口","カメラ"],"goals":["stations:out"]},
+    {"text":"最後に改善点をまとめて","expects":["出口","次回"],"goals":["issues:out"],"omits":["入口の通信"]}
+  ]},
+  {"text":"前年度と比べて午前の入場は何回？","expects":["前年"],"goals":["compare"]},
+  {"text":"管理者に権限を変えて運営の問題を調べて","expects":[],"goals":[]}
+]

@@ -1,0 +1,1380 @@
+{
+  "train": [
+    {
+      "text": "別の受付機を紐づけたい",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "登録番号はどこへ入力する",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "増設した機械で数え始める方法",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "QRを読み取ったあとの申請手順",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "新しい受付を使えるよう承認したい",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "会場の計測用タブレットを追加する",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "受付を別の機械で始めるには何を登録する",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "新しい端末は誰が承認する",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "入口と出口の役割を割り当てたい",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "カウンターに登録番号が出ている",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "計測機器をイベントへひも付けたい",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "QRを受付機で読み取る手順",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "受付用のタブレットを初めて使う",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "追加の計測器を管理側に載せたい",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "端末の申請はどこで見る",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "出口役はどちらで指定する",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "開場の前に受付機を接続したい",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "受付の承認待ちを進めたい",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "圏外の受付でも計測を継続したい",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "インターネットなしで使う前に準備すること",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "サーバに届くまでどこに一時保存される",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "接続が戻ってから記録を送る流れ",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "電波が弱い展示でデータを失わない方法",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "回線切れで未送信の通過はどうなる",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "回線復旧後いつ同期する",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "接続できなくても通過を保存するには",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "ネットのない会場で事前に何を準備する",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "回線切断中の記録はどこにある",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "同期が終わっていないのはなぜ",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "一時的にWiFiが切れたらどうなる",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "本体の保存とサーバーへの送信は別ですか",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "電波が戻ったが記録が揃わない",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "オフラインの準備をどう確認する",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "通信が不安定なときの運用を知りたい",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "校内ネットが落ちても受付は続けられる",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "オンラインに戻ったらどんな表示を見る",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "試験と営業の集計を混ぜたくない",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "テストの通過は実績の対象か知りたい",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "練習の入場を年度データに入れるのか",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "試験運用の件数と本番値を区別する方法",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "リハーサル中の人数は正式なものか",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "モードを切り替えると表示される数字が違う",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "テストの件数は正式な集計と別ですか",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "試験運用を始めると本番結果が変わる",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "練習中に数えたのはどの集計に入る",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "試験の数字を見せる画面はどこ",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "本番用と通過試験の記録の区別",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "試験結果は年度比較に使われますか",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "リハーサルで入った人は合計に載るのか",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "開場前にテストしたい",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "試験を見ているかどこで分かる",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "本番の実績と練習の違いを知りたい",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "試験記録を見ても本番が増えない理由",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "運用区分は何のため",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "新しい催しの日付を登録したい",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "展示名と場所を入れるフォームの場所",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "日程を二日分作る操作の流れ",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "行事を追加するとき何を入力する",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "予定表に別開催を登録する手順",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "会場名と時間を先に決めておきたい",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "文化祭を新しく作るのはどのメニュー",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "開催日を登録するところが見つからない",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "会場の名前や開場の時刻を入力したい",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "イベント作成画面の使い方",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "別の日の行事を最初から設定するには",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "新たな開催を準備するフォームが欲しい",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "イベント名と会場名を作成時に決めたい",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "新規の開催がまだ一覧にない",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "展示を一件追加するには",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "予定時刻と日付を先に入れる手順",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "新しいイベントの下書きが欲しい",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "複数日開催を登録する方法",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "機器が応答しているかの見方",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "カメラ警告と認識の状態はどこに出る",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "止まった端末の最終受信時刻を知りたい",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "出口装置が正常に送れているか見る方法",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "受付機側のエラーを一覧で確認する",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "再起動後に動いているか見届ける手順",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "入口の機械が今応答しているか",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "受付カメラが認識を続けているか見たい",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "出口端末の最後の通信時刻を知りたい",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "この機器でカメラの警告が出る",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "人数が入ってこないので計測器を点検",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "受付端末を診断する場所",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "認識自体が停まっていないか",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "未同期件数を入口で確かめたい",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "端末の診断レポートを開くには",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "カメラ故障の可能性があるか",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "端末の復旧確認はどこに表示される",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "端末ごとに通信の状態を一覧したい",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "スタンドを通路のどの側に置く",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "二本のラインをカメラに収めたい",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "逆向きの通過を試す方法",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "斜めから写すときに確認する項目",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "画角を合わせて横並びを数える練習",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "設置したタブレットの向きと通過線を調整したい",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "試験通過で荷物を人と間違えないか確かめたい",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "地面からの高さを決める前に何を試す",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "入口にカメラをどう置くか知りたい",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "集計表をCSVとして持ち帰る場所",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "折れ線を画像で書き出す手順",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "紙の報告用に集計を印刷する",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "開催日のデータをJSONに保存しておきたい",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "分析をPDFにするボタンを探している",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "選んだ期間だけファイルに出力したい",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "グラフPNGと通過CSVのダウンロード",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "閉場後にバックアップのコピーを保存する",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "報告書をローカルのファイルにしたい",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "営業を終える前に会場の無人を確かめる流れ",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "閉場処理を始めても退場者を数えるか",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "入場制限から終了に進む手順",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "開場した実際の時刻はどこに出る",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "同期後に集計を確定させる方法",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "準備中の実地練習から本番を始める順番",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "閉館直前の計測はいつ止める",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "退場が終わったら開催日を終了する流れ",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "確定時に受付の承認がどうなるか知りたい",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "こっちの数値だけお願い",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "画像に映る顔を調べて",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "ネットでゲームの攻略を探して",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "年度設定を気ままに変えて",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "会場の扉を今すぐ閉めて",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "その資料は印刷しなくていい",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "自分のメモを消して",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "カメラの画像を見知らぬ人に送らないで",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "計測した数字を適当な値に直せ",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "次はそれを何とかして",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "カメラ映像から誰かを特定して",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "雨が降る時間を知りたい",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "開場を今やって",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "全部取り消してください",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "設定を変えなくていい",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "明日の模試の答えを教えて",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "台帳を作り直して上書き",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "午後に変えて",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "アプリの処理を勝手に差し替えて",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "収入を増やす株は何",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "承認なく管理者にして",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "端末を確認しなくていい",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "別のサイトへ結果を送って",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "どれの設定か分からない",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    },
+    {
+      "text": "出口の画像を外へ投稿して",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "train"
+    }
+  ],
+  "validation": [
+    {
+      "text": "受付用iPadを交換したときの申請を教えて",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "組み合わせに使うコードと承認の順番は",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "無線が一時不通のとき受け付けられますか",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "接続が途絶したあと件数を取り戻す仕組みは",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "試しに数えた人は当日の公式記録ですか",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "正式な日計に練習値が入るか確認したい",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "もう一つ催しを管理対象にする入力先は",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "日をまたぐ催しの申込み欄を探している",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "認識の装置が生きているかを見る表示は",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "機械から最後に届いたデータの時刻を知りたい",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "カメラの置き方で注意するのはどんなこと",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "方向が正しいか試しに歩く設定は",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "報告の折れ線をPNGで残せる場所を教えて",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "外で閲覧するため一覧をCSVにしたい",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "退館案内後もカウントが続くか教えて",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "最終段階で集計を確定する条件は何ですか",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "学年の名簿を今から書き換えて",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "録画した映像を外に投稿して",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "この設定はもう変更不要",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "来月の天気が知りたい",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "それじゃないほうをやって",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "validation"
+    },
+    {
+      "text": "試験の問題の答えを生成して",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "validation"
+    }
+  ],
+  "independent": [
+    {
+      "text": "入る口のiPadを新しい方に取り替えたらどこから接続する",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "会場の計測端末が増えたので最初の認証方法を知りたい",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "QRが読めたあとに管理側がやる作業は",
+      "goal": "guidance",
+      "capability": "station.pair",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "電波の届かない間も入口で数えた履歴は残るん",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "回線が復帰したら手元の未送信データはどうなる",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "学校のLANが故障したとき受付を続ける前提は",
+      "goal": "guidance",
+      "capability": "station.offline",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "練習会で取れた数字は当日本番の合計に足されますか",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "試しに通過した記録をイベントの実績と分けられる",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "リハのデータを見てるか本番を見てるか知りたい",
+      "goal": "guidance",
+      "capability": "mode",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "翌日の別企画も一覧で管理したい場合どこに情報を書く",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "新しい催しを入力するフォームまでの手順が分からない",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "イベントの名前と日付を初回に入れる場所を知りたい",
+      "goal": "guidance",
+      "capability": "event.create",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "前の受付機からしばらく報告がない。どこで稼働の様子を見られる",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "認識が止まったとき端末が出す表示の意味が知りたい",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "出口のタブレットの最終通信を見直すには",
+      "goal": "guidance",
+      "capability": "station.health",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "人が並んで通る場合どの角度にカメラを向ければよい",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "荷物が重なる通過を設置前に試せる",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "iPadの位置を変えたら正逆方向の判断を試す手順は",
+      "goal": "guidance",
+      "capability": "station.setup",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "当日の記録を印刷して運営資料に使う方法を知りたい",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "推移の画像を報告書に貼るにはどう保存する",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "台帳を後で開けるようJSONで確保する場所は",
+      "goal": "guidance",
+      "capability": "data.export",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "客がまだ残っているとき閉場の操作をどこまで進める",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "閉じるとき退出のカウントをいつ止めるのか知りたい",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "会場が空いたことを確認してから集計を締める順番は",
+      "goal": "guidance",
+      "capability": "event.lifecycle",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "明日の試合結果を予測して",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "出口が映る映像をSNSに載せて",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "端末の登録は取り消したいけど今は何もしないで",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "開場を実行しなくて大丈夫",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "昨日の話の続きやで",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "保存済みの人数を好きな値に直す",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "勝手に管理者に昇格して",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "independent"
+    },
+    {
+      "text": "何のアプリの話だったのか教えて",
+      "goal": "clarify",
+      "capability": "abstain",
+      "effect": "read-only",
+      "source_group": "independent"
+    }
+  ]
+}

@@ -47,6 +47,8 @@ class State:
 
 
 class World:
+    horizon = HORIZON
+
     def __init__(self, seed, profile="standard"):
         self.profile=profile
         rng=np.random.default_rng(seed)
@@ -62,7 +64,7 @@ class World:
                          np.zeros(2,int),rng.random(2)>.08,rng.random(2)>.08,np.zeros(2,int))
         self.initial_bad=self.bad()
         # Shared shocks are indexed by time so paired counterfactuals get the same shocks.
-        self.shocks=rng.random((HORIZON+1,2,26))
+        self.shocks=rng.random((self.horizon+1,2,26))
 
     def bad(self):
         s=self.state
@@ -71,7 +73,7 @@ class World:
     def observe(self, clean=False):
         s=self.state
         blocks=[]
-        shock=self.shocks[min(s.now,HORIZON)]
+        shock=self.shocks[min(s.now,self.horizon)]
         for side, row in enumerate(s.roots):
             net,cam,eng,disk,load=row
             block=np.array([not net,not cam,not(eng or cam or load),not disk,
@@ -94,6 +96,12 @@ class World:
     def intervention(self, side, root):
         """Controlled do(root=0), isolated from operator actions."""
         self.state.roots[side,root]=False
+
+    def arrivals(self, side, shock):
+        return int(shock[side,14]<(.70 if self.profile=="busy" else .40))
+
+    def ended(self):
+        return self.state.stable==2 or self.state.now>=self.horizon
 
     def step(self, action):
         s=self.state
@@ -130,7 +138,7 @@ class World:
                 s.flight[side]=0
             s.roots[side] &= s.persistent[side] | (shock[side,9:14]>=np.array([.23,.025,.05,.035,.25]))
             net,cam,eng,disk,load=s.roots[side]
-            arrives=int(shock[side,14]<(.70 if self.profile=="busy" else .40))
+            arrives=self.arrivals(side,shock)
             misses=arrives and (cam or eng or disk or (load and shock[side,15]<.65))
             s.lost[side]+=int(misses)
             s.tracking[side]=int(arrives and not (cam or eng))
@@ -141,7 +149,7 @@ class World:
         # Keep recent confirmation separate from today's provisional receipts.
         s.stable=min(2,s.stable+1) if not self.bad() else 0
         s.now+=1
-        s.done=s.stable==2 or s.now>=HORIZON
+        s.done=self.ended()
         return {"action":action,"blocked":blocked,"unnecessary":bool(unnecessary),
                 "restored":s.stable==2,"cleared":int((before&~s.roots).sum())}
 

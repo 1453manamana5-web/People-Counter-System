@@ -12,10 +12,12 @@ test("station UI retains unique control IDs and defaults to the pairing screen",
 });
 test("station screen script and updated ledger shell are available offline",()=>{
  const sw=read("counter-offline.js"),html=read("index.html"),ledger=read("ledger-ui.mjs");
- for(const asset of ["style.css?v=21","ledger-ui.mjs?v=22","station-ui.mjs?v=5"]) {assert.ok(html.includes(asset));assert.ok(sw.includes(asset));}
- assert.ok(sw.includes("pcs-counter-v23"));assert.ok(ledger.includes("pcs-counter-v23"));
+ for(const asset of ["style.css?v=21","ledger-ui.mjs?v=23","station-ui.mjs?v=6"]) {assert.ok(html.includes(asset));assert.ok(sw.includes(asset));}
+ assert.ok(sw.includes("pcs-counter-v24"));assert.ok(ledger.includes("pcs-counter-v24"));
 });
 
 test("count screen distinguishes event totals from the standalone trial counter",()=>{const html=read("index.html"),ui=read("station-ui.mjs"),ledger=read("ledger-ui.mjs");assert.match(html,/id="stationCount"/);assert.match(html,/id="total"/);assert.match(ui,/summary\.exits:summary\.entries/);assert.match(ledger,/resultScope === settings/);});
 
 test("pairing can be started in one form and the connection link pre-fills the event",()=>{const html=read("index.html"),ui=read("station-ui.mjs"),ledger=read("ledger-ui.mjs");assert.match(html,/id="pairSubmit"/);assert.match(html,/id="pairWaitCard"/);assert.match(ui,/query.get\('day'\)/);assert.match(ledger,/if\(!wasPaired\)\{await requestPairing\(\);\}/);});
+
+test("a pending registration remembers its name after reload and the next event link may replace an ended day",()=>{assert.match(read("ledger-ui.mjs"),/load\(pairingNameKey\(settings\)\)/);assert.match(read("station-ui.mjs"),/ended&&savedDay!==incomingDay/);});

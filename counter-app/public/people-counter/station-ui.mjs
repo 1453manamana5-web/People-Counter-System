@@ -31,7 +31,7 @@ function refreshStatus(){
  $("pairingHint").textContent=ended?"受付は解除されました。未同期記録は保持します。次の開催日へ接続してください。":"管理アプリで表示した接続QRから開くと開催日IDの入力は不要です。";
  const state=window.counterLedger?.pairingStatus?.();
  const savedDay=window.counterLedger?.day?.();
- if(!linkApplied&&validIncoming&&!approved&&!savedDay){
+ if(!linkApplied&&validIncoming&&!approved&&(!savedDay||(ended&&savedDay!==incomingDay))){
   $("ledgerEvent").value=incomingDay;
   if(incomingRole==="in"||incomingRole==="out")$("ledgerRole").value=incomingRole;
   $("counterStationName").value=$("ledgerRole").value==="out"?"展示室 出口":"展示室 入口";
@@ -49,6 +49,8 @@ function refreshStatus(){
  $("pairRefresh").hidden=approved;
  const linked=!approved&&validIncoming&&$("ledgerEvent").value===incomingDay&&!editingPair;
  $("pairDayField").hidden=linked;
+ $("pairEdit").hidden=approved;
+ $("counterStationApply").hidden=approved;
  $("pairLinkSummary").hidden=!linked;
  $("pairLinkSummary").textContent=(incomingName||"選択された開催日")+" · "+incomingDay.slice(-10);
  if(wait)$("pairingHint").textContent="受付端末に表示されたコードを管理アプリで入力し、承認してください。";

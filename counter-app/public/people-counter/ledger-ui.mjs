@@ -50,6 +50,7 @@ let lastCommandPoll = -Infinity;
 let lastCommandScope;
 const dedicatedDay = cfg => /^[a-f0-9-]{36}_[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(cfg?.eventId ?? '');
 const pairingKey = cfg => 'pcs-counter-pair-v1:' + cfg.eventId;
+const pairingNameKey = cfg => 'pcs-counter-pair-name-v1:' + cfg.eventId;
 const commandResultKey = cfg => 'pcs-counter-command-result-v1:' + cfg.eventId;
 const controlKey = cfg => 'pcs-counter-control-v1:' + cfg.eventId + ':' + cfg.mode;
 function loadControl(cfg) {
@@ -604,6 +605,8 @@ async function requestPairing() {
     const remote = await deadline(remoteApi());
     // Check existing approval before issuing a new code; never silently change a registered role.
     const existing=await deadline(remote.readCounterStation(config.eventId));
+    if(settings!==config)return;
+    localStorage.setItem(pairingNameKey(config),JSON.stringify(name));
     if(existing?.status==='approved'){await checkStation(config,remote);return;}
     const saved=load(pairingKey(config));
     if(existing?.status==='pending'&&saved?.device===device&&Date.now()-saved.displayedAt<30000){await checkStation(config,remote);return;}
@@ -636,6 +639,7 @@ if (settings) {
   $('ledgerOpen').value = localDate(settings.opened).slice(0,16);
   $('ledgerClose').value = localDate(settings.closed).slice(0,16);
   $('ledgerVerified').checked = settings.verified;
+  $('counterStationName').value = load(pairingNameKey(settings)) || (settings.role==='out'?'展示室 出口':'展示室 入口');
 }
 function attach(value) {
   store = value;
@@ -656,7 +660,7 @@ async function offlineLabel() {
   if (navigator.serviceWorker?.controller?.scriptURL.endsWith('/counter-offline.js') && load(preparedKey)) {
     try {
       const requests = await (await caches.open('pcs-counter-model-assets-v1')).keys();
-      ready = (await caches.keys()).includes('pcs-counter-v23') &&
+      ready = (await caches.keys()).includes('pcs-counter-v24') &&
         requests.some(r => r.url.endsWith('/efficientdet_lite0.tflite')) &&
         requests.some(r => r.url.endsWith('/quant2/075/model-stride16.json'));
     } catch {}

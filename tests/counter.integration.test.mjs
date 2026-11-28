@@ -65,6 +65,11 @@ test("real modules: event → two stations → trial → live → offline retry 
   const b=await second.data.findCounterPair(day,"907314");
   assert.equal(a.uid,"entrance");assert.equal(b.uid,"exit");
   await admin.data.saveCounterStation(day,a.uid,{status:"approved",role:"in"}, "481206");
+  await entry.heartbeatCounterStation(day,{version:"17",camera:false,ai:false,profile:"unknown",pending:0,alert:"setup",mode:"test",configVersion:0});
+  await entry.changeCounterStationRole(day,"out",inDevice);
+  assert.equal((await entry.readCounterStation(day)).role,"out");
+  await entry.changeCounterStationRole(day,"in",inDevice);
+  assert.equal((await entry.readCounterStation(day)).role,"in");
   await second.data.saveCounterStation(day,b.uid,{status:"approved",role:"out"}, "907314");
   assert.equal((await entry.readCounterStation(day)).status,"approved");
   await assert.rejects(entry.changeCounterStationRole(day,"out",inDevice),/別の端末/);

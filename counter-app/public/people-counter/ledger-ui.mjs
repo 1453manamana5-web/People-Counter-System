@@ -39,7 +39,7 @@ let deniedStation = loadDeniedStation(settings);
 let stationNote = '';
 let pairingBusy=false;
 let roleChangeBusy=false;
-let roleDirectionCheck=false;
+let roleDirectionCheck=!!settings&&load('pcs-counter-role-check-v1:'+settings.eventId)===true;
 let control = loadControl(settings);
 let controlTimer;
 let controlFlight;
@@ -88,10 +88,10 @@ function pairingReady() {
 }
 function captureBlockReason() {
   if(roleChangeBusy)return '端末の役割を変更中です。';
-  if(roleDirectionCheck)return '入口・出口が変更されました。認識調整で通過方向を確認してください。';
   if(dayEnded)return '開催日が終了しました。次の開催日は新しくペアリングしてください。';
   if ((settings?.mode === 'live' || dedicatedDay(settings)) && deniedStation) return 'この端末の本番承認を確認してください。管理画面で再承認されるまで計測を待機します。';
   if (!pairingReady()) return '管理アプリで端末のペアリング承認を完了してください。';
+  if(roleDirectionCheck)return '入口・出口が変更されました。認識調整で通過方向を確認してください。';
   if (dedicatedDay(settings) &&
       (!control || !Number.isSafeInteger(control.version))) return '管理画面からの運用設定をまだ確認できません。';
   if (control?.closed != null && control.closed <= Date.now()) return '管理画面で閉場済みです。';
@@ -223,7 +223,7 @@ function checkStation(config, remote) {
     
     const changedRole=assignedRole && config.role!==assignedRole;
     if(changedRole&&!dayEnded){
-      const previous=config.role;
+      localStorage.setItem('pcs-counter-role-check-v1:'+config.eventId,'true');
       localStorage.setItem(setupKey,JSON.stringify({...config,role:assignedRole}));
       config.role=assignedRole;
       $('ledgerRole').value=assignedRole;
@@ -552,7 +552,7 @@ $('ledgerSetup').addEventListener('submit', async event => {
     settings = next;
     if (scopeChanged) {
       control = loadControl(settings);
-      if(dayChanged){approvalConfirmed=false;stationState='unchecked';assignedRole=null;dayEnded=loadEnded(settings);roleDirectionCheck=false;}
+      if(dayChanged){approvalConfirmed=false;stationState='unchecked';assignedRole=null;dayEnded=loadEnded(settings);roleDirectionCheck=load('pcs-counter-role-check-v1:'+settings.eventId)===true;}
       deniedStation = loadDeniedStation(settings);
       stationNote = '';
     }
@@ -680,7 +680,7 @@ function attach(value) {
   schedule(500);
   scheduleControl(500);
 }
-window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, pairingStatus: () => stationState, day: () => settings?.eventId, paired: pairingReady, directionCheck: () => roleDirectionCheck, confirmDirection: () => {roleDirectionCheck=false;renderStation();window.dispatchEvent(new Event('pcs-counter-control-changed'));}, ended: () => dayEnded, refreshPairing: () => {scheduleControl(0);schedule(0);}, summary: () => result && resultScope === settings ? {entries:result.entries,exits:result.exits,occupancy:result.occupancy,mode:settings.mode} : null, attach, changed, captureBlockReason};
+window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, pairingStatus: () => stationState, day: () => settings?.eventId, paired: pairingReady, directionCheck: () => roleDirectionCheck, confirmDirection: () => {if(!pairingReady())return;try{localStorage.setItem('pcs-counter-role-check-v1:'+settings.eventId,'false');}catch(e){error('確認結果を保存できません。');return;}roleDirectionCheck=false;renderStation();window.dispatchEvent(new Event('pcs-counter-control-changed'));}, ended: () => dayEnded, refreshPairing: () => {scheduleControl(0);schedule(0);}, summary: () => result && resultScope === settings ? {entries:result.entries,exits:result.exits,occupancy:result.occupancy,mode:settings.mode} : null, attach, changed, captureBlockReason};
 if (window.counterRecordStore) attach(window.counterRecordStore);
 fillRecord();
 renderState();
@@ -693,7 +693,7 @@ async function offlineLabel() {
   if (navigator.serviceWorker?.controller?.scriptURL.endsWith('/counter-offline.js') && load(preparedKey)) {
     try {
       const requests = await (await caches.open('pcs-counter-model-assets-v1')).keys();
-      ready = (await caches.keys()).includes('pcs-counter-v25') &&
+      ready = (await caches.keys()).includes('pcs-counter-v26') &&
         requests.some(r => r.url.endsWith('/efficientdet_lite0.tflite')) &&
         requests.some(r => r.url.endsWith('/quant2/075/model-stride16.json'));
     } catch {}

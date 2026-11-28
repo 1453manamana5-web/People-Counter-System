@@ -1,6 +1,6 @@
-const version = 'pcs-counter-v25';
+const version = 'pcs-counter-v26';
 const assets = 'pcs-counter-model-assets-v1';
-const shell = ['./', 'index.html', 'style.css?v=21', 'app.js?v=18', 'ledger-ui.mjs?v=24', 'station-ui.mjs?v=7',
+const shell = ['./', 'index.html', 'style.css?v=21', 'app.js?v=18', 'ledger-ui.mjs?v=25', 'station-ui.mjs?v=7',
   'ledger.mjs', 'luxnora-mark.svg?v=17', 'luxnora-core.mjs?v=17', 'station-command.mjs?v=17', 'connection.mjs?v=17', 'adaptive-ui.mjs?v=17', 'adaptive-environment.mjs?v=17', 'adaptive-calibration.mjs?v=17', ...['tracker','detection','body-check','vision','records','health','torso','torso-decoder']
     .map(name => name + '.mjs?v=17')];
 self.addEventListener('install', event => {

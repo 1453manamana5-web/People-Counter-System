@@ -1,3 +1,4 @@
+import {getCapability} from "./capabilities";
 import {answer, type Answer, type Evidence} from "./assistant";
 import type {ComparisonDay, ComparisonWindow} from "../counterComparisonMetrics";
 import type {SeriesAndDays} from "../counterEvents";
@@ -84,6 +85,7 @@ const registry: {[K in Capability]: Definition<K>} = {
     }},
   respond: {
     inputs(goal) {
+      if(goal.guidanceId) return [];
       if (goal.intent === "stations") return ["stations"];
       if (goal.intent === "issues" || goal.condition === "connection-restored") return ["ledger", "stations"];
       if (historyGoal(goal)) return ["historical", "ledger"];
@@ -93,6 +95,10 @@ const registry: {[K in Capability]: Definition<K>} = {
     access: plan => plan.operation || plan.schedule ? "confirmation" : ledgerGoal(plan) ? "analysis" : "read",
     cost: "local",
     run({evidence,experiences}, goal, input) {
+      if(goal.guidanceId) {
+        const entry=getCapability(goal.guidanceId)!;
+        return {text:entry.guide,source:entry.source};
+      }
       if (goal.intent === "stations") {
         const stations=input("stations");
         const available=stations.filter(row=>row.quality==="current"&&row.value.station);
@@ -175,6 +181,9 @@ const registry: {[K in Capability]: Definition<K>} = {
 
 export function compilePlan(request: Interpretation) {
   if (request.plans.length > 4) throw new Error("Too many goals");
+  if(request.plans.some(goal=>goal.guidanceId!==undefined&&(!getCapability(goal.guidanceId)||
+    goal.intent!=="briefing"||!goal.readOnly||goal.focus||goal.operation||goal.schedule||goal.at!==undefined)))
+    throw new Error("Invalid guidance goal");
   if (request.plans.some(goal=>goal.at!==undefined&&(!Number.isFinite(goal.at)||goal.intent!=="occupancy"||
     !goal.readOnly||goal.period!==undefined))) throw new Error("Invalid chart selection");
   const edges=request.dependencies??[];

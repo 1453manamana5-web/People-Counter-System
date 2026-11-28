@@ -17,7 +17,7 @@ export const knowledge = {
   event: ["開催設定を開いて", "開場時間を変更して", "イベント編集画面", "閉場の設定を見せて"],
 } as const;
 export type Intent = keyof typeof knowledge;
-export type Plan = {intent:Intent;at?:number;role?:"in"|"out";horizon?:"closing";minutesAhead?:number;condition?:"connection-restored";comparisonMetric?:"entries"|"exits"|"occupancy";previousYear?:boolean;compareDifference?:boolean;period?:"am"|"pm"|number|{from:number;to:number};focus:boolean;readOnly:boolean;operation?:"open"|"close";schedule?:{field:"start"|"end";time:string}};
+export type Plan = {intent:Intent;guidanceId?:string;at?:number;role?:"in"|"out";horizon?:"closing";minutesAhead?:number;condition?:"connection-restored";comparisonMetric?:"entries"|"exits"|"occupancy";previousYear?:boolean;compareDifference?:boolean;period?:"am"|"pm"|number|{from:number;to:number};focus:boolean;readOnly:boolean;operation?:"open"|"close";schedule?:{field:"start"|"end";time:string}};
 export type Dependency = {task: number; after: number; when: "previous-year-lower" | "anomaly"};
 export type Interpretation = {dependencies?: Dependency[]; constraints?: {readOnly: true};plans:Plan[];message?:string;reset?:boolean};
 

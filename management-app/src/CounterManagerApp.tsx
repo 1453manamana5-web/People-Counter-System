@@ -492,7 +492,7 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
         </>}</div>
       </main>
     </div>
-    {!denied&&<LuxnoraPanel key={scope} operator={manager.uid} view={{page,ready:authReady,chartAt:page==="analysis"&&chartSelection?.scope===scope?chartSelection.at:undefined,stationRole:page==="stations"&&viewStation?.scope===scope?viewStation.role:undefined}} catalog={catalog} evidence={{scope,sealed,ledgerFromServer:data?.operations.source==="server",stationsFromServer:data?.stations.source==="server",name:eventName,mode,now,config,day,stations,analysis,prediction,current}} focus={luxFocus} cancel={()=>setFocusRequest(null)}/>}
+    {!denied&&<LuxnoraPanel key={JSON.stringify([manager.uid,scope])} operator={manager.uid} view={{page,ready:authReady,chartAt:page==="analysis"&&chartSelection?.scope===scope?chartSelection.at:undefined,stationRole:page==="stations"&&viewStation?.scope===scope?viewStation.role:undefined}} catalog={catalog} evidence={{scope,sealed,ledgerFromServer:data?.operations.source==="server",stationsFromServer:data?.stations.source==="server",name:eventName,mode,now,config,day,stations,analysis,prediction,current}} focus={luxFocus} cancel={()=>setFocusRequest(null)}/>}
   </div>;
 }
 type Analysis = ReturnType<typeof analyze>;

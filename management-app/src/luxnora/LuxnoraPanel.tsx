@@ -4,7 +4,7 @@ import type {ViewState} from "./capabilities";
 import type {Plan} from "./language";
 import {recognizeCancellation} from "./understanding";
 import type {Profile} from "./runtime";
-import {rememberTopics,type ContextMemory} from "./context";
+import {rememberOutcomes,scopedContext,type ContextMemory} from "./context";
 import {readComparisonDays} from "../counterComparisonData";
 import {createHistoryMemo} from "./session";
 import {processLuxnoraRequest} from "./core";
@@ -99,7 +99,9 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel,operator,view}:{view
   }
   async function processTask(task:Task<{text:string;profile:Profile}>, signal:AbortSignal) {
     const {text,profile}=task.value;
-    const allow=()=>Boolean(queue.current?.isLatest(task));
+    const currentScope=()=>latest.current.view?.ready?latest.current.evidence.scope:undefined;
+    const startingScope=currentScope();
+    const allow=()=>Boolean(queue.current?.isLatest(task))&&currentScope()===startingScope;
     const result=await processLuxnoraRequest({text,profile,context:previous.current,signal,
       allowConfirmation:allow,memo:historyMemo,
       read:async(day,window,signal)=>(await readComparisonDays([day],signal,window))[0],
@@ -119,7 +121,11 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel,operator,view}:{view
     } catch {}
     const routine=plan.plans.find(item=>item.intent==="routine");
     if(routine&&!routine.readOnly&&allow()) setOffered(routine);
-    previous.current=rememberTopics(plan,previous.current,Date.now());
+    if(startingScope && currentScope()===startingScope) {
+      previous.current=rememberOutcomes(plan,scopedContext(previous.current,startingScope),Date.now(),response);
+    } else {
+      previous.current={scope:currentScope(),topics:{}};
+    }
     addReply(text,response.length?response:[{text:plan.message??"対象を指定してください。"}]);
     const target=response.find(row=>row.target);
     if(allow()&&isOpen.current&&target?.target) latest.current.focus(target.target,target.plan);
@@ -175,7 +181,7 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel,operator,view}:{view
           })()}
           <button type="button" onClick={()=>{
             cancelRequest();
-            try {clearMemory(localStorage,operator,scope);setProfile("auto");setNotes([]);}
+            try {clearMemory(localStorage,operator,scope);previous.current={topics:{}};historyMemo.clear();setProfile("auto");setNotes([]);}
             catch {setQueueNotice("記憶を削除できませんでした。");}
           }}>この開催区分の記憶を初期化</button>
         </div>}

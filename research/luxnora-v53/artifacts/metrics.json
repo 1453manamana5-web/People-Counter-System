@@ -1,0 +1,1906 @@
+{
+  "current": [
+    {
+      "seed": 531,
+      "seconds": 0.3196460030012531,
+      "curve": [
+        66,
+        82,
+        66,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "validation": {
+        "correct": 50,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 1,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 6,
+            "cases": 34
+          },
+          "return": {
+            "correct": 5,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 22,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 10,
+            "cases": 33
+          },
+          "five": {
+            "correct": 6,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 92,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 8,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 26,
+            "cases": 50
+          },
+          "return": {
+            "correct": 3,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 17,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 34,
+            "cases": 50
+          },
+          "long": {
+            "correct": 4,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 532,
+      "seconds": 0.2961085729984916,
+      "curve": [
+        66,
+        50,
+        38,
+        38,
+        50,
+        50,
+        38,
+        50,
+        50,
+        38,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "validation": {
+        "correct": 50,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 1,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 6,
+            "cases": 34
+          },
+          "return": {
+            "correct": 5,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 22,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 10,
+            "cases": 33
+          },
+          "five": {
+            "correct": 6,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 92,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 8,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 26,
+            "cases": 50
+          },
+          "return": {
+            "correct": 3,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 17,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 34,
+            "cases": 50
+          },
+          "long": {
+            "correct": 4,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 533,
+      "seconds": 0.29255007399842725,
+      "curve": [
+        66,
+        50,
+        50,
+        38,
+        50,
+        62,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ],
+      "validation": {
+        "correct": 50,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 1,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 6,
+            "cases": 34
+          },
+          "return": {
+            "correct": 5,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 22,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 10,
+            "cases": 33
+          },
+          "five": {
+            "correct": 6,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 81,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 8,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 15,
+            "cases": 50
+          },
+          "return": {
+            "correct": 3,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 17,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 34,
+            "cases": 50
+          },
+          "long": {
+            "correct": 4,
+            "cases": 50
+          }
+        }
+      }
+    }
+  ],
+  "recent": [
+    {
+      "seed": 531,
+      "seconds": 0.4171568220008339,
+      "curve": [
+        92,
+        98,
+        93,
+        98,
+        94,
+        95,
+        95,
+        97,
+        94,
+        94,
+        94,
+        94,
+        93,
+        93,
+        93,
+        95,
+        93,
+        92,
+        92,
+        92,
+        92,
+        91,
+        92,
+        92
+      ],
+      "validation": {
+        "correct": 92,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 16,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 3,
+            "cases": 34
+          },
+          "return": {
+            "correct": 2,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 33,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 5,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 164,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 25,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 15,
+            "cases": 50
+          },
+          "return": {
+            "correct": 11,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 49,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 14,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 532,
+      "seconds": 0.4265928929999063,
+      "curve": [
+        85,
+        101,
+        98,
+        98,
+        97,
+        99,
+        97,
+        96,
+        96,
+        96,
+        96,
+        95,
+        95,
+        95,
+        95,
+        94,
+        94,
+        93,
+        93,
+        93,
+        93,
+        93,
+        93,
+        93
+      ],
+      "validation": {
+        "correct": 93,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 16,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 4,
+            "cases": 34
+          },
+          "return": {
+            "correct": 0,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 33,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 7,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 161,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 26,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 11,
+            "cases": 50
+          },
+          "return": {
+            "correct": 11,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 50,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 13,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 533,
+      "seconds": 0.3797898909979267,
+      "curve": [
+        83,
+        97,
+        101,
+        104,
+        101,
+        102,
+        99,
+        102,
+        100,
+        100,
+        98,
+        98,
+        97,
+        97,
+        97,
+        96,
+        95,
+        95,
+        94,
+        95,
+        94,
+        94,
+        94,
+        93
+      ],
+      "validation": {
+        "correct": 93,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 17,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 5,
+            "cases": 34
+          },
+          "return": {
+            "correct": 0,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 33,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 5,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 160,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 25,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 12,
+            "cases": 50
+          },
+          "return": {
+            "correct": 11,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 49,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 13,
+            "cases": 50
+          }
+        }
+      }
+    }
+  ],
+  "summary": [
+    {
+      "seed": 531,
+      "seconds": 0.2939397070003906,
+      "curve": [
+        73,
+        119,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        121,
+        121,
+        121,
+        121,
+        121,
+        121,
+        121,
+        121,
+        121,
+        121,
+        121,
+        121,
+        121,
+        121,
+        121
+      ],
+      "validation": {
+        "correct": 121,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 25,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 4,
+            "cases": 34
+          },
+          "return": {
+            "correct": 28,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 31,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 0,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 216,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 35,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 0,
+            "cases": 50
+          },
+          "return": {
+            "correct": 38,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 50,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 43,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 532,
+      "seconds": 0.29949066799963475,
+      "curve": [
+        88,
+        119,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "validation": {
+        "correct": 120,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 25,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 4,
+            "cases": 34
+          },
+          "return": {
+            "correct": 27,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 31,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 0,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 217,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 35,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 1,
+            "cases": 50
+          },
+          "return": {
+            "correct": 38,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 50,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 43,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 533,
+      "seconds": 0.29927876299916534,
+      "curve": [
+        99,
+        124,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        121
+      ],
+      "validation": {
+        "correct": 121,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 25,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 4,
+            "cases": 34
+          },
+          "return": {
+            "correct": 28,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 31,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 0,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 218,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 35,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 2,
+            "cases": 50
+          },
+          "return": {
+            "correct": 38,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 50,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 43,
+            "cases": 50
+          }
+        }
+      }
+    }
+  ],
+  "state": [
+    {
+      "seed": 531,
+      "seconds": 0.2883450509980321,
+      "curve": [
+        69,
+        118,
+        123,
+        123,
+        124,
+        124,
+        126,
+        126,
+        125,
+        125,
+        125,
+        125,
+        128,
+        127,
+        128,
+        128,
+        128,
+        128,
+        128,
+        129,
+        129,
+        129,
+        129,
+        129
+      ],
+      "validation": {
+        "correct": 129,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 25,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 6,
+            "cases": 34
+          },
+          "return": {
+            "correct": 28,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 31,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 6,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 213,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 35,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 8,
+            "cases": 50
+          },
+          "return": {
+            "correct": 38,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 39,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 43,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 532,
+      "seconds": 0.329968394999014,
+      "curve": [
+        74,
+        117,
+        116,
+        121,
+        126,
+        126,
+        126,
+        127,
+        126,
+        127,
+        127,
+        129,
+        129,
+        129,
+        130,
+        130,
+        130,
+        130,
+        130,
+        130,
+        130,
+        130,
+        130,
+        130
+      ],
+      "validation": {
+        "correct": 130,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 25,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 7,
+            "cases": 34
+          },
+          "return": {
+            "correct": 28,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 31,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 6,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 213,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 35,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 8,
+            "cases": 50
+          },
+          "return": {
+            "correct": 38,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 39,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 43,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 533,
+      "seconds": 0.2870494749986392,
+      "curve": [
+        80,
+        127,
+        119,
+        124,
+        126,
+        126,
+        125,
+        126,
+        126,
+        127,
+        126,
+        127,
+        127,
+        129,
+        129,
+        129,
+        129,
+        130,
+        130,
+        130,
+        130,
+        130,
+        129,
+        129
+      ],
+      "validation": {
+        "correct": 129,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 25,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 6,
+            "cases": 34
+          },
+          "return": {
+            "correct": 28,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 31,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 6,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 213,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 35,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 8,
+            "cases": 50
+          },
+          "return": {
+            "correct": 38,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 39,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 43,
+            "cases": 50
+          }
+        }
+      }
+    }
+  ],
+  "ruri": [
+    {
+      "seed": 531,
+      "seconds": 0.2717211839990341,
+      "curve": [
+        81,
+        145,
+        148,
+        151,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        149,
+        145,
+        145
+      ],
+      "validation": {
+        "correct": 145,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 25,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 17,
+            "cases": 34
+          },
+          "return": {
+            "correct": 28,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 31,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 11,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 237,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 35,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 23,
+            "cases": 50
+          },
+          "return": {
+            "correct": 38,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 47,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 44,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 532,
+      "seconds": 0.2828893580008298,
+      "curve": [
+        66,
+        134,
+        138,
+        145,
+        144,
+        148,
+        146,
+        146,
+        145,
+        146,
+        145,
+        145,
+        145,
+        145,
+        145,
+        145,
+        144,
+        144,
+        144,
+        144,
+        144,
+        144,
+        144,
+        144
+      ],
+      "validation": {
+        "correct": 144,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 25,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 13,
+            "cases": 34
+          },
+          "return": {
+            "correct": 28,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 31,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 14,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 236,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 35,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 22,
+            "cases": 50
+          },
+          "return": {
+            "correct": 38,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 47,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 44,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 533,
+      "seconds": 0.27931300399723114,
+      "curve": [
+        75,
+        143,
+        141,
+        140,
+        136,
+        144,
+        141,
+        144,
+        139,
+        144,
+        144,
+        144,
+        136,
+        144,
+        144,
+        144,
+        144,
+        144,
+        144,
+        144,
+        144,
+        144,
+        144,
+        139
+      ],
+      "validation": {
+        "correct": 139,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 25,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 13,
+            "cases": 34
+          },
+          "return": {
+            "correct": 28,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 31,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 9,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 237,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 35,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 23,
+            "cases": 50
+          },
+          "return": {
+            "correct": 38,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 47,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 44,
+            "cases": 50
+          }
+        }
+      }
+    }
+  ],
+  "sequence": [
+    {
+      "seed": 531,
+      "seconds": 1.7435189620009623,
+      "curve": [
+        66,
+        77,
+        78,
+        81,
+        82,
+        87,
+        87,
+        85,
+        86,
+        88,
+        84,
+        86,
+        89,
+        84,
+        88,
+        84,
+        86,
+        84,
+        86,
+        85,
+        86,
+        85,
+        86,
+        85
+      ],
+      "validation": {
+        "correct": 85,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 12,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 1,
+            "cases": 34
+          },
+          "return": {
+            "correct": 2,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 33,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 4,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 141,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 22,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 4,
+            "cases": 50
+          },
+          "return": {
+            "correct": 9,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 49,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 7,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 532,
+      "seconds": 1.733609332000924,
+      "curve": [
+        66,
+        75,
+        73,
+        77,
+        78,
+        78,
+        79,
+        77,
+        77,
+        78,
+        78,
+        78,
+        77,
+        79,
+        79,
+        78,
+        78,
+        77,
+        78,
+        78,
+        77,
+        77,
+        78,
+        77
+      ],
+      "validation": {
+        "correct": 77,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 9,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 0,
+            "cases": 34
+          },
+          "return": {
+            "correct": 0,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 33,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 2,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 127,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 13,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 1,
+            "cases": 50
+          },
+          "return": {
+            "correct": 5,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 49,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 9,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 533,
+      "seconds": 1.6650676770004793,
+      "curve": [
+        66,
+        79,
+        76,
+        81,
+        91,
+        91,
+        97,
+        94,
+        93,
+        95,
+        94,
+        93,
+        95,
+        95,
+        95,
+        95,
+        94,
+        94,
+        94,
+        95,
+        94,
+        93,
+        94,
+        93
+      ],
+      "validation": {
+        "correct": 93,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 18,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 1,
+            "cases": 34
+          },
+          "return": {
+            "correct": 4,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 33,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 4,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 174,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 27,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 4,
+            "cases": 50
+          },
+          "return": {
+            "correct": 22,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 49,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 22,
+            "cases": 50
+          }
+        }
+      }
+    }
+  ],
+  "oracle": [
+    {
+      "seed": 531,
+      "seconds": 0.20958146900011343,
+      "curve": [
+        66,
+        116,
+        124,
+        124,
+        125,
+        125,
+        129,
+        129,
+        129,
+        129,
+        129,
+        129,
+        132,
+        131,
+        132,
+        132,
+        132,
+        132,
+        132,
+        133,
+        133,
+        133,
+        133,
+        133
+      ],
+      "validation": {
+        "correct": 133,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 34,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 0,
+            "cases": 34
+          },
+          "return": {
+            "correct": 33,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 33,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 0,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 239,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 50,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 0,
+            "cases": 50
+          },
+          "return": {
+            "correct": 50,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 40,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 49,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 532,
+      "seconds": 0.21789438300038455,
+      "curve": [
+        75,
+        116,
+        116,
+        124,
+        128,
+        129,
+        129,
+        130,
+        129,
+        130,
+        130,
+        132,
+        132,
+        132,
+        133,
+        133,
+        133,
+        133,
+        133,
+        133,
+        133,
+        133,
+        133,
+        133
+      ],
+      "validation": {
+        "correct": 133,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 34,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 0,
+            "cases": 34
+          },
+          "return": {
+            "correct": 33,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 33,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 0,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 239,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 50,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 0,
+            "cases": 50
+          },
+          "return": {
+            "correct": 50,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 40,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 49,
+            "cases": 50
+          }
+        }
+      }
+    },
+    {
+      "seed": 533,
+      "seconds": 0.21606378700016649,
+      "curve": [
+        78,
+        126,
+        122,
+        124,
+        128,
+        129,
+        128,
+        129,
+        129,
+        130,
+        129,
+        130,
+        130,
+        132,
+        132,
+        132,
+        132,
+        133,
+        133,
+        133,
+        133,
+        133,
+        133,
+        133
+      ],
+      "validation": {
+        "correct": 133,
+        "cases": 200,
+        "structure": {
+          "focus": {
+            "correct": 34,
+            "cases": 34
+          },
+          "interruption": {
+            "correct": 0,
+            "cases": 34
+          },
+          "return": {
+            "correct": 33,
+            "cases": 33
+          },
+          "ambiguous": {
+            "correct": 33,
+            "cases": 33
+          },
+          "reset": {
+            "correct": 33,
+            "cases": 33
+          },
+          "five": {
+            "correct": 0,
+            "cases": 33
+          }
+        }
+      },
+      "independent": {
+        "correct": 239,
+        "cases": 300,
+        "structure": {
+          "focus": {
+            "correct": 50,
+            "cases": 50
+          },
+          "interruption": {
+            "correct": 0,
+            "cases": 50
+          },
+          "return": {
+            "correct": 50,
+            "cases": 50
+          },
+          "ambiguous": {
+            "correct": 40,
+            "cases": 50
+          },
+          "reset": {
+            "correct": 50,
+            "cases": 50
+          },
+          "long": {
+            "correct": 49,
+            "cases": 50
+          }
+        }
+      }
+    }
+  ]
+}

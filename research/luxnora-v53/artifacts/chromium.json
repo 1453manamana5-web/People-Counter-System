@@ -1,0 +1,47 @@
+{
+  "chromium": "156.0.8078.79",
+  "online": {
+    "results": {
+      "state": {
+        "firstMs": 89.19999999925494,
+        "batchMs": 174,
+        "warmP95Ms": 1.1000000014901161,
+        "cases": 300,
+        "matches": 300,
+        "firstMatched": true
+      },
+      "ruri": {
+        "firstMs": 4125.29999999702,
+        "batchMs": 764,
+        "warmP95Ms": 3,
+        "cases": 300,
+        "matches": 300,
+        "firstMatched": true
+      }
+    },
+    "cancelled": true,
+    "restarts": true
+  },
+  "offline": {
+    "results": {
+      "state": {
+        "firstMs": 260,
+        "batchMs": 721.8999999985099,
+        "warmP95Ms": 11,
+        "cases": 300,
+        "matches": 300,
+        "firstMatched": true
+      },
+      "ruri": {
+        "firstMs": 8007.39999999851,
+        "batchMs": 901.9000000022352,
+        "warmP95Ms": 19.5,
+        "cases": 300,
+        "matches": 300,
+        "firstMatched": true
+      }
+    },
+    "cancelled": true,
+    "restarts": true
+  }
+}

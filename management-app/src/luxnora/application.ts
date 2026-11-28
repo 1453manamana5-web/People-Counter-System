@@ -34,6 +34,30 @@ export function applicationGoal(raw:string, view?:ViewState):ApplicationGoal|und
   return {kind:"guide",entries:(clear?ranked.slice(0,1):ranked).map(item=>item.entry)};
 }
 
+// Compose registered guidance with independent read goals. Each clause must
+// resolve locally; a conditional clause is left to the regular planner path.
+export function mixedGuide(raw:string, view:ViewState|undefined,
+  parse:(text:string)=>Plan[]):Interpretation|undefined {
+  if(raw.length>320 || /(?:あったら|あれば|なら|ければ|しない|せず|せんといて|キャンセル|取り消|再起動|削除|変更|解除|開場して|閉場して)/.test(raw)) return undefined;
+  const clauses=textOf(raw).split(/[。！？!?；;\n]|それから|そのあと|そして|、(?=次に|さらに|あと)/)
+    .map(part=>part.replace(/^\s*(?:次に|さらに|あと)\s*/,"").trim()).filter(Boolean);
+  if(clauses.length<2||clauses.length>4) return undefined;
+  const plans:Plan[]=[];
+  let combinesGuidance=false;
+  for(const clause of clauses) {
+    const guidance=applicationGoal(clause,view);
+    if(guidance?.kind==="guide"&&guidance.entries.length===1) {
+      combinesGuidance=true;
+      plans.push({intent:"briefing",guidanceId:guidance.entries[0].id,readOnly:true,focus:false});
+    } else {
+      const entries=parse(clause);
+      if(!entries.length||entries.some(p=>p.operation||p.schedule||p.intent==="routine"||p.intent==="event")) return undefined;
+      plans.push(...entries.map(p=>({...p,focus:false,readOnly:true})));
+    }
+  }
+  return combinesGuidance && plans.length<=4?{plans,constraints:{readOnly:true}}:undefined;
+}
+
 export function canOpenTarget(target:Target, eventSelected:boolean, authorized:boolean, editing:boolean) {
   if(editing) return false;
   if(target==="new-event") return authorized;

@@ -19,7 +19,7 @@ async function evaluate(root, version) {
   let unsafe=0,turns=0;
   for(const row of cases) {
     const snapshot={evidence:{...evidence,...row.evidence},catalog:null,view:{page:"home",ready:true}};
-    let context={topics:{}};
+    let context={scope:snapshot.evidence.scope,topics:{}};
     for(const item of row.turns??[row]) {
       const start=performance.now();
       const result=await processLuxnoraRequest({text:item.text,profile:"swift",context,observe:()=>snapshot,

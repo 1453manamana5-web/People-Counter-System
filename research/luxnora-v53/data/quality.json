@@ -1,0 +1,49 @@
+{
+  "train": {
+    "conversations": 1000,
+    "turns": 3666,
+    "structures": [
+      "focus",
+      "interruption",
+      "return",
+      "ambiguous",
+      "reset",
+      "four",
+      "reset-gap",
+      "repeat"
+    ],
+    "distinctCurrent": 10,
+    "distinctUtterances": 145,
+    "baseline": 1000
+  },
+  "validation": {
+    "conversations": 200,
+    "turns": 732,
+    "structures": [
+      "focus",
+      "interruption",
+      "return",
+      "ambiguous",
+      "reset",
+      "five"
+    ],
+    "distinctCurrent": 9,
+    "distinctUtterances": 58,
+    "baseline": 168
+  },
+  "independent": {
+    "conversations": 300,
+    "turns": 1400,
+    "structures": [
+      "focus",
+      "interruption",
+      "return",
+      "ambiguous",
+      "reset",
+      "long"
+    ],
+    "distinctCurrent": 9,
+    "distinctUtterances": 68,
+    "baseline": 243
+  }
+}

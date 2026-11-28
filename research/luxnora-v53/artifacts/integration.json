@@ -1,0 +1,501 @@
+{
+  "v52": {
+    "dialogues": {
+      "total": 300,
+      "turns": 1400,
+      "correct": 124,
+      "startsAndFinal": 70,
+      "invalid": 0,
+      "shadow": {
+        "covered": 0,
+        "changed": 0,
+        "correct": 0,
+        "executedFixtureAnswers": 0,
+        "answersWithSourceOrVerification": 0
+      }
+    },
+    "tasks": {
+      "groups": {
+        "topics": {
+          "turns": 8,
+          "correct": 4,
+          "conversations": 2,
+          "complete": 0,
+          "unsafe": 0
+        },
+        "novel": {
+          "turns": 3,
+          "correct": 0,
+          "conversations": 3,
+          "complete": 0,
+          "unsafe": 0
+        },
+        "negation": {
+          "turns": 4,
+          "correct": 2,
+          "conversations": 1,
+          "complete": 0,
+          "unsafe": 0
+        },
+        "gaps": {
+          "turns": 1,
+          "correct": 1,
+          "conversations": 1,
+          "complete": 1,
+          "unsafe": 0
+        }
+      },
+      "failures": [
+        {
+          "group": "topics",
+          "text": "人数の方は午後に変更してください",
+          "expected": [
+            "exits:pm"
+          ],
+          "got": [
+            "stations:pm:in"
+          ],
+          "answer": "選択中の運用区分で状態を取得できる入口端末がありません。",
+          "unsafe": false
+        },
+        {
+          "group": "topics",
+          "text": "元に戻してください",
+          "expected": [
+            "exits"
+          ],
+          "got": [],
+          "answer": "依頼の対象を特定できませんでした。滞在人数・入場回数・端末状態・混雑予測など、確認したい対象を教えてください。",
+          "unsafe": false
+        },
+        {
+          "group": "topics",
+          "text": "年度比較を午前だけに絞って",
+          "expected": [
+            "compare:am"
+          ],
+          "got": [
+            "compare:am"
+          ],
+          "answer": "年度比較を表示します。比較する年度とイベントを選ぶと、本番の通過記録と開場1時間あたりの入場回数を確認できます。差の原因を通過記録だけから特定することはできません。 年度比較画面で表示する集計は開催日全体です。",
+          "unsafe": false
+        },
+        {
+          "group": "topics",
+          "text": "さっきと同じ条件でもう一度確認して",
+          "expected": [
+            "compare:am"
+          ],
+          "got": [],
+          "answer": "依頼の対象を特定できませんでした。滞在人数・入場回数・端末状態・混雑予測など、確認したい対象を教えてください。",
+          "unsafe": false
+        },
+        {
+          "group": "novel",
+          "text": "今の滞在人数を教えて。そして受付端末をペアリングする方法を知りたい",
+          "expected": [
+            "occupancy",
+            "guide:station.pair"
+          ],
+          "got": [],
+          "answer": "管理アプリの「受付端末」でペアリング用QRを開き、受付端末で読み取って申請します。承認と入口・出口の割り当てを確認してください。",
+          "unsafe": false
+        },
+        {
+          "group": "novel",
+          "text": "出口端末の未同期件数を調べて。それからiPadの置き方はどうすればいい？",
+          "expected": [
+            "stations:out",
+            "guide:station.setup"
+          ],
+          "got": [],
+          "answer": "「受付端末」で最終通信と未同期件数を確認できます。古い報告では現在の稼働は分かりません。復旧後は端末からの確認結果を見てください。\n準備済みの受付端末では、通信が途切れても保存が使える間は端末内に記録できます。復旧後は未同期件数を確認してください。新規ペアリングには通信が必要です。",
+          "unsafe": false
+        },
+        {
+          "group": "novel",
+          "text": "今日の入場と退場の回数をそれぞれ教えて。そのあと通過記録の出力方法を教えて",
+          "expected": [
+            "entries",
+            "exits",
+            "guide:data.export"
+          ],
+          "got": [],
+          "answer": "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。",
+          "unsafe": false
+        },
+        {
+          "group": "negation",
+          "text": "入口は確認しなくていい。出口だけを確認して",
+          "expected": [
+            "stations:out"
+          ],
+          "got": [
+            "stations:in",
+            "stations:out"
+          ],
+          "answer": "選択中の運用区分で状態を取得できる入口端末がありません。\n出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "unsafe": false
+        },
+        {
+          "group": "negation",
+          "text": "カメラを再起動せずに。出口端末の接続状況を確認して",
+          "expected": [
+            "stations:out"
+          ],
+          "got": [
+            "stations",
+            "stations:out"
+          ],
+          "answer": "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。\n出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "unsafe": false
+        }
+      ]
+    },
+    "regression": {
+      "groups": {
+        "topics": {
+          "turns": 14,
+          "correct": 8,
+          "conversations": 3,
+          "complete": 0,
+          "unsafe": 0
+        },
+        "novel": {
+          "turns": 3,
+          "correct": 0,
+          "conversations": 3,
+          "complete": 0,
+          "unsafe": 0
+        },
+        "negation": {
+          "turns": 9,
+          "correct": 6,
+          "conversations": 2,
+          "complete": 0,
+          "unsafe": 0
+        },
+        "gaps": {
+          "turns": 3,
+          "correct": 1,
+          "conversations": 2,
+          "complete": 1,
+          "unsafe": 0
+        }
+      },
+      "failures": [
+        {
+          "group": "topics",
+          "text": "比較の方を午後に修正して",
+          "expected": [
+            "compare:pm"
+          ],
+          "got": [
+            "stations:pm:out"
+          ],
+          "answer": "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "unsafe": false
+        },
+        {
+          "group": "topics",
+          "text": "元の条件に戻して",
+          "expected": [
+            "compare:am"
+          ],
+          "got": [],
+          "answer": "依頼の対象を特定できませんでした。滞在人数・入場回数・端末状態・混雑予測など、確認したい対象を教えてください。",
+          "unsafe": false
+        },
+        {
+          "group": "topics",
+          "text": "もう一度詳しく見せて",
+          "expected": [],
+          "got": [],
+          "answer": "依頼の対象を特定できませんでした。滞在人数・入場回数・端末状態・混雑予測など、確認したい対象を教えてください。",
+          "unsafe": false
+        },
+        {
+          "group": "topics",
+          "text": "集計は午後だけでお願い",
+          "expected": [
+            "entries:pm"
+          ],
+          "got": [],
+          "answer": "依頼の対象を特定できませんでした。滞在人数・入場回数・端末状態・混雑予測など、確認したい対象を教えてください。",
+          "unsafe": false
+        },
+        {
+          "group": "topics",
+          "text": "同じ条件でもう一度確認して",
+          "expected": [],
+          "got": [],
+          "answer": "依頼の対象を特定できませんでした。滞在人数・入場回数・端末状態・混雑予測など、確認したい対象を教えてください。",
+          "unsafe": false
+        },
+        {
+          "group": "topics",
+          "text": "端末の方を改めて調べて",
+          "expected": [
+            "stations:out"
+          ],
+          "got": [
+            "stations"
+          ],
+          "answer": "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "unsafe": false
+        },
+        {
+          "group": "novel",
+          "text": "今年と去年の入場回数を比較して。それから出口端末の状態を確認して。カメラの設置方法を教えて",
+          "expected": [
+            "compare",
+            "stations:out",
+            "guide:station.setup"
+          ],
+          "got": [],
+          "answer": "「受付端末」で最終通信と未同期件数を確認できます。古い報告では現在の稼働は分かりません。復旧後は端末からの確認結果を見てください。",
+          "unsafe": false
+        },
+        {
+          "group": "novel",
+          "text": "退場の通過履歴を見せて。そのあとオフライン運用はどうすればいい？",
+          "expected": [
+            "records",
+            "guide:station.offline"
+          ],
+          "got": [],
+          "answer": "準備済みの受付端末では、通信が途切れても保存が使える間は端末内に記録できます。復旧後は未同期件数を確認してください。新規ペアリングには通信が必要です。\n「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。",
+          "unsafe": false
+        },
+        {
+          "group": "novel",
+          "text": "計測記録の整合性を調べて。そして端末を登録する方法を教えて",
+          "expected": [
+            "issues",
+            "guide:station.pair"
+          ],
+          "got": [],
+          "answer": "管理アプリの「受付端末」でペアリング用QRを開き、受付端末で読み取って申請します。承認と入口・出口の割り当てを確認してください。\nイベント名のメニューから「新規作成」を開き、名前・会場・開催日と予定時刻を入力します。入力を確認してから保存してください。",
+          "unsafe": false
+        },
+        {
+          "group": "negation",
+          "text": "今から閉場して、ではなく今いる人数だけ教えて",
+          "expected": [
+            "occupancy"
+          ],
+          "got": [],
+          "answer": "開場・閉場や予定変更の候補は、対象と操作を一件ずつ指定してください。",
+          "unsafe": false
+        },
+        {
+          "group": "negation",
+          "text": "端末を再起動しないで。出口の状態を確認して",
+          "expected": [
+            "stations:out"
+          ],
+          "got": [],
+          "answer": "複数の依頼のうち意味を特定できないものがあります。内容を分けて指定してください。",
+          "unsafe": false
+        },
+        {
+          "group": "negation",
+          "text": "入口は調べなくていい。出口だけでお願い",
+          "expected": [
+            "stations:out"
+          ],
+          "got": [],
+          "answer": "複数の依頼のうち意味を特定できないものがあります。内容を分けて指定してください。",
+          "unsafe": false
+        },
+        {
+          "group": "gaps",
+          "text": "その差は午後だけでお願い",
+          "expected": [],
+          "got": [],
+          "answer": "依頼の対象を特定できませんでした。滞在人数・入場回数・端末状態・混雑予測など、確認したい対象を教えてください。",
+          "unsafe": false
+        },
+        {
+          "group": "gaps",
+          "text": "台帳の人数が合わない原因を調べて。端末の同期方法はどうすればいい？",
+          "expected": [
+            "issues",
+            "guide:station.offline"
+          ],
+          "got": [],
+          "answer": "「受付端末」で最終通信と未同期件数を確認できます。古い報告では現在の稼働は分かりません。復旧後は端末からの確認結果を見てください。\n準備済みの受付端末では、通信が途切れても保存が使える間は端末内に記録できます。復旧後は未同期件数を確認してください。新規ペアリングには通信が必要です。",
+          "unsafe": false
+        }
+      ]
+    }
+  },
+  "v53": {
+    "dialogues": {
+      "total": 300,
+      "turns": 1400,
+      "correct": 243,
+      "startsAndFinal": 169,
+      "invalid": 0,
+      "shadow": {
+        "covered": 0,
+        "changed": 0,
+        "correct": 0,
+        "executedFixtureAnswers": 0,
+        "answersWithSourceOrVerification": 0
+      }
+    },
+    "tasks": {
+      "groups": {
+        "topics": {
+          "turns": 8,
+          "correct": 8,
+          "conversations": 2,
+          "complete": 2,
+          "unsafe": 0
+        },
+        "novel": {
+          "turns": 3,
+          "correct": 1,
+          "conversations": 3,
+          "complete": 1,
+          "unsafe": 0
+        },
+        "negation": {
+          "turns": 4,
+          "correct": 3,
+          "conversations": 1,
+          "complete": 0,
+          "unsafe": 0
+        },
+        "gaps": {
+          "turns": 1,
+          "correct": 1,
+          "conversations": 1,
+          "complete": 1,
+          "unsafe": 0
+        }
+      },
+      "failures": [
+        {
+          "group": "novel",
+          "text": "出口端末の未同期件数を調べて。それからiPadの置き方はどうすればいい？",
+          "expected": [
+            "stations:out",
+            "guide:station.setup"
+          ],
+          "got": [
+            "stations:out",
+            "guide:station.setup"
+          ],
+          "answer": "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。\n受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。",
+          "unsafe": false
+        },
+        {
+          "group": "novel",
+          "text": "今日の入場と退場の回数をそれぞれ教えて。そのあと通過記録の出力方法を教えて",
+          "expected": [
+            "entries",
+            "exits",
+            "guide:data.export"
+          ],
+          "got": [
+            "entries",
+            "exits",
+            "guide:records"
+          ],
+          "answer": "集計できる開催日の記録をまだ取得できていません。イベントと試験・本番の区分を確認してください。\n集計できる開催日の記録をまだ取得できていません。イベントと試験・本番の区分を確認してください。\n「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。",
+          "unsafe": false
+        },
+        {
+          "group": "negation",
+          "text": "開場して、じゃなくて今の人数を知りたい",
+          "expected": [],
+          "got": [
+            "occupancy"
+          ],
+          "answer": "集計できる開催日の記録をまだ取得できていません。イベントと試験・本番の区分を確認してください。",
+          "unsafe": false
+        }
+      ]
+    },
+    "regression": {
+      "groups": {
+        "topics": {
+          "turns": 14,
+          "correct": 14,
+          "conversations": 3,
+          "complete": 3,
+          "unsafe": 0
+        },
+        "novel": {
+          "turns": 3,
+          "correct": 2,
+          "conversations": 3,
+          "complete": 2,
+          "unsafe": 0
+        },
+        "negation": {
+          "turns": 9,
+          "correct": 9,
+          "conversations": 2,
+          "complete": 2,
+          "unsafe": 0
+        },
+        "gaps": {
+          "turns": 3,
+          "correct": 3,
+          "conversations": 2,
+          "complete": 2,
+          "unsafe": 0
+        }
+      },
+      "failures": [
+        {
+          "group": "novel",
+          "text": "今年と去年の入場回数を比較して。それから出口端末の状態を確認して。カメラの設置方法を教えて",
+          "expected": [
+            "compare",
+            "stations:out",
+            "guide:station.setup"
+          ],
+          "got": [
+            "compare",
+            "stations:out",
+            "guide:station.setup"
+          ],
+          "answer": "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。\n出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。\n受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。",
+          "unsafe": false
+        }
+      ]
+    },
+    "shadowState": {
+      "total": 300,
+      "turns": 1400,
+      "correct": 243,
+      "startsAndFinal": 169,
+      "invalid": 0,
+      "shadow": {
+        "covered": 300,
+        "changed": 16,
+        "correct": 243,
+        "executedFixtureAnswers": 181,
+        "answersWithSourceOrVerification": 51
+      }
+    },
+    "shadowRuri": {
+      "total": 300,
+      "turns": 1400,
+      "correct": 243,
+      "startsAndFinal": 169,
+      "invalid": 0,
+      "shadow": {
+        "covered": 299,
+        "changed": 9,
+        "correct": 252,
+        "executedFixtureAnswers": 173,
+        "answersWithSourceOrVerification": 52
+      }
+    }
+  }
+}

@@ -83,3 +83,40 @@ footer{font-size:11px;text-align:center;color:#8997a6;margin-top:29px}
 .lux-station-heading{display:flex;align-items:center;gap:.55rem}
 .lux-station-heading p{margin:.35rem 0}
 .lux-station-heading img{display:block;flex:none}
+
+/* Station workspace: only the active task is shown. Camera DOM remains mounted. */
+[hidden]{display:none!important}
+.station-shell{background:#f5f6f8;color:#202b38}
+.station-shell .topbar{background:#fff;color:#202b38;border-bottom:1px solid #e2e6ec;padding:15px max(20px,env(safe-area-inset-left));}
+.station-shell .brand-icon{background:#2367c7;color:white;border-radius:12px;font-size:22px;width:40px;height:40px}
+.station-shell .brand-subtitle{color:#67768a;opacity:1}
+.role-badge{font-size:14px;font-weight:750;border-radius:9px;padding:8px 15px;background:#edf0f4;color:#586679;white-space:nowrap}
+.role-badge[data-role="in"]{background:#e5efff;color:#205dbe}.role-badge[data-role="out"]{background:#fff0cf;color:#805e12}
+.station-nav{display:flex;gap:4px;position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #e2e6ec;padding:6px max(16px,env(safe-area-inset-left))}
+.station-nav button{flex:1;background:none;border:0;border-radius:8px;padding:12px 5px;font-weight:700;color:#667487;min-height:44px;white-space:nowrap}
+.station-nav button[aria-current="page"]{background:#eaf1fc;color:#245eae}
+.station-main{width:min(1160px,100%);padding:18px 20px 32px}
+.station-status{padding:12px 15px;background:#fff;border:1px solid #e0e5ec;border-radius:12px;margin-bottom:14px;overflow-wrap:anywhere}
+.station-status p{margin:0;font-size:12px;line-height:1.6;color:#526176}.station-status p+p:not(:empty){margin-top:4px}.station-status .error{color:#ad3428}.station-status p:empty{display:none}
+.onboard{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px;margin-bottom:14px;background:#eaf1fc;border:1px solid #d5e4fa;border-radius:12px}
+.onboard p{margin:4px 0 0;font-size:12px;color:#526783}.onboard .button{flex-shrink:0}
+.station-workspace{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(265px,1fr);align-items:start;gap:14px}
+.station-workspace[data-page="setup"],.station-workspace[data-page="records"]{grid-template-columns:minmax(0,760px);justify-content:center}
+.station-panel{display:grid;gap:12px;min-width:0}.station-workspace .card{box-shadow:none;border-radius:13px;padding:17px}
+.station-workspace h2{font-size:15px;margin:0 0 12px;letter-spacing:0}
+.station-workspace .section-head h2{margin:0}
+.station-workspace .capture-card .camera-actions .button{flex:1;min-height:48px;font-size:15px}
+.station-workspace .camera-frame{background:#141b25}
+.station-workspace .count-card{background:white}
+.station-workspace .count-number{margin:18px 0}
+.station-workspace .count-number span{font-size:clamp(60px,8vw,105px)}
+.event-totals p,.station-quick p{font-size:14px;line-height:1.6;overflow-wrap:anywhere}.event-totals .hint{font-size:11px}
+.page-heading h1{font-size:23px;margin:0 0 5px}.page-heading p{font-size:13px;color:#64748b;margin:0 0 4px}
+.station-workspace summary{cursor:pointer;font-weight:700;padding:8px 0;line-height:1.5}
+.station-workspace details[open]>summary{margin-bottom:10px}
+.station-workspace input:not([type=range]):not([type=checkbox]),.station-workspace select{border:1px solid #d6dfe9;border-radius:8px;min-height:42px;padding:8px 10px;width:100%;background:white;color:#202b38}
+.station-workspace #ledgerSetup label,.station-workspace #ledgerEdit label{display:block}.station-workspace #ledgerSetup input,.station-workspace #ledgerEdit input{margin-top:5px}
+.station-workspace #counterPairCode:not(:empty){font-size:17px;font-weight:750;color:#245eae;overflow-wrap:anywhere}
+.station-workspace .diagnostics{font-size:12px;overflow-wrap:anywhere;white-space:pre-wrap}
+.station-workspace #ledgerIssues{font-size:12px;overflow-wrap:anywhere}
+@media(max-width:760px){.station-main{padding:12px 12px 24px}.station-workspace{grid-template-columns:minmax(0,1fr)}.station-workspace .camera-frame{min-height:0}.station-workspace .count-number span{font-size:76px}.station-nav{padding:6px 8px}.station-nav button{font-size:13px}}

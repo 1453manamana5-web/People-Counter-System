@@ -1,0 +1,14 @@
+[
+  ["lifecycle","prepare","commands","trial"],
+  ["lifecycle","open","commands","close"],
+  ["lifecycle","closing","commands","finish"],
+  ["lifecycle","finished","commands","verify"],
+  ["lifecycle","missing",null,null],
+  ["dependencies","sync.order","steps","receipt"],
+  ["dependencies","station.recovery","checks","new-inference"],
+  ["dependencies","analytics","checks","freshness"],
+  ["capability","data.restore","access","manual"],
+  ["capability","event.schedule","access","existing-confirmation"],
+  ["capability","station.offline","access","read"],
+  ["capability","visitor.identity",null,null]
+]

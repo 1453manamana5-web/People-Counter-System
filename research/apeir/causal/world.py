@@ -103,6 +103,9 @@ class World:
     def ended(self):
         return self.state.stable==2 or self.state.now>=self.horizon
 
+    def restart_succeeds(self, side, root, shock):
+        return not self.state.persistent[side,root] and shock[side,7]<.85
+
     def step(self, action):
         s=self.state
         if s.done:
@@ -129,7 +132,7 @@ class World:
                 root=1 if action<=6 else 2
                 unnecessary=not s.roots[side,root]
                 s.credit[side]=0
-                if not s.persistent[side,root] and shock[side,7]<.85:
+                if self.restart_succeeds(side,root,shock):
                     s.roots[side,root]=False
         for side in range(2):
             # Idempotent delivery at management; repeated receipts add zero.

@@ -1,0 +1,942 @@
+{
+  "observation_ablation": {
+    "fixed": {
+      "full": {
+        "cases": 1344,
+        "exact": 1190,
+        "abnormal": 933,
+        "abnormal_exact": 790,
+        "severe": 594,
+        "severe_missed": 0,
+        "missed": 1,
+        "normal": 411,
+        "false_alarms": 11,
+        "brier": 0.012458961457014084
+      },
+      "hypothesis_filter": {
+        "cases": 1344,
+        "exact": 1212,
+        "abnormal": 933,
+        "abnormal_exact": 810,
+        "severe": 594,
+        "severe_missed": 0,
+        "missed": 5,
+        "normal": 411,
+        "false_alarms": 9,
+        "brier": 0.011178321205079556
+      },
+      "latest_frame_only": {
+        "cases": 1344,
+        "exact": 1029,
+        "abnormal": 933,
+        "abnormal_exact": 697,
+        "severe": 594,
+        "severe_missed": 7,
+        "missed": 10,
+        "normal": 411,
+        "false_alarms": 79,
+        "brier": 0.02656274475157261
+      }
+    },
+    "fresh": {
+      "full": {
+        "cases": 1344,
+        "exact": 1095,
+        "abnormal": 807,
+        "abnormal_exact": 612,
+        "severe": 562,
+        "severe_missed": 23,
+        "missed": 64,
+        "normal": 537,
+        "false_alarms": 54,
+        "brier": 0.022481590509414673
+      },
+      "hypothesis_filter": {
+        "cases": 1344,
+        "exact": 1103,
+        "abnormal": 807,
+        "abnormal_exact": 617,
+        "severe": 562,
+        "severe_missed": 23,
+        "missed": 64,
+        "normal": 537,
+        "false_alarms": 51,
+        "brier": 0.02199530601501465
+      },
+      "latest_frame_only": {
+        "cases": 1344,
+        "exact": 948,
+        "abnormal": 807,
+        "abnormal_exact": 553,
+        "severe": 562,
+        "severe_missed": 15,
+        "missed": 24,
+        "normal": 537,
+        "false_alarms": 142,
+        "brier": 0.034221019595861435
+      }
+    }
+  },
+  "knowledge": {
+    "passed": 12,
+    "cases": [
+      {
+        "goal": "lifecycle",
+        "value": "prepare",
+        "result": {
+          "commands": [
+            "trial",
+            "open"
+          ],
+          "revision": "2f05379621ac7619728d6ae85cb4876be1137779"
+        },
+        "correct": true
+      },
+      {
+        "goal": "lifecycle",
+        "value": "open",
+        "result": {
+          "commands": [
+            "restrict",
+            "close"
+          ],
+          "revision": "2f05379621ac7619728d6ae85cb4876be1137779"
+        },
+        "correct": true
+      },
+      {
+        "goal": "lifecycle",
+        "value": "closing",
+        "result": {
+          "commands": [
+            "reopen",
+            "finish"
+          ],
+          "revision": "2f05379621ac7619728d6ae85cb4876be1137779"
+        },
+        "correct": true
+      },
+      {
+        "goal": "lifecycle",
+        "value": "finished",
+        "result": {
+          "commands": [
+            "verify"
+          ],
+          "revision": "2f05379621ac7619728d6ae85cb4876be1137779"
+        },
+        "correct": true
+      },
+      {
+        "goal": "lifecycle",
+        "value": "missing",
+        "result": null,
+        "correct": true
+      },
+      {
+        "goal": "dependencies",
+        "value": "sync.order",
+        "result": {
+          "steps": [
+            "record",
+            "persist",
+            "pending",
+            "upload",
+            "receipt"
+          ],
+          "checks": [
+            "mode",
+            "event-day",
+            "operation-id"
+          ],
+          "source": "counter-app/public/people-counter/ledger.mjs",
+          "revision": "2f05379621ac7619728d6ae85cb4876be1137779"
+        },
+        "correct": true
+      },
+      {
+        "goal": "dependencies",
+        "value": "station.recovery",
+        "result": {
+          "steps": [],
+          "checks": [
+            "approval",
+            "visibility",
+            "tracking",
+            "budget",
+            "new-inference"
+          ],
+          "source": "counter-app/public/people-counter/station-command.mjs",
+          "revision": "2f05379621ac7619728d6ae85cb4876be1137779"
+        },
+        "correct": true
+      },
+      {
+        "goal": "dependencies",
+        "value": "analytics",
+        "result": {
+          "steps": [],
+          "checks": [
+            "consistency",
+            "freshness"
+          ],
+          "source": "management-app/src/luxnora/capabilities.ts",
+          "revision": "2f05379621ac7619728d6ae85cb4876be1137779"
+        },
+        "correct": true
+      },
+      {
+        "goal": "capability",
+        "value": "data.restore",
+        "result": {
+          "access": "manual",
+          "verification": "対象区分、差分と最終集計を確認",
+          "guide": "管理者は「通過記録」のJSONバックアップの復元で、対象と差分を確認できます。確定済みの場合は既存画面で集計を確認待ちに戻してから進めます。",
+          "source": "CounterRestorePanel / counterRestore",
+          "revision": "2f05379621ac7619728d6ae85cb4876be1137779"
+        },
+        "correct": true
+      },
+      {
+        "goal": "capability",
+        "value": "event.schedule",
+        "result": {
+          "access": "existing-confirmation",
+          "verification": "イベント管理の予定時刻を確認",
+          "guide": "「イベント管理」の「イベント情報と予定時刻」で確認できます。予定時刻を編集できるのは準備中です。",
+          "source": "CounterEventPanels / CounterScheduleEditor",
+          "revision": "2f05379621ac7619728d6ae85cb4876be1137779"
+        },
+        "correct": true
+      },
+      {
+        "goal": "capability",
+        "value": "station.offline",
+        "result": {
+          "access": "read",
+          "verification": "端末内の保存と再同期後の未同期件数を確認",
+          "guide": "準備済みの受付端末では、通信が途切れても保存が使える間は端末内に記録できます。復旧後は未同期件数を確認してください。新規ペアリングには通信が必要です。",
+          "source": "counter-offline.js / ledger-ui.mjs",
+          "revision": "2f05379621ac7619728d6ae85cb4876be1137779"
+        },
+        "correct": true
+      },
+      {
+        "goal": "capability",
+        "value": "visitor.identity",
+        "result": null,
+        "correct": true
+      }
+    ]
+  },
+  "adaptation": {
+    "seed_band": 1400000,
+    "examples": 64,
+    "metrics": {
+      "baseline": {
+        "fixed": {
+          "cases": 1344,
+          "exact": 1190,
+          "abnormal": 933,
+          "abnormal_exact": 790,
+          "severe": 594,
+          "severe_missed": 0,
+          "missed": 1,
+          "normal": 411,
+          "false_alarms": 11,
+          "brier": 0.012458961457014084,
+          "effect_pairs": 1064,
+          "effect_mae": [
+            0.10555961728096008,
+            0.2298659086227417,
+            0.3567470610141754
+          ],
+          "zero_effect_mae": [
+            0.20777226984500885,
+            0.4489300549030304,
+            0.6155281066894531
+          ],
+          "state_mae": [
+            0.09013212472200394,
+            0.08784473687410355,
+            0.08452380448579788
+          ],
+          "persist_mae": [
+            0.10311990231275558,
+            0.11185334622859955,
+            0.1190531849861145
+          ]
+        },
+        "fresh": {
+          "cases": 1344,
+          "exact": 1095,
+          "abnormal": 807,
+          "abnormal_exact": 612,
+          "severe": 562,
+          "severe_missed": 23,
+          "missed": 64,
+          "normal": 537,
+          "false_alarms": 54,
+          "brier": 0.022481590509414673,
+          "effect_pairs": 741,
+          "effect_mae": [
+            0.12083510309457779,
+            0.2756737768650055,
+            0.4527391493320465
+          ],
+          "zero_effect_mae": [
+            0.1478409618139267,
+            0.362347811460495,
+            0.5218080282211304
+          ],
+          "state_mae": [
+            0.09575634449720383,
+            0.09762915968894958,
+            0.0991351455450058
+          ],
+          "persist_mae": [
+            0.1256970912218094,
+            0.136408269405365,
+            0.14602947235107422
+          ]
+        }
+      },
+      "scratch": [
+        {
+          "seed": 151,
+          "seconds": 0.19150876899948344,
+          "fixed": {
+            "cases": 1344,
+            "exact": 411,
+            "abnormal": 933,
+            "abnormal_exact": 0,
+            "severe": 594,
+            "severe_missed": 594,
+            "missed": 933,
+            "normal": 411,
+            "false_alarms": 0,
+            "brier": 0.09501524269580841,
+            "effect_pairs": 1064,
+            "effect_mae": [
+              0.15217307209968567,
+              0.3189672827720642,
+              0.48962166905403137
+            ],
+            "zero_effect_mae": [
+              0.20777226984500885,
+              0.4489300549030304,
+              0.6155281066894531
+            ],
+            "state_mae": [
+              0.2102777510881424,
+              0.20558790862560272,
+              0.20911990106105804
+            ],
+            "persist_mae": [
+              0.10311990231275558,
+              0.11185334622859955,
+              0.1190531849861145
+            ]
+          },
+          "fresh": {
+            "cases": 1344,
+            "exact": 537,
+            "abnormal": 807,
+            "abnormal_exact": 0,
+            "severe": 562,
+            "severe_missed": 562,
+            "missed": 807,
+            "normal": 537,
+            "false_alarms": 0,
+            "brier": 0.08651760965585709,
+            "effect_pairs": 741,
+            "effect_mae": [
+              0.13462164998054504,
+              0.3088487684726715,
+              0.4909926950931549
+            ],
+            "zero_effect_mae": [
+              0.1478409618139267,
+              0.362347811460495,
+              0.5218080282211304
+            ],
+            "state_mae": [
+              0.2058124989271164,
+              0.20366808772087097,
+              0.20852349698543549
+            ],
+            "persist_mae": [
+              0.1256970912218094,
+              0.136408269405365,
+              0.14602947235107422
+            ]
+          }
+        },
+        {
+          "seed": 152,
+          "seconds": 0.3621837359969504,
+          "fixed": {
+            "cases": 1344,
+            "exact": 411,
+            "abnormal": 933,
+            "abnormal_exact": 0,
+            "severe": 594,
+            "severe_missed": 594,
+            "missed": 933,
+            "normal": 411,
+            "false_alarms": 0,
+            "brier": 0.09720422327518463,
+            "effect_pairs": 1064,
+            "effect_mae": [
+              0.18051211535930634,
+              0.3858996331691742,
+              0.5392671823501587
+            ],
+            "zero_effect_mae": [
+              0.20777226984500885,
+              0.4489300549030304,
+              0.6155281066894531
+            ],
+            "state_mae": [
+              0.20754462480545044,
+              0.20634335279464722,
+              0.20453967154026031
+            ],
+            "persist_mae": [
+              0.10311990231275558,
+              0.11185334622859955,
+              0.1190531849861145
+            ]
+          },
+          "fresh": {
+            "cases": 1344,
+            "exact": 537,
+            "abnormal": 807,
+            "abnormal_exact": 0,
+            "severe": 562,
+            "severe_missed": 562,
+            "missed": 807,
+            "normal": 537,
+            "false_alarms": 0,
+            "brier": 0.08663533627986908,
+            "effect_pairs": 741,
+            "effect_mae": [
+              0.17857138812541962,
+              0.4001518487930298,
+              0.5455333590507507
+            ],
+            "zero_effect_mae": [
+              0.1478409618139267,
+              0.362347811460495,
+              0.5218080282211304
+            ],
+            "state_mae": [
+              0.2029670625925064,
+              0.2041933387517929,
+              0.20367558300495148
+            ],
+            "persist_mae": [
+              0.1256970912218094,
+              0.136408269405365,
+              0.14602947235107422
+            ]
+          }
+        },
+        {
+          "seed": 153,
+          "seconds": 0.1398336679994827,
+          "fixed": {
+            "cases": 1344,
+            "exact": 411,
+            "abnormal": 933,
+            "abnormal_exact": 0,
+            "severe": 594,
+            "severe_missed": 594,
+            "missed": 933,
+            "normal": 411,
+            "false_alarms": 0,
+            "brier": 0.09736518561840057,
+            "effect_pairs": 1064,
+            "effect_mae": [
+              0.19372248649597168,
+              0.38869500160217285,
+              0.54485023021698
+            ],
+            "zero_effect_mae": [
+              0.20777226984500885,
+              0.4489300549030304,
+              0.6155281066894531
+            ],
+            "state_mae": [
+              0.20388036966323853,
+              0.19579631090164185,
+              0.19845248758792877
+            ],
+            "persist_mae": [
+              0.10311990231275558,
+              0.11185334622859955,
+              0.1190531849861145
+            ]
+          },
+          "fresh": {
+            "cases": 1344,
+            "exact": 537,
+            "abnormal": 807,
+            "abnormal_exact": 0,
+            "severe": 562,
+            "severe_missed": 562,
+            "missed": 807,
+            "normal": 537,
+            "false_alarms": 0,
+            "brier": 0.08579298108816147,
+            "effect_pairs": 741,
+            "effect_mae": [
+              0.1837262213230133,
+              0.36000582575798035,
+              0.5177854299545288
+            ],
+            "zero_effect_mae": [
+              0.1478409618139267,
+              0.362347811460495,
+              0.5218080282211304
+            ],
+            "state_mae": [
+              0.1989409625530243,
+              0.19328442215919495,
+              0.19811569154262543
+            ],
+            "persist_mae": [
+              0.1256970912218094,
+              0.136408269405365,
+              0.14602947235107422
+            ]
+          }
+        }
+      ],
+      "transfer": [
+        {
+          "seed": 151,
+          "seconds": 0.21200363300158642,
+          "fixed": {
+            "cases": 1344,
+            "exact": 1106,
+            "abnormal": 933,
+            "abnormal_exact": 702,
+            "severe": 594,
+            "severe_missed": 0,
+            "missed": 2,
+            "normal": 411,
+            "false_alarms": 7,
+            "brier": 0.01976456120610237,
+            "effect_pairs": 1064,
+            "effect_mae": [
+              0.14027449488639832,
+              0.2748223841190338,
+              0.4084662199020386
+            ],
+            "zero_effect_mae": [
+              0.20777226984500885,
+              0.4489300549030304,
+              0.6155281066894531
+            ],
+            "state_mae": [
+              0.09134640544652939,
+              0.0918135792016983,
+              0.0894719660282135
+            ],
+            "persist_mae": [
+              0.10311990231275558,
+              0.11185334622859955,
+              0.1190531849861145
+            ]
+          },
+          "fresh": {
+            "cases": 1344,
+            "exact": 1099,
+            "abnormal": 807,
+            "abnormal_exact": 608,
+            "severe": 562,
+            "severe_missed": 11,
+            "missed": 30,
+            "normal": 537,
+            "false_alarms": 46,
+            "brier": 0.022526387125253677,
+            "effect_pairs": 741,
+            "effect_mae": [
+              0.1254207193851471,
+              0.2729206681251526,
+              0.4236876368522644
+            ],
+            "zero_effect_mae": [
+              0.1478409618139267,
+              0.362347811460495,
+              0.5218080282211304
+            ],
+            "state_mae": [
+              0.09249573945999146,
+              0.09690329432487488,
+              0.09706082195043564
+            ],
+            "persist_mae": [
+              0.1256970912218094,
+              0.136408269405365,
+              0.14602947235107422
+            ]
+          }
+        },
+        {
+          "seed": 152,
+          "seconds": 0.38218498999776784,
+          "fixed": {
+            "cases": 1344,
+            "exact": 1108,
+            "abnormal": 933,
+            "abnormal_exact": 703,
+            "severe": 594,
+            "severe_missed": 0,
+            "missed": 21,
+            "normal": 411,
+            "false_alarms": 6,
+            "brier": 0.020431818440556526,
+            "effect_pairs": 1064,
+            "effect_mae": [
+              0.11648555099964142,
+              0.2667997479438782,
+              0.4101808965206146
+            ],
+            "zero_effect_mae": [
+              0.20777226984500885,
+              0.4489300549030304,
+              0.6155281066894531
+            ],
+            "state_mae": [
+              0.09468687325716019,
+              0.09514390677213669,
+              0.08795878291130066
+            ],
+            "persist_mae": [
+              0.10311990231275558,
+              0.11185334622859955,
+              0.1190531849861145
+            ]
+          },
+          "fresh": {
+            "cases": 1344,
+            "exact": 1088,
+            "abnormal": 807,
+            "abnormal_exact": 590,
+            "severe": 562,
+            "severe_missed": 15,
+            "missed": 49,
+            "normal": 537,
+            "false_alarms": 39,
+            "brier": 0.024230020120739937,
+            "effect_pairs": 741,
+            "effect_mae": [
+              0.1317288875579834,
+              0.3008044958114624,
+              0.46734607219696045
+            ],
+            "zero_effect_mae": [
+              0.1478409618139267,
+              0.362347811460495,
+              0.5218080282211304
+            ],
+            "state_mae": [
+              0.09781988710165024,
+              0.10175083577632904,
+              0.09812042862176895
+            ],
+            "persist_mae": [
+              0.1256970912218094,
+              0.136408269405365,
+              0.14602947235107422
+            ]
+          }
+        },
+        {
+          "seed": 153,
+          "seconds": 0.2108848229981959,
+          "fixed": {
+            "cases": 1344,
+            "exact": 1050,
+            "abnormal": 933,
+            "abnormal_exact": 662,
+            "severe": 594,
+            "severe_missed": 0,
+            "missed": 3,
+            "normal": 411,
+            "false_alarms": 23,
+            "brier": 0.022947775200009346,
+            "effect_pairs": 1064,
+            "effect_mae": [
+              0.16093914210796356,
+              0.3256097137928009,
+              0.41790348291397095
+            ],
+            "zero_effect_mae": [
+              0.20777226984500885,
+              0.4489300549030304,
+              0.6155281066894531
+            ],
+            "state_mae": [
+              0.09736183285713196,
+              0.09212854504585266,
+              0.0887322872877121
+            ],
+            "persist_mae": [
+              0.10311990231275558,
+              0.11185334622859955,
+              0.1190531849861145
+            ]
+          },
+          "fresh": {
+            "cases": 1344,
+            "exact": 1025,
+            "abnormal": 807,
+            "abnormal_exact": 559,
+            "severe": 562,
+            "severe_missed": 3,
+            "missed": 21,
+            "normal": 537,
+            "false_alarms": 71,
+            "brier": 0.027079910039901733,
+            "effect_pairs": 741,
+            "effect_mae": [
+              0.151340052485466,
+              0.3361664116382599,
+              0.45428231358528137
+            ],
+            "zero_effect_mae": [
+              0.1478409618139267,
+              0.362347811460495,
+              0.5218080282211304
+            ],
+            "state_mae": [
+              0.1006540060043335,
+              0.09841611236333847,
+              0.09843873977661133
+            ],
+            "persist_mae": [
+              0.1256970912218094,
+              0.136408269405365,
+              0.14602947235107422
+            ]
+          }
+        }
+      ],
+      "replay": [
+        {
+          "seed": 151,
+          "seconds": 0.28404043699993053,
+          "fixed": {
+            "cases": 1344,
+            "exact": 1145,
+            "abnormal": 933,
+            "abnormal_exact": 742,
+            "severe": 594,
+            "severe_missed": 0,
+            "missed": 2,
+            "normal": 411,
+            "false_alarms": 8,
+            "brier": 0.014307904988527298,
+            "effect_pairs": 1064,
+            "effect_mae": [
+              0.12790705263614655,
+              0.25838878750801086,
+              0.39742857217788696
+            ],
+            "zero_effect_mae": [
+              0.20777226984500885,
+              0.4489300549030304,
+              0.6155281066894531
+            ],
+            "state_mae": [
+              0.09120380133390427,
+              0.09072167426347733,
+              0.0871090441942215
+            ],
+            "persist_mae": [
+              0.10311990231275558,
+              0.11185334622859955,
+              0.1190531849861145
+            ]
+          },
+          "fresh": {
+            "cases": 1344,
+            "exact": 1117,
+            "abnormal": 807,
+            "abnormal_exact": 631,
+            "severe": 562,
+            "severe_missed": 5,
+            "missed": 24,
+            "normal": 537,
+            "false_alarms": 51,
+            "brier": 0.01868376135826111,
+            "effect_pairs": 741,
+            "effect_mae": [
+              0.1291765570640564,
+              0.27148255705833435,
+              0.43480950593948364
+            ],
+            "zero_effect_mae": [
+              0.1478409618139267,
+              0.362347811460495,
+              0.5218080282211304
+            ],
+            "state_mae": [
+              0.09422092884778976,
+              0.09791778028011322,
+              0.09802714735269547
+            ],
+            "persist_mae": [
+              0.1256970912218094,
+              0.136408269405365,
+              0.14602947235107422
+            ]
+          }
+        },
+        {
+          "seed": 152,
+          "seconds": 0.4606712739987415,
+          "fixed": {
+            "cases": 1344,
+            "exact": 1159,
+            "abnormal": 933,
+            "abnormal_exact": 757,
+            "severe": 594,
+            "severe_missed": 1,
+            "missed": 7,
+            "normal": 411,
+            "false_alarms": 9,
+            "brier": 0.016069503501057625,
+            "effect_pairs": 1064,
+            "effect_mae": [
+              0.11401137709617615,
+              0.2596172094345093,
+              0.40612784028053284
+            ],
+            "zero_effect_mae": [
+              0.20777226984500885,
+              0.4489300549030304,
+              0.6155281066894531
+            ],
+            "state_mae": [
+              0.0950680747628212,
+              0.0938982367515564,
+              0.08806485682725906
+            ],
+            "persist_mae": [
+              0.10311990231275558,
+              0.11185334622859955,
+              0.1190531849861145
+            ]
+          },
+          "fresh": {
+            "cases": 1344,
+            "exact": 1104,
+            "abnormal": 807,
+            "abnormal_exact": 612,
+            "severe": 562,
+            "severe_missed": 18,
+            "missed": 51,
+            "normal": 537,
+            "false_alarms": 45,
+            "brier": 0.02110549621284008,
+            "effect_pairs": 741,
+            "effect_mae": [
+              0.1287546455860138,
+              0.3104696571826935,
+              0.5023798942565918
+            ],
+            "zero_effect_mae": [
+              0.1478409618139267,
+              0.362347811460495,
+              0.5218080282211304
+            ],
+            "state_mae": [
+              0.09863608330488205,
+              0.10108113288879395,
+              0.09850586205720901
+            ],
+            "persist_mae": [
+              0.1256970912218094,
+              0.136408269405365,
+              0.14602947235107422
+            ]
+          }
+        },
+        {
+          "seed": 153,
+          "seconds": 0.29249178399913944,
+          "fixed": {
+            "cases": 1344,
+            "exact": 1106,
+            "abnormal": 933,
+            "abnormal_exact": 715,
+            "severe": 594,
+            "severe_missed": 0,
+            "missed": 1,
+            "normal": 411,
+            "false_alarms": 20,
+            "brier": 0.01839570514857769,
+            "effect_pairs": 1064,
+            "effect_mae": [
+              0.12186244130134583,
+              0.2703080177307129,
+              0.364976167678833
+            ],
+            "zero_effect_mae": [
+              0.20777226984500885,
+              0.4489300549030304,
+              0.6155281066894531
+            ],
+            "state_mae": [
+              0.0945080816745758,
+              0.08935900032520294,
+              0.08782274276018143
+            ],
+            "persist_mae": [
+              0.10311990231275558,
+              0.11185334622859955,
+              0.1190531849861145
+            ]
+          },
+          "fresh": {
+            "cases": 1344,
+            "exact": 1059,
+            "abnormal": 807,
+            "abnormal_exact": 592,
+            "severe": 562,
+            "severe_missed": 7,
+            "missed": 29,
+            "normal": 537,
+            "false_alarms": 70,
+            "brier": 0.02371903322637081,
+            "effect_pairs": 741,
+            "effect_mae": [
+              0.11904168128967285,
+              0.2993919551372528,
+              0.4362247586250305
+            ],
+            "zero_effect_mae": [
+              0.1478409618139267,
+              0.362347811460495,
+              0.5218080282211304
+            ],
+            "state_mae": [
+              0.09773586690425873,
+              0.09632877260446548,
+              0.09813705086708069
+            ],
+            "persist_mae": [
+              0.1256970912218094,
+              0.136408269405365,
+              0.14602947235107422
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

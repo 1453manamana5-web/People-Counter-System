@@ -46,10 +46,12 @@ export function LuxnoraPanel({evidence,focus,cancel}:{evidence:Evidence;focus:(t
     setActivity(rows=>[...rows.slice(-3),...(alarms.length?alarms:["取得済みの端末に新たな注意はありません。"])].slice(-6));
   },[evidence,monitor]);
   const replies=useRef<HTMLDivElement>(null);
-  useEffect(()=>{if(replies.current) replies.current.scrollTop=replies.current.scrollHeight;},[notes]);
+  useEffect(()=>{if(replies.current) replies.current.scrollTop=replies.current.scrollHeight;},[notes,mounted,working]);
   const inFlight=useRef(false),active=useRef(true);
   useEffect(()=>{active.current=true;return ()=>{active.current=false;};},[]);
   const previous=useRef<Plan|undefined>(undefined);
+  const latestEvidence=useRef(evidence);
+  useEffect(()=>{latestEvidence.current=evidence;},[evidence]);
   const prompt=useRef<HTMLInputElement>(null);
   const trigger=useRef<HTMLButtonElement>(null);
   async function submit(event:FormEvent) {
@@ -64,12 +66,12 @@ export function LuxnoraPanel({evidence,focus,cancel}:{evidence:Evidence;focus:(t
       if(isOpen.current) setMotion("checking");
       const intent=await import("./semantic").then(module=>module.semanticRead(text)).catch(()=>null);
       if(!active.current) return;
-      if(intent) plan={plans:[{intent,focus:false,readOnly:true,role:text.includes("入口")?"in":text.includes("出口")?"out":undefined}]};
+      if(intent) plan={plans:[{intent,focus:/見せ|表示|確認|開い|調べ|移動/.test(text),readOnly:true,role:text.includes("入口")&&text.includes("出口")?undefined:text.includes("入口")?"in":text.includes("出口")?"out":undefined}]};
       inFlight.current=false;
       setWorking(false);
       if(isOpen.current) setMotion("living");
     }
-    const response=plan.plans.map(item=>answer(item,evidence));
+    const response=plan.plans.map(item=>answer(item,latestEvidence.current));
     if(plan.reset) {previous.current=undefined;cancel();setOffered(null);setMonitor(null);}
     const routine=plan.plans.find(item=>item.intent==="routine");
     if(routine&&!routine.readOnly) setOffered(routine);
@@ -77,8 +79,8 @@ export function LuxnoraPanel({evidence,focus,cancel}:{evidence:Evidence;focus:(t
     setNotes(current=>[...current.slice(-11),{prompt:text,response:response.length?response:[{text:plan.message??"対象を指定してください。"}]}]);
     setInput("");
     const item=response.find(result=>result.target);
-    if(item?.target) focus(item.target,item.plan);
-    if(isOpen.current&&response.some(item=>item.target==="graph")&&evidence.prediction.length>0) changeMotion("forecast","living",1800);
+    if(isOpen.current&&item?.target) focus(item.target,item.plan);
+    if(isOpen.current&&response.some(item=>item.target==="graph")&&latestEvidence.current.prediction.length>0) changeMotion("forecast","living",1800);
   }
   const last=notes.at(-1);
   const detailed=last?.response.some(row=>row.target==="compare"||row.target==="graph"||row.text.length>150);

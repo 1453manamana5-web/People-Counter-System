@@ -134,7 +134,7 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     else if(/状況|実績|結果|運営|全体/.test(clause)&&/まとめ|報告|要約|概況|教えて|どう/.test(clause)) intent="briefing";
     else if((question&&/帰った|退場|退出|出た/.test(clause)&&!/入退場/.test(clause))||/^(?:じゃあ|では)?(?:退場|退出)(?:は|の方|だけ|を教えて|も)?$/.test(clause)) intent="exits";
     else if((question&&/来た|来場|入った|入場|累計/.test(clause)&&!/入退場/.test(clause))||/^(?:じゃあ|では)?(?:入場|来場|累計)(?:は|の方|だけ|を教えて|も)?$/.test(clause)) intent="entries";
-    else if(/滞在人数|現在人数|同時滞在|残ってる人|残っている人/.test(clause)||question&&/今|館内|室内|会場内|展示室内|いる|残っ/.test(clause)) intent="occupancy";
+    else if(/滞在人数|現在人数|同時滞在|残ってる人|残っている人/.test(clause)||question&&/今|館内|室内|会場内|展示室内|いる|残っ/.test(clause)||/^(?:じゃあ|では)?(?:滞在|現在|今いる人)(?:は|の方|だけ|を教えて|も)?$/.test(clause)) intent="occupancy";
     else if(/混雑|混ん/.test(clause)&&/今日|状況|ピーク|一番/.test(clause)) intent="crowd";
     if(!intent&&prior?.intent==="stations"&&(both||role)&&/^(?:じゃあ|それなら|次は|あと|ついでに|あ、)?(?:入口|出口|両方|両端末|全端末)(?:の方|のほう)?(?:は|も|もお願い|も確認|も見て|も調べて|だけ|もどう|はどう|も頼む)?$/.test(clause)) intent="stations";
     if(!intent&&prior&&prior.intent!=="event"&&(period!==undefined||allDay)&&!/端末|カメラ|受付|開場|閉場|設定|変更|操作/.test(clause)) intent=prior.intent;

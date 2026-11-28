@@ -1,0 +1,10 @@
+[
+  {"name":"端末が現在の報告で再同期待ち","text":"数えた人数と台帳の数字が合わない気がする","state":"multiple","match":["未同期 3件","再同期後の台帳","確認に必要"],"method":"advanced"},
+  {"name":"入口出口の実数を同じ台帳で検算","text":"入場と退場の人数は？","state":"healthy","match":["入場 8回","退場 6回"],"steps":{"ledger":1,"respond":2},"method":"standard"},
+  {"name":"見かけ上の滞在が矛盾する場合に報告を保留","text":"今の運営状況をまとめて","state":"contradiction","match":["整合性","保留"],"reject":["99人"],"method":"light"},
+  {"name":"確定台帳でも開場時間が異なる","text":"前年と比較して","state":"unequalHours","match":["入場 6回","増減の判断は保留"],"reject":["記録上の差は"],"method":"standard"},
+  {"name":"開場終了後の時刻を外挿しない","text":"このペースであと120分続いたらどうなる？","state":"closingSoon","match":["閉場予定を超えるか"],"reject":["頃の滞在"],"method":"light"},
+  {"name":"判断対象の台帳がなくても端末の警告を報告","text":"計測漏れがないか確認して","state":"missingAndAlarm","match":["台帳を取得できていません","計測が欠けた可能性"],"method":"advanced"},
+  {"name":"条件付きの閉場候補を拒否","text":"全員の準備が整っていたら閉場して","state":"healthy","match":["一件ずつ"],"noProposal":true},
+  {"name":"古い情報と現在値の区別を維持","text":"今日何人来た？","state":"stale","match":["入場 8回","取得済みの値"],"method":"light"}
+]

@@ -10,6 +10,7 @@ export type ComparisonWindow = {from:number;to:number};
 
 type Count = {
   entries:number; exits:number; duration:number; peak:number; peakAt:number|null;
+  bounds?:ComparisonWindow;
   window?:{entries:number;exits:number;duration:number};
   area:number|null; status:"verified"|"provisional"; issues:number;
 };
@@ -38,7 +39,7 @@ export function summarizeCounterDay(id:string,date:string,config:{opened:number;
     windowCount={duration,entries:events.filter(row=>row.direction==="in").length,
       exits:events.filter(row=>row.direction==="out").length};
   }
-  return {id,date,...(windowCount?{window:windowCount}:{}),entries:report.entries,exits:report.exits,duration,peak:peak.occupancy,
+  return {id,date,bounds:{from:config.opened,to:end},...(windowCount?{window:windowCount}:{}),entries:report.entries,exits:report.exits,duration,peak:peak.occupancy,
     peakAt:peak.occupancy>0?peak.at:null,status:verified?"verified":"provisional",issues,area:verified?report.area:null};
 }
 

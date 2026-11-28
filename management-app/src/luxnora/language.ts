@@ -17,7 +17,7 @@ export const knowledge = {
   event: ["開催設定を開いて", "開場時間を変更して", "イベント編集画面", "閉場の設定を見せて"],
 } as const;
 export type Intent = keyof typeof knowledge;
-export type Plan = {intent:Intent;role?:"in"|"out";horizon?:"closing";comparisonMetric?:"entries"|"exits"|"occupancy";previousYear?:boolean;period?:"am"|"pm"|number|{from:number;to:number};focus:boolean;readOnly:boolean;operation?:"open"|"close";schedule?:{field:"start"|"end";time:string}};
+export type Plan = {intent:Intent;role?:"in"|"out";horizon?:"closing";minutesAhead?:number;condition?:"connection-restored";comparisonMetric?:"entries"|"exits"|"occupancy";previousYear?:boolean;compareDifference?:boolean;period?:"am"|"pm"|number|{from:number;to:number};focus:boolean;readOnly:boolean;operation?:"open"|"close";schedule?:{field:"start"|"end";time:string}};
 export type Interpretation = {plans:Plan[];message?:string;reset?:boolean};
 
 const normalize = (raw:string) => raw.normalize("NFKC").toLowerCase().replace(/[\s？！?!。]/g,"")
@@ -77,7 +77,7 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
   const readOnly=/変えない|変更しない|触らない|そのまま|見るだけ|確認だけ|操作しない|開けない|開場しない|閉場しない|停止しない|しないで|せんといて|しないでください|しないよう|してほしくない|して欲しくない|してはいけない|してはだめ|しなくていい|しなくてよい|しちゃだめ|するな|やめて/.test(raw);
   if (/削除|消去|権限変更|管理者にして|無効化/.test(raw))
     return {plans:[],message:"この操作は該当する管理画面から確認してください。"};
-  const separated=raw.replace(/(して)、(?=混雑|入口|出口|端末|入場|退場|滞在|来場)/g,"$1；");
+  const separated=raw.replace(/(して|比べて)、(?=混雑|入口|出口|端末|入場|退場|滞在|来場|去年|前年|問題|異常)/g,"$1；");
   const clauses=separated.split(/(?:[。\n；;?!？！]|それから|そのあと|そして|続けて|、(?=(?:あと|ついでに|次に))|(?:あと|ついでに|次に)(?=入口|出口|端末|今|今日|午後|午前|入場|退場|滞在|混雑))/).map(normalize).filter(Boolean);
   if (clauses.length>4) return {plans:[],message:"一度に4件まで確認できます。"};
   const plans:Plan[]=[];
@@ -119,16 +119,19 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
       }
     }
     if (/設定は変えない|設定を変えない|設定はそのまま|操作しない/.test(clause) && !role&&!period) continue;
+    const restored=/(?:通信|接続|同期).*(?:復旧|回復|戻っ).*(?:人数|来場|入場|退場).*(?:どう|増|減|変)/.test(clause);
+    const pace=/(?:この|今の|現在の)ペース(?:で|が)(?:あと|残り)?(\d{1,3}|[一二三四五六七八九十]+)(分|時間)(?:後|続)/.exec(clause);
     let intent:Intent|undefined;
     const question=/何人|人数|どのくらい|どれくらい|どれほど|何回|何名|数|合計/.test(clause);
-    if(/受付|開場|運用/.test(clause)&&/準備|始められ|開始でき|始めていい/.test(clause)) intent="readiness";
+    if(restored||pace) intent="forecast";
+    else if(/受付|開場|運用/.test(clause)&&/準備|始められ|開始でき|始めていい/.test(clause)) intent="readiness";
     else if(/入口|出口|端末|カメラ|受付|同期|通信|認識|計測機器/.test(clause)&&/見守|監視|しばらく.*確認/.test(clause)) intent="routine";
     else if(/入退場|入場.*退場|退場.*入場/.test(clause)&&/人数|回数|何人|合計|集計|それぞれ|状況/.test(clause)&&!/記録|履歴|グラフ|推移/.test(clause)) {
       const common={period:allDay?undefined:period,focus:false,readOnly:true};
       plans.push({intent:"entries",...common},{intent:"exits",...common});continue;
     }
     else if(/端末|入口|出口|カメラ|受付|同期|通信|認識/.test(clause)&&/正常|大丈夫|問題|異常|稼働|動作|動いて|繋が|つなが|接続|状態|診断|調子|同期|未送信|未同期|確認|チェック|見て|調べ|オンライン|オフライン|止ま|反応/.test(clause)&&!/入場|退場|来場|滞在人数|通過記録/.test(clause)) intent="stations";
-    else if(/記録|集計|数字|人数|カウント|計測|データ/.test(clause)&&/おかし|合わ|矛盾|不一致|漏れ|誤差|整合性|異常|間違|正しいか|信用/.test(clause)) intent="issues";
+    else if((/記録|集計|数字|人数|来場者数|カウント|計測|データ/.test(clause)&&/おかし|合わ|矛盾|不一致|漏れ|誤差|整合性|異常|間違|正しいか|信用/.test(clause))||/^(?:もし)?(?:問題|異常)が(?:あったら|あれば)(?:教えて|知らせて)/.test(clause)) intent="issues";
     else if(/昨年|去年|前年/.test(clause)&&prior&&["entries","exits","occupancy","compare"].includes(prior.intent)&&
       /^(?:じゃあ|では)?(?:昨年|去年|前年)(?:は|も|と比べて|との比較)?$/.test(clause)) intent="compare";
     else if(/さっき|先ほど|少し前/.test(clause)&&/増|減|多|少|比/.test(clause)&&/人|来場|滞在/.test(clause)&&!/来場|入場|退場|累計/.test(clause)) intent="trend";
@@ -159,9 +162,13 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     plans.push({intent,role:both?undefined:role??(intent==="stations"&&prior?.intent==="stations"?prior.role:undefined),
       period:allDay?undefined:period??((intent==="occupancy"&&/今|現在/.test(clause))?undefined:(intent===prior?.intent||intent==="graph"||intent==="compare"?prior?.period:undefined)),
       previousYear:intent==="compare"&&/昨年|去年|前年/.test(clause)?true:undefined,
+      compareDifference:intent==="compare"&&/比|差|違/.test(clause)?true:undefined,
       comparisonMetric:intent==="compare"?
         (/退場|帰った/.test(clause)?"exits":/入場|来場/.test(clause)?"entries":/滞在/.test(clause)?"occupancy":
           prior?.intent==="entries"||prior?.intent==="exits"||prior?.intent==="occupancy"?prior.intent:prior?.comparisonMetric):undefined,
+      condition:restored?"connection-restored":undefined,
+      minutesAhead:pace&&intent==="forecast"?
+        (Number(pace[1]) || ({一:1,二:2,三:3,四:4,五:5,六:6,七:7,八:8,九:9,十:10} as Record<string,number>)[pace[1]] || 0)*(pace[2]==="時間"?60:1):undefined,
       horizon:intent==="forecast"&&/閉場まで|閉場時/.test(clause)?"closing":undefined,
       focus:/見せ|確認して|開い|調べ|移動|グラフ/.test(clause)||["forecast","compare","graph","records","event"].includes(intent),readOnly});
   }

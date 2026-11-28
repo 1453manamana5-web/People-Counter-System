@@ -5,7 +5,7 @@ import type {Day} from "../counterLifecycle";
 import {signals} from "../../../counter-app/public/people-counter/luxnora-core.mjs";
 
 export type Evidence={
-  name:string;mode:"live"|"test"; now:number; current:boolean; config:CounterConfig|null;day?:Day|null;
+  scope?:string;sealed?:boolean;stationsFromServer?:boolean;name:string;mode:"live"|"test"; now:number; current:boolean; config:CounterConfig|null;day?:Day|null;
   analysis:ReturnType<typeof import("../counterManagementData").analyze>|null; stations:CounterStation[]; prediction:Forecast;
 };
 export type Target="occupancy"|"graph"|"compare"|"event"|"records"|"stations"|"in"|"out";

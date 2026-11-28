@@ -1,0 +1,141 @@
+{
+  "cases": 2000,
+  "miss_cost": 10,
+  "methods": {
+    "rules": {
+      "episodes": 2000,
+      "accuracy": 0.582,
+      "operator_review": 546,
+      "false_observe": 0,
+      "confusion": [
+        [
+          162,
+          0,
+          0,
+          0,
+          238
+        ],
+        [
+          0,
+          317,
+          0,
+          0,
+          83
+        ],
+        [
+          0,
+          0,
+          316,
+          0,
+          84
+        ],
+        [
+          0,
+          0,
+          0,
+          314,
+          86
+        ],
+        [
+          0,
+          155,
+          32,
+          158,
+          55
+        ]
+      ],
+      "weighted_errors": 836,
+      "healthy_referred": 238
+    },
+    "model": {
+      "episodes": 2000,
+      "accuracy": 0.58,
+      "operator_review": 251,
+      "false_observe": 319,
+      "confusion": [
+        [
+          343,
+          0,
+          0,
+          0,
+          57
+        ],
+        [
+          227,
+          131,
+          0,
+          0,
+          42
+        ],
+        [
+          30,
+          0,
+          316,
+          0,
+          54
+        ],
+        [
+          44,
+          0,
+          0,
+          314,
+          42
+        ],
+        [
+          18,
+          71,
+          131,
+          124,
+          56
+        ]
+      ],
+      "weighted_errors": 3711,
+      "healthy_referred": 57
+    },
+    "guarded_agreement": {
+      "episodes": 2000,
+      "accuracy": 0.539,
+      "operator_review": 868,
+      "false_observe": 0,
+      "confusion": [
+        [
+          144,
+          0,
+          0,
+          0,
+          256
+        ],
+        [
+          0,
+          131,
+          0,
+          0,
+          269
+        ],
+        [
+          0,
+          0,
+          316,
+          0,
+          84
+        ],
+        [
+          0,
+          0,
+          0,
+          314,
+          86
+        ],
+        [
+          0,
+          71,
+          32,
+          124,
+          173
+        ]
+      ],
+      "weighted_errors": 922,
+      "healthy_referred": 256
+    }
+  }
+}

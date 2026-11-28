@@ -19,6 +19,7 @@ export async function readComparisonDays(days:Day[],signal:AbortSignal,window?:C
       }
       if (signal.aborted) break;
       const snapshot=await getDocsFromServer(collection(db,"events",day.id,"counterRuns","live","operations"));
+      if (signal.aborted) break;
       const rows:CounterOperation[]=[];
       let invalid=0;
       for (const row of snapshot.docs) {

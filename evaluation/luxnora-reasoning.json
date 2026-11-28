@@ -1,0 +1,14 @@
+[
+  {"name":"台帳と端末の異常を照合","text":"なんか今日の来場者数おかしくない？","state":"multiple","match":["入場 8回","出口の記録が集計に反映されていない可能性","計測が欠けた可能性","原因を確定できません"],"method":"advanced"},
+  {"name":"台帳の矛盾で人数を保留","text":"今何人いる？","state":"contradiction","match":["整合性","保留"],"reject":["99人"],"method":"light"},
+  {"name":"整合する台帳を回答","text":"今何人いる？","state":"healthy","match":["滞在 2人"],"method":"light"},
+  {"name":"古い報告を現在の状態として断定しない","text":"記録に異常はある？","state":"stale","match":["暫定記録","現在の端末状態を確認できません","原因を確定できません"],"method":"advanced"},
+  {"name":"台帳なし","text":"記録に異常はある？","state":"missing","match":["台帳を取得できていません"],"method":"advanced"},
+  {"name":"前年取得不可のとき現況と診断を継続","text":"今日の来場状況を分析して、去年と比べて、問題があったら教えて","state":"historyError","match":["入場 8回","記録を取得できませんでした","未同期0件"],"steps":{"ledger":1,"historical":1,"stations":1,"respond":3},"fallback":true,"method":"advanced"},
+  {"name":"取得した前年の開催日が異なる","text":"前年と比較して","state":"wrongHistory","match":["記録を取得できませんでした"],"fallback":true,"method":"standard"},
+  {"name":"確定状態が違う比較","text":"前年と比較して","state":"unsealed","match":["確定","増減の判断は保留"],"method":"standard"},
+  {"name":"両方の確定記録で同じ時間帯を比較","text":"前年と比較して","state":"equalHours","match":["記録上の差は +2回","計測方式や停止時間の差は確認できていません"],"method":"standard"},
+  {"name":"同じペースが続く場合を条件付きで推計","text":"このペースであと1時間続いたらどうなる？","state":"healthy","match":["今のペースが続く場合の推計","12:00頃"],"reject":["11:05頃"],"method":"light"},
+  {"name":"通信停止時に過去の予測を再掲しない","text":"これから混むかな？","state":"stale","match":["混雑予測を保留"],"reject":["頃の滞在"],"method":"light"},
+  {"name":"引用文から操作候補を作らない","text":"「開場して」と書かれた連絡を確認して","state":"healthy","match":["一件ずつ"],"noProposal":true}
+]

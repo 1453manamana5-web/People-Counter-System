@@ -1,10 +1,11 @@
 import {useEffect,useRef,useState,type FormEvent} from "react";
 import {watchAlerts,type Answer,type Evidence,type Target} from "./assistant";
-import type {Plan} from "./language";
-import {executeRequest,rememberRequest,resolveRequest,type Conversation,type Profile} from "./runtime";
-import {bounded} from "../counterAuth";
+import {interpret,type Plan} from "./language";
+import {rememberRequest,resolveRequest,type Conversation,type Profile} from "./runtime";
+import {readComparisonDays} from "../counterComparisonData";
 import type {SeriesAndDays} from "../counterEvents";
-import {previousYearAnswer,previousYearDay,previousYearWindow} from "./history";
+import {runPlan} from "./planner";
+import {TaskQueue,type QueueState,type Task} from "./taskQueue";
 import motionAsset from "./motion.svg?url";
 
 export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;catalog:SeriesAndDays|null;focus:(target:Target,plan?:Plan)=>void;cancel:()=>void}) {
@@ -38,7 +39,7 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;
   const [notes,setNotes]=useState<{prompt:string;response:Answer[]}[]>([]);
   const [setting,setSetting]=useState(()=>{
     try {return localStorage.getItem("pcs-counter-lux-support")??"smart";}catch{return "smart";}
-  }),[working,setWorking]=useState(false);
+  });
   const [monitor,setMonitor]=useState<{role?:Plan["role"];until:number}|null>(null);
   const [offered,setOffered]=useState<Plan|null>(null);
   const [activity,setActivity]=useState<string[]>([]);
@@ -53,84 +54,99 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;
     setActivity(rows=>[...rows.slice(-3),...(alarms.length?alarms:["取得済みの端末に新たな注意はありません。"])].slice(-6));
   },[evidence,monitor]);
   const replies=useRef<HTMLDivElement>(null);
-  useEffect(()=>{if(replies.current) replies.current.scrollTop=replies.current.scrollHeight;},[notes,mounted,working]);
-  const generation=useRef(0),inFlight=useRef(false);
-  const historicalRead=useRef<AbortController|null>(null);
-  useEffect(()=>()=>{generation.current++;inFlight.current=false;historicalRead.current?.abort();},[]);
+  const queue=useRef<TaskQueue<{text:string;profile:Profile}>|null>(null);
+  const [queueState,setQueueState]=useState<QueueState>({active:false,waiting:0,paused:false});
+  const working=queueState.active;
+  useEffect(()=>{if(replies.current) replies.current.scrollTop=replies.current.scrollHeight;},[notes,mounted,queueState.active]);
+  const [queueNotice,setQueueNotice]=useState("");
   const previous=useRef<Conversation|undefined>(undefined);
+  const latest=useRef({evidence,catalog,focus});
+  useEffect(()=>{latest.current={evidence,catalog,focus};},[evidence,catalog,focus]);
+  const prompt=useRef<HTMLInputElement>(null);
+  const trigger=useRef<HTMLButtonElement>(null);
+  useEffect(()=>{
+    const runner=new TaskQueue(processTask,setQueueState,task=>{
+      addReply(task.value.text,[{text:"確認を完了できませんでした。必要な場合はもう一度依頼してください。"}]);
+    });
+    queue.current=runner;
+    return ()=>{runner.dispose();queue.current=null;};
+  },[]);
+  useEffect(()=>{
+    if(!isOpen.current) return;
+    clearTimeout(motionTimer.current);
+    setMotion(queueState.active?"checking":"living");
+  },[queueState.active]);
   function cancelRequest() {
-    generation.current++;
-    historicalRead.current?.abort();
-    historicalRead.current=null;
-    inFlight.current=false;
-    setWorking(false);
+    queue.current?.cancel();
     previous.current=undefined;
     cancel();
     setOffered(null);
     setMonitor(null);
-    if(isOpen.current) setMotion("living");
+    setQueueNotice("");
   }
-  const latestEvidence=useRef(evidence);
-  useEffect(()=>{latestEvidence.current=evidence;},[evidence]);
-  const prompt=useRef<HTMLInputElement>(null);
-  const trigger=useRef<HTMLButtonElement>(null);
-  function showWorking() {
-    setWorking(true);
-    clearTimeout(motionTimer.current);
-    motionTimer.current=undefined;
-    if(isOpen.current) setMotion("checking");
+  function addReply(text:string,response:Answer[]) {
+    setNotes(current=>[...current.slice(-11),{prompt:text,response}]);
   }
-  async function submit(event:FormEvent) {
-    event.preventDefault();
-    const text=input.trim();
-    if(!text||inFlight.current) return;
-    const requestId=++generation.current;
-    inFlight.current=true;
-    setOffered(null);
-    cancel();
+  async function processTask(task:Task<{text:string;profile:Profile}>, signal:AbortSignal) {
+    const {text,profile}=task.value;
     const plan=await resolveRequest(text,previous.current,Date.now(),profile,async raw=>{
-      showWorking();
       const {semanticRead}=await import("./semantic");
-      return semanticRead(raw);
+      return semanticRead(raw,signal);
     });
-    if(requestId!==generation.current) return;
-    const snapshot=latestEvidence.current;
-    const response=executeRequest(plan,snapshot);
-    const lookup=plan.plans.findIndex(item=>item.intent==="compare"&&item.previousYear&&
-      typeof item.period!=="number"&&item.comparisonMetric!=="occupancy");
-    const selected=snapshot.day;
-    if(lookup>=0&&selected&&snapshot.mode==="live") {
-      const day=previousYearDay(catalog,selected);
-      if(day) {
-        showWorking();
-        const controller=new AbortController();
-        historicalRead.current=controller;
-        try {
-          const {readComparisonDays}=await import("../counterComparisonData");
-          const [summary]=await bounded(readComparisonDays(
-            [day],controller.signal,previousYearWindow(plan.plans[lookup].period,day.date),
-          ));
-          response[lookup]=previousYearAnswer(plan.plans[lookup],summary);
-        } catch {
-          controller.abort();
-          response[lookup]=previousYearAnswer(plan.plans[lookup],undefined);
-        }
-        if(requestId!==generation.current) return;
-        historicalRead.current=null;
+    if(signal.aborted) return;
+    const snapshot=latest.current;
+    const cache=new Map<string,Awaited<ReturnType<typeof import("../counterComparisonData").readComparisonDays>>[number]|undefined>();
+    const read:Parameters<typeof runPlan>[1]["read"]=async (day,window,signal)=>{
+      if(signal.aborted) return undefined;
+      const key=JSON.stringify([day.id,window]);
+      if(cache.has(key)) return cache.get(key);
+      try {
+        const [summary]=await readComparisonDays([day],signal,window);
+        if(!signal.aborted) cache.set(key,summary);
+        return summary;
+      } catch {
+        if(!signal.aborted) cache.set(key,undefined);
+        return undefined;
+      }
+    };
+    const allow=()=>Boolean(queue.current?.isLatest(task));
+    let result=await runPlan(plan,{...snapshot,read,signal},allow());
+    if(signal.aborted) return;
+    if(latest.current.evidence!==snapshot.evidence) {
+      const refreshed=latest.current;
+      result=await runPlan(plan,{...refreshed,read,signal},false);
+      if(signal.aborted) return;
+      if(latest.current.evidence!==refreshed.evidence) {
+        addReply(text,[{text:"確認中に運用データが更新されました。最新の結果が必要な場合は再度依頼してください。"}]);
+        return;
       }
     }
-    inFlight.current=false;
-    setWorking(false);
-    if(isOpen.current&&motionTimer.current===undefined) setMotion("living");
-    if(plan.reset) cancelRequest();
+    const response=result.answers.map(row=>!allow()&&(row.plan?.operation||row.plan?.schedule)
+      ? {text:"新しい依頼を受け付けたため、操作候補を取り下げました。"}:row);
     const routine=plan.plans.find(item=>item.intent==="routine");
-    if(routine&&!routine.readOnly) setOffered(routine);
+    if(routine&&!routine.readOnly&&allow()) setOffered(routine);
     previous.current=rememberRequest(plan,previous.current,Date.now());
-    setNotes(current=>[...current.slice(-11),{prompt:text,response:response.length?response:[{text:plan.message??"対象を指定してください。"}]}]);
+    addReply(text,response.length?response:[{text:plan.message??"対象を指定してください。"}]);
+    const target=response.find(row=>row.target);
+    if(allow()&&isOpen.current&&target?.target) latest.current.focus(target.target,target.plan);
+  }
+  function submit(event:FormEvent) {
+    event.preventDefault();
+    const text=input.trim();
+    if(!text) return;
+    const cancellation=interpret(text);
+    if(cancellation.reset) {
+      cancelRequest();
+      addReply(text,[{text:cancellation.message??"依頼を取り消しました。"}]);
+      setInput("");
+      return;
+    }
+    const status=queue.current?.enqueue(profile+":"+text.normalize("NFKC"),{text,profile});
+    if(status==="full") {setQueueNotice("待機中の依頼が4件あります。完了するか、取り消してから送信してください。");return;}
+    cancel();
+    setOffered(null);
+    setQueueNotice(status==="duplicate"?"同じ依頼を処理中です。":"");
     setInput("");
-    const item=response.find(result=>result.target);
-    if(isOpen.current&&item?.target) focus(item.target,item.plan);
-    if(isOpen.current&&response.some(item=>item.target==="graph")&&latestEvidence.current.prediction.length>0) changeMotion("forecast","living",1800);
   }
   const last=notes.at(-1);
   const detailed=last?.response.some(row=>row.target==="compare"||row.target==="graph"||row.text.length>150);
@@ -142,10 +158,12 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;
     }}>
       <header><span className="lux-panel-brand"><picture className="lux-header-mark"><source media="(prefers-reduced-motion: reduce)" srcSet={motionAsset+"#idle"}/><img key={motion} alt="" width="42" height="36" src={motionAsset+"#"+motion}/></picture><strong>Luxnora</strong></span><button className="lux-close" onClick={()=>changeOpen(false)} aria-label="会話を閉じる"><span aria-hidden="true">×</span></button></header>
       <div ref={replies} className="lux-answers" role="log" aria-label="会話">
-        {working&&<div className="lux-progress"><p role="status">依頼を確認しています…</p><button type="button" onClick={()=>{
-          cancelRequest();
-          setInput("");
-        }}>取り消す</button></div>}
+        {(working||queueState.paused||queueState.waiting>0)&&<div className="lux-progress">
+          <p role="status">{queueState.paused?"中断中":working?"依頼を確認しています…":"待機中"}{queueState.waiting>0?"（待機 "+queueState.waiting+"件）":""}</p>
+          <button type="button" onClick={()=>queueState.paused?queue.current?.resume():queue.current?.pause()}>{queueState.paused?"再開":"中断"}</button>
+          <button type="button" onClick={cancelRequest}>取り消す</button>
+        </div>}
+        {queueNotice&&<p role="status">{queueNotice}</p>}
         {notes.map((note,i)=><div className="lux-turn" key={i}><p className="lux-question">{note.prompt}</p>{note.response.map((item,index)=><p className="lux-response" key={index}>{item.text}{item.target&&!item.plan?.operation&&!item.plan?.schedule&&note.response.length>1&&<button type="button" className="cm-text-action" onClick={()=>focus(item.target!,item.plan)}>該当箇所を表示</button>}</p>)}</div>)}
       </div>
 
@@ -160,9 +178,9 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;
       {monitor&&<button onClick={()=>{setMonitor(null);setActivity(rows=>[...rows.slice(-5),"見守りを終了しました。"]);}}>見守りを終了</button>}
       {!!activity.length&&<div className="lux-activity" aria-live="polite">{activity.map((text,i)=><p key={i}>{text}</p>)}</div>}
       <form className="lux-composer" onSubmit={event=>void submit(event)}>
-        <input ref={prompt} aria-label="Luxnoraへの依頼" placeholder="何をしましょうか？" value={input} onChange={e=>setInput(e.target.value)} maxLength={320} autoComplete="off" disabled={working}/>
-        <button type="submit" className="lux-send" aria-label={working?"解析中":"送信"} disabled={working||!input.trim()}>
-          {working?<span className="lux-send-progress" aria-hidden="true"/>:<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg>}
+        <input ref={prompt} aria-label="Luxnoraへの依頼" placeholder="何をしましょうか？" value={input} onChange={e=>setInput(e.target.value)} maxLength={320} autoComplete="off"/>
+        <button type="submit" className="lux-send" aria-label="送信" disabled={!input.trim()}>
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg>
         </button>
       </form>
     </section>}

@@ -1,0 +1,20 @@
+{
+  "standard": {
+    "cases": 36,
+    "cause_gru_flags": 12,
+    "rules_act": 0,
+    "beam_act": 0
+  },
+  "school": {
+    "cases": 36,
+    "cause_gru_flags": 20,
+    "rules_act": 0,
+    "beam_act": 0
+  },
+  "busy": {
+    "cases": 36,
+    "cause_gru_flags": 14,
+    "rules_act": 0,
+    "beam_act": 0
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "standard": {
+    "decisions": 630,
+    "correct": {
+      "rules": 377,
+      "beam": 449,
+      "guarded-value": 380,
+      "alpha03": 435,
+      "alpha04-dqn": 429,
+      "alpha05": 448
+    }
+  },
+  "school": {
+    "decisions": 714,
+    "correct": {
+      "rules": 458,
+      "beam": 487,
+      "guarded-value": 458,
+      "alpha03": 401,
+      "alpha04-dqn": 383,
+      "alpha05": 496
+    }
+  },
+  "busy": {
+    "decisions": 776,
+    "correct": {
+      "rules": 230,
+      "beam": 284,
+      "guarded-value": 233,
+      "alpha03": 286,
+      "alpha04-dqn": 294,
+      "alpha05": 308
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "network": [
+    "link",
+    "heartbeat",
+    "queue",
+    "delivery"
+  ],
+  "camera": [
+    "camera",
+    "recognition",
+    "lost"
+  ],
+  "engine": [
+    "recognition",
+    "lost"
+  ],
+  "storage": [
+    "storage",
+    "queue",
+    "lost"
+  ],
+  "load": [
+    "recognition",
+    "lost"
+  ],
+  "queue": [
+    "delivery"
+  ],
+  "delivery": [
+    "server_count"
+  ],
+  "server_count": [
+    "management"
+  ]
+}

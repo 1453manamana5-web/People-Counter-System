@@ -1,0 +1,45 @@
+{
+  "train": {
+    "decisions": 340,
+    "active_options": 50,
+    "healthy_decisions": 106,
+    "with_prior_incident": 282,
+    "defer_better_immediate": 0,
+    "defer_better_three_steps": 4,
+    "raw_blocked": {
+      "ppo": 0,
+      "dqn": 2
+    },
+    "masked_moved": {
+      "ppo": 0,
+      "dqn": 0
+    }
+  },
+  "novel": {
+    "decisions": 469,
+    "active_options": 45,
+    "healthy_decisions": 73,
+    "with_prior_incident": 435,
+    "defer_better_immediate": 0,
+    "defer_better_three_steps": 2,
+    "raw_blocked": {
+      "ppo": 0,
+      "dqn": 0
+    },
+    "masked_moved": {
+      "ppo": 0,
+      "dqn": 0
+    }
+  },
+  "new_demonstration_actions": [
+    2039,
+    0,
+    799,
+    79,
+    80,
+    56,
+    37,
+    25,
+    29
+  ]
+}

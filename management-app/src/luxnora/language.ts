@@ -18,7 +18,8 @@ export const knowledge = {
 } as const;
 export type Intent = keyof typeof knowledge;
 export type Plan = {intent:Intent;role?:"in"|"out";horizon?:"closing";minutesAhead?:number;condition?:"connection-restored";comparisonMetric?:"entries"|"exits"|"occupancy";previousYear?:boolean;compareDifference?:boolean;period?:"am"|"pm"|number|{from:number;to:number};focus:boolean;readOnly:boolean;operation?:"open"|"close";schedule?:{field:"start"|"end";time:string}};
-export type Interpretation = {plans:Plan[];message?:string;reset?:boolean};
+export type Dependency = {task: number; after: number; when: "previous-year-lower" | "anomaly"};
+export type Interpretation = {dependencies?: Dependency[]; constraints?: {readOnly: true};plans:Plan[];message?:string;reset?:boolean};
 
 const normalize = (raw:string) => raw.normalize("NFKC").toLowerCase().replace(/[\s？！?!。]/g,"")
   .replace(/おおよそ|だいたい/g,"").replace(/きょう|本日/g,"今日").replace(/いま/g,"今")

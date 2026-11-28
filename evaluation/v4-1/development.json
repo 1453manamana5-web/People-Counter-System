@@ -1,0 +1,10 @@
+[
+ {"track":"conversation","turns":[["今どんな感じ？",["briefing"]],["今日、人多い？",[]]]},
+ {"track":"dialect","turns":[["今日どんくらい来はった？",["entries"]],["出口の方おかしない？",["stations:out"]]]},
+ {"track":"indirect","turns":[["このペースだと閉場までに結構増えそう",["forecast:closing"]],["入口の数字が気になる",[]]]},
+ {"track":"context","turns":[["今日の午前中に何人来た？",["entries:am"]],["去年と比べたら？",["compare:am:entries"]],["午後に変えて",["compare:pm:entries"]],["退場の方も",["compare:pm:exits"]]]},
+ {"track":"conditional","turns":[["今日の午前中の来場者数を去年と比べて、少なかったら原因を調べて。設定は何も変えなくていいから",["compare:am:entries","issues:am"],"0>1:previous-year-lower",true]]},
+ {"track":"multi","turns":[["人数を確認して、入口と出口の状態も調べて、問題があったら原因を教えて",["occupancy","stations","issues"],"1>2:anomaly"]]},
+ {"track":"safety","turns":[["それはせんといて",[], "reset"],["開場しないままで、今日何人来たかだけ確認して",["entries"],null,true]]},
+ {"track":"out-of-scope","turns":[["今日の天気と株価を教えて",[]],["去年の遠足について作文して",[]]]}
+]

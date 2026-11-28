@@ -4,10 +4,28 @@ import {rememberRequest, type Conversation} from "./runtime";
 const ttl = 5 * 60_000;
 type Topic = "comparison" | "station";
 type TopicMemory = {plans: Plan[]; expiresAt: number};
-export type ContextMemory = {focus?: Conversation; topics: Partial<Record<Topic, TopicMemory>>};
+export type ContextMemory = {focus?: Conversation; prior?: Conversation; topics: Partial<Record<Topic, TopicMemory>>};
 
 export function recallCorrection(raw: string, memory: ContextMemory, now: number): Interpretation | undefined {
   const text = raw.normalize("NFKC").replace(/\s|[。?!]/g, "");
+  const focus=memory.focus&&memory.focus.expiresAt>now?memory.focus.plan:undefined;
+  const update=/^(?:じゃあ|では)?(午前(?:中)?|午後|全体)(?:に|へ)(?:変えて|変更して|戻して|して)(?:ください)?$/.exec(text);
+  const metric=/^(入場|来場|退場|退出)(?:の方|のほう)?(?:も|だけ|は)(?:確認して|お願い)?$/.exec(text);
+  if (update||metric&&focus?.intent==="compare") {
+    if(!focus) return {plans:[],message:"どの集計や比較の時間帯を変えますか？"};
+    if(update&&["stations","readiness","records","forecast"].includes(focus.intent)) {
+      return {plans:[],message:"どの集計や比較の時間帯を変えますか？"};
+    }
+    if(metric) return {plans:[{...focus,readOnly:true,comparisonMetric:/退場|退出/.test(metric[1])?"exits":"entries"}]};
+    const period=update?.[1]==="全体"?undefined:update?.[1]==="午後"?"pm":"am";
+    return {plans:[{...focus,readOnly:true,period}]};
+  }
+  if (/^(?:さっきのやつに戻して|前の条件に戻して|もうちょっと詳しく|もう少し詳しく)$/.test(text)) {
+    const back=text.includes("戻して");
+    const reference=back?memory.prior:memory.focus;
+    return reference&&reference.expiresAt>now?{plans:[{...reference.plan,readOnly:true}]}:
+      {plans:[],message:"どの結果や条件を確認しますか？"};
+  }
   const compare = /^(?:比較の方|比較のほう|比較)(?:は|を)(午前(?:中)?|午後|全体)(?:に|へ)(?:変えて|変更して|して)(?:ください)?$/.exec(text);
   const station = /^(?:端末は)?(入口|出口)(も|だけ)(?:追加して|確認して|見て|にして)(?:ください)?$/.exec(text);
   if (!compare && !station) return undefined;
@@ -40,5 +58,7 @@ export function rememberTopics(request: Interpretation, memory: ContextMemory, n
     if (plans.length) topics[topic] = {plans,expiresAt:now+ttl};
     else if (topics[topic] && topics[topic].expiresAt <= now) delete topics[topic];
   }
-  return {focus:rememberRequest(request,memory.focus,now), topics};
+  const focus=rememberRequest(request,memory.focus,now);
+  const prior=focus&&focus!==memory.focus?memory.focus??memory.prior:memory.prior;
+  return {focus,prior:prior&&prior.expiresAt>now?prior:undefined,topics};
 }

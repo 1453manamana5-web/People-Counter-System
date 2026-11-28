@@ -1,6 +1,7 @@
-import {recallCorrection, type ContextMemory} from "./context";
+import type {ContextMemory} from "./context";
+import {resolveLanguage} from "./understanding";
 import {runPlan} from "./planner";
-import {resolveRequest, type Profile} from "./runtime";
+import type {Profile} from "./runtime";
 import type {ComparisonDay} from "../counterComparisonMetrics";
 
 type Snapshot = Omit<Parameters<typeof runPlan>[1], "read" | "signal" | "readDeadline">;
@@ -13,8 +14,7 @@ export async function processLuxnoraRequest(input: {
 }) {
   const {text,profile,context,signal,observe,allowConfirmation}=input;
   const now=Date.now();
-  const request=recallCorrection(text,context,now) ??
-    await resolveRequest(text,context.focus,now,profile,raw=>input.semantic(raw,signal));
+  const request=await resolveLanguage(text,context,now,profile,raw=>input.semantic(raw,signal));
   if (signal.aborted) return undefined;
 
   const cache=new Map<string,ComparisonDay|undefined>();

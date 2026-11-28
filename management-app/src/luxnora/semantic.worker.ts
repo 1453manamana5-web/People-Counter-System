@@ -22,10 +22,14 @@ async function initialize(base:string) {
     const result=await extract(values.map(value=>"トピック: "+value),{pooling:"mean",normalize:true});
     return result.tolist() as number[][];
   };
+  const samples=allowed.flatMap(intent=>knowledge[intent].map(text=>({intent,text})))
+    .sort((a,b)=>a.text.length-b.text.length);
   const references:{intent:Intent;vector:number[]}[]=[];
-  for(const intent of allowed) {
-    const vectors=await embed([...knowledge[intent]]);
-    for(const vector of vectors) references.push({intent,vector});
+  // Group by length and cap batch size to limit token padding and peak memory.
+  for(let offset=0;offset<samples.length;offset+=12) {
+    const batch=samples.slice(offset,offset+12);
+    const vectors=await embed(batch.map(sample=>sample.text));
+    batch.forEach(({intent},index)=>references.push({intent,vector:vectors[index]}));
   }
   return {embed,references};
 }

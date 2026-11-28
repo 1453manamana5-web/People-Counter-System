@@ -20,7 +20,7 @@ type Results = {
 };
 type Capability = keyof Results;
 type Access = "read" | "analysis" | "confirmation";
-type Node = {id: string; capability: Capability; goal: Plan; dependencies: Node[]; access: Access; cost: "local" | "network"};
+type Node = {id: string; capability: Capability; goal: Plan; dependencies: Node[]; predicate?: {node: Node; when: NonNullable<Interpretation["dependencies"]>[number]["when"]}; access: Access; cost: "local" | "network"};
 type Output = Map<string, unknown>;
 type Definition<K extends Capability> = {
   inputs: (goal: Plan) => Capability[];
@@ -84,6 +84,7 @@ const registry: {[K in Capability]: Definition<K>} = {
     }},
   respond: {
     inputs(goal) {
+      if (goal.intent === "stations") return ["stations"];
       if (goal.intent === "issues" || goal.condition === "connection-restored") return ["ledger", "stations"];
       if (historyGoal(goal)) return ["historical", "ledger"];
       return ledgerGoal(goal) ? ["ledger"] : [];
@@ -92,6 +93,16 @@ const registry: {[K in Capability]: Definition<K>} = {
     access: plan => plan.operation || plan.schedule ? "confirmation" : ledgerGoal(plan) ? "analysis" : "read",
     cost: "local",
     run({evidence,experiences}, goal, input) {
+      if (goal.intent === "stations") {
+        const stations=input("stations");
+        const available=stations.filter(row=>row.quality==="current"&&row.value.station);
+        const hasSignal=available.some(({value:{station}})=>station&&
+          (station.pending!=null&&station.pending>0 || station.camera===false||station.ai===false||
+            ["storage","network","camera","recalibrate"].includes(station.alert??"")));
+        const complete=available.length===stations.length&&available.every(({value:{station}})=>
+          station?.pending!=null && station.camera!=null && station.ai!=null && station.alert!=null);
+        return {...answer(goal,evidence), diagnosticSignal:hasSignal?true:complete?false:undefined};
+      }
       if (goal.intent === "issues") {
         const ledger = input("ledger");
         const stations = input("stations");
@@ -100,7 +111,7 @@ const registry: {[K in Capability]: Definition<K>} = {
         const priorRecount = graph.links.some(link=>link.relation==="has-experience"&&link.to==="ledger-recount");
         const activeMismatch = ledger.value && !ledger.value.consistent;
         const advice = priorRecount && activeMismatch ? "\nこの開催区分では以前も集計値の再計算が必要でした。現在の台帳と集計経路を確認してください。" : "";
-        return {text:(goal.period === undefined ? "" : "台帳は開催日全体、端末は取得済みの最新報告を確認しました。\n")+result.text+advice};
+        return {diagnosticSignal:result.hypotheses.some(item=>item.supporting.length>0)?true:undefined,text:(goal.period === undefined ? "" : "台帳は開催日全体、端末は取得済みの最新報告を確認しました。\n")+result.text+advice};
       }
       if (goal.condition === "connection-restored") {
         const stations = input("stations");
@@ -152,8 +163,12 @@ const registry: {[K in Capability]: Definition<K>} = {
 
 export function compilePlan(request: Interpretation) {
   if (request.plans.length > 4) throw new Error("Too many goals");
+  const edges=request.dependencies??[];
+  if (new Set(edges.map(edge=>edge.task)).size!==edges.length || edges.some(edge=>
+    !Number.isInteger(edge.task)||!Number.isInteger(edge.after)||edge.after<0||
+    edge.task>=request.plans.length||edge.after>=edge.task)) throw new Error("Invalid goal dependency");
   if (request.plans.some(goal => (goal.operation || goal.schedule) &&
-    (request.plans.length !== 1 || goal.intent !== "event" || goal.readOnly || Boolean(goal.operation && goal.schedule)))) {
+    (request.constraints?.readOnly || request.plans.length !== 1 || goal.intent !== "event" || goal.readOnly || Boolean(goal.operation && goal.schedule)))) {
     throw new Error("Invalid confirmation goal");
   }
   const nodes = new Map<string, Node>();
@@ -171,10 +186,28 @@ export function compilePlan(request: Interpretation) {
     nodes.set(id, node);
     return node;
   }
-  const outputs = request.plans.map(plan => visit("respond", plan));
+  const outputs: Node[] = [];
+  for (const [index, plan] of request.plans.entries()) {
+    const base=visit("respond",plan);
+    const predicate=edges.find(dep=>dep.task===index);
+    if(!predicate) {outputs.push(base);continue;}
+    const prior=outputs[predicate.after];
+    if(!prior || plan.intent!=="issues" || !plan.readOnly ||
+        (predicate.when==="previous-year-lower"?prior.goal.intent!=="compare":
+          predicate.when!=="anomaly"||!["stations","issues"].includes(prior.goal.intent))) {
+      throw new Error("Invalid conditional goal");
+    }
+    const node:Node={...base,id:base.id+":conditional:"+index,dependencies:[...base.dependencies,prior],
+      predicate:{node:prior,when:predicate.when}};
+    nodes.set(node.id,node);
+    outputs.push(node);
+  }
+  const referenced=new Set(outputs.flatMap(node=>[node,...node.dependencies]));
+  for(const node of nodes.values()) for(const dependency of node.dependencies) referenced.add(dependency);
+  const active=[...nodes.values()].filter(node=>referenced.has(node));
   const method = request.plans.some(plan => plan.intent === "issues" || plan.condition === "connection-restored") ? "advanced" :
     outputs.length > 1 || [...nodes.values()].some(node => node.cost === "network") ? "standard" : "light";
-  return {nodes: [...nodes.values()], outputs, method};
+  return {nodes: active, outputs, method};
 }
 
 type Trace = {capability: Capability; status: "completed" | "fallback"};
@@ -189,12 +222,18 @@ export async function runPlan(request: Interpretation, context: Context, allowCo
       if (!dependency || !values.has(dependency.id)) throw new Error("Missing capability input");
       return values.get(dependency.id) as Results[I];
     };
+    const prior=node.predicate?values.get(node.predicate.node.id) as Answer:undefined;
+    const condition=node.predicate?.when==="previous-year-lower" ?
+      (prior?.comparisonDelta===undefined?undefined:prior.comparisonDelta<0) : prior?.diagnosticSignal;
+    const skipped=Boolean(node.predicate)&&condition!==true;
     const blocked = node.access === "confirmation" && !allowConfirmation;
     const result = blocked ? {text:"操作候補が古くなりました。必要な場合はもう一度指示してください。"} :
+      skipped?{text:condition===false?"条件に当てはまらなかったため、追加の原因調査は行いませんでした。":
+        "条件を確認できなかったため、追加の原因調査は保留しました。"}:
       await registry[node.capability].run(context, node.goal, input);
     if (context.signal.aborted) throw new Error("Request cancelled");
     values.set(node.id, result);
-    trace.push({capability: node.capability, status: blocked || node.capability === "historical" && result === undefined ? "fallback" : "completed"});
+    trace.push({capability: node.capability, status: blocked || skipped || node.capability === "historical" && result === undefined ? "fallback" : "completed"});
     remaining.delete(node);
   }
   while (remaining.size) {

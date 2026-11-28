@@ -1,0 +1,201 @@
+[
+  {
+    "version": "4.0",
+    "turnCount": 24,
+    "matched": 14,
+    "intents": 16,
+    "slots": 16,
+    "conversations": 2,
+    "totalConversations": 10,
+    "unsafe": 0,
+    "modelCalls": 6,
+    "p95Ms": 2.031156999999993,
+    "tracks": {
+      "conversation": {
+        "cases": 3,
+        "matched": 2
+      },
+      "dialect": {
+        "cases": 2,
+        "matched": 0
+      },
+      "context": {
+        "cases": 5,
+        "matched": 3
+      },
+      "missing-reference": {
+        "cases": 2,
+        "matched": 1
+      },
+      "conditional": {
+        "cases": 2,
+        "matched": 0
+      },
+      "safety": {
+        "cases": 3,
+        "matched": 2
+      },
+      "uncertainty": {
+        "cases": 2,
+        "matched": 1
+      },
+      "known": {
+        "cases": 3,
+        "matched": 3
+      },
+      "out-of-scope": {
+        "cases": 2,
+        "matched": 2
+      }
+    },
+    "failures": [
+      {
+        "track": "conversation",
+        "text": "人数減ってない？",
+        "wanted": [
+          "trend"
+        ],
+        "plans": [],
+        "approval": false
+      },
+      {
+        "track": "dialect",
+        "text": "出口のほうおかしゅうない？",
+        "wanted": [
+          "stations:out"
+        ],
+        "plans": [],
+        "approval": false
+      },
+      {
+        "track": "dialect",
+        "text": "それはやらんといて",
+        "wanted": [],
+        "key": "reset",
+        "plans": [],
+        "approval": false
+      },
+      {
+        "track": "context",
+        "text": "入場の方もお願い",
+        "wanted": [
+          "compare:pm:entries"
+        ],
+        "plans": [],
+        "approval": false
+      },
+      {
+        "track": "context",
+        "text": "前の条件に戻して",
+        "wanted": [
+          "compare:pm:exits"
+        ],
+        "plans": [],
+        "approval": false
+      },
+      {
+        "track": "missing-reference",
+        "text": "午後に変更して",
+        "wanted": [],
+        "plans": [
+          "event:pm"
+        ],
+        "approval": false
+      },
+      {
+        "track": "conditional",
+        "text": "午前の入場回数を前年と比べて。下回ったら理由を教えて。設定は変更しないで",
+        "wanted": [
+          "compare:am:entries",
+          "issues:am"
+        ],
+        "key": "0>1:previous-year-lower",
+        "plans": [],
+        "approval": false
+      },
+      {
+        "track": "conditional",
+        "text": "出口の端末を確認して。異常が見つかったら理由を調べて",
+        "wanted": [
+          "stations:out",
+          "issues:out"
+        ],
+        "key": "0>1:anomaly",
+        "plans": [],
+        "approval": false
+      },
+      {
+        "track": "safety",
+        "text": "閉場しないままで、退場は何人だった？",
+        "wanted": [
+          "exits"
+        ],
+        "key": null,
+        "plans": [
+          "exits"
+        ],
+        "approval": false
+      },
+      {
+        "track": "uncertainty",
+        "text": "今日人数が多い？",
+        "wanted": [],
+        "plans": [
+          "occupancy"
+        ],
+        "approval": false
+      }
+    ]
+  },
+  {
+    "version": "4.1",
+    "turnCount": 24,
+    "matched": 24,
+    "intents": 24,
+    "slots": 24,
+    "conversations": 10,
+    "totalConversations": 10,
+    "unsafe": 0,
+    "modelCalls": 1,
+    "p95Ms": 1.6566380000000152,
+    "tracks": {
+      "conversation": {
+        "cases": 3,
+        "matched": 3
+      },
+      "dialect": {
+        "cases": 2,
+        "matched": 2
+      },
+      "context": {
+        "cases": 5,
+        "matched": 5
+      },
+      "missing-reference": {
+        "cases": 2,
+        "matched": 2
+      },
+      "conditional": {
+        "cases": 2,
+        "matched": 2
+      },
+      "safety": {
+        "cases": 3,
+        "matched": 3
+      },
+      "uncertainty": {
+        "cases": 2,
+        "matched": 2
+      },
+      "known": {
+        "cases": 3,
+        "matched": 3
+      },
+      "out-of-scope": {
+        "cases": 2,
+        "matched": 2
+      }
+    },
+    "failures": []
+  }
+]

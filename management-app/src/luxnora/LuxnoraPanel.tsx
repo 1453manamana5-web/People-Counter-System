@@ -1,6 +1,7 @@
 import {useEffect,useRef,useState,type FormEvent} from "react";
 import {watchAlerts,type Answer,type Evidence,type Target} from "./assistant";
-import {interpret,type Plan} from "./language";
+import type {Plan} from "./language";
+import {recognizeCancellation} from "./understanding";
 import type {Profile} from "./runtime";
 import {rememberTopics,type ContextMemory} from "./context";
 import {readComparisonDays} from "../counterComparisonData";
@@ -122,8 +123,8 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel,operator}:{operator:
     event.preventDefault();
     const text=input.trim();
     if(!text) return;
-    const cancellation=interpret(text);
-    if(cancellation.reset) {
+    const cancellation=recognizeCancellation(text);
+    if(cancellation?.reset) {
       cancelRequest();
       addReply(text,[{text:cancellation.message??"依頼を取り消しました。"}]);
       setInput("");

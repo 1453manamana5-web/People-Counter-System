@@ -1,0 +1,129 @@
+{
+  "train_cases": 54,
+  "validation_cases": 18,
+  "vocabulary": 1233,
+  "models": {
+    "linear": {
+      "threshold": 0.2,
+      "validation": {
+        "cases": 18,
+        "matched": 13,
+        "read_proposals": 11,
+        "false_read": 0,
+        "wrong_intent": 2,
+        "polite_refusal": 3,
+        "predictions": [
+          "occupancy",
+          "occupancy",
+          "occupancy",
+          "entries",
+          "exits",
+          "exits",
+          "stations",
+          "stations",
+          "abstain",
+          "abstain",
+          "forecast",
+          "abstain",
+          "briefing",
+          "briefing",
+          "abstain",
+          "abstain",
+          "abstain",
+          "abstain"
+        ]
+      },
+      "independent": {
+        "cases": 20,
+        "matched": 11,
+        "read_proposals": 7,
+        "false_read": 1,
+        "wrong_intent": 0,
+        "polite_refusal": 8,
+        "predictions": [
+          "abstain",
+          "occupancy",
+          "abstain",
+          "abstain",
+          "abstain",
+          "abstain",
+          "stations",
+          "stations",
+          "forecast",
+          "forecast",
+          "abstain",
+          "abstain",
+          "briefing",
+          "abstain",
+          "occupancy",
+          "abstain",
+          "abstain",
+          "abstain",
+          "abstain",
+          "abstain"
+        ]
+      }
+    },
+    "mlp": {
+      "threshold": 0.4,
+      "validation": {
+        "cases": 18,
+        "matched": 13,
+        "read_proposals": 10,
+        "false_read": 0,
+        "wrong_intent": 1,
+        "polite_refusal": 4,
+        "predictions": [
+          "occupancy",
+          "occupancy",
+          "abstain",
+          "entries",
+          "exits",
+          "exits",
+          "stations",
+          "stations",
+          "abstain",
+          "abstain",
+          "forecast",
+          "abstain",
+          "briefing",
+          "briefing",
+          "abstain",
+          "abstain",
+          "abstain",
+          "abstain"
+        ]
+      },
+      "independent": {
+        "cases": 20,
+        "matched": 10,
+        "read_proposals": 6,
+        "false_read": 1,
+        "wrong_intent": 0,
+        "polite_refusal": 9,
+        "predictions": [
+          "occupancy",
+          "occupancy",
+          "abstain",
+          "abstain",
+          "abstain",
+          "abstain",
+          "stations",
+          "abstain",
+          "forecast",
+          "forecast",
+          "abstain",
+          "abstain",
+          "abstain",
+          "abstain",
+          "occupancy",
+          "abstain",
+          "abstain",
+          "abstain",
+          "abstain",
+          "abstain"
+        ]
+      }
+    }
+  }
+}

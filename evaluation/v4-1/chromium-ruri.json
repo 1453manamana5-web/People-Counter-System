@@ -1,0 +1,256 @@
+[
+  {
+    "version": "4.0",
+    "coldMs": 8166,
+    "probe": "occupancy",
+    "rows": [
+      {
+        "text": "この室内に現に居る総数は",
+        "expected": "occupancy",
+        "actual": "abstain",
+        "ms": 95.6000000005588
+      },
+      {
+        "text": "まだ建物に留まっているのは何名",
+        "expected": "occupancy",
+        "actual": "abstain",
+        "ms": 92.09999999962747
+      },
+      {
+        "text": "足を運んでくれた方を全員足すと",
+        "expected": "entries",
+        "actual": "abstain",
+        "ms": 42.299999999813735
+      },
+      {
+        "text": "スタートから受付を入ったのは何回",
+        "expected": "entries",
+        "actual": "abstain",
+        "ms": 99.1000000005588
+      },
+      {
+        "text": "すでにお帰りの方って何名いらっしゃる",
+        "expected": "exits",
+        "actual": "abstain",
+        "ms": 73.8999999994412
+      },
+      {
+        "text": "その会場を去った人数を出して",
+        "expected": "exits",
+        "actual": "abstain",
+        "ms": 36.5
+      },
+      {
+        "text": "入る側の計測器、無事か見てきて",
+        "expected": "stations",
+        "actual": "abstain",
+        "ms": 68.70000000018626
+      },
+      {
+        "text": "向こうの受付の機械が死んでないか",
+        "expected": "stations",
+        "actual": "abstain",
+        "ms": 28
+      },
+      {
+        "text": "じきに身動き取りづらくなりそうか",
+        "expected": "forecast",
+        "actual": "abstain",
+        "ms": 75.6000000005588
+      },
+      {
+        "text": "もう少ししたら人が引くかしら",
+        "expected": "forecast",
+        "actual": "abstain",
+        "ms": 31.899999999441206
+      },
+      {
+        "text": "数字が辻褄合わへん",
+        "expected": "issues",
+        "actual": "abstain",
+        "ms": 59.40000000037253
+      },
+      {
+        "text": "抜けやかぶりは記録にない",
+        "expected": "issues",
+        "actual": "abstain",
+        "ms": 36.59999999962747
+      },
+      {
+        "text": "手短にいまの運営を総括して",
+        "expected": "briefing",
+        "actual": "abstain",
+        "ms": 73
+      },
+      {
+        "text": "開催実績のあらましを知りたい",
+        "expected": "briefing",
+        "actual": "abstain",
+        "ms": 83.40000000037253
+      },
+      {
+        "text": "いまの為替レートは",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 41.59999999962747
+      },
+      {
+        "text": "今日は多い気がするけど",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 90.20000000018626
+      },
+      {
+        "text": "午後にして",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 0
+      },
+      {
+        "text": "閉場しなかったらどうなる",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 0
+      },
+      {
+        "text": "入場も退場も報告して",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 76.09999999962747
+      },
+      {
+        "text": "入口以外の数字は見せないで",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 80.30000000074506
+      }
+    ]
+  },
+  {
+    "version": "4.1",
+    "coldMs": 6760.799999999814,
+    "probe": "occupancy",
+    "rows": [
+      {
+        "text": "この室内に現に居る総数は",
+        "expected": "occupancy",
+        "actual": "abstain",
+        "ms": 87.79999999981374
+      },
+      {
+        "text": "まだ建物に留まっているのは何名",
+        "expected": "occupancy",
+        "actual": "abstain",
+        "ms": 36.5
+      },
+      {
+        "text": "足を運んでくれた方を全員足すと",
+        "expected": "entries",
+        "actual": "abstain",
+        "ms": 19.600000000558794
+      },
+      {
+        "text": "スタートから受付を入ったのは何回",
+        "expected": "entries",
+        "actual": "abstain",
+        "ms": 52.299999999813735
+      },
+      {
+        "text": "すでにお帰りの方って何名いらっしゃる",
+        "expected": "exits",
+        "actual": "abstain",
+        "ms": 31.700000000186265
+      },
+      {
+        "text": "その会場を去った人数を出して",
+        "expected": "exits",
+        "actual": "abstain",
+        "ms": 62.299999999813735
+      },
+      {
+        "text": "入る側の計測器、無事か見てきて",
+        "expected": "stations",
+        "actual": "abstain",
+        "ms": 35.60000000055879
+      },
+      {
+        "text": "向こうの受付の機械が死んでないか",
+        "expected": "stations",
+        "actual": "abstain",
+        "ms": 70.09999999962747
+      },
+      {
+        "text": "じきに身動き取りづらくなりそうか",
+        "expected": "forecast",
+        "actual": "abstain",
+        "ms": 43.60000000055879
+      },
+      {
+        "text": "もう少ししたら人が引くかしら",
+        "expected": "forecast",
+        "actual": "abstain",
+        "ms": 81.8999999994412
+      },
+      {
+        "text": "数字が辻褄合わへん",
+        "expected": "issues",
+        "actual": "abstain",
+        "ms": 78.1000000005588
+      },
+      {
+        "text": "抜けやかぶりは記録にない",
+        "expected": "issues",
+        "actual": "abstain",
+        "ms": 19.699999999254942
+      },
+      {
+        "text": "手短にいまの運営を総括して",
+        "expected": "briefing",
+        "actual": "abstain",
+        "ms": 24.700000000186265
+      },
+      {
+        "text": "開催実績のあらましを知りたい",
+        "expected": "briefing",
+        "actual": "abstain",
+        "ms": 46.799999999813735
+      },
+      {
+        "text": "いまの為替レートは",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 12.100000000558794
+      },
+      {
+        "text": "今日は多い気がするけど",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 39.09999999962747
+      },
+      {
+        "text": "午後にして",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 0
+      },
+      {
+        "text": "閉場しなかったらどうなる",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 0
+      },
+      {
+        "text": "入場も退場も報告して",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 53
+      },
+      {
+        "text": "入口以外の数字は見せないで",
+        "expected": "abstain",
+        "actual": "abstain",
+        "ms": 20
+      }
+    ]
+  }
+]

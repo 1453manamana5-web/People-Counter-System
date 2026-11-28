@@ -29,6 +29,7 @@ jobs:
       - run: npm run evaluate:luxnora:reasoning
       - run: npm run evaluate:luxnora:reasoning -- --independent
       - run: npm run evaluate:luxnora:v4
+      - run: npm run evaluate:luxnora:v41 -- --independent
       - run: npm run test:rules
       - name: Prepare local Luxnora model
         run: node scripts/prepare-luxnora-model.mjs counter-app/dist

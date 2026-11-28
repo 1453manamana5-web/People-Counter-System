@@ -61,7 +61,7 @@ export function verifiedComparison(plan: Plan, summary: ComparisonDay, evidence:
     row.direction === direction && row.at >= currentRange.from &&
     (currentRange.untilExclusive ? row.at < currentRange.to : row.at <= currentRange.to)).length;
   const difference = currentCount - previousCount;
-  return {...prior, text:prior.text+" 同じ実開場時間帯の今回の確定記録は "+currentCount+
+  return {...prior, comparisonDelta:difference, text:prior.text+" 同じ実開場時間帯の今回の確定記録は "+currentCount+
     "回で、記録上の差は "+(difference>0?"+":"")+difference+
     "回です。両日の計測方式や停止時間の差は確認できていません。"};
 }

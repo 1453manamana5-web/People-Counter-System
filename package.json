@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc --noEmit -p management-app/tsconfig.app.json && tsc --noEmit -p counter-app/tsconfig.app.json && vite build --config counter-app/vite.config.ts",
     "test": "node --test *counter*.test.mjs adaptive-*.test.mjs luxnora*.test.mjs",
+    "evaluate:luxnora:v41": "node scripts/evaluate-luxnora-language-v41.mjs",
     "evaluate:luxnora:v4": "node scripts/evaluate-luxnora-v4.mjs",
     "evaluate:luxnora:reasoning": "node scripts/evaluate-luxnora-reasoning.mjs",
     "evaluate:luxnora": "node scripts/evaluate-luxnora.mjs",

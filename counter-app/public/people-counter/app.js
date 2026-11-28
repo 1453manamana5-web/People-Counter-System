@@ -1,5 +1,5 @@
 import {appendActivity,recoveryBudget,recoveryDecision,signals} from "./luxnora-core.mjs?v=17";
-import { LineTracker } from "./tracker.mjs?v=17";
+import { LineTracker } from "./tracker.mjs?v=18";
 import { PROFILES, peopleFromResult } from "./detection.mjs?v=17";
 
 import { verifyBodies } from "./body-check.mjs?v=17";

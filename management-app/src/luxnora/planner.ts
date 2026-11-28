@@ -4,11 +4,13 @@ import type {SeriesAndDays} from "../counterEvents";
 import type {Day} from "../counterLifecycle";
 import {previousYearDay, previousYearWindow, verifiedComparison} from "./history";
 import type {Interpretation, Plan} from "./language";
+import {buildKnowledge} from "./knowledgeGraph";
+import type {Experience} from "./memory";
 import {forecast} from "./forecast";
 import {investigate, observeLedger, observeStations} from "./reasoning";
 
 type HistoricalReader = (day: Day, window: ComparisonWindow | undefined, signal: AbortSignal) => Promise<ComparisonDay | undefined>;
-type Context = {evidence: Evidence; catalog: SeriesAndDays | null; read: HistoricalReader; signal: AbortSignal};
+type Context = {evidence: Evidence; experiences?: Experience[]; readDeadline?: number; catalog: SeriesAndDays | null; read: HistoricalReader; signal: AbortSignal};
 type Results = {
   ledger: ReturnType<typeof observeLedger>;
   stations: ReturnType<typeof observeStations>;
@@ -33,6 +35,8 @@ const counts = new Set(["entries", "exits", "occupancy", "dwell", "briefing", "c
 const ledgerGoal = (plan: Plan) => counts.has(plan.intent) || plan.intent === "issues";
 
 async function readWithinBudget(context: Context, day: Day, window: ComparisonWindow | undefined) {
+  const remaining = Math.min(12_000, (context.readDeadline ?? Infinity)-Date.now());
+  if (remaining <= 0 || context.signal.aborted) return undefined;
   const controller = new AbortController();
   let timer: ReturnType<typeof setTimeout> | undefined;
   let stop: () => void = () => {};
@@ -41,7 +45,7 @@ async function readWithinBudget(context: Context, day: Day, window: ComparisonWi
       controller.abort();
       resolve(undefined);
     };
-    timer = setTimeout(stop, 12_000);
+    timer = setTimeout(stop, remaining);
     context.signal.addEventListener("abort", stop, {once:true});
   });
   try {
@@ -87,10 +91,16 @@ const registry: {[K in Capability]: Definition<K>} = {
     key: plan => JSON.stringify(plan),
     access: plan => plan.operation || plan.schedule ? "confirmation" : ledgerGoal(plan) ? "analysis" : "read",
     cost: "local",
-    run({evidence}, goal, input) {
+    run({evidence,experiences}, goal, input) {
       if (goal.intent === "issues") {
-        const result = investigate(input("ledger"), input("stations"));
-        return {text:(goal.period === undefined ? "" : "台帳は開催日全体、端末は取得済みの最新報告を確認しました。\n")+result.text};
+        const ledger = input("ledger");
+        const stations = input("stations");
+        const graph = buildKnowledge(evidence,ledger,stations,experiences);
+        const result = investigate(ledger,stations);
+        const priorRecount = graph.links.some(link=>link.relation==="has-experience"&&link.to==="ledger-recount");
+        const activeMismatch = ledger.value && !ledger.value.consistent;
+        const advice = priorRecount && activeMismatch ? "\nこの開催区分では以前も集計値の再計算が必要でした。現在の台帳と集計経路を確認してください。" : "";
+        return {text:(goal.period === undefined ? "" : "台帳は開催日全体、端末は取得済みの最新報告を確認しました。\n")+result.text+advice};
       }
       if (goal.condition === "connection-restored") {
         const stations = input("stations");
@@ -107,8 +117,16 @@ const registry: {[K in Capability]: Definition<K>} = {
       }
       if (ledgerGoal(goal)) {
         const ledger = input("ledger");
-        if ((ledger.value && (!ledger.value.consistent || ledger.value.occupancy < 0)) ||
-            (!ledger.value && evidence.analysis)) {
+        const recount = ledger.value;
+        if (recount && !recount.consistent && recount.timelineMatches && recount.occupancy >= 0 &&
+            evidence.ledgerFromServer && evidence.current && recount.pending === 0 && !recount.issues.length &&
+            goal.period === undefined && (goal.intent === "entries" || goal.intent === "exits" || goal.intent === "occupancy")) {
+          const value = goal.intent === "entries" ? "入場 "+recount.entries+"回" :
+            goal.intent === "exits" ? "退場 "+recount.exits+"回" : "滞在 "+recount.occupancy+"人";
+          return {text:evidence.name+"（"+(evidence.mode==="live"?"本番":"試験")+"）の台帳を独立に再集計しました。"+value+"です。",verification:"recount"};
+        }
+        if ((recount && (!recount.consistent || recount.occupancy < 0)) ||
+            (!recount && evidence.analysis)) {
           return {text:"台帳と人数の整合性を確認できなかったため、集計結果の提示を保留しました。"};
         }
         if (goal.intent === "forecast" && (ledger.quality !== "current" || ledger.value?.issues.length)) {

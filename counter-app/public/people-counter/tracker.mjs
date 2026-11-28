@@ -26,6 +26,8 @@ export class LineTracker {
 
   update(points, timeMs) {
     const now = Number.isFinite(timeMs) ? timeMs : Date.now();
+    // A replayed frame cannot supply independent evidence or move a track.
+    if (this.lastUpdate !== null && now <= this.lastUpdate) return this.tracks;
     points = points.filter(p => Number.isFinite(p.x) && Number.isFinite(p.y));
     // After a long interruption, do not join a new visitor to an old track.
     const maxGap = this.frameInterval === null ? 1250 : Math.min(3000, Math.max(1000, this.frameInterval * 2.1));

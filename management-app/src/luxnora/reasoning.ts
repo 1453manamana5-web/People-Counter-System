@@ -12,7 +12,7 @@ export type Observation<T> = {
   quality: Quality;
   value: T;
 };
-export type LedgerCheck = {entries: number; exits: number; occupancy: number; consistent: boolean; pending: number; recent?: {entries: number; preceding: number}; issues: string[]};
+export type LedgerCheck = {entries: number; exits: number; occupancy: number; consistent: boolean; timelineMatches: boolean; pending: number; recent?: {entries: number; preceding: number}; issues: string[]};
 
 export function observeLedger(data: Evidence): Observation<LedgerCheck | undefined> {
   const analysis = data.analysis;
@@ -52,7 +52,7 @@ export function observeLedger(data: Evidence): Observation<LedgerCheck | undefin
   const consistent = timelineMatches && analysis.entries === entries && analysis.exits === exits &&
     analysis.occupancy === occupancy ;
   return {...provenance, quality: data.current && analysis.pending === 0 && consistent ? "current" : "partial",
-    value: {entries, exits, occupancy, consistent, pending: analysis.pending,
+    value: {entries, exits, occupancy, consistent, timelineMatches, pending: analysis.pending,
       recent: to - from >= 2 * quarter ? {entries:recent, preceding} : undefined,
       issues: [...new Set(analysis.issues.map(issue => issue.code))]}};
 }

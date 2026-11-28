@@ -475,7 +475,7 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
         </>}</div>
       </main>
     </div>
-    {!denied&&<LuxnoraPanel key={scope} catalog={catalog} evidence={{scope,sealed,stationsFromServer:data?.stations.source==="server",name:eventName,mode,now,config,day,stations,analysis,prediction,current}} focus={luxFocus} cancel={()=>setFocusRequest(null)}/>}
+    {!denied&&<LuxnoraPanel key={scope} operator={manager.uid} catalog={catalog} evidence={{scope,sealed,ledgerFromServer:data?.operations.source==="server",stationsFromServer:data?.stations.source==="server",name:eventName,mode,now,config,day,stations,analysis,prediction,current}} focus={luxFocus} cancel={()=>setFocusRequest(null)}/>}
   </div>;
 }
 type Analysis = ReturnType<typeof analyze>;

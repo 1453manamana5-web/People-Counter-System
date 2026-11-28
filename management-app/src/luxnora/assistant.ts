@@ -5,11 +5,11 @@ import type {Day} from "../counterLifecycle";
 import {signals} from "../../../counter-app/public/people-counter/luxnora-core.mjs";
 
 export type Evidence={
-  scope?:string;sealed?:boolean;stationsFromServer?:boolean;name:string;mode:"live"|"test"; now:number; current:boolean; config:CounterConfig|null;day?:Day|null;
+  scope?:string;ledgerFromServer?:boolean;sealed?:boolean;stationsFromServer?:boolean;name:string;mode:"live"|"test"; now:number; current:boolean; config:CounterConfig|null;day?:Day|null;
   analysis:ReturnType<typeof import("../counterManagementData").analyze>|null; stations:CounterStation[]; prediction:Forecast;
 };
 export type Target="occupancy"|"graph"|"compare"|"event"|"records"|"stations"|"in"|"out";
-export type Answer={text:string;target?:Target;plan?:Plan};
+export type Answer={text:string;verification?:"recount";target?:Target;plan?:Plan};
 const roles={in:"入口",out:"出口"};
 const jst=(at:number)=>new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(at);
 const scopeName=(data:Evidence)=>data.name+"（"+(data.mode==="test"?"試験":"本番")+"）";

@@ -1,14 +1,16 @@
 import {useEffect,useRef,useState,type FormEvent} from "react";
 import {watchAlerts,type Answer,type Evidence,type Target} from "./assistant";
 import {interpret,type Plan} from "./language";
-import {rememberRequest,resolveRequest,type Conversation,type Profile} from "./runtime";
+import type {Profile} from "./runtime";
+import {rememberTopics,type ContextMemory} from "./context";
 import {readComparisonDays} from "../counterComparisonData";
+import {processLuxnoraRequest} from "./core";
+import {clearMemory,loadMemory,rememberExperience,saveProfile} from "./memory";
 import type {SeriesAndDays} from "../counterEvents";
-import {runPlan} from "./planner";
 import {TaskQueue,type QueueState,type Task} from "./taskQueue";
 import motionAsset from "./motion.svg?url";
 
-export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;catalog:SeriesAndDays|null;focus:(target:Target,plan?:Plan)=>void;cancel:()=>void}) {
+export function LuxnoraPanel({evidence,catalog,focus,cancel,operator}:{operator:string;evidence:Evidence;catalog:SeriesAndDays|null;focus:(target:Target,plan?:Plan)=>void;cancel:()=>void}) {
   const [open,setOpen]=useState(false),[input,setInput]=useState("");
   const isOpen=useRef(false);
   const [motion,setMotion]=useState("idle");
@@ -33,8 +35,10 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;
       else closeTimer.current=window.setTimeout(()=>setMounted(false),540);
     }
   }
+  const scope=evidence.scope??"";
+  const [memoryVisible,setMemoryVisible]=useState(false);
   const [profile,setProfile]=useState<Profile>(()=>{
-    try {return localStorage.getItem("counter-lux-profile")==="swift"?"swift":"auto";}catch{return "auto";}
+    try {return loadMemory(localStorage,operator,scope,Date.now()).profile??"auto";}catch{return "auto";}
   });
   const [notes,setNotes]=useState<{prompt:string;response:Answer[]}[]>([]);
   const [setting,setSetting]=useState(()=>{
@@ -59,7 +63,7 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;
   const working=queueState.active;
   useEffect(()=>{if(replies.current) replies.current.scrollTop=replies.current.scrollHeight;},[notes,mounted,queueState.active]);
   const [queueNotice,setQueueNotice]=useState("");
-  const previous=useRef<Conversation|undefined>(undefined);
+  const previous=useRef<ContextMemory>({topics:{}});
   const latest=useRef({evidence,catalog,focus});
   useEffect(()=>{latest.current={evidence,catalog,focus};},[evidence,catalog,focus]);
   const prompt=useRef<HTMLInputElement>(null);
@@ -78,7 +82,7 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;
   },[queueState.active]);
   function cancelRequest() {
     queue.current?.cancel();
-    previous.current=undefined;
+    previous.current={topics:{}};
     cancel();
     setOffered(null);
     setMonitor(null);
@@ -89,43 +93,27 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;
   }
   async function processTask(task:Task<{text:string;profile:Profile}>, signal:AbortSignal) {
     const {text,profile}=task.value;
-    const plan=await resolveRequest(text,previous.current,Date.now(),profile,async raw=>{
-      const {semanticRead}=await import("./semantic");
-      return semanticRead(raw,signal);
-    });
-    if(signal.aborted) return;
-    const snapshot=latest.current;
-    const cache=new Map<string,Awaited<ReturnType<typeof import("../counterComparisonData").readComparisonDays>>[number]|undefined>();
-    const read:Parameters<typeof runPlan>[1]["read"]=async (day,window,signal)=>{
-      if(signal.aborted) return undefined;
-      const key=JSON.stringify([day.id,window]);
-      if(cache.has(key)) return cache.get(key);
-      try {
-        const [summary]=await readComparisonDays([day],signal,window);
-        if(!signal.aborted) cache.set(key,summary);
-        return summary;
-      } catch {
-        if(!signal.aborted) cache.set(key,undefined);
-        return undefined;
-      }
-    };
     const allow=()=>Boolean(queue.current?.isLatest(task));
-    let result=await runPlan(plan,{...snapshot,read,signal},allow());
-    if(signal.aborted) return;
-    if(latest.current.evidence!==snapshot.evidence) {
-      const refreshed=latest.current;
-      result=await runPlan(plan,{...refreshed,read,signal},false);
-      if(signal.aborted) return;
-      if(latest.current.evidence!==refreshed.evidence) {
-        addReply(text,[{text:"確認中に運用データが更新されました。最新の結果が必要な場合は再度依頼してください。"}]);
-        return;
-      }
-    }
+    const result=await processLuxnoraRequest({text,profile,context:previous.current,signal,
+      allowConfirmation:allow,
+      read:async(day,window,signal)=>(await readComparisonDays([day],signal,window))[0],
+      observe:()=>{
+        let experiences;
+        try {experiences=loadMemory(localStorage,operator,scope,Date.now()).experiences;}catch{}
+        return {...latest.current,experiences};
+      },
+      semantic:async(raw,signal)=>(await import("./semantic")).semanticRead(raw,signal),
+    });
+    if(!result||signal.aborted) return;
+    const plan=result.request;
     const response=result.answers.map(row=>!allow()&&(row.plan?.operation||row.plan?.schedule)
       ? {text:"新しい依頼を受け付けたため、操作候補を取り下げました。"}:row);
+    try {
+      for (const kind of result.experiences) rememberExperience(localStorage,operator,scope,kind,Date.now());
+    } catch {}
     const routine=plan.plans.find(item=>item.intent==="routine");
     if(routine&&!routine.readOnly&&allow()) setOffered(routine);
-    previous.current=rememberRequest(plan,previous.current,Date.now());
+    previous.current=rememberTopics(plan,previous.current,Date.now());
     addReply(text,response.length?response:[{text:plan.message??"対象を指定してください。"}]);
     const target=response.find(row=>row.target);
     if(allow()&&isOpen.current&&target?.target) latest.current.focus(target.target,target.plan);
@@ -170,8 +158,22 @@ export function LuxnoraPanel({evidence,catalog,focus,cancel}:{evidence:Evidence;
       <details className="lux-support"><summary>支援設定</summary><label className="lux-setting">支援 <select value={setting} onChange={e=>{setSetting(e.target.value);try {localStorage.setItem("pcs-counter-lux-support",e.target.value);}catch{}}}><option value="onRequest">指示したときのみ</option><option value="smart">スマートサポート</option><option value="active">積極的なサポート</option></select></label><label className="lux-setting">処理モード <select value={profile} onChange={e=>{
         const next=e.target.value==="swift"?"swift":"auto";
         setProfile(next);
-        try {localStorage.setItem("counter-lux-profile",next);}catch{}
-      }}><option value="auto">Luxnora Auto</option><option value="swift">Luxnora Swift</option></select></label></details>
+        try {saveProfile(localStorage,operator,scope,next,Date.now());}catch{}
+      }}><option value="auto">Luxnora Auto</option><option value="swift">Luxnora Swift</option></select></label><button type="button" onClick={()=>setMemoryVisible(!memoryVisible)}>この開催区分の記憶</button>
+        {memoryVisible&&<div>
+          <p>処理モード {profile==="swift"?"Swift":"Auto"}</p>
+          {(() => {
+            try {return loadMemory(localStorage,operator,scope,Date.now()).experiences.map(item=>
+              <p key={item.kind}>{item.kind==="ledger-recount"?"台帳の再集計":"前年記録の取得不可"} · {item.repeats}回</p>);}
+            catch {return null;}
+          })()}
+          <button type="button" onClick={()=>{
+            cancelRequest();
+            try {clearMemory(localStorage,operator,scope);setProfile("auto");setNotes([]);}
+            catch {setQueueNotice("記憶を削除できませんでした。");}
+          }}>この開催区分の記憶を初期化</button>
+        </div>}
+      </details>
       {setting!=="onRequest"&&evidence.config?.opened!=null&&!evidence.current&&<small>端末の通信状態または未同期記録を確認してください。</small>}
       {setting==="active"&&!!evidence.analysis?.issues.length&&<small>整合性の指摘 {evidence.analysis.issues.length}件を通過記録と照合できます。</small>}
       {offered&&<button onClick={()=>{monitorSnapshot.current="";setActivity([]);setMonitor({role:offered.role,until:Date.now()+15*60000});setOffered(null);}}>15分間の見守りを開始</button>}

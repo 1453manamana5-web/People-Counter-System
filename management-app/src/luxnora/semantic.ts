@@ -2,6 +2,7 @@ import type {Intent} from "./language";
 
 let worker:Worker|undefined;
 let sequence=0;
+let idleTimer:ReturnType<typeof setTimeout>|undefined;
 let unavailableUntil=0;
 
 export async function semanticRead(raw:string,signal?:AbortSignal):Promise<Intent|null> {
@@ -30,6 +31,7 @@ export async function semanticRead(raw:string,signal?:AbortSignal):Promise<Inten
     finally {clearTimeout(timeout);signal?.removeEventListener("abort",cancel);}
   }
   const active=worker;
+  clearTimeout(idleTimer);
   const request=++sequence;
   return new Promise(resolve=>{
     const clear=()=>{
@@ -43,7 +45,13 @@ export async function semanticRead(raw:string,signal?:AbortSignal):Promise<Inten
     const response=(message:MessageEvent<{request:number;intent:Intent|null;unavailable?:boolean}>)=>{
       if(message.data.request!==request) return;
       if(message.data.unavailable){broken();return;}
-      clear();resolve(message.data.intent);
+      clear();
+      if(worker===active&&request===sequence) idleTimer=setTimeout(()=>{
+        if(worker!==active) return;
+        active.terminate();
+        worker=undefined;
+      },120_000);
+      resolve(message.data.intent);
     };
     const timer=setTimeout(broken,30000);
     active.addEventListener("message",response);

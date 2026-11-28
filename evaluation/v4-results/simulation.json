@@ -1,0 +1,180 @@
+[
+  {
+    "version": "3.1",
+    "operationReport": {
+      "normal": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "offline": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "sync-delay": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "camera-stop": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "lost-out": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "duplicate-in": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "aggregate-drift": {
+        "cases": 48,
+        "expected": 0,
+        "badNumeric": 0
+      },
+      "timeline-drift": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      }
+    },
+    "passage": {
+      "single": {
+        "cases": 64,
+        "expected": 64
+      },
+      "reverse": {
+        "cases": 64,
+        "expected": 64
+      },
+      "two-lanes": {
+        "cases": 64,
+        "expected": 64
+      },
+      "occlusion": {
+        "cases": 64,
+        "expected": 64
+      },
+      "conflicting-frame": {
+        "cases": 64,
+        "expected": 0
+      }
+    },
+    "turns": [
+      [
+        {
+          "intent": "compare",
+          "period": "am"
+        },
+        {
+          "intent": "stations",
+          "role": "in"
+        }
+      ],
+      [],
+      []
+    ],
+    "p95Ms": 0.352724999999964
+  },
+  {
+    "version": "4.0",
+    "operationReport": {
+      "normal": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "offline": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "sync-delay": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "camera-stop": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "lost-out": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "duplicate-in": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "aggregate-drift": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      },
+      "timeline-drift": {
+        "cases": 48,
+        "expected": 48,
+        "badNumeric": 0
+      }
+    },
+    "passage": {
+      "single": {
+        "cases": 64,
+        "expected": 64
+      },
+      "reverse": {
+        "cases": 64,
+        "expected": 64
+      },
+      "two-lanes": {
+        "cases": 64,
+        "expected": 64
+      },
+      "occlusion": {
+        "cases": 64,
+        "expected": 64
+      },
+      "conflicting-frame": {
+        "cases": 64,
+        "expected": 64
+      }
+    },
+    "turns": [
+      [
+        {
+          "intent": "compare",
+          "period": "am"
+        },
+        {
+          "intent": "stations",
+          "role": "in"
+        }
+      ],
+      [
+        {
+          "intent": "compare",
+          "period": "pm"
+        }
+      ],
+      [
+        {
+          "intent": "stations",
+          "role": "in"
+        },
+        {
+          "intent": "stations",
+          "role": "out"
+        }
+      ]
+    ],
+    "p95Ms": 2.4646850000000313
+  }
+]

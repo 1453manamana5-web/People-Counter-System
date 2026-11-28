@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc --noEmit -p management-app/tsconfig.app.json && tsc --noEmit -p counter-app/tsconfig.app.json && vite build --config counter-app/vite.config.ts",
     "test": "node --test *counter*.test.mjs adaptive-*.test.mjs luxnora*.test.mjs",
+    "evaluate:luxnora:v4": "node scripts/evaluate-luxnora-v4.mjs",
     "evaluate:luxnora:reasoning": "node scripts/evaluate-luxnora-reasoning.mjs",
     "evaluate:luxnora": "node scripts/evaluate-luxnora.mjs",
     "test:rules": "firebase emulators:exec --project demo-people-counter --only firestore --config firebase.test.json \"node --test --test-concurrency=1 tests/*.test.mjs\""

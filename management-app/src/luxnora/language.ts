@@ -81,7 +81,7 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     const prior=plans.at(-1)??previous;
     const both=/入口.*出口|出口.*入口|両方|両端末|全端末|すべての端末/.test(clause);
     const role=both?undefined:clause.includes("入口")?"in":clause.includes("出口")?"out":undefined;
-    const allDay=/一日(?:全体|分)?|1日(?:全体|分)?|終日|時間指定なし|全時間帯|開催日全体|全体で/.test(clause);
+    const allDay=/一日(?:全体|分)?|1日(?:全体|分)?|終日|時間指定なし|全時間帯|開催日全体|全体で|今日(?:全体|の合計)|今日の累計/.test(clause);
     const relative=clause.match(/(?:直近|過去|ここ|この|最近)(\d{1,3})(分|時間)/);
     const clock=/((?:午前|午後)?\d{1,2}(?:時|:)(?:半|[0-5]?\d)?(?:分)?)(?:から|〜|~|－|–|—|-)((?:午前|午後)?\d{1,2}(?:時|:)(?:半|[0-5]?\d)?(?:分)?)/.exec(clause);
     const from=clock?timeOfDay(clock[1]):null, to=clock?timeOfDay(clock[2]):null;
@@ -132,8 +132,8 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     else if(/グラフ|チャート|推移|折れ線|時間帯別/.test(clause)&&!/記録画面/.test(clause)) intent="graph";
     else if(/通過|入退場|入場|退場|計測/.test(clause)&&/履歴|記録一覧|記録を|記録画面|ログ/.test(clause)) intent="records";
     else if(/状況|実績|結果|運営|全体/.test(clause)&&/まとめ|報告|要約|概況|教えて|どう/.test(clause)) intent="briefing";
-    else if(question&&/帰った|退場|退出|出た/.test(clause)&&!/入退場/.test(clause)) intent="exits";
-    else if(question&&/来た|来場|入った|入場|累計/.test(clause)&&!/入退場/.test(clause)) intent="entries";
+    else if((question&&/帰った|退場|退出|出た/.test(clause)&&!/入退場/.test(clause))||/^(?:じゃあ|では)?(?:退場|退出)(?:は|の方|だけ|を教えて|も)?$/.test(clause)) intent="exits";
+    else if((question&&/来た|来場|入った|入場|累計/.test(clause)&&!/入退場/.test(clause))||/^(?:じゃあ|では)?(?:入場|来場|累計)(?:は|の方|だけ|を教えて|も)?$/.test(clause)) intent="entries";
     else if(/滞在人数|現在人数|同時滞在|残ってる人|残っている人/.test(clause)||question&&/今|館内|室内|会場内|展示室内|いる|残っ/.test(clause)) intent="occupancy";
     else if(/混雑|混ん/.test(clause)&&/今日|状況|ピーク|一番/.test(clause)) intent="crowd";
     if(!intent&&prior?.intent==="stations"&&(both||role)&&/^(?:じゃあ|それなら|次は|あと|ついでに|あ、)?(?:入口|出口|両方|両端末|全端末)(?:の方|のほう)?(?:は|も|もお願い|も確認|も見て|も調べて|だけ|もどう|はどう|も頼む)?$/.test(clause)) intent="stations";
@@ -149,7 +149,7 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     if (!intent) return {plans:[],message:clauses.length>1?"複数の依頼のうち意味を特定できないものがあります。内容を分けて指定してください。":"依頼の対象を特定できませんでした。滞在人数・入場回数・端末状態・混雑予測など、確認したい対象を教えてください。"};
     if (timed&&intent==="event"&&readOnly) return {plans:[],message:"設定は変更しません。イベント管理で現在の予定を確認できます。"};
     plans.push({intent,role:both?undefined:role??(intent==="stations"&&prior?.intent==="stations"?prior.role:undefined),
-      period:allDay?undefined:period??(intent===prior?.intent||intent==="graph"?prior?.period:undefined),
+      period:allDay?undefined:period??((intent==="occupancy"&&/今|現在/.test(clause))?undefined:(intent===prior?.intent||intent==="graph"?prior?.period:undefined)),
       focus:/見せ|確認して|開い|調べ|移動|グラフ/.test(clause)||["forecast","compare","graph","records","event"].includes(intent),readOnly});
   }
   if(plans.length>4)return {plans:[],message:"一度に4件まで確認できます。"};

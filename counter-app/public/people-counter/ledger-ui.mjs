@@ -32,6 +32,7 @@ let clockChanged = false;
 let remoteModule;
 let remoteAttempts = 0;
 let stationState = 'unchecked';
+let approvalConfirmed = false;
 let assignedRole = loadAssignedRole(settings);
 let deniedStation = loadDeniedStation(settings);
 let stationNote = '';
@@ -66,8 +67,22 @@ function loadDeniedStation(cfg) {
   const cached = load('pcs-counter-denied-v1:' + cfg.eventId);
   return ['rejected','revoked','mismatch'].includes(cached) ? cached : '';
 }
+const approvalKey = cfg => 'pcs-counter-approved-v1:' + cfg.eventId;
+function cachedApproval(cfg) {
+  if (!dedicatedDay(cfg) || !device) return null;
+  const saved=load(approvalKey(cfg));
+  return saved?.device===device && ['in','out'].includes(saved.role) ? saved : null;
+}
+function pairingReady() {
+  if (!dedicatedDay(settings) || !device || deniedStation) return false;
+  if (approvalConfirmed && stationState==='approved' && assignedRole===settings.role) return true;
+  // On a fresh online launch, always verify on the server first. Explicitly offline
+  // launches may use an earlier successful approval of the same installation/day.
+  return stationState==='unchecked' && navigator.onLine===false && cachedApproval(settings)?.role===settings.role;
+}
 function captureBlockReason() {
   if ((settings?.mode === 'live' || dedicatedDay(settings)) && deniedStation) return 'この端末の本番承認を確認してください。管理画面で再承認されるまで計測を待機します。';
+  if (!pairingReady()) return '管理アプリで端末のペアリング承認を完了してください。';
   if (dedicatedDay(settings) &&
       (!control || !Number.isSafeInteger(control.version))) return '管理画面からの運用設定をまだ確認できません。';
   if (control?.closed != null && control.closed <= Date.now()) return '管理画面で閉場済みです。';
@@ -170,6 +185,8 @@ function checkStation(config, remote) {
     if (assignedRole) {
       try { localStorage.setItem('pcs-counter-role-v1:' + config.eventId,JSON.stringify(assignedRole)); } catch {}
     }
+    if (stationState !== 'approved') approvalConfirmed = false;
+    if (stationState !== 'approved') {try {localStorage.setItem(approvalKey(config), 'null');} catch {}}
     const denial = ['rejected','revoked','mismatch'].includes(stationState) ? stationState : '';
     if (denial || stationState === 'approved') {
       deniedStation = denial;
@@ -178,7 +195,22 @@ function checkStation(config, remote) {
     renderStation();
     window.dispatchEvent(new Event('pcs-counter-control-changed'));
     if (stationState !== 'approved') return false;
-    storeControl(config, await deadline(remote.readCounterConfig(config.eventId,config.mode)));
+    let nextControl;
+    try {nextControl=await deadline(remote.readCounterConfig(config.eventId,config.mode));}
+    catch(e){
+      if(settings===config && String(e?.code??'').includes('permission-denied')){
+        stationState='revoked';deniedStation='revoked';assignedRole=null;
+        try {localStorage.setItem(approvalKey(config),'null');localStorage.setItem('pcs-counter-denied-v1:'+config.eventId,JSON.stringify('revoked'));} catch {}
+        renderStation();window.dispatchEvent(new Event('pcs-counter-control-changed'));
+      }
+      throw e;
+    }
+    if(settings!==config)return false;
+    if(!nextControl || !Number.isSafeInteger(nextControl.version))return false;
+    approvalConfirmed=true;
+    try {localStorage.setItem(approvalKey(config),JSON.stringify({device,role:assignedRole}));} catch {}
+    storeControl(config,nextControl);
+    renderStation();window.dispatchEvent(new Event('pcs-counter-control-changed'));
     if (settings === config) pollStationCommand(config,remote,station);
     const scope = config.eventId + ':' + config.mode;
     const now = performance.now();
@@ -417,7 +449,7 @@ $('restoreLedger').addEventListener('click', () => {
 $('ledgerEdit').addEventListener('submit', async event => {
   event.preventDefault();
   if (window.counterAdaptive?.isolated()) return error('認識設定の試験を終了してから通過記録を修正してください。');
-  if (!store || !settings) return error('先に運用設定を保存してください。');
+  if (!store || !settings || !pairingReady()) return error('先に端末のペアリングを完了してください。');
   const at = new Date($('editAt').value).getTime();
   const reason = $('editReason').value.trim();
   if (!Number.isFinite(at) || !reason) return error('通過時刻と理由を入力してください。');
@@ -453,10 +485,10 @@ $('ledgerSetup').addEventListener('submit', async event => {
   if (window.counterAdaptive?.isolated()) return error('認識設定の試験を終了してから運用設定を変更してください。');
   if ($('startButton').disabled || !$('stopButton').disabled) return error('カメラを停止してから設定してください。');
   const eventId = $('ledgerEvent').value.trim();
-  const opened = new Date($('ledgerOpen').value).getTime();
-  const closed = $('ledgerClose').value ? new Date($('ledgerClose').value).getTime() : null;
-  if (!/^[a-zA-Z0-9_-]{1,160}$/.test(eventId) || !Number.isFinite(opened) ||
-      (closed != null && (!Number.isFinite(closed) || closed < opened))) return error('イベントIDと開閉場時刻を確認してください。');
+  const opened = settings?.eventId===eventId ? settings.opened : Date.now();
+  const closed = null;
+  if (!dedicatedDay({eventId}) || !Number.isFinite(opened) ||
+      (closed != null && (!Number.isFinite(closed) || closed < opened))) return error('管理アプリに表示される開催日IDを確認してください。');
   if (settings?.eventId === eventId && assignedRole && $('ledgerRole').value !== assignedRole) {
     return error('管理画面で指定された入口・出口を選び、計測ラインの方向を確認してください。');
   }
@@ -469,13 +501,13 @@ $('ledgerSetup').addEventListener('submit', async event => {
       device = id;
     }
     localStorage.setItem(setupKey, JSON.stringify(next));
-    const scopeChanged = !settings || settings.eventId !== next.eventId || settings.mode !== next.mode;
+    const dayChanged = !settings || settings.eventId !== next.eventId;
+    const scopeChanged = dayChanged || settings.mode !== next.mode;
     settings = next;
     if (scopeChanged) {
       control = loadControl(settings);
-      stationState = 'unchecked';
+      if(dayChanged){approvalConfirmed=false;stationState='unchecked';assignedRole=null;}
       deniedStation = loadDeniedStation(settings);
-      assignedRole = null;
       stationNote = '';
     }
     renderStation();
@@ -567,7 +599,7 @@ $('counterStationApply').addEventListener('click', async () => {
   } finally { renderStation(); }
 });
 $('syncLedger').addEventListener('click', () => schedule(0));
-window.addEventListener('online', () => {scheduleControl(0); schedule(500);});
+window.addEventListener('online', () => {renderStation();window.dispatchEvent(new Event('pcs-counter-control-changed'));scheduleControl(0); schedule(500);});
 window.addEventListener('focus', () => {changed(); scheduleControl(0); schedule(500);});
 document.addEventListener('visibilitychange', () => { if (!document.hidden) scheduleControl(0); });
 setInterval(() => {if (stationState === 'pending') renderStation();},5000);
@@ -590,7 +622,7 @@ function attach(value) {
   schedule(500);
   scheduleControl(500);
 }
-window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, summary: () => result && resultScope === settings ? {entries:result.entries,exits:result.exits,occupancy:result.occupancy,mode:settings.mode} : null, attach, changed, captureBlockReason};
+window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, paired: pairingReady, refreshPairing: () => {scheduleControl(0);schedule(0);}, summary: () => result && resultScope === settings ? {entries:result.entries,exits:result.exits,occupancy:result.occupancy,mode:settings.mode} : null, attach, changed, captureBlockReason};
 if (window.counterRecordStore) attach(window.counterRecordStore);
 fillRecord();
 renderState();
@@ -603,7 +635,7 @@ async function offlineLabel() {
   if (navigator.serviceWorker?.controller?.scriptURL.endsWith('/counter-offline.js') && load(preparedKey)) {
     try {
       const requests = await (await caches.open('pcs-counter-model-assets-v1')).keys();
-      ready = (await caches.keys()).includes('pcs-counter-v20') &&
+      ready = (await caches.keys()).includes('pcs-counter-v21') &&
         requests.some(r => r.url.endsWith('/efficientdet_lite0.tflite')) &&
         requests.some(r => r.url.endsWith('/quant2/075/model-stride16.json'));
     } catch {}

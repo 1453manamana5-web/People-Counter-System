@@ -163,7 +163,7 @@ function renderRecords() {
   }
 }
 function record(delta, type) {
-  if (adaptive?.isolated() || (type === "auto" && window.counterLedger?.captureBlockReason?.())) return Promise.resolve();
+  if (window.counterLedger?.paired?.() === false || adaptive?.isolated() || (type === "auto" && window.counterLedger?.captureBlockReason?.())) return Promise.resolve();
   const capturedSession = session || null;
   const owner = activeLeaseOwner;
   const at = Date.now();

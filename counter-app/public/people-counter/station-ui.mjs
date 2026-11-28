@@ -2,7 +2,10 @@
 const $=id=>document.getElementById(id);
 const pages=["capture","setup","adjust","records"];
 const workspace=$("stationWorkspace");
+let wasPaired=false;
+const paired=()=>window.counterLedger?.paired?.()===true;
 function show(page){
+ if(!paired())page="setup";
  if(!pages.includes(page))page="capture";
  workspace.dataset.page=page;
  for(const element of document.querySelectorAll("[data-screen]"))element.hidden=!element.dataset.screen.split(" ").includes(page);
@@ -12,10 +15,17 @@ function show(page){
  refreshStatus();
 }
 function refreshStatus(){
+ const approved=paired();
+ document.querySelector(".station-shell").dataset.paired=String(approved);
+ for(const id of ["stationNav","stationSetupHeading","stationOfflineCard","ledgerState","stationCameraState","message","counterRemoteControl","syncLedger","clockState"])$(id).hidden=!approved;
+ $("pairingIntro").hidden=approved;
+ if(approved!==wasPaired){wasPaired=approved;show(approved?"capture":"setup");return;}
+ if(!approved&&workspace.dataset.page!=="setup"){show("setup");return;}
+
  const configured=window.counterLedger?.configured?.()===true;
  const role=window.counterLedger?.role?.();
  const badge=$("stationRoleBadge");badge.textContent=role==="out"?"出口":role==="in"?"入口":"未設定";badge.dataset.role=role||"";
- $("stationOnboard").hidden=workspace.dataset.page!=="capture"||configured;
+
  const assign=(target,value)=>{if($(target).textContent!==value)$(target).textContent=value;};
  assign("stationApproval",$("counterStationState").textContent||"未設定");
  assign("stationControl",$("counterRemoteControl").textContent||"");
@@ -32,4 +42,6 @@ const observer=new MutationObserver(refreshStatus);
 for(const id of ["counterStationState","counterRemoteControl","ledgerSummary","ledgerState","status","total"])observer.observe($(id),{childList:true,characterData:true,subtree:true});
 window.addEventListener("pcs-counter-role-changed",refreshStatus);
 window.addEventListener("pcs-counter-control-changed",refreshStatus);
-show("capture");
+$("pairRefresh").addEventListener("click",()=>window.counterLedger?.refreshPairing?.());
+window.addEventListener("online",refreshStatus);window.addEventListener("offline",refreshStatus);
+show("setup");

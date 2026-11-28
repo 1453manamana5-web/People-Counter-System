@@ -13,7 +13,7 @@ const source = readFileSync(new URL("./counter-app/public/people-counter/ledger-
   .replace(/await import\('\.\/counter-sync\.js\?v=\d+&try=' \+ remoteAttempts\+\+\)/,"fakeServer");
 
 function station(initial = {}) {
-  const settings = {eventId:"festival",mode:"live",role:"in",opened:0,closed:null,verified:false};
+  const settings = {eventId:"81111111-1111-4111-8111-111111111119_2026-11-24",mode:"live",role:"in",opened:0,closed:null,verified:false};
   const values = new Map(Object.entries({
     "pcs-counter-ledger-settings-v1":JSON.stringify(settings),
     "pcs-counter-device-v1":JSON.stringify("12345678-1234-1234-1234-123456789abc"),
@@ -21,7 +21,7 @@ function station(initial = {}) {
   }));
   const nodes = new Map(), notices = [], timers = new Set();
   let info = {status:"approved",role:"in",device:JSON.parse(values.get("pcs-counter-device-v1"))};
-  let config = {opened:0,closed:null,paused:false,verified:false};
+  let config = {opened:0,closed:null,paused:false,verified:false,version:1};
   const heartbeats = [], executions = [];
   let remoteCommand = null, abortAcknowledgment = false;
   const element = id => {
@@ -44,14 +44,14 @@ function station(initial = {}) {
     async heartbeatCounterStation(_eventId,health) {heartbeats.push(health);},
   };
   const context = vm.createContext({analyze,csv,estimateClock,uploadPending,initialConnection,observeConnection,sameStationScope,stationResults,performance,console,Event,
-    fakeServer,document:{getElementById:element,hidden:false,addEventListener(){}},navigator:{onLine:true},
+    fakeServer,document:{getElementById:element,hidden:false,addEventListener(){}},navigator:{onLine:initial.offline!==true},
     setTimeout(fn,ms) {const id={fn,ms};timers.add(id);return id;},clearTimeout:id=>timers.delete(id),
     setInterval:()=>0,window:{addEventListener(){},dispatchEvent(e){notices.push(e.type);},counterStationAction:async action=>{executions.push(action);return "ok";}},
     localStorage:{getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v)},
   });
   vm.runInContext(source+"\nglobalThis.check=()=>checkStation(settings,fakeServer);\nglobalThis.commandCheck=async()=>{lastCommandPoll=-Infinity;await checkStation(settings,fakeServer);await stationCommandFlight?.catch(()=>{});};",context);
   return {
-    get gate() {return context.window.counterLedger.captureBlockReason();},
+    get gate() {return context.window.counterLedger.captureBlockReason();},get paired(){return context.window.counterLedger.paired();},
     check:context.check, commandCheck:context.commandCheck, element, values, heartbeats, notices, executions,
     command(value) {remoteCommand=value;}, disconnectAck(value) {abortAcknowledgment=value;},
     station(next) {info = {...info,...next};},
@@ -77,17 +77,17 @@ test("confirmed close or pause is restored offline and a reassigned station requ
   app.control({closed:Date.now()-10});
   await app.check();
   assert.match(app.gate,/閉場/);
-  assert.match(station(Object.fromEntries(app.values)).gate,/閉場/);
+  assert.match(station({...Object.fromEntries(app.values),offline:true}).gate,/閉場/);
   app.control({closed:null,paused:true});
   await app.check();
-  assert.match(station(Object.fromEntries(app.values)).gate,/一時停止/);
+  assert.match(station({...Object.fromEntries(app.values),offline:true}).gate,/一時停止/);
   app.control({paused:false});
   app.station({role:"out"});
   await app.check();
-  assert.match(app.gate,/設置区分/);
+  assert.match(app.gate,/ペアリング承認/);
   app.station({status:"revoked"});
   await app.check();
-  assert.match(station(Object.fromEntries(app.values)).gate,/本番承認/);
+  assert.match(station({...Object.fromEntries(app.values),offline:true}).gate,/本番承認/);
 });
 
 test("reading historical operations with reordered server map keys does not invalidate the local queue",async () => {
@@ -106,12 +106,12 @@ test("reading historical operations with reordered server map keys does not inva
 test("a dedicated day waits for a versioned setting and switches according to the acknowledged settings offline",async()=>{
   const id="81111111-1111-4111-8111-111111111119_2026-11-24";
   const app=station({"pcs-counter-ledger-settings-v1":JSON.stringify({eventId:id,mode:"live",role:"in",opened:0,closed:null})});
-  assert.match(app.gate,/運用設定をまだ確認できません/);
+  assert.match(app.gate,/ペアリング承認/);
   app.control({version:1,opened:1000,paused:false});
   await app.check();
   assert.equal(app.gate,"");
   assert.equal(app.heartbeats.at(-1).configVersion,1);
-  assert.equal(station(Object.fromEntries(app.values)).gate,"");
+  assert.equal(station({...Object.fromEntries(app.values),offline:true}).gate,"");
 });
 
 test("connection indicator debounces a brief failure and requires stable recovery",()=>{
@@ -152,3 +152,5 @@ test("station keeps a remote result across a dropped acknowledgment without repe
   assert.equal(command.result,"ok");
   assert.deepEqual(app.executions,["stop"]);
 });
+
+test("pairing is mandatory, cached approval is scoped and revoked approval cannot reopen offline",async()=>{const a=station();assert.equal(a.paired,false);a.station({status:"pending"});await a.check();assert.equal(a.paired,false);a.station({status:"approved"});await a.check();assert.equal(a.paired,true);assert.equal(station(Object.fromEntries(a.values)).paired,false);assert.equal(station({...Object.fromEntries(a.values),offline:true}).paired,true);a.station({status:"missing"});await a.check();assert.equal(a.paired,false);assert.equal(station({...Object.fromEntries(a.values),offline:true}).paired,false);});

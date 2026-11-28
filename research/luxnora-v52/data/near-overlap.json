@@ -1,0 +1,14 @@
+{
+  "validation": {
+    "distinct_raw_texts": 397,
+    "training_bigram_dice_gte_0.8": 0
+  },
+  "independent": {
+    "distinct_raw_texts": 484,
+    "training_bigram_dice_gte_0.8": 0
+  },
+  "conversation": {
+    "distinct_raw_texts": 8,
+    "training_bigram_dice_gte_0.8": 0
+  }
+}

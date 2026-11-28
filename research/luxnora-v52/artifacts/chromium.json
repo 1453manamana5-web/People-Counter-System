@@ -1,0 +1,42 @@
+{
+  "browser": "156.0.8078.79",
+  "cachedOfflineNewPage": true,
+  "sizes": {
+    "browser-int8.json": {
+      "bytes": 178468,
+      "gzipBytes": 60682
+    },
+    "browser-float.json": {
+      "bytes": 1179798,
+      "gzipBytes": 530300
+    }
+  },
+  "online": {
+    "int8": {
+      "loadMs": 55.20000000298023,
+      "matches": 1000,
+      "cases": 1000,
+      "p95Ms": 0.30000000074505806
+    },
+    "float": {
+      "loadMs": 27.200000002980232,
+      "matches": 1000,
+      "cases": 1000,
+      "p95Ms": 0.20000000298023224
+    }
+  },
+  "offline": {
+    "int8": {
+      "loadMs": 32,
+      "matches": 1000,
+      "cases": 1000,
+      "p95Ms": 0.4000000022351742
+    },
+    "float": {
+      "loadMs": 51.5,
+      "matches": 1000,
+      "cases": 1000,
+      "p95Ms": 0.30000000074505806
+    }
+  }
+}

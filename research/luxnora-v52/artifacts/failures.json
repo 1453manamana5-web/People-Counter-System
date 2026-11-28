@@ -1,0 +1,8226 @@
+[
+  {
+    "text": "延べにすると正午前後の入口で何回を記録してんの",
+    "context": {
+      "mode": "live",
+      "records": "conflict"
+    },
+    "expected": {
+      "availability": {
+        "records": "conflict"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので通過履歴の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "目安でいいから開場直後の人波を予測してもらえるとうれしい",
+    "context": {
+      "mode": "live",
+      "records": "ready",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": [
+        "station.health",
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "見直しのため集計確定に進むのは待ってください",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "negate",
+      "decision": "cancel",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "台帳とは関係ないけど宿題の答えって分かりますか",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "out-of-scope",
+      "intent": "outside",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "outside",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく開催日全体の受付分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "入口について聞きたいんですけど、午後に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "午後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "さっき指定したのを引き継いで時間枠を午前へ変更して見る",
+    "context": {
+      "focus": "entrance",
+      "prior": "filter"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": [
+        "records"
+      ]
+    }
+  },
+  {
+    "text": "見直しのため開催終了に進むのは待ってください",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "negate",
+      "decision": "cancel",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "オフライン運用で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.offline"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "開場の処理は進めないことにしたので、反映せず止めて",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "negate",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので開催日全体の枠内にある出口の記録へ案内して",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": [
+        "records"
+      ]
+    }
+  },
+  {
+    "text": "受付について聞きたいんですけど、最後の1時間に拾えた人数を知りたいです",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "最後の1時間",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "バックアップ復元をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "records"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.restore"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "予定が変わりました。開場を今は実行する必要がありません",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "outside",
+      "decision": "partial",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるのでQRペアリングの流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.pair"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "向こうにある受付の機械はいま稼働中やろか",
+    "context": {
+      "focus": "none",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "partial",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "見直しのため閉場に進むのは待ってください",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "negate",
+      "decision": "cancel",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "出口について聞きたいんですけど、最後の1時間に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "exit",
+      "period": "最後の1時間",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "権限の確認をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "access"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "予定が変わりました。集計確定を今は実行する必要がありません",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "negate",
+      "decision": "partial",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "受付について聞きたいんですけど、開場直後に拾えた人数を知りたいです",
+    "context": {
+      "mode": "test",
+      "records": "conflict"
+    },
+    "expected": {
+      "availability": {
+        "records": "conflict"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "バックアップ復元で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "records"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.restore"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "正午前後はお客さんがたまりそうなのか、この先の混み方を推計できますか",
+    "context": {
+      "mode": "test",
+      "records": "ready",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "正午前後",
+      "capabilities": [
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "見直しのため開場に進むのは待ってください",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "negate",
+      "decision": "cancel",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "今週の天気を調べたい。展示の計測データを探しているわけじゃない",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "out-of-scope",
+      "intent": "outside",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "outside",
+      "decision": "partial",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので午前の枠内にある出口の記録へ案内して",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると13時から14時の両端末で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "both",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "集計確定の処理は進めないことにしたので、反映せず止めて",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "negate",
+      "decision": "cancel",
+      "role": "none",
+      "period": "none",
+      "capabilities": [
+        "analysis.summary"
+      ]
+    }
+  },
+  {
+    "text": "あとで読むので13時から14時の枠内にある入口の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので記録の出力の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.export"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "両端末側のカメラが途切れたり認識が落ちたりしていないか点検頼める",
+    "context": {
+      "focus": "entrance",
+      "telemetry": "missing"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "missing"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": [
+        "station.health"
+      ]
+    }
+  },
+  {
+    "text": "予定が変わりました。閉場を今は実行する必要がありません",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "negate",
+      "decision": "partial",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "台帳とは関係ないけど別の学校の出席簿って分かりますか",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "out-of-scope",
+      "intent": "outside",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "outside",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると10時から11時の受付で何回を記録してんの",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるのでオフライン運用の流れだけ知りたい",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.offline"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "向こうにある受付の機械はいま稼働中やろか",
+    "context": {
+      "focus": "entrance",
+      "telemetry": "missing"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "missing"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "予定が変わりました。開催終了を今は実行する必要がありません",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "negate",
+      "decision": "partial",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "一年ごとのズレを見たいので入口の午前を去年と突き合わせて",
+    "context": {
+      "mode": "live",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "compare",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "午前",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "出口について聞きたいんですけど、13時から14時に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "exit",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "入退場の集計をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "閉場の処理は進めないことにしたので、反映せず止めて",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "negate",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "来場の記録ではないけど為替レートについて予測を頼める",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "out-of-scope",
+      "intent": "outside",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "outside",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく午前の入口分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "compare",
+      "decision": "partial",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "両端末について聞きたいんですけど、午後に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "both",
+      "period": "午後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で午後だけを残してもらえる",
+    "context": {
+      "focus": "exit",
+      "prior": "none"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "exit",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "開催終了の処理は進めないことにしたので、反映せず止めて",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "cancel",
+      "intent": "negate",
+      "mode": "none",
+      "negated": true,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "negate",
+      "decision": "cancel",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "台帳とは関係ないけど為替レートって分かりますか",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "out-of-scope",
+      "intent": "outside",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "outside",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく13時から14時の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "exit",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると正午前後の受付で何回を記録してんの",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "バックアップ復元をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.restore"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "目安でいいから開場直後の人波を予測してもらえるとうれしい",
+    "context": {
+      "mode": "live",
+      "records": "ready",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": [
+        "station.health",
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "一年ごとのズレを見たいので入口の午後を去年と突き合わせて",
+    "context": {
+      "mode": "live",
+      "past": "mismatch"
+    },
+    "expected": {
+      "availability": {
+        "past": "mismatch"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "compare",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "compare",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "午後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると10時から11時の受付で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "時間帯グラフをした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "analysis"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.range"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "さっき指定したのを引き継いで時間枠を午前へ変更して見る",
+    "context": {
+      "focus": "none",
+      "prior": "count"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": [
+        "analysis.summary"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく開場直後の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "exit",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "受付について聞きたいんですけど、午前に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく午後の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "午後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるのでカメラ設置の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.setup"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "両端末側のカメラが途切れたり認識が落ちたりしていないか点検頼める",
+    "context": {
+      "focus": "entrance",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": [
+        "station.health"
+      ]
+    }
+  },
+  {
+    "text": "入退場の集計で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で開場直後だけを残してもらえる",
+    "context": {
+      "focus": "none",
+      "prior": "count"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": [
+        "analysis.summary"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく開催日全体の両端末分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると午前の入口で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "入退場の集計で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "analysis"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で正午前後だけを残してもらえる",
+    "context": {
+      "focus": "exit",
+      "prior": "count"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "answer",
+      "role": "exit",
+      "period": "none",
+      "capabilities": [
+        "analysis.summary"
+      ]
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので混雑予測の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で10時から11時だけを残してもらえる",
+    "context": {
+      "focus": "none",
+      "prior": "none"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "為替レートを調べたい。展示の計測データを探しているわけじゃない",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "out-of-scope",
+      "intent": "outside",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "outside",
+      "decision": "partial",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく10時から11時の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "exit",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるのでオフライン運用の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.offline"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "次の作業として開催終了へ切り替える操作を頼む",
+    "context": {
+      "authorized": true,
+      "finalized": false,
+      "mode": "live",
+      "review": "ready",
+      "stage": "restricted"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "event.lifecycle"
+      ],
+      "confirmation_required": true,
+      "decision": "blocked",
+      "intent": "approve",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "approve",
+      "decision": "confirm",
+      "role": "none",
+      "period": "none",
+      "capabilities": [
+        "event.lifecycle"
+      ]
+    }
+  },
+  {
+    "text": "一年ごとのズレを見たいので出口の開催日全体を去年と突き合わせて",
+    "context": {
+      "mode": "live",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "compare",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "answer",
+      "role": "exit",
+      "period": "開催日全体",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく最後の1時間の入口分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "最後の1時間",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "開場直後はお客さんがたまりそうなのか、この先の混み方を推計できますか",
+    "context": {
+      "mode": "test",
+      "records": "ready",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "台帳とは関係ないけど今週の天気って分かりますか",
+    "context": {},
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "out-of-scope",
+      "intent": "outside",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "outside",
+      "decision": "partial",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので正午前後の枠内にある入口の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "受付の午前が昨年と同じか上なら診断は要らないので、下なら調べる流れで",
+    "context": {
+      "comparison": "higher",
+      "mode": "live",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "conditional",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "端末診断をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で正午前後だけを残してもらえる",
+    "context": {
+      "focus": "exit",
+      "prior": "none"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "exit",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので開場直後の枠内にある受付の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "人物認識の仕組みをした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.vision"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "10時から11時はお客さんがたまりそうなのか、この先の混み方を推計できますか",
+    "context": {
+      "mode": "live",
+      "records": "ready",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "出口について聞きたいんですけど、13時から14時に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "exit",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "予定時刻の編集で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "event.schedule"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で午前だけを残してもらえる",
+    "context": {
+      "focus": "exit",
+      "prior": "ambiguous"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "exit",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "一年ごとのズレを見たいので両端末の10時から11時を去年と突き合わせて",
+    "context": {
+      "mode": "test",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "compare",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "partial",
+      "role": "both",
+      "period": "10時から11時",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "あとで読むので開催日全体の枠内にある入口の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "受付について聞きたいんですけど、10時から11時に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "QRペアリングで迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.pair"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "どれほど混み合うか最後の1時間について前もって分かる",
+    "context": {
+      "mode": "test",
+      "records": "ready",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "最後の1時間",
+      "capabilities": [
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "前に頼んだ対象で10時から11時だけを残してもらえる",
+    "context": {
+      "focus": "exit",
+      "prior": "compare"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "answer",
+      "role": "exit",
+      "period": "none",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "たしか昨年と違う気がする、最後の1時間入口の対照は出せる",
+    "context": {
+      "mode": "test",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "compare",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "compare",
+      "decision": "partial",
+      "role": "exit",
+      "period": "最後の1時間",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "入口の履歴のうち時間が10時から11時に該当する行だけを一覧にして",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前年実績を基準に最後の1時間出口を見て、減少を確認できたケースに限り装置を点検して",
+    "context": {
+      "comparison": "lower",
+      "mode": "live",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare",
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "conditional",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": true,
+      "period": "最後の1時間",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "answer",
+      "role": "exit",
+      "period": "最後の1時間",
+      "capabilities": [
+        "station.health",
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "次の作業として集計確定へ切り替える操作を頼む",
+    "context": {
+      "authorized": true,
+      "finalized": false,
+      "mode": "live",
+      "review": "ready",
+      "stage": "finished"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "event.lifecycle"
+      ],
+      "confirmation_required": true,
+      "decision": "confirm",
+      "intent": "approve",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "approve",
+      "decision": "blocked",
+      "role": "none",
+      "period": "none",
+      "capabilities": [
+        "event.lifecycle"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく正午前後の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "exit",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "受付について聞きたいんですけど、午前に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "人物認識の仕組みをした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.vision"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "どれほど混み合うか開場直後について前もって分かる",
+    "context": {
+      "mode": "live",
+      "records": "ready",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく午前の入口分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるのでバックアップ復元の流れだけ知りたい",
+    "context": {
+      "screen": "records"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.restore"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "受付について聞きたいんですけど、開催日全体に拾えた人数を知りたいです",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので時間帯グラフの流れだけ知りたい",
+    "context": {
+      "screen": "analysis"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.range"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "どれほど混み合うか午前について前もって分かる",
+    "context": {
+      "mode": "test",
+      "records": "ready",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "午前",
+      "capabilities": [
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "出口側のカメラが途切れたり認識が落ちたりしていないか点検頼める",
+    "context": {
+      "focus": "entrance",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": [
+        "station.health"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく午前の両端末分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "人物認識の仕組みで迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.vision"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "開催日全体はお客さんがたまりそうなのか、この先の混み方を推計できますか",
+    "context": {
+      "mode": "live",
+      "records": "missing",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく最後の1時間の両端末分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "最後の1時間",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "カメラ設置をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.setup"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "出口で記録が止まってないか、装置から何が届いているか確認したい",
+    "context": {
+      "focus": "none",
+      "telemetry": "missing"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "missing"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "partial",
+      "role": "none",
+      "period": "none",
+      "capabilities": [
+        "station.health"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく午前の受付分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "記録の出力で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "records"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.export"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "さっき指定したのを引き継いで時間枠を午前へ変更して見る",
+    "context": {
+      "focus": "entrance",
+      "prior": "count"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": [
+        "analysis.summary"
+      ]
+    }
+  },
+  {
+    "text": "会場内の計測記録の修正をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "records"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "records.edit"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "一年ごとのズレを見たいので入口の正午前後を去年と突き合わせて",
+    "context": {
+      "mode": "test",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "compare",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "正午前後",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく13時から14時の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "exit",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "入口について聞きたいんですけど、最後の1時間に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "最後の1時間",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "時間帯グラフで迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "analysis"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.range"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "目安でいいから10時から11時の人波を予測してもらえるとうれしい",
+    "context": {
+      "mode": "test",
+      "records": "ready",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": [
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "さっき指定したのを引き継いで時間枠を午後へ変更して見る",
+    "context": {
+      "focus": "none",
+      "prior": "none"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので13時から14時の枠内にある受付の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "正午前後の分を区切って入口の確かめられた通過数はいくつ",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "記録の出力をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.export"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "開場直後はお客さんがたまりそうなのか、この先の混み方を推計できますか",
+    "context": {
+      "mode": "live",
+      "records": "ready",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "カメラ設置で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.setup"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "入口について聞きたいんですけど、開催日全体に拾えた人数を知りたいです",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "端末診断をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "出口について聞きたいんですけど、10時から11時に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "exit",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "QRペアリングをした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.pair"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく開催日全体の入口分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "compare",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前年実績を基準に午後入口を見て、減少を確認できたケースに限り装置を点検して",
+    "context": {
+      "comparison": "lower",
+      "mode": "live",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare",
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "conditional",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": true,
+      "period": "午後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "午後",
+      "capabilities": [
+        "station.health",
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "出口について聞きたいんですけど、開催日全体に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "exit",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "記録の出力をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "records"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.export"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので午前の枠内にある両端末の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "both",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "人物認識の仕組みで迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.vision"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "どれほど混み合うか13時から14時について前もって分かる",
+    "context": {
+      "mode": "live",
+      "records": "ready",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "13時から14時",
+      "capabilities": [
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "さっき指定したのを引き継いで時間枠を午後へ変更して見る",
+    "context": {
+      "focus": "exit",
+      "prior": "compare"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "answer",
+      "role": "exit",
+      "period": "none",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "受付について聞きたいんですけど、13時から14時に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "conflict"
+    },
+    "expected": {
+      "availability": {
+        "records": "conflict"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので10時から11時の枠内にある出口の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": [
+        "records"
+      ]
+    }
+  },
+  {
+    "text": "延べにすると10時から11時の出口で何回を記録してんの",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "exit",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "端末診断で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので午後の枠内にある両端末の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "both",
+      "period": "午後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "両端末について聞きたいんですけど、開場直後に拾えた人数を知りたいです",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "both",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので混雑予測の流れだけ知りたい",
+    "context": {
+      "screen": "analysis"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると10時から11時の受付で何回を記録してんの",
+    "context": {
+      "mode": "live",
+      "records": "conflict"
+    },
+    "expected": {
+      "availability": {
+        "records": "conflict"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "QRペアリングで迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.pair"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "開催日全体はお客さんがたまりそうなのか、この先の混み方を推計できますか",
+    "context": {
+      "mode": "live",
+      "records": "missing",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing",
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で最後の1時間だけを残してもらえる",
+    "context": {
+      "focus": "none",
+      "prior": "count"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": [
+        "analysis.summary"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく開場直後の入口分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "compare",
+      "decision": "partial",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "13時から14時の分を区切って入口の確かめられた通過数はいくつ",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "開催日の新規作成で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "event.create"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "どれほど混み合うか午後について前もって分かる",
+    "context": {
+      "mode": "live",
+      "records": "ready",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "午後",
+      "capabilities": [
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "あとで読むので10時から11時の枠内にある両端末の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "入退場の集計をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "analysis"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で午後だけを残してもらえる",
+    "context": {
+      "focus": "exit",
+      "prior": "ambiguous"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "exit",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく10時から11時の受付分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "出口について聞きたいんですけど、正午前後に拾えた人数を知りたいです",
+    "context": {
+      "mode": "live",
+      "records": "conflict"
+    },
+    "expected": {
+      "availability": {
+        "records": "conflict"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "exit",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "開催日の新規作成をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "event.create"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく正午前後の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "exit",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "端末診断で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "どれほど混み合うか開催日全体について前もって分かる",
+    "context": {
+      "mode": "live",
+      "records": "ready",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": [
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく正午前後の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "exit",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "入口について聞きたいんですけど、午前に拾えた人数を知りたいです",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので閉場後の集計確定の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "event.lifecycle"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "開催日全体はお客さんがたまりそうなのか、この先の混み方を推計できますか",
+    "context": {
+      "mode": "test",
+      "records": "ready",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前年実績を基準に午前両端末を見て、減少を確認できたケースに限り装置を点検して",
+    "context": {
+      "comparison": "lower",
+      "mode": "live",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare",
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "conditional",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": true,
+      "period": "午前",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "answer",
+      "role": "both",
+      "period": "午前",
+      "capabilities": [
+        "station.health",
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく午前の両端末分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "QRペアリングをした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.pair"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "午前はお客さんがたまりそうなのか、この先の混み方を推計できますか",
+    "context": {
+      "mode": "test",
+      "records": "ready",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので正午前後の枠内にある受付の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "オフライン運用をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.offline"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので午前の枠内にある受付の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると最後の1時間の両端末で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "conflict"
+    },
+    "expected": {
+      "availability": {
+        "records": "conflict"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "both",
+      "period": "最後の1時間",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので年度比較の流れだけ知りたい",
+    "context": {
+      "screen": "analysis"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "目安でいいから最後の1時間の人波を予測してもらえるとうれしい",
+    "context": {
+      "mode": "test",
+      "records": "ready",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "最後の1時間",
+      "capabilities": [
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "さっき指定したのを引き継いで時間枠を午後へ変更して見る",
+    "context": {
+      "focus": "exit",
+      "prior": "count"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "answer",
+      "role": "exit",
+      "period": "none",
+      "capabilities": [
+        "analysis.summary"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく午前の受付分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると13時から14時の出口で何回を記録してんの",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "exit",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるのでQRペアリングの流れだけ知りたい",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.pair"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で午前だけを残してもらえる",
+    "context": {
+      "focus": "none",
+      "prior": "none"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく開催日全体の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "exit",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "バックアップ復元で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.restore"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく午後の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "午後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると開催日全体の両端末で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "both",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるのでカメラ設置の流れだけ知りたい",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.setup"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく開場直後の入口分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "オフライン運用をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.offline"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "予定時刻の編集をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "event.schedule"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "どれほど混み合うか10時から11時について前もって分かる",
+    "context": {
+      "mode": "live",
+      "records": "ready",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "出口で記録が止まってないか、装置から何が届いているか確認したい",
+    "context": {
+      "focus": "none",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": [
+        "station.health"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく午前の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると開催日全体の受付で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "conflict"
+    },
+    "expected": {
+      "availability": {
+        "records": "conflict"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "カメラ設置で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.setup"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "試験と本番で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "mode"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "両端末側のカメラが途切れたり認識が落ちたりしていないか点検頼める",
+    "context": {
+      "focus": "entrance",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": [
+        "station.health"
+      ]
+    }
+  },
+  {
+    "text": "延べにすると正午前後の受付で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "conflict"
+    },
+    "expected": {
+      "availability": {
+        "records": "conflict"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるのでバックアップ復元の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.restore"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で午後だけを残してもらえる",
+    "context": {
+      "focus": "none",
+      "prior": "none"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "一年ごとのズレを見たいので受付の開場直後を去年と突き合わせて",
+    "context": {
+      "mode": "live",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "compare",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "answer",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "あとで読むので10時から11時の枠内にある出口の記録へ案内して",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "両端末について聞きたいんですけど、午後に拾えた人数を知りたいです",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "both",
+      "period": "午後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "会場内の計測記録の修正で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "records"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "records.edit"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "一年ごとのズレを見たいので入口の開催日全体を去年と突き合わせて",
+    "context": {
+      "mode": "test",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "compare",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "開催日全体",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "延べにすると開場直後の受付で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく正午前後の両端末分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので人物認識の仕組みの流れだけ知りたい",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.vision"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "どれほど混み合うか開場直後について前もって分かる",
+    "context": {
+      "mode": "live",
+      "records": "ready",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": [
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "あとで読むので最後の1時間の枠内にある入口の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "最後の1時間",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると開場直後の受付で何回を記録してんの",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "none",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "混雑予測をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で開催日全体だけを残してもらえる",
+    "context": {
+      "focus": "none",
+      "prior": "none"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "出口で記録が止まってないか、装置から何が届いているか確認したい",
+    "context": {
+      "focus": "entrance",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": [
+        "station.health"
+      ]
+    }
+  },
+  {
+    "text": "時間帯グラフをした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.range"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "一年ごとのズレを見たいので受付の午後を去年と突き合わせて",
+    "context": {
+      "mode": "live",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "compare",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "answer",
+      "role": "none",
+      "period": "午後",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく正午前後の両端末分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "カメラ設置をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "stations"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.setup"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "向こうにある受付の機械はいま稼働中やろか",
+    "context": {
+      "focus": "exit",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "partial",
+      "role": "exit",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "一年ごとのズレを見たいので入口の正午前後を去年と突き合わせて",
+    "context": {
+      "mode": "live",
+      "past": "missing"
+    },
+    "expected": {
+      "availability": {
+        "past": "missing"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "compare",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "compare",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく午後の受付分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "none",
+      "period": "午後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "閉場後の集計確定をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "event.lifecycle"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で10時から11時だけを残してもらえる",
+    "context": {
+      "focus": "none",
+      "prior": "compare"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "あとで読むので正午前後の枠内にある両端末の記録へ案内して",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "both",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると午後の入口で何回を記録してんの",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "午後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "権限の確認で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "access"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "開催日全体の分を区切って出口の確かめられた通過数はいくつ",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "exit",
+      "period": "開催日全体",
+      "capabilities": [
+        "analysis.summary"
+      ]
+    }
+  },
+  {
+    "text": "閉場後の集計確定で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "event.lifecycle"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "入口の履歴のうち時間が最後の1時間に該当する行だけを一覧にして",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "最後の1時間",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "時間帯グラフで迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.range"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので時間帯グラフの流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.range"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "目安でいいから13時から14時の人波を予測してもらえるとうれしい",
+    "context": {
+      "mode": "test",
+      "records": "ready",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "13時から14時",
+      "capabilities": [
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "あとで読むので正午前後の枠内にある入口の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので記録の出力の流れだけ知りたい",
+    "context": {
+      "screen": "records"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.export"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で最後の1時間だけを残してもらえる",
+    "context": {
+      "focus": "exit",
+      "prior": "compare"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "最後の1時間",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "answer",
+      "role": "exit",
+      "period": "最後の1時間",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "正午前後の分を区切って受付の確かめられた通過数はいくつ",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので試験と本番の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "mode"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく午後の入口分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "none",
+      "period": "午後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので人物認識の仕組みの流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.vision"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく13時から14時の入口分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "試験と本番をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "mode"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく正午前後の両端末分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "partial",
+      "role": "none",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "受付について聞きたいんですけど、13時から14時に拾えた人数を知りたいです",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "none",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく午前の受付分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "オフライン運用で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "station.offline"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で開催日全体だけを残してもらえる",
+    "context": {
+      "focus": "none",
+      "prior": "ambiguous"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので入退場の集計の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので開催日の新規作成の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "event.create"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "どれほど混み合うか午後について前もって分かる",
+    "context": {
+      "mode": "test",
+      "records": "ready",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "answer",
+      "role": "none",
+      "period": "午後",
+      "capabilities": [
+        "analysis.forecast"
+      ]
+    }
+  },
+  {
+    "text": "一年ごとのズレを見たいので入口の開場直後を去年と突き合わせて",
+    "context": {
+      "mode": "live",
+      "past": "missing"
+    },
+    "expected": {
+      "availability": {
+        "past": "missing"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "compare",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "compare",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "開場直後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると10時から11時の入口で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので会場内の計測記録の修正の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "records.edit"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "一年ごとのズレを見たいので出口の午後を去年と突き合わせて",
+    "context": {
+      "mode": "live",
+      "past": "verified"
+    },
+    "expected": {
+      "availability": {
+        "past": "verified"
+      },
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "compare",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "conditional",
+      "decision": "answer",
+      "role": "exit",
+      "period": "午後",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "会場内の計測記録の修正で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "records.edit"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので午後の枠内にある出口の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "午後",
+      "capabilities": [
+        "records"
+      ]
+    }
+  },
+  {
+    "text": "延べにすると13時から14時の両端末で何回を記録してんの",
+    "context": {
+      "mode": "live",
+      "records": "conflict"
+    },
+    "expected": {
+      "availability": {
+        "records": "conflict"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "both",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので予定時刻の編集の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "event.schedule"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "出口側のカメラが途切れたり認識が落ちたりしていないか点検頼める",
+    "context": {
+      "focus": "entrance",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": [
+        "station.health"
+      ]
+    }
+  },
+  {
+    "text": "全時間じゃなく10時から11時の受付分を見る画面に切り替えて",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると13時から14時の入口で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "entrance",
+      "period": "13時から14時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので権限の確認の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "access"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので午前の枠内にある出口の記録へ案内して",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "午前",
+      "capabilities": [
+        "records"
+      ]
+    }
+  },
+  {
+    "text": "10時から11時の分を区切って出口の確かめられた通過数はいくつ",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "exit",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "会場内の計測記録の修正をした経験がないので画面で何を順に見るか説明できますか",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "records.edit"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で正午前後だけを残してもらえる",
+    "context": {
+      "focus": "entrance",
+      "prior": "none"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "正午前後の分を区切って出口の確かめられた通過数はいくつ",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "exit",
+      "period": "正午前後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "記録の出力で迷わないよう、いきなり実行せずに進め方を聞きたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "data.export"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で正午前後だけを残してもらえる",
+    "context": {
+      "focus": "entrance",
+      "prior": "filter"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "正午前後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": [
+        "records"
+      ]
+    }
+  },
+  {
+    "text": "延べにすると10時から11時の出口で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "conflict"
+    },
+    "expected": {
+      "availability": {
+        "records": "conflict"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "10時から11時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "exit",
+      "period": "10時から11時",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "作業そのものは手でやるので年度比較の流れだけ知りたい",
+    "context": {
+      "screen": "events"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "guide",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "guide",
+      "decision": "answer",
+      "role": "none",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "さっき指定したのを引き継いで時間枠を午前へ変更して見る",
+    "context": {
+      "focus": "entrance",
+      "prior": "ambiguous"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると午後の両端末で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "missing"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "both"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "both",
+      "period": "午後",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "午前はお客さんがたまりそうなのか、この先の混み方を推計できますか",
+    "context": {
+      "mode": "live",
+      "records": "ready",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready",
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "全時間じゃなく午前の出口分を見る画面に切り替えて",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "延べにすると午前の出口で何回を記録してんの",
+    "context": {
+      "mode": "test",
+      "records": "conflict"
+    },
+    "expected": {
+      "availability": {
+        "records": "conflict"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午前",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "partial",
+      "role": "exit",
+      "period": "午前",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "開催日全体はお客さんがたまりそうなのか、この先の混み方を推計できますか",
+    "context": {
+      "mode": "test",
+      "records": "missing",
+      "telemetry": "fresh"
+    },
+    "expected": {
+      "availability": {
+        "records": "missing",
+        "telemetry": "fresh"
+      },
+      "capabilities": [
+        "analysis.forecast"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "forecast",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "forecast",
+      "decision": "partial",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "さっき指定したのを引き継いで時間枠を午後へ変更して見る",
+    "context": {
+      "focus": "entrance",
+      "prior": "compare"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [
+        "analysis.compare"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "午後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "answer",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": [
+        "analysis.compare"
+      ]
+    }
+  },
+  {
+    "text": "出口で記録が止まってないか、装置から何が届いているか確認したい",
+    "context": {
+      "focus": "none",
+      "telemetry": "stale"
+    },
+    "expected": {
+      "availability": {
+        "telemetry": "stale"
+      },
+      "capabilities": [
+        "station.health"
+      ],
+      "confirmation_required": false,
+      "decision": "partial",
+      "intent": "health",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "none",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "health",
+      "decision": "partial",
+      "role": "none",
+      "period": "none",
+      "capabilities": [
+        "station.health"
+      ]
+    }
+  },
+  {
+    "text": "延べにすると開催日全体の受付で何回を記録してんの",
+    "context": {
+      "mode": "live",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "live",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "受付について聞きたいんですけど、開催日全体に拾えた人数を知りたいです",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "analysis.summary"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "count",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開催日全体",
+      "role": "none"
+    },
+    "actual": {
+      "intent": "count",
+      "decision": "answer",
+      "role": "none",
+      "period": "開催日全体",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "前に頼んだ対象で開場直後だけを残してもらえる",
+    "context": {
+      "focus": "entrance",
+      "prior": "none"
+    },
+    "expected": {
+      "availability": {},
+      "capabilities": [],
+      "confirmation_required": false,
+      "decision": "clarify",
+      "intent": "reference",
+      "mode": "none",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "開場直後",
+      "role": "entrance"
+    },
+    "actual": {
+      "intent": "reference",
+      "decision": "clarify",
+      "role": "entrance",
+      "period": "none",
+      "capabilities": []
+    }
+  },
+  {
+    "text": "あとで読むので13時から14時の枠内にある出口の記録へ案内して",
+    "context": {
+      "mode": "test",
+      "records": "ready"
+    },
+    "expected": {
+      "availability": {
+        "records": "ready"
+      },
+      "capabilities": [
+        "records"
+      ],
+      "confirmation_required": false,
+      "decision": "answer",
+      "intent": "filter",
+      "mode": "test",
+      "negated": false,
+      "ordered_diagnosis": false,
+      "period": "13時から14時",
+      "role": "exit"
+    },
+    "actual": {
+      "intent": "filter",
+      "decision": "answer",
+      "role": "none",
+      "period": "13時から14時",
+      "capabilities": [
+        "records"
+      ]
+    }
+  }
+]

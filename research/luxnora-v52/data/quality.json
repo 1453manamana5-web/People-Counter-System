@@ -1,0 +1,107 @@
+{
+  "train": {
+    "records": 5000,
+    "unique_utterances": 1394,
+    "families": 80,
+    "unique_utterance_outcomes": 4086,
+    "context_contrasts": 1006,
+    "decisions": {
+      "partial": 2629,
+      "answer": 1516,
+      "blocked": 534,
+      "cancel": 24,
+      "out-of-scope": 48,
+      "clarify": 234,
+      "confirm": 15
+    },
+    "tasks": {
+      "count": 549,
+      "filter": 549,
+      "approve": 549,
+      "guide": 248,
+      "health": 288,
+      "conditional": 549,
+      "reference": 549,
+      "compare": 549,
+      "compound": 549,
+      "forecast": 549,
+      "negate": 24,
+      "outside": 48
+    }
+  },
+  "validation": {
+    "records": 1000,
+    "unique_utterances": 397,
+    "families": 25,
+    "unique_utterance_outcomes": 822,
+    "context_contrasts": 196,
+    "decisions": {
+      "answer": 346,
+      "blocked": 100,
+      "partial": 486,
+      "clarify": 42,
+      "out-of-scope": 16,
+      "cancel": 8,
+      "confirm": 2
+    },
+    "tasks": {
+      "count": 102,
+      "approve": 102,
+      "conditional": 102,
+      "compound": 101,
+      "filter": 101,
+      "reference": 101,
+      "forecast": 101,
+      "outside": 16,
+      "compare": 101,
+      "guide": 93,
+      "health": 72,
+      "negate": 8
+    }
+  },
+  "independent": {
+    "records": 1000,
+    "unique_utterances": 484,
+    "families": 36,
+    "unique_utterance_outcomes": 836,
+    "context_contrasts": 197,
+    "decisions": {
+      "blocked": 92,
+      "partial": 494,
+      "answer": 331,
+      "clarify": 42,
+      "cancel": 12,
+      "out-of-scope": 24,
+      "confirm": 5
+    },
+    "tasks": {
+      "approve": 97,
+      "compare": 97,
+      "filter": 97,
+      "compound": 97,
+      "conditional": 97,
+      "count": 97,
+      "guide": 93,
+      "forecast": 97,
+      "reference": 96,
+      "health": 96,
+      "negate": 12,
+      "outside": 24
+    }
+  },
+  "conversation": {
+    "records": 200,
+    "unique_utterances": 8,
+    "families": 5,
+    "unique_utterance_outcomes": 195,
+    "context_contrasts": 8,
+    "decisions": {
+      "answer": 104,
+      "clarify": 54,
+      "partial": 42
+    },
+    "tasks": {
+      "reference": 200
+    }
+  }
+}

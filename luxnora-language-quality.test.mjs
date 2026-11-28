@@ -247,3 +247,16 @@ const entries=interpret("午前中の入場人数").plans[0];
 assert.equal(interpret("じゃあ午後は？",entries).plans[0].period,"pm");
 assert.equal(interpret("一日全体で",entries).plans[0].period,undefined);
 });
+
+test("short answers resolve clarification and explicit current time clears inherited range",()=>{
+  assert.equal(interpret("人数").plans.length,0);
+  assert.equal(interpret("入場").plans[0].intent,"entries");
+  assert.equal(interpret("滞在").plans[0].intent,"occupancy");
+  assert.equal(interpret("退場").plans[0].intent,"exits");
+  assert.equal(interpret("今何人いる",{intent:"occupancy",period:"am"}).plans[0].period,undefined);
+});
+test("negative or contradictory operation cannot produce an executable proposal",()=>{
+  for(const input of ["開場してほしくない","閉場してはいけない","開場して閉場して","開場して、それはせんといて"]){
+    assert.ok(interpret(input).plans.every(p=>!p.operation&&!p.schedule));
+  }
+});

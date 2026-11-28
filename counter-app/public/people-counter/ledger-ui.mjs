@@ -13,6 +13,7 @@ let clock = load('pcs-counter-clock-v1');
 let device = load('pcs-counter-device-v1');
 let store;
 let result;
+let resultScope;
 let editParent;
 let editTimeSource;
 let editing = false;
@@ -281,6 +282,7 @@ async function refresh() {
   const windowSettings = control ? {...config,...control} : config;
   result = analyze(rows, {...windowSettings, verified: windowSettings.verified && windowSettings.closed != null &&
     lastSuccessfulPull >= windowSettings.closed && network === 'オンライン'});
+  resultScope = config;
   const {entries, exits, occupancy, area, sumAverage, integralAverage, estimate, issues} = result;
   $('ledgerSummary').textContent = [
     '入場 ' + entries + '人　退場 ' + exits + '人　滞在人数 ' + occupancy + '人',
@@ -588,7 +590,7 @@ function attach(value) {
   schedule(500);
   scheduleControl(500);
 }
-window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, attach, changed, captureBlockReason};
+window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, summary: () => result && resultScope === settings ? {entries:result.entries,exits:result.exits,occupancy:result.occupancy,mode:settings.mode} : null, attach, changed, captureBlockReason};
 if (window.counterRecordStore) attach(window.counterRecordStore);
 fillRecord();
 renderState();
@@ -601,7 +603,7 @@ async function offlineLabel() {
   if (navigator.serviceWorker?.controller?.scriptURL.endsWith('/counter-offline.js') && load(preparedKey)) {
     try {
       const requests = await (await caches.open('pcs-counter-model-assets-v1')).keys();
-      ready = (await caches.keys()).includes('pcs-counter-v19') &&
+      ready = (await caches.keys()).includes('pcs-counter-v20') &&
         requests.some(r => r.url.endsWith('/efficientdet_lite0.tflite')) &&
         requests.some(r => r.url.endsWith('/quant2/075/model-stride16.json'));
     } catch {}

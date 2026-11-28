@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#f5f6f8">
 <meta name="description" content="交通研究部 人数計測アプリ。映像は保存・送信しません。">
 <title>人数計測 | 交通研究部</title>
-<link rel="stylesheet" href="./style.css?v=18">
+<link rel="stylesheet" href="./style.css?v=19">
 </head>
 <body>
 <div class="shell station-shell">
@@ -52,12 +52,12 @@
           </div>
 <section class="station-panel capture-panel" data-screen="capture">
 <div class="card count-card">
-            <div class="section-head"><h2>端末内カウンター</h2><span class="local-pill">試験セッション</span></div>
-            <div class="count-number"><span id="total">0</span><small>人</small></div>
-            <div class="count-foot"><span>最新の記録</span><strong id="latest">まだありません</strong></div>
-            <p class="hint">端末内の試験セッションの累計です。イベント集計とは区別されます。</p>
-          </div>
-<div class="card event-totals"><h2>イベント集計</h2><p id="stationEventTotals">端末設定後に表示します。</p><p class="hint">端末内記録と同期済み記録の集計</p></div>
+  <div class="section-head"><h2 id="stationCountLabel">端末内の試験回数</h2><span class="local-pill" id="stationCountMode">未設定</span></div>
+  <div class="count-number"><span id="stationCount">0</span><small>人</small></div>
+  <p class="hint" id="stationCountNote">未接続の試験セッションの回数です。</p>
+  <div class="count-foot"><span>端末の最新記録</span><strong id="latest">まだありません</strong></div>
+  <p id="stationEventTotals" class="station-event-totals"></p>
+</div>
 <div class="card station-quick"><h2>接続状態</h2><p id="stationApproval">未設定</p><p id="stationControl"></p><button type="button" class="button secondary" data-go="setup">接続を確認</button></div>
 </section>
 <section class="station-panel" data-screen="setup" hidden>
@@ -235,7 +235,7 @@
         <button id="exportPendingJson" type="button" class="button secondary">未同期記録のJSONを保存</button></details></section>
 <div class="card log-card">
             <div class="section-head"><h2>端末内の試験記録</h2><button type="button" class="text-button" id="exportButton" disabled>CSV出力</button></div>
-            <ul id="history" class="history"><li class="empty">まだ記録がありません</li></ul>
+            <p class="hint">試験セッションの累計：<strong id="total">0</strong> 人</p><ul id="history" class="history"><li class="empty">まだ記録がありません</li></ul>
             <div class="manual-controls"><button id="addButton" class="button add" disabled type="button">＋1 訂正</button><button id="minusButton" class="button subtract" disabled type="button">－1 訂正</button></div><button type="button" id="resetButton" class="button outline full" disabled>新しい試験を開始（0人に戻す）</button>
           </div>
 <div class="notice"><strong>端末内保存と同期</strong><p>カメラ映像は端末内で解析し、録画・保存・送信や顔認証は行いません。通過記録だけを同期します。Safariのデータ削除で端末内記録が消える可能性があります。</p></div>
@@ -244,9 +244,9 @@
 <footer>人数計測 · 映像は保存しません</footer>
 </main>
 </div>
-<script type="module" src="./ledger-ui.mjs?v=18"></script>
+<script type="module" src="./ledger-ui.mjs?v=19"></script>
 <script type="module" src="./adaptive-ui.mjs?v=17"></script>
 <script type="module" src="./app.js?v=17"></script>
-<script type="module" src="./station-ui.mjs?v=1"></script>
+<script type="module" src="./station-ui.mjs?v=2"></script>
 </body>
 </html>

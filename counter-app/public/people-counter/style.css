@@ -120,3 +120,5 @@ footer{font-size:11px;text-align:center;color:#8997a6;margin-top:29px}
 .station-workspace .diagnostics{font-size:12px;overflow-wrap:anywhere;white-space:pre-wrap}
 .station-workspace #ledgerIssues{font-size:12px;overflow-wrap:anywhere}
 @media(max-width:760px){.station-main{padding:12px 12px 24px}.station-workspace{grid-template-columns:minmax(0,1fr)}.station-workspace .camera-frame{min-height:0}.station-workspace .count-number span{font-size:76px}.station-nav{padding:6px 8px}.station-nav button{font-size:13px}}
+
+.station-event-totals{margin:8px 0 0;font-size:12px;line-height:1.7;color:#526176;border-top:1px solid #e7ecf2;padding-top:10px}.station-event-totals:empty{display:none}.station-workspace .count-number span{overflow-wrap:anywhere;min-width:0}

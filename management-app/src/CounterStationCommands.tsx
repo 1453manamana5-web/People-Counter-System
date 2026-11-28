@@ -48,9 +48,8 @@ async function issue(day:string,stationUid:string,action:Action) {
 }
 
 export function CounterPairPanel({day,enabled,eventName}:{day:string;enabled:boolean;eventName?:string}) {
-  const [linkRole,setLinkRole]=useState<"in"|"out">("in");
   const link=new URL("../people-counter/",window.location.href);
-  link.searchParams.set("day",day);link.searchParams.set("role",linkRole);
+  link.searchParams.set("day",day);
   if(eventName)link.searchParams.set("name",eventName.slice(0,100));
   const qr=QRCode.create(link.href,{errorCorrectionLevel:"M"}).modules;
   const qrPath=Array.from({length:qr.size},(_,y)=>Array.from({length:qr.size},(_,x)=>qr.get(y,x)?`M${x+4} ${y+4}h1v1h-1z`:"").join("")).join("");
@@ -79,14 +78,10 @@ export function CounterPairPanel({day,enabled,eventName}:{day:string;enabled:boo
     <h2>受付端末を接続</h2>
     {!enabled?<p className="cm-caption">現在は接続できません。開催日と管理画面の接続状態を確認してください。</p>:<div className="cm-pair-guide">
       <div><h3>1. 受付端末でQRを読み取る</h3><p className="cm-caption">{eventName||"選択中のイベント"} · {day.slice(-10)}</p>
-      <div className="cm-pair-roles" aria-label="接続する端末の役割">
-        <button type="button" aria-pressed={linkRole==="in"} onClick={()=>setLinkRole("in")}>入口</button>
-        <button type="button" aria-pressed={linkRole==="out"} onClick={()=>setLinkRole("out")}>出口</button>
-      </div>
       <p className="cm-caption">受付用iPadのカメラでQRを読み取り、Safariで開きます。</p>
       <div className="cm-form"><button type="button" onClick={()=>void copyLink()}>接続リンクをコピー</button><a href={link.href} target="_blank" rel="noopener noreferrer">この端末で開く</a></div>
       <details><summary>開催日IDを直接入力する場合</summary><p><code>{day}</code></p></details></div>
-      <svg className="cm-pair-qr" viewBox={`0 0 ${qr.size+8} ${qr.size+8}`} role="img" aria-label={linkRole==="in"?"入口受付の接続QR":"出口受付の接続QR"} shapeRendering="crispEdges"><rect width={qr.size+8} height={qr.size+8} fill="white"/><path d={qrPath} fill="#111"/></svg>
+      <svg className="cm-pair-qr" viewBox={`0 0 ${qr.size+8} ${qr.size+8}`} role="img" aria-label="受付端末の共通接続QR" shapeRendering="crispEdges"><rect width={qr.size+8} height={qr.size+8} fill="white"/><path d={qrPath} fill="#111"/></svg>
     </div>}
     <h3>2. 受付端末に表示された6桁のコードを入力</h3>
     <p className="cm-caption">コードは5分間有効です。端末名と役割を確認して承認してください。</p>

@@ -80,7 +80,7 @@ test("confirmed close or pause is restored offline and a reassigned station requ
   assert.match(station({...Object.fromEntries(app.values),offline:true}).gate,/開催日が終了/);
   const next=station();next.control({paused:true});await next.check();
   assert.match(station({...Object.fromEntries(next.values),offline:true}).gate,/一時停止/);
-  next.control({paused:false});next.station({role:"out"});await next.check();assert.match(next.gate,/ペアリング承認/);
+  next.control({paused:false});next.station({role:"out"});await next.check();assert.match(next.gate,/通過方向/);
   next.station({status:"revoked"});await next.check();assert.match(station({...Object.fromEntries(next.values),offline:true}).gate,/本番承認/);
 });
 

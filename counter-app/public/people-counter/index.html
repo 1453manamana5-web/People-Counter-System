@@ -65,11 +65,11 @@
 <section class="card config-card" id="pairFormCard"><h2 id="pairFormTitle">接続先を設定</h2><p id="pairLinkSummary" class="hint" hidden></p><form id="ledgerSetup">
           <label id="pairDayField">開催日ID（管理アプリからコピー） <input id="ledgerEvent" required pattern="[a-zA-Z0-9_-]{1,160}" maxlength="160"></label>
           <label id="pairModeField">運用区分 <select id="ledgerMode"><option value="test">試験</option><option value="live">本番</option></select></label>
-          <label>この端末 <select id="ledgerRole"><option value="in">入口</option><option value="out">出口</option></select></label>
+          <label id="pairRoleField">この端末 <select id="ledgerRole"><option value="in">入口</option><option value="out">出口</option></select></label>
           <label hidden>開場日時 <input id="ledgerOpen" type="datetime-local"></label>
           <label hidden>閉場日時 <input id="ledgerClose" type="datetime-local"></label>
           <label hidden><input id="ledgerVerified" type="checkbox"> 開閉場時は0人で、入口・出口とも同期完了・記録確認済み</label>
-          <label id="pairNameField">端末名 <input id="counterStationName" maxlength="40" placeholder="例：展示室 入口"></label><button id="pairSubmit" class="button primary">接続コードを発行</button>
+          <label id="pairNameField">端末名 <input id="counterStationName" maxlength="40" placeholder="例：受付用iPad"></label><button id="pairSubmit" class="button primary">接続コードを発行</button>
         </form></section>
 <section id="pairWaitCard" class="card config-card" hidden><h2 id="pairWaitTitle">管理アプリで接続を承認</h2><fieldset class="area-controls">
           <legend>接続状況</legend>
@@ -82,7 +82,7 @@
 <section id="stationOfflineCard" hidden class="card config-card"><h2>3. オフライン準備</h2><p class="hint">学校のWi-Fiが切れても計測できるよう、事前にモデルを準備します。</p><button id="prepareOffline" type="button" class="button primary">オフライン準備</button><p id="offlineState" role="status">この端末のオフライン準備を確認中</p></section>
 </section>
 <section class="station-panel" data-screen="adjust" hidden>
-<div class="page-heading"><h1>認識調整</h1><p>設置時にカメラ映像を見ながら調整します。</p></div>
+<div class="page-heading"><h1>認識調整</h1><p>設置時にカメラ映像を見ながら調整します。</p><div id="roleDirectionNotice" hidden class="card"><p>入口・出口が変更されました。正方向のラインを確認してください。</p><button id="confirmRoleDirection" type="button" class="button primary">通過方向を確認した</button></div></div>
 <details class="card config-card" open><summary>通過方向・検出エリア</summary>
             
             <label for="viewMode">カメラの設置</label>
@@ -243,9 +243,9 @@
 <footer>人数計測 · 映像は保存しません</footer>
 </main>
 </div>
-<script type="module" src="./ledger-ui.mjs?v=23"></script>
+<script type="module" src="./ledger-ui.mjs?v=24"></script>
 <script type="module" src="./adaptive-ui.mjs?v=17"></script>
 <script type="module" src="./app.js?v=18"></script>
-<script type="module" src="./station-ui.mjs?v=6"></script>
+<script type="module" src="./station-ui.mjs?v=7"></script>
 </body>
 </html>

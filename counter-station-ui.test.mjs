@@ -12,8 +12,8 @@ test("station UI retains unique control IDs and defaults to the pairing screen",
 });
 test("station screen script and updated ledger shell are available offline",()=>{
  const sw=read("counter-offline.js"),html=read("index.html"),ledger=read("ledger-ui.mjs");
- for(const asset of ["style.css?v=21","ledger-ui.mjs?v=23","station-ui.mjs?v=6"]) {assert.ok(html.includes(asset));assert.ok(sw.includes(asset));}
- assert.ok(sw.includes("pcs-counter-v24"));assert.ok(ledger.includes("pcs-counter-v24"));
+ for(const asset of ["style.css?v=21","ledger-ui.mjs?v=24","station-ui.mjs?v=7"]) {assert.ok(html.includes(asset));assert.ok(sw.includes(asset));}
+ assert.ok(sw.includes("pcs-counter-v25"));assert.ok(ledger.includes("pcs-counter-v25"));
 });
 
 test("count screen distinguishes event totals from the standalone trial counter",()=>{const html=read("index.html"),ui=read("station-ui.mjs"),ledger=read("ledger-ui.mjs");assert.match(html,/id="stationCount"/);assert.match(html,/id="total"/);assert.match(ui,/summary\.exits:summary\.entries/);assert.match(ledger,/resultScope === settings/);});

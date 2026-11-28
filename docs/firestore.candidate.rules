@@ -235,8 +235,17 @@ service cloud.firestore {
 
     match /events/{eventId} {
       match /counterAssignments/{role} {
-        allow get: if counterOperator();
-        allow create, update: if counterOperator() && exists(counterDayPath(eventId)) && role in ["in","out"]
+        function ownRoleMove() {
+          let old = get(counterDevicePath(eventId)).data;
+          let next = getAfter(counterDevicePath(eventId)).data;
+          return approvedCounterDevice(eventId) && counterDayAcceptsPairing(eventId)
+            && next.status == "approved" && next.role != old.role
+            && next.updatedAt == request.time && next.updatedByUid == request.auth.uid
+            && ((role == old.role && resource != null && resource.data.uid == request.auth.uid && request.resource.data.uid == null)
+              || (role == next.role && request.resource.data.uid == request.auth.uid && (resource == null || resource.data.uid == null)));
+        }
+        allow get: if counterOperator() || approvedCounterDevice(eventId);
+        allow create, update: if (counterOperator() || ownRoleMove()) && exists(counterDayPath(eventId)) && role in ["in","out"]
           && request.resource.data.keys().hasOnly(["uid","updatedAt","updatedByUid"])
           && validCounterAudit(request.resource.data)
           && (request.resource.data.uid == null
@@ -411,6 +420,10 @@ service cloud.firestore {
         }
 
         allow update: if (ownCounterDevice() && approvedCounterDevice(eventId) && validCounterHeartbeat(request.resource.data))
+          || (ownCounterDevice() && approvedCounterDevice(eventId) && counterDayAcceptsPairing(eventId)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["role","updatedAt","updatedByUid"])
+            && request.resource.data.role != resource.data.role && validCounterDeviceDecision(request.resource.data)
+            && assignmentMatches(request.resource.data))
           || (ownCounterDevice() && counterDayAcceptsPairing(eventId) && resource.data.status in ["pending","rejected","revoked"] && request.resource.data.status == "pending"
             && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["pairingIssuedAt","pairingConfirmed","status"])
             && !("pairingConfirmed" in request.resource.data)
@@ -419,8 +432,8 @@ service cloud.firestore {
           || (exists(counterDayPath(eventId)) && counterOperator()
             && validCounterDeviceDecision(request.resource.data)
             && assignmentMatches(request.resource.data)
-            && (request.resource.data.status != "approved" || resource.data.status == "approved"
-              || (resource.data.status == "pending" && matchesPairing(request.resource.data)))
+            && (request.resource.data.status != "approved" || (counterDayAcceptsPairing(eventId) && (resource.data.status == "approved"
+              || (resource.data.status == "pending" && matchesPairing(request.resource.data)))))
             && (counterAdministrator() || (resource.data.status == "approved" && request.resource.data.status == "revoked"
                && get(counterDayPath(eventId)).data.get("finalized",null) == null && getAfter(counterDayPath(eventId)).data.finalized != null)
                || (resource.data.status in ["pending","approved"]

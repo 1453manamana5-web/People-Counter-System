@@ -38,6 +38,8 @@ let assignedRole = loadAssignedRole(settings);
 let deniedStation = loadDeniedStation(settings);
 let stationNote = '';
 let pairingBusy=false;
+let roleChangeBusy=false;
+let roleDirectionCheck=false;
 let control = loadControl(settings);
 let controlTimer;
 let controlFlight;
@@ -85,6 +87,8 @@ function pairingReady() {
   return stationState==='unchecked' && navigator.onLine===false && cachedApproval(settings)?.role===settings.role;
 }
 function captureBlockReason() {
+  if(roleChangeBusy)return '端末の役割を変更中です。';
+  if(roleDirectionCheck)return '入口・出口が変更されました。認識調整で通過方向を確認してください。';
   if(dayEnded)return '開催日が終了しました。次の開催日は新しくペアリングしてください。';
   if ((settings?.mode === 'live' || dedicatedDay(settings)) && deniedStation) return 'この端末の本番承認を確認してください。管理画面で再承認されるまで計測を待機します。';
   if (!pairingReady()) return '管理アプリで端末のペアリング承認を完了してください。';
@@ -217,6 +221,15 @@ function checkStation(config, remote) {
     if(settings!==config)return false;
     if(liveControl?.closed!=null){dayEnded=true;try{localStorage.setItem('pcs-counter-ended-v1:'+config.eventId,'true');localStorage.setItem(approvalKey(config),'null');}catch{}}
     
+    const changedRole=assignedRole && config.role!==assignedRole;
+    if(changedRole&&!dayEnded){
+      const previous=config.role;
+      localStorage.setItem(setupKey,JSON.stringify({...config,role:assignedRole}));
+      config.role=assignedRole;
+      $('ledgerRole').value=assignedRole;
+      roleDirectionCheck=true;
+      window.dispatchEvent(new Event('pcs-counter-role-changed'));
+    }
     approvalConfirmed=true;
     if(!dayEnded)try {localStorage.setItem(approvalKey(config),JSON.stringify({device,role:assignedRole}));} catch {}
     storeControl(config,nextControl);
@@ -492,7 +505,7 @@ $('ledgerEdit').addEventListener('submit', async event => {
 
 $('ledgerSetup').addEventListener('submit', async event => {
   event.preventDefault();
-  if(pairingBusy)return;
+  if(pairingBusy||roleChangeBusy)return;
   const wasPaired=pairingReady();
   if(!wasPaired && !$('counterStationName').value.trim())return error('端末名を入力してください。');
   if (window.counterAdaptive?.isolated()) return error('認識設定の試験を終了してから運用設定を変更してください。');
@@ -502,8 +515,28 @@ $('ledgerSetup').addEventListener('submit', async event => {
   const closed = null;
   if (!dedicatedDay({eventId}) || !Number.isFinite(opened) ||
       (closed != null && (!Number.isFinite(closed) || closed < opened))) return error('管理アプリに表示される開催日IDを確認してください。');
-  if (settings?.eventId === eventId && assignedRole && $('ledgerRole').value !== assignedRole) {
-    return error('管理画面で指定された入口・出口を選び、計測ラインの方向を確認してください。');
+  if (wasPaired && settings.eventId===eventId && assignedRole && $('ledgerRole').value!==assignedRole) {
+    const requested=$('ledgerRole').value;
+    if(navigator.onLine===false)return error('入口・出口の変更には通信接続が必要です。');
+    if(!store)return error('端末内記録を読み込み中です。');
+    const config=settings;
+    roleChangeBusy=true;$('pairSubmit').disabled=true;
+    window.dispatchEvent(new Event('pcs-counter-control-changed'));
+    try{
+      if(busy)throw Error('同期中です。完了後にもう一度変更してください。');
+      await sync();
+      if(settings!==config||!pairingReady()||dayEnded)throw Error('端末の承認状態が変更されました。');
+      const rows=await store.ledger();
+      if(rows.some(row=>!row.synced&&row.eventId===eventId&&row.device===device))throw Error('未同期記録が残っています。同期または管理者による記録回収を先に行ってください。');
+      const remote=await deadline(remoteApi());
+      if(window.counterStationCamera?.().camera===true||!$('stopButton').disabled)throw Error('カメラを停止してください。');
+      await deadline(remote.heartbeatCounterStation(eventId,{version:'17',camera:false,ai:false,profile:'unknown',pending:0,alert:'setup',mode:config.mode,configVersion:control?.version??null}));
+      await remote.changeCounterStationRole(eventId,requested,device);
+      await checkStation(config,remote);
+      error('入口・出口を変更しました。認識調整で通過方向を確認してください。');
+    }catch(e){error(e.message||'役割を変更できませんでした。');}
+    finally{roleChangeBusy=false;$('pairSubmit').disabled=false;$('ledgerRole').value=settings?.role??'in';renderStation();window.dispatchEvent(new Event('pcs-counter-control-changed'));scheduleControl(0);schedule(0);}
+    return;
   }
   const next = {eventId, mode: $('ledgerMode').value, role: $('ledgerRole').value,
     opened, closed, verified: closed != null && $('ledgerVerified').checked};
@@ -519,7 +552,7 @@ $('ledgerSetup').addEventListener('submit', async event => {
     settings = next;
     if (scopeChanged) {
       control = loadControl(settings);
-      if(dayChanged){approvalConfirmed=false;stationState='unchecked';assignedRole=null;dayEnded=loadEnded(settings);}
+      if(dayChanged){approvalConfirmed=false;stationState='unchecked';assignedRole=null;dayEnded=loadEnded(settings);roleDirectionCheck=false;}
       deniedStation = loadDeniedStation(settings);
       stationNote = '';
     }
@@ -647,7 +680,7 @@ function attach(value) {
   schedule(500);
   scheduleControl(500);
 }
-window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, pairingStatus: () => stationState, day: () => settings?.eventId, paired: pairingReady, ended: () => dayEnded, refreshPairing: () => {scheduleControl(0);schedule(0);}, summary: () => result && resultScope === settings ? {entries:result.entries,exits:result.exits,occupancy:result.occupancy,mode:settings.mode} : null, attach, changed, captureBlockReason};
+window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, pairingStatus: () => stationState, day: () => settings?.eventId, paired: pairingReady, directionCheck: () => roleDirectionCheck, confirmDirection: () => {roleDirectionCheck=false;renderStation();window.dispatchEvent(new Event('pcs-counter-control-changed'));}, ended: () => dayEnded, refreshPairing: () => {scheduleControl(0);schedule(0);}, summary: () => result && resultScope === settings ? {entries:result.entries,exits:result.exits,occupancy:result.occupancy,mode:settings.mode} : null, attach, changed, captureBlockReason};
 if (window.counterRecordStore) attach(window.counterRecordStore);
 fillRecord();
 renderState();
@@ -660,7 +693,7 @@ async function offlineLabel() {
   if (navigator.serviceWorker?.controller?.scriptURL.endsWith('/counter-offline.js') && load(preparedKey)) {
     try {
       const requests = await (await caches.open('pcs-counter-model-assets-v1')).keys();
-      ready = (await caches.keys()).includes('pcs-counter-v24') &&
+      ready = (await caches.keys()).includes('pcs-counter-v25') &&
         requests.some(r => r.url.endsWith('/efficientdet_lite0.tflite')) &&
         requests.some(r => r.url.endsWith('/quant2/075/model-stride16.json'));
     } catch {}

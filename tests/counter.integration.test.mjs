@@ -67,6 +67,7 @@ test("real modules: event → two stations → trial → live → offline retry 
   await admin.data.saveCounterStation(day,a.uid,{status:"approved",role:"in"}, "481206");
   await second.data.saveCounterStation(day,b.uid,{status:"approved",role:"out"}, "907314");
   assert.equal((await entry.readCounterStation(day)).status,"approved");
+  await assert.rejects(entry.changeCounterStationRole(day,"out",inDevice),/別の端末/);
   assert.equal((await exit.readCounterStation(day)).role,"out");
   assert.equal((await entry.readCounterConfig(day,"live")).paused,true);
   assert.equal((await exit.readCounterConfig(day,"test")).paused,true);
@@ -107,6 +108,7 @@ test("real modules: event → two stations → trial → live → offline retry 
   const rows=await untilRecords(admin.data,day,"live",4);
   const current=ledger.analyze(rows,{eventId:day,mode:"live",opened:t,now:Date.now()});
   assert.deepEqual([current.entries,current.exits,current.occupancy,current.pending],[2,2,0,0]);
+  await assert.rejects(exit.changeCounterStationRole(day,"in",outDevice),/別の端末/);
   await move("close");
   assert.equal((await entry.readCounterConfig(day,"live")).paused,false);
   await move("finish",{empty:true,synced:false});

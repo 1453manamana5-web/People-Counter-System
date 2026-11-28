@@ -49,6 +49,29 @@ export async function enrollCounterStation(eventId: string, station: Pick<Statio
   return code;
 }
 
+// Approved installations can move only their own assignment into an unoccupied role.
+export async function changeCounterStationRole(eventId:string,role:Role,device:string) {
+  if(role!=="in"&&role!=="out")throw new Error("入口・出口を確認してください。");
+  const uid=await getFirebaseUid(),db=getFirebaseDb();
+  const ref=doc(db,"events",eventId,"counterDevices",uid);
+  await runTransaction(db,async tx=>{
+    const station=await tx.get(ref),old=station.data();
+    if(!old||old.status!=="approved"||old.device!==device)throw new Error("この端末は承認されていません。");
+    if(old.role===role)return;
+    if(old.role!=="in"&&old.role!=="out")throw new Error("現在の割り当てを確認してください。");
+    const from=doc(db,"events",eventId,"counterAssignments",old.role);
+    const to=doc(db,"events",eventId,"counterAssignments",role);
+    const [previous,target]=await Promise.all([tx.get(from),tx.get(to)]);
+    if(previous.get("uid")!==uid)throw new Error("現在の割り当てが変更されました。");
+    if(target.get("uid")!=null)throw new Error("変更先は別の端末が使用中です。管理アプリで先に割り当てを解除してください。");
+    if(old.pending!==0||old.camera!==false)throw new Error("計測を停止し、すべての記録を同期してください。");
+    const audit={updatedAt:serverTimestamp(),updatedByUid:uid};
+    tx.update(ref,{role,...audit});
+    tx.set(from,{uid:null,...audit});
+    tx.set(to,{uid,...audit});
+  },{maxAttempts:1});
+}
+
 export async function readStationCommand(eventId: string) {
   const uid = await getFirebaseUid();
   const ref = doc(getFirebaseDb(),"events",eventId,"counterCommands",uid);

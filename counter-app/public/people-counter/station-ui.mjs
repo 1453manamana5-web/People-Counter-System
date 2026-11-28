@@ -7,7 +7,6 @@ let editingPair=false;
 const query=new URLSearchParams(window.location.search);
 const incomingDay=query.get('day')||'';
 const validIncoming=/^[a-f0-9-]{36}_[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(incomingDay);
-const incomingRole=query.get('role');
 const incomingName=(query.get('name')||'').slice(0,100);
 let linkApplied=false;
 const paired=()=>window.counterLedger?.paired?.()===true;
@@ -33,8 +32,7 @@ function refreshStatus(){
  const savedDay=window.counterLedger?.day?.();
  if(!linkApplied&&validIncoming&&!approved&&(!savedDay||(ended&&savedDay!==incomingDay))){
   $("ledgerEvent").value=incomingDay;
-  if(incomingRole==="in"||incomingRole==="out")$("ledgerRole").value=incomingRole;
-  $("counterStationName").value=$("ledgerRole").value==="out"?"展示室 出口":"展示室 入口";
+  $("counterStationName").value="受付端末";
   linkApplied=true;
  }
  const wait=!approved&&!ended&&state==="pending"&&!editingPair;
@@ -44,6 +42,8 @@ function refreshStatus(){
  $("pairFormTitle").textContent=approved?"開催日・運用設定":"接続先を設定";
  $("pairSubmit").textContent=approved?"設定を保存":"接続コードを発行";
  $("pairNameField").hidden=approved;
+ $("pairRoleField").hidden=!approved;
+ $("roleDirectionNotice").hidden=window.counterLedger?.directionCheck?.()!==true;
  $("pairCodeGuide").hidden=approved;
  $("pairEdit").hidden=approved;
  $("pairRefresh").hidden=approved;
@@ -59,7 +59,7 @@ function refreshStatus(){
 
  const configured=window.counterLedger?.configured?.()===true;
  const role=window.counterLedger?.role?.();
- const badge=$("stationRoleBadge");badge.textContent=role==="out"?"出口":role==="in"?"入口":"未設定";badge.dataset.role=role||"";
+ const badge=$("stationRoleBadge");badge.textContent=!approved?"未接続":role==="out"?"出口":role==="in"?"入口":"未設定";badge.dataset.role=approved?role||"":"";
 
  const assign=(target,value)=>{if($(target).textContent!==value)$(target).textContent=value;};
  assign("stationApproval",$("counterStationState").textContent||"未設定");
@@ -79,7 +79,7 @@ window.addEventListener("pcs-counter-role-changed",refreshStatus);
 window.addEventListener("pcs-counter-control-changed",refreshStatus);
 $("pairEdit").addEventListener("click",()=>{editingPair=true;refreshStatus();});
 $("ledgerSetup").addEventListener("submit",()=>{editingPair=false;});
-$("ledgerRole").addEventListener("change",()=>{if(!paired())$("counterStationName").value=$("ledgerRole").value==="out"?"展示室 出口":"展示室 入口";});
+$("confirmRoleDirection").addEventListener("click",()=>{window.counterLedger?.confirmDirection?.();});
 $("pairRefresh").addEventListener("click",()=>window.counterLedger?.refreshPairing?.());
 window.addEventListener("online",refreshStatus);window.addEventListener("offline",refreshStatus);
 show("setup");

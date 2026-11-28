@@ -1,0 +1,3031 @@
+[
+  {
+    "id": "scope-before-diagnostics-0",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 101
+  },
+  {
+    "id": "scope-before-diagnostics-1",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 102
+  },
+  {
+    "id": "scope-before-diagnostics-2",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 103
+  },
+  {
+    "id": "scope-before-diagnostics-3",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 104
+  },
+  {
+    "id": "scope-before-diagnostics-4",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 105
+  },
+  {
+    "id": "scope-before-diagnostics-5",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 106
+  },
+  {
+    "id": "scope-before-diagnostics-6",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 107
+  },
+  {
+    "id": "scope-before-diagnostics-7",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 108
+  },
+  {
+    "id": "scope-before-diagnostics-8",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 109
+  },
+  {
+    "id": "scope-before-diagnostics-9",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 110
+  },
+  {
+    "id": "scope-before-diagnostics-10",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 111
+  },
+  {
+    "id": "scope-before-diagnostics-11",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 112
+  },
+  {
+    "id": "scope-before-diagnostics-12",
+    "structure": "scope-before-diagnostics",
+    "turns": [
+      "今年の退場回数が昨年より多い理由を調べて。それから入口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "higher-premise",
+      "entrance-pending"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 113
+  },
+  {
+    "id": "setup-before-required-0",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 101
+  },
+  {
+    "id": "setup-before-required-1",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 102
+  },
+  {
+    "id": "setup-before-required-2",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 103
+  },
+  {
+    "id": "setup-before-required-3",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 104
+  },
+  {
+    "id": "setup-before-required-4",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 105
+  },
+  {
+    "id": "setup-before-required-5",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 106
+  },
+  {
+    "id": "setup-before-required-6",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 107
+  },
+  {
+    "id": "setup-before-required-7",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 108
+  },
+  {
+    "id": "setup-before-required-8",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 109
+  },
+  {
+    "id": "setup-before-required-9",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 110
+  },
+  {
+    "id": "setup-before-required-10",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 111
+  },
+  {
+    "id": "setup-before-required-11",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 112
+  },
+  {
+    "id": "setup-before-required-12",
+    "structure": "setup-before-required",
+    "turns": [
+      "カメラの設置方法を教えて。そして出口の未同期は何件？"
+    ],
+    "check": [
+      "setup",
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 113
+  },
+  {
+    "id": "freshness-before-suggestion-0",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 101
+  },
+  {
+    "id": "freshness-before-suggestion-1",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 102
+  },
+  {
+    "id": "freshness-before-suggestion-2",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 103
+  },
+  {
+    "id": "freshness-before-suggestion-3",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 104
+  },
+  {
+    "id": "freshness-before-suggestion-4",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 105
+  },
+  {
+    "id": "freshness-before-suggestion-5",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 106
+  },
+  {
+    "id": "freshness-before-suggestion-6",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 107
+  },
+  {
+    "id": "freshness-before-suggestion-7",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 108
+  },
+  {
+    "id": "freshness-before-suggestion-8",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 109
+  },
+  {
+    "id": "freshness-before-suggestion-9",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 110
+  },
+  {
+    "id": "freshness-before-suggestion-10",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 111
+  },
+  {
+    "id": "freshness-before-suggestion-11",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 112
+  },
+  {
+    "id": "freshness-before-suggestion-12",
+    "structure": "freshness-before-suggestion",
+    "turns": [
+      "出口の未同期件数を教えて。それから改善案をまとめて"
+    ],
+    "check": [
+      "pending",
+      "advice"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 113
+  },
+  {
+    "id": "no-implicit-unit-0",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 101
+  },
+  {
+    "id": "no-implicit-unit-1",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 102
+  },
+  {
+    "id": "no-implicit-unit-2",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 103
+  },
+  {
+    "id": "no-implicit-unit-3",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 104
+  },
+  {
+    "id": "no-implicit-unit-4",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 105
+  },
+  {
+    "id": "no-implicit-unit-5",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 106
+  },
+  {
+    "id": "no-implicit-unit-6",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 107
+  },
+  {
+    "id": "no-implicit-unit-7",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 108
+  },
+  {
+    "id": "no-implicit-unit-8",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 109
+  },
+  {
+    "id": "no-implicit-unit-9",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 110
+  },
+  {
+    "id": "no-implicit-unit-10",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 111
+  },
+  {
+    "id": "no-implicit-unit-11",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 112
+  },
+  {
+    "id": "no-implicit-unit-12",
+    "structure": "no-implicit-unit",
+    "turns": [
+      "入口と出口の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+    ],
+    "check": [
+      "entrance-pending",
+      "pending",
+      "export"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 113
+  },
+  {
+    "id": "count-and-causal-0",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 101
+  },
+  {
+    "id": "count-and-causal-1",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 102
+  },
+  {
+    "id": "count-and-causal-2",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 103
+  },
+  {
+    "id": "count-and-causal-3",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 104
+  },
+  {
+    "id": "count-and-causal-4",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 105
+  },
+  {
+    "id": "count-and-causal-5",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 106
+  },
+  {
+    "id": "count-and-causal-6",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 107
+  },
+  {
+    "id": "count-and-causal-7",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 108
+  },
+  {
+    "id": "count-and-causal-8",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 109
+  },
+  {
+    "id": "count-and-causal-9",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 110
+  },
+  {
+    "id": "count-and-causal-10",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 111
+  },
+  {
+    "id": "count-and-causal-11",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 112
+  },
+  {
+    "id": "count-and-causal-12",
+    "structure": "count-and-causal",
+    "turns": [
+      "今いる人数を教えて。今年の入場回数が去年を下回った理由を調べて"
+    ],
+    "check": [
+      "occupancy",
+      "reason"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 113
+  },
+  {
+    "id": "mixed-purpose-and-gaps-0",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 101
+  },
+  {
+    "id": "mixed-purpose-and-gaps-1",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 102
+  },
+  {
+    "id": "mixed-purpose-and-gaps-2",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 103
+  },
+  {
+    "id": "mixed-purpose-and-gaps-3",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 104
+  },
+  {
+    "id": "mixed-purpose-and-gaps-4",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 105
+  },
+  {
+    "id": "mixed-purpose-and-gaps-5",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 106
+  },
+  {
+    "id": "mixed-purpose-and-gaps-6",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 107
+  },
+  {
+    "id": "mixed-purpose-and-gaps-7",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 108
+  },
+  {
+    "id": "mixed-purpose-and-gaps-8",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 109
+  },
+  {
+    "id": "mixed-purpose-and-gaps-9",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 110
+  },
+  {
+    "id": "mixed-purpose-and-gaps-10",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 111
+  },
+  {
+    "id": "mixed-purpose-and-gaps-11",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 112
+  },
+  {
+    "id": "mixed-purpose-and-gaps-12",
+    "structure": "mixed-purpose-and-gaps",
+    "turns": [
+      "台帳の整合性を調べて。そしてオフライン運用はどうすればいい？"
+    ],
+    "check": [
+      "ledger",
+      "offline"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 113
+  },
+  {
+    "id": "unknown-window-0",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 101
+  },
+  {
+    "id": "unknown-window-1",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 102
+  },
+  {
+    "id": "unknown-window-2",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 103
+  },
+  {
+    "id": "unknown-window-3",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 104
+  },
+  {
+    "id": "unknown-window-4",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 105
+  },
+  {
+    "id": "unknown-window-5",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 106
+  },
+  {
+    "id": "unknown-window-6",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 107
+  },
+  {
+    "id": "unknown-window-7",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 108
+  },
+  {
+    "id": "unknown-window-8",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 109
+  },
+  {
+    "id": "unknown-window-9",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 110
+  },
+  {
+    "id": "unknown-window-10",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 111
+  },
+  {
+    "id": "unknown-window-11",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 112
+  },
+  {
+    "id": "unknown-window-12",
+    "structure": "unknown-window",
+    "turns": [
+      "出口の未同期件数を午後だけで教えて"
+    ],
+    "check": [
+      "no-pending-number"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 113
+  },
+  {
+    "id": "forbidden-with-explicit-action-0",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 101
+  },
+  {
+    "id": "forbidden-with-explicit-action-1",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 102
+  },
+  {
+    "id": "forbidden-with-explicit-action-2",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 103
+  },
+  {
+    "id": "forbidden-with-explicit-action-3",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 104
+  },
+  {
+    "id": "forbidden-with-explicit-action-4",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 105
+  },
+  {
+    "id": "forbidden-with-explicit-action-5",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 106
+  },
+  {
+    "id": "forbidden-with-explicit-action-6",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 107
+  },
+  {
+    "id": "forbidden-with-explicit-action-7",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 108
+  },
+  {
+    "id": "forbidden-with-explicit-action-8",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 109
+  },
+  {
+    "id": "forbidden-with-explicit-action-9",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 110
+  },
+  {
+    "id": "forbidden-with-explicit-action-10",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 111
+  },
+  {
+    "id": "forbidden-with-explicit-action-11",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 112
+  },
+  {
+    "id": "forbidden-with-explicit-action-12",
+    "structure": "forbidden-with-explicit-action",
+    "turns": [
+      "出口端末の未同期件数を見て。それから今すぐ閉場して"
+    ],
+    "check": [
+      "safe-hold"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 113
+  },
+  {
+    "id": "pending-then-stat-0",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 101
+  },
+  {
+    "id": "pending-then-stat-1",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 102
+  },
+  {
+    "id": "pending-then-stat-2",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 103
+  },
+  {
+    "id": "pending-then-stat-3",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 104
+  },
+  {
+    "id": "pending-then-stat-4",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 105
+  },
+  {
+    "id": "pending-then-stat-5",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 106
+  },
+  {
+    "id": "pending-then-stat-6",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 107
+  },
+  {
+    "id": "pending-then-stat-7",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 108
+  },
+  {
+    "id": "pending-then-stat-8",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 109
+  },
+  {
+    "id": "pending-then-stat-9",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 110
+  },
+  {
+    "id": "pending-then-stat-10",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 111
+  },
+  {
+    "id": "pending-then-stat-11",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 112
+  },
+  {
+    "id": "pending-then-stat-12",
+    "structure": "pending-then-stat",
+    "turns": [
+      "出口端末の未同期件数を調べて",
+      "今日の入場回数を教えて",
+      "集計は午前に絞って"
+    ],
+    "check": [
+      "entries-am"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 113
+  },
+  {
+    "id": "correct-independent-target-0",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 101
+  },
+  {
+    "id": "correct-independent-target-1",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 102
+  },
+  {
+    "id": "correct-independent-target-2",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 103
+  },
+  {
+    "id": "correct-independent-target-3",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 104
+  },
+  {
+    "id": "correct-independent-target-4",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 105
+  },
+  {
+    "id": "correct-independent-target-5",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 106
+  },
+  {
+    "id": "correct-independent-target-6",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 107
+  },
+  {
+    "id": "correct-independent-target-7",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 108
+  },
+  {
+    "id": "correct-independent-target-8",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 109
+  },
+  {
+    "id": "correct-independent-target-9",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 110
+  },
+  {
+    "id": "correct-independent-target-10",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 111
+  },
+  {
+    "id": "correct-independent-target-11",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 112
+  },
+  {
+    "id": "correct-independent-target-12",
+    "structure": "correct-independent-target",
+    "turns": [
+      "入口端末は何件未同期ですか",
+      "今年と去年の退場回数を比べて",
+      "出口端末の未送信件数を教えて"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 113
+  },
+  {
+    "id": "am-then-denied-0",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "missing",
+    "i": 101
+  },
+  {
+    "id": "am-then-denied-1",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "ambiguous-history",
+    "i": 102
+  },
+  {
+    "id": "am-then-denied-2",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "current",
+    "i": 103
+  },
+  {
+    "id": "am-then-denied-3",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "malformed",
+    "i": 104
+  },
+  {
+    "id": "am-then-denied-4",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "history-failure",
+    "i": 105
+  },
+  {
+    "id": "am-then-denied-5",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "stale",
+    "i": 106
+  },
+  {
+    "id": "am-then-denied-6",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "forbidden",
+    "i": 107
+  },
+  {
+    "id": "am-then-denied-7",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "test",
+    "i": 108
+  },
+  {
+    "id": "am-then-denied-8",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "missing",
+    "i": 109
+  },
+  {
+    "id": "am-then-denied-9",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "ambiguous-history",
+    "i": 110
+  },
+  {
+    "id": "am-then-denied-10",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "current",
+    "i": 111
+  },
+  {
+    "id": "am-then-denied-11",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "malformed",
+    "i": 112
+  },
+  {
+    "id": "am-then-denied-12",
+    "structure": "am-then-denied",
+    "turns": [
+      "年度比較で入場回数を調べて",
+      "比較は午前でお願い"
+    ],
+    "check": [
+      "forbidden"
+    ],
+    "revoke": true,
+    "kind": "history-failure",
+    "i": 113
+  },
+  {
+    "id": "redo-after-cancel-0",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 101
+  },
+  {
+    "id": "redo-after-cancel-1",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 102
+  },
+  {
+    "id": "redo-after-cancel-2",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 103
+  },
+  {
+    "id": "redo-after-cancel-3",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 104
+  },
+  {
+    "id": "redo-after-cancel-4",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 105
+  },
+  {
+    "id": "redo-after-cancel-5",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 106
+  },
+  {
+    "id": "redo-after-cancel-6",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 107
+  },
+  {
+    "id": "redo-after-cancel-7",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 108
+  },
+  {
+    "id": "redo-after-cancel-8",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 109
+  },
+  {
+    "id": "redo-after-cancel-9",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 110
+  },
+  {
+    "id": "redo-after-cancel-10",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 111
+  },
+  {
+    "id": "redo-after-cancel-11",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 112
+  },
+  {
+    "id": "redo-after-cancel-12",
+    "structure": "redo-after-cancel",
+    "turns": [
+      "入口と出口の未同期件数を教えて",
+      "やっぱりいい",
+      "それをもう一度詳しく確認して"
+    ],
+    "check": [
+      "clarify"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 113
+  },
+  {
+    "id": "two-independent-topics-0",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 101
+  },
+  {
+    "id": "two-independent-topics-1",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 102
+  },
+  {
+    "id": "two-independent-topics-2",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 103
+  },
+  {
+    "id": "two-independent-topics-3",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 104
+  },
+  {
+    "id": "two-independent-topics-4",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 105
+  },
+  {
+    "id": "two-independent-topics-5",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 106
+  },
+  {
+    "id": "two-independent-topics-6",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 107
+  },
+  {
+    "id": "two-independent-topics-7",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 108
+  },
+  {
+    "id": "two-independent-topics-8",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 109
+  },
+  {
+    "id": "two-independent-topics-9",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 110
+  },
+  {
+    "id": "two-independent-topics-10",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 111
+  },
+  {
+    "id": "two-independent-topics-11",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 112
+  },
+  {
+    "id": "two-independent-topics-12",
+    "structure": "two-independent-topics",
+    "turns": [
+      "今日の退場回数の合計を教えて",
+      "出口端末の未送信件数は何件？",
+      "回数の方を午前に絞って"
+    ],
+    "check": [
+      "exits-am"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 113
+  },
+  {
+    "id": "condition-after-comparison-0",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 101
+  },
+  {
+    "id": "condition-after-comparison-1",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 102
+  },
+  {
+    "id": "condition-after-comparison-2",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 103
+  },
+  {
+    "id": "condition-after-comparison-3",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 104
+  },
+  {
+    "id": "condition-after-comparison-4",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 105
+  },
+  {
+    "id": "condition-after-comparison-5",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 106
+  },
+  {
+    "id": "condition-after-comparison-6",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 107
+  },
+  {
+    "id": "condition-after-comparison-7",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 108
+  },
+  {
+    "id": "condition-after-comparison-8",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 109
+  },
+  {
+    "id": "condition-after-comparison-9",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 110
+  },
+  {
+    "id": "condition-after-comparison-10",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 111
+  },
+  {
+    "id": "condition-after-comparison-11",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 112
+  },
+  {
+    "id": "condition-after-comparison-12",
+    "structure": "condition-after-comparison",
+    "turns": [
+      "今年の入場回数を教えて",
+      "去年は",
+      "今年と去年の入場回数を比較して。少なければ原因を確認して。入口端末の状態を調べて"
+    ],
+    "check": [
+      "past",
+      "conditional",
+      "entrance"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 113
+  },
+  {
+    "id": "with-role-correction-0",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 101
+  },
+  {
+    "id": "with-role-correction-1",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 102
+  },
+  {
+    "id": "with-role-correction-2",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 103
+  },
+  {
+    "id": "with-role-correction-3",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 104
+  },
+  {
+    "id": "with-role-correction-4",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 105
+  },
+  {
+    "id": "with-role-correction-5",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 106
+  },
+  {
+    "id": "with-role-correction-6",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 107
+  },
+  {
+    "id": "with-role-correction-7",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 108
+  },
+  {
+    "id": "with-role-correction-8",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 109
+  },
+  {
+    "id": "with-role-correction-9",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 110
+  },
+  {
+    "id": "with-role-correction-10",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 111
+  },
+  {
+    "id": "with-role-correction-11",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 112
+  },
+  {
+    "id": "with-role-correction-12",
+    "structure": "with-role-correction",
+    "turns": [
+      "入口の端末状態を確認して",
+      "出口の未同期件数は何件ですか？",
+      "同じ条件でもう一度確認して"
+    ],
+    "check": [
+      "pending"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 113
+  },
+  {
+    "id": "return-after-new-goal-0",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 101
+  },
+  {
+    "id": "return-after-new-goal-1",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 102
+  },
+  {
+    "id": "return-after-new-goal-2",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 103
+  },
+  {
+    "id": "return-after-new-goal-3",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 104
+  },
+  {
+    "id": "return-after-new-goal-4",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 105
+  },
+  {
+    "id": "return-after-new-goal-5",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "history-failure",
+    "i": 106
+  },
+  {
+    "id": "return-after-new-goal-6",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "stale",
+    "i": 107
+  },
+  {
+    "id": "return-after-new-goal-7",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "forbidden",
+    "i": 108
+  },
+  {
+    "id": "return-after-new-goal-8",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "test",
+    "i": 109
+  },
+  {
+    "id": "return-after-new-goal-9",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "missing",
+    "i": 110
+  },
+  {
+    "id": "return-after-new-goal-10",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "ambiguous-history",
+    "i": 111
+  },
+  {
+    "id": "return-after-new-goal-11",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "current",
+    "i": 112
+  },
+  {
+    "id": "return-after-new-goal-12",
+    "structure": "return-after-new-goal",
+    "turns": [
+      "今年と前年の入場回数を比較して",
+      "比較を午後に変更して",
+      "出口の未同期件数を教えて",
+      "比較を午前に限定して"
+    ],
+    "check": [
+      "am"
+    ],
+    "revoke": false,
+    "kind": "malformed",
+    "i": 113
+  }
+]

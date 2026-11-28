@@ -1,0 +1,108 @@
+{
+  "features": [
+    "recent",
+    "cached",
+    "no-source",
+    "valid-count",
+    "same-scope",
+    "server",
+    "near-deadline"
+  ],
+  "sources": [
+    "recent-report",
+    "cached-report",
+    "missing"
+  ],
+  "results": [
+    {
+      "seed": 60,
+      "seconds": 0.08502656599739566,
+      "curve": [
+        1.0991828441619873,
+        0.9180038571357727,
+        0.7786513566970825,
+        0.45368486642837524,
+        0.2174263894557953,
+        0.14342394471168518,
+        0.1337302029132843,
+        0.13139449059963226
+      ],
+      "validation": {
+        "cases": 72,
+        "raw_correct": 68,
+        "raw_ineligible": 4,
+        "with_guard_correct": 72,
+        "with_guard_ineligible": 0,
+        "deterministic_correct": 72
+      },
+      "independent": {
+        "cases": 160,
+        "raw_correct": 148,
+        "raw_ineligible": 12,
+        "with_guard_correct": 160,
+        "with_guard_ineligible": 0,
+        "deterministic_correct": 160
+      }
+    },
+    {
+      "seed": 61,
+      "seconds": 0.06659173100342741,
+      "curve": [
+        1.1062350273132324,
+        0.8929615616798401,
+        0.6938173174858093,
+        0.4055309593677521,
+        0.21298879384994507,
+        0.1513352394104004,
+        0.138032004237175,
+        0.13388478755950928
+      ],
+      "validation": {
+        "cases": 72,
+        "raw_correct": 68,
+        "raw_ineligible": 4,
+        "with_guard_correct": 72,
+        "with_guard_ineligible": 0,
+        "deterministic_correct": 72
+      },
+      "independent": {
+        "cases": 160,
+        "raw_correct": 148,
+        "raw_ineligible": 12,
+        "with_guard_correct": 160,
+        "with_guard_ineligible": 0,
+        "deterministic_correct": 160
+      }
+    },
+    {
+      "seed": 62,
+      "seconds": 0.0757494380013668,
+      "curve": [
+        1.0851292610168457,
+        0.8574981689453125,
+        0.5722520351409912,
+        0.2755356431007385,
+        0.16160848736763,
+        0.13947129249572754,
+        0.13411204516887665,
+        0.13200560212135315
+      ],
+      "validation": {
+        "cases": 72,
+        "raw_correct": 68,
+        "raw_ineligible": 4,
+        "with_guard_correct": 72,
+        "with_guard_ineligible": 0,
+        "deterministic_correct": 72
+      },
+      "independent": {
+        "cases": 160,
+        "raw_correct": 148,
+        "raw_ineligible": 12,
+        "with_guard_correct": 160,
+        "with_guard_ineligible": 0,
+        "deterministic_correct": 160
+      }
+    }
+  ]
+}

@@ -9,7 +9,9 @@ export type Evidence={
   analysis:ReturnType<typeof import("../counterManagementData").analyze>|null; stations:CounterStation[]; prediction:Forecast;
 };
 export type Target="settings"|"new-event"|"occupancy"|"graph"|"compare"|"event"|"records"|"stations"|"in"|"out";
-export type Answer={text:string;source?:string;comparisonDelta?:number;diagnosticSignal?:boolean;verification?:"recount";target?:Target;plan?:Plan};
+export type Answer={text:string;
+  objective?:{result:import("./language").Deliverable;status:"verified"|"partial"|"missing";
+    reported?:{side:"in"|"out";status:"current"|"cached";count:number;at:number}[];missing?:string[]};source?:string;comparisonDelta?:number;diagnosticSignal?:boolean;verification?:"recount";target?:Target;plan?:Plan};
 const roles={in:"入口",out:"出口"};
 const jst=(at:number)=>new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(at);
 const scopeName=(data:Evidence)=>data.name+"（"+(data.mode==="test"?"試験":"本番")+"）";

@@ -59,7 +59,8 @@ export function observeLedger(data: Evidence): Observation<LedgerCheck | undefin
 
 export function observeStations(data: Evidence, role: Plan["role"]) {
   return (["in", "out"] as const).filter(side => !role || side === role).map(side => {
-    const station = data.stations.find(row => row.mode === data.mode && row.status === "approved" && row.role === side);
+    const approved = data.stations.filter(row => row.mode === data.mode && row.status === "approved" && row.role === side);
+    const station = approved.length === 1 ? approved[0] : undefined;
     const seen = station?.lastSeen;
     const quality: Quality = !station ? "missing" : (data.stationsFromServer ?? data.current) && seen != null && seen <= data.now &&
       data.now - seen <= 180_000 ? "current" : "partial";

@@ -17,7 +17,8 @@ export const knowledge = {
   event: ["開催設定を開いて", "開場時間を変更して", "イベント編集画面", "閉場の設定を見せて"],
 } as const;
 export type Intent = keyof typeof knowledge;
-export type Plan = {intent:Intent;guidanceId?:string;at?:number;role?:"in"|"out";horizon?:"closing";minutesAhead?:number;condition?:"connection-restored";comparisonMetric?:"entries"|"exits"|"occupancy";previousYear?:boolean;compareDifference?:boolean;period?:"am"|"pm"|number|{from:number;to:number};focus:boolean;readOnly:boolean;operation?:"open"|"close";schedule?:{field:"start"|"end";time:string}};
+export type Deliverable = "pending-records" | "comparison-explanation";
+export type Plan = {intent:Intent;deliverable?:Deliverable;expectedDifference?:"lower"|"higher";guidanceId?:string;at?:number;role?:"in"|"out";horizon?:"closing";minutesAhead?:number;condition?:"connection-restored";comparisonMetric?:"entries"|"exits"|"occupancy";previousYear?:boolean;compareDifference?:boolean;period?:"am"|"pm"|number|{from:number;to:number};focus:boolean;readOnly:boolean;operation?:"open"|"close";schedule?:{field:"start"|"end";time:string}};
 export type Dependency = {task: number; after: number; when: "previous-year-lower" | "anomaly"};
 export type Interpretation = {dependencies?: Dependency[]; constraints?: {readOnly: true};plans:Plan[];message?:string;reset?:boolean};
 
@@ -122,9 +123,12 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     if (/設定は変えない|設定を変えない|設定はそのまま|操作しない/.test(clause) && !role&&!period) continue;
     const restored=/(?:通信|接続|同期).*(?:復旧|回復|戻っ).*(?:人数|来場|入場|退場).*(?:どう|増|減|変)/.test(clause);
     const pace=/(?:この|今の|現在の)ペース(?:で|が)(?:あと|残り)?(\d{1,3}|[一二三四五六七八九十]+)(分|時間)(?:後|続)/.exec(clause);
+    const pending=/未同期|未送信/.test(clause)&&/件数|何件|いくつ|どのくらい|どれくらい/.test(clause)&&
+      !/台帳|全体の合計|人数への影響|何件減る/.test(clause)&&period===undefined&&!operational;
     let intent:Intent|undefined;
     const question=/何人|人数|どのくらい|どれくらい|どれほど|何回|何名|数|合計/.test(clause);
-    if(restored||pace) intent="forecast";
+    if(pending) intent="stations";
+    else if(restored||pace) intent="forecast";
     else if(/受付|開場|運用/.test(clause)&&/準備|始められ|開始でき|始めていい/.test(clause)) intent="readiness";
     else if(/入口|出口|端末|カメラ|受付|同期|通信|認識|計測機器/.test(clause)&&/見守|監視|しばらく.*確認/.test(clause)) intent="routine";
     else if(/入退場|入場.*退場|退場.*入場/.test(clause)&&/人数|回数|何人|合計|集計|それぞれ|状況/.test(clause)&&!/記録|履歴|グラフ|推移/.test(clause)) {
@@ -160,10 +164,13 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
     if (!intent&&/何人/.test(clause)&&/入|来/.test(clause)) intent="entries";
     if (!intent) return {plans:[],message:clauses.length>1?"複数の依頼のうち意味を特定できないものがあります。内容を分けて指定してください。":"依頼の対象を特定できませんでした。滞在人数・入場回数・端末状態・混雑予測など、確認したい対象を教えてください。"};
     if (timed&&intent==="event"&&readOnly) return {plans:[],message:"設定は変更しません。イベント管理で現在の予定を確認できます。"};
-    plans.push({intent,role:both?undefined:role??(intent==="stations"&&prior?.intent==="stations"?prior.role:undefined),
+    const explanation=intent==="compare"&&/昨年|去年|前年/.test(clause)&&/理由|原因|なぜ|どうして/.test(clause)&&!/滞在/.test(clause);
+    plans.push({intent,deliverable:pending?"pending-records":explanation?"comparison-explanation":undefined,
+      expectedDifference:explanation?(/少な|下回|減っ/.test(clause)?"lower":/多い|上回|増え/.test(clause)?"higher":undefined):undefined,
+      role:both?undefined:role??(intent==="stations"&&prior?.intent==="stations"?prior.role:undefined),
       period:allDay?undefined:period??((intent==="occupancy"&&/今|現在/.test(clause))?undefined:(intent===prior?.intent||intent==="graph"||intent==="compare"?prior?.period:undefined)),
       previousYear:intent==="compare"&&/昨年|去年|前年/.test(clause)?true:undefined,
-      compareDifference:intent==="compare"&&/比|差|違/.test(clause)?true:undefined,
+      compareDifference:intent==="compare"&&(/比|差|違/.test(clause)||explanation)?true:undefined,
       comparisonMetric:intent==="compare"?
         (/退場|帰った/.test(clause)?"exits":/入場|来場/.test(clause)?"entries":/滞在/.test(clause)?"occupancy":
           prior?.intent==="entries"||prior?.intent==="exits"||prior?.intent==="occupancy"?prior.intent:prior?.comparisonMetric):undefined,
@@ -171,7 +178,7 @@ export function interpret(raw:string,previous?:Plan):Interpretation {
       minutesAhead:pace&&intent==="forecast"?
         (Number(pace[1]) || ({一:1,二:2,三:3,四:4,五:5,六:6,七:7,八:8,九:9,十:10} as Record<string,number>)[pace[1]] || 0)*(pace[2]==="時間"?60:1):undefined,
       horizon:intent==="forecast"&&/閉場まで|閉場時/.test(clause)?"closing":undefined,
-      focus:/見せ|確認して|開い|調べ|移動|グラフ/.test(clause)||["forecast","compare","graph","records","event"].includes(intent),readOnly});
+      focus:/見せ|確認して|開い|調べ|移動|グラフ/.test(clause)||["forecast","compare","graph","records","event"].includes(intent),readOnly:readOnly||pending||explanation});
   }
   if(plans.length>4)return {plans:[],message:"一度に4件まで確認できます。"};
   return {plans,message:plans.length?undefined:"設定を保持しました。"};

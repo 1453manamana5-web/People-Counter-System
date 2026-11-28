@@ -1,0 +1,5145 @@
+{
+  "old": {
+    "summary": {
+      "cases": 270,
+      "conversations": 120,
+      "complete": 78,
+      "completeConversations": 52,
+      "obligations": 405,
+      "met": 169,
+      "pendingRequests": 120,
+      "pendingMisses": 120,
+      "unsafe": 0,
+      "unsupportedPending": 0,
+      "reads": 108,
+      "shadowCandidates": 0,
+      "shadowFinalScored": 0,
+      "shadowFinalPassed": 0,
+      "byStructure": {
+        "pending": {
+          "cases": 15,
+          "complete": 0
+        },
+        "pending-plus-setup": {
+          "cases": 15,
+          "complete": 0
+        },
+        "pending-plus-export": {
+          "cases": 15,
+          "complete": 0
+        },
+        "pending-plus-ledger": {
+          "cases": 15,
+          "complete": 0
+        },
+        "pending-plus-history": {
+          "cases": 15,
+          "complete": 0
+        },
+        "why-fewer": {
+          "cases": 15,
+          "complete": 0
+        },
+        "why-fewer-plus-pending": {
+          "cases": 15,
+          "complete": 0
+        },
+        "condition-plus-independent": {
+          "cases": 15,
+          "complete": 13
+        },
+        "test-no-write": {
+          "cases": 15,
+          "complete": 13
+        },
+        "guide-plus-counts": {
+          "cases": 15,
+          "complete": 0
+        },
+        "comparison-edit": {
+          "cases": 15,
+          "complete": 13
+        },
+        "cancel-clears-scope": {
+          "cases": 15,
+          "complete": 13
+        },
+        "pending-after-camera": {
+          "cases": 15,
+          "complete": 0
+        },
+        "comparison-and-return": {
+          "cases": 15,
+          "complete": 0
+        },
+        "permission-change": {
+          "cases": 15,
+          "complete": 0
+        },
+        "pending-after-cancellation": {
+          "cases": 15,
+          "complete": 0
+        },
+        "topic-revisit": {
+          "cases": 15,
+          "complete": 13
+        },
+        "partial-after-why": {
+          "cases": 15,
+          "complete": 13
+        }
+      }
+    },
+    "p95Ms": 0.34918900000002395,
+    "failures": [
+      {
+        "id": "pending-0",
+        "kind": "current",
+        "turns": [
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-1",
+        "kind": "stale",
+        "turns": [
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。"
+        ]
+      },
+      {
+        "id": "pending-2",
+        "kind": "missing",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。"
+        ]
+      },
+      {
+        "id": "pending-3",
+        "kind": "malformed",
+        "turns": [
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-4",
+        "kind": "forbidden",
+        "turns": [
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-5",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-6",
+        "kind": "history-failure",
+        "turns": [
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-7",
+        "kind": "test",
+        "turns": [
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-8",
+        "kind": "current",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-9",
+        "kind": "stale",
+        "turns": [
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。"
+        ]
+      },
+      {
+        "id": "pending-10",
+        "kind": "missing",
+        "turns": [
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。"
+        ]
+      },
+      {
+        "id": "pending-11",
+        "kind": "malformed",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-12",
+        "kind": "forbidden",
+        "turns": [
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-13",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-14",
+        "kind": "history-failure",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-0",
+        "kind": "stale",
+        "turns": [
+          "出口端末の未同期件数を教えて。そしてiPadの設置方法を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-1",
+        "kind": "missing",
+        "turns": [
+          "出口の未送信は何件ありますか。そして試験通過のときiPadはどこに置けばいい？"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-2",
+        "kind": "malformed",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。そしてiPadの設置方法を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-3",
+        "kind": "forbidden",
+        "turns": [
+          "出口端末の未同期件数を教えて。そして試験通過のときiPadはどこに置けばいい？"
+        ],
+        "missing": [
+          "pending",
+          "setup"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-4",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口の未送信は何件ありますか。そしてiPadの設置方法を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-5",
+        "kind": "history-failure",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。そして試験通過のときiPadはどこに置けばいい？"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-6",
+        "kind": "test",
+        "turns": [
+          "出口端末の未同期件数を教えて。そしてiPadの設置方法を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-7",
+        "kind": "current",
+        "turns": [
+          "出口の未送信は何件ありますか。そして試験通過のときiPadはどこに置けばいい？"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-8",
+        "kind": "stale",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。そしてiPadの設置方法を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-9",
+        "kind": "missing",
+        "turns": [
+          "出口端末の未同期件数を教えて。そして試験通過のときiPadはどこに置けばいい？"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-10",
+        "kind": "malformed",
+        "turns": [
+          "出口の未送信は何件ありますか。そしてiPadの設置方法を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-11",
+        "kind": "forbidden",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。そして試験通過のときiPadはどこに置けばいい？"
+        ],
+        "missing": [
+          "pending",
+          "setup"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-12",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口端末の未同期件数を教えて。そしてiPadの設置方法を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-13",
+        "kind": "history-failure",
+        "turns": [
+          "出口の未送信は何件ありますか。そして試験通過のときiPadはどこに置けばいい？"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-setup-14",
+        "kind": "test",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。そしてiPadの設置方法を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "station.setup",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "受付端末の調整画面で、通路とA・Bの両ラインがプレビューに収まる位置にiPadを置きます。向きを合わせ、正逆方向と横並びを現地で試してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-0",
+        "kind": "missing",
+        "turns": [
+          "出口端末の未同期件数を教えて。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-1",
+        "kind": "malformed",
+        "turns": [
+          "出口の未送信は何件ありますか。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-2",
+        "kind": "forbidden",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-3",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口端末の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-4",
+        "kind": "history-failure",
+        "turns": [
+          "出口の未送信は何件ありますか。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-5",
+        "kind": "test",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-6",
+        "kind": "current",
+        "turns": [
+          "出口端末の未同期件数を教えて。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-7",
+        "kind": "stale",
+        "turns": [
+          "出口の未送信は何件ありますか。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-8",
+        "kind": "missing",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-9",
+        "kind": "malformed",
+        "turns": [
+          "出口端末の未同期件数を教えて。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-10",
+        "kind": "forbidden",
+        "turns": [
+          "出口の未送信は何件ありますか。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-11",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-12",
+        "kind": "history-failure",
+        "turns": [
+          "出口端末の未同期件数を教えて。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-13",
+        "kind": "test",
+        "turns": [
+          "出口の未送信は何件ありますか。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "pending-plus-export-14",
+        "kind": "current",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "pending",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-0",
+        "kind": "malformed",
+        "turns": [
+          "出口端末の未同期件数を教えて。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-1",
+        "kind": "forbidden",
+        "turns": [
+          "出口の未送信は何件ありますか。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending",
+          "entry"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-2",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-3",
+        "kind": "history-failure",
+        "turns": [
+          "出口端末の未同期件数を教えて。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-4",
+        "kind": "test",
+        "turns": [
+          "出口の未送信は何件ありますか。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（試験）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-5",
+        "kind": "current",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-6",
+        "kind": "stale",
+        "turns": [
+          "出口端末の未同期件数を教えて。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-7",
+        "kind": "missing",
+        "turns": [
+          "出口の未送信は何件ありますか。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-8",
+        "kind": "malformed",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-9",
+        "kind": "forbidden",
+        "turns": [
+          "出口端末の未同期件数を教えて。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending",
+          "entry"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-10",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口の未送信は何件ありますか。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-11",
+        "kind": "history-failure",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-12",
+        "kind": "test",
+        "turns": [
+          "出口端末の未同期件数を教えて。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（試験）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-13",
+        "kind": "current",
+        "turns": [
+          "出口の未送信は何件ありますか。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-ledger-14",
+        "kind": "stale",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。今日の入場回数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。",
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 "
+        ]
+      },
+      {
+        "id": "pending-plus-history-0",
+        "kind": "forbidden",
+        "turns": [
+          "出口端末の未同期件数を教えて。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending",
+          "past"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "2025-11-28（本番・確定）の入場 8回です。 同じ実開場時間帯の今回の確定記録は 1回で、記録上の差は -7回です。両日の計測方式や停止時間の差は確認できていません。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-1",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口の未送信は何件ありますか。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-2",
+        "kind": "history-failure",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-3",
+        "kind": "test",
+        "turns": [
+          "出口端末の未同期件数を教えて。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-4",
+        "kind": "current",
+        "turns": [
+          "出口の未送信は何件ありますか。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "2025-11-28（本番・確定）の入場 8回です。 同じ実開場時間帯の今回の確定記録は 1回で、記録上の差は -7回です。両日の計測方式や停止時間の差は確認できていません。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-5",
+        "kind": "stale",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。",
+          "2025-11-28（本番・確定）の入場 8回です。 同じ実開場時間帯の今回の確定記録は 1回で、記録上の差は -7回です。両日の計測方式や停止時間の差は確認できていません。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-6",
+        "kind": "missing",
+        "turns": [
+          "出口端末の未同期件数を教えて。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。",
+          "2025-11-28（本番・確定）の入場 8回です。 同じ実開場時間帯の今回の確定記録は 1回で、記録上の差は -7回です。両日の計測方式や停止時間の差は確認できていません。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-7",
+        "kind": "malformed",
+        "turns": [
+          "出口の未送信は何件ありますか。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "2025-11-28（本番・確定）の入場 8回です。 同じ実開場時間帯の今回の確定記録は 1回で、記録上の差は -7回です。両日の計測方式や停止時間の差は確認できていません。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-8",
+        "kind": "forbidden",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending",
+          "past"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "2025-11-28（本番・確定）の入場 8回です。 同じ実開場時間帯の今回の確定記録は 1回で、記録上の差は -7回です。両日の計測方式や停止時間の差は確認できていません。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-9",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口端末の未同期件数を教えて。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-10",
+        "kind": "history-failure",
+        "turns": [
+          "出口の未送信は何件ありますか。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-11",
+        "kind": "test",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-12",
+        "kind": "current",
+        "turns": [
+          "出口端末の未同期件数を教えて。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。",
+          "2025-11-28（本番・確定）の入場 8回です。 同じ実開場時間帯の今回の確定記録は 1回で、記録上の差は -7回です。両日の計測方式や停止時間の差は確認できていません。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-13",
+        "kind": "stale",
+        "turns": [
+          "出口の未送信は何件ありますか。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。",
+          "2025-11-28（本番・確定）の入場 8回です。 同じ実開場時間帯の今回の確定記録は 1回で、記録上の差は -7回です。両日の計測方式や停止時間の差は確認できていません。"
+        ]
+      },
+      {
+        "id": "pending-plus-history-14",
+        "kind": "missing",
+        "turns": [
+          "出口側で同期できていない未同期記録は何件ですか。今年と去年の入場回数を比較して"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          },
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。",
+          "2025-11-28（本番・確定）の入場 8回です。 同じ実開場時間帯の今回の確定記録は 1回で、記録上の差は -7回です。両日の計測方式や停止時間の差は確認できていません。"
+        ]
+      },
+      {
+        "id": "why-fewer-0",
+        "kind": "ambiguous-history",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-1",
+        "kind": "history-failure",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-2",
+        "kind": "test",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-3",
+        "kind": "current",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。"
+        ]
+      },
+      {
+        "id": "why-fewer-4",
+        "kind": "stale",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。"
+        ]
+      },
+      {
+        "id": "why-fewer-5",
+        "kind": "missing",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。"
+        ]
+      },
+      {
+        "id": "why-fewer-6",
+        "kind": "malformed",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。"
+        ]
+      },
+      {
+        "id": "why-fewer-7",
+        "kind": "forbidden",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。"
+        ]
+      },
+      {
+        "id": "why-fewer-8",
+        "kind": "ambiguous-history",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-9",
+        "kind": "history-failure",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-10",
+        "kind": "test",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-11",
+        "kind": "current",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。"
+        ]
+      },
+      {
+        "id": "why-fewer-12",
+        "kind": "stale",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。"
+        ]
+      },
+      {
+        "id": "why-fewer-13",
+        "kind": "missing",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。"
+        ]
+      },
+      {
+        "id": "why-fewer-14",
+        "kind": "malformed",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて"
+        ],
+        "missing": [
+          "reason"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-0",
+        "kind": "history-failure",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-1",
+        "kind": "test",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-2",
+        "kind": "current",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-3",
+        "kind": "stale",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。",
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-4",
+        "kind": "missing",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。",
+          "選択中の運用区分で状態を取得できる出口端末がありません。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-5",
+        "kind": "malformed",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-6",
+        "kind": "forbidden",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-7",
+        "kind": "ambiguous-history",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-8",
+        "kind": "history-failure",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-9",
+        "kind": "test",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-10",
+        "kind": "current",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-11",
+        "kind": "stale",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。",
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-12",
+        "kind": "missing",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。",
+          "選択中の運用区分で状態を取得できる出口端末がありません。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-13",
+        "kind": "malformed",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "why-fewer-plus-pending-14",
+        "kind": "forbidden",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて。出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "reason",
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": false
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "condition-plus-independent-5",
+        "kind": "forbidden",
+        "turns": [
+          "今年と去年の入場回数を比較して。前年より少なかったら原因を調べて。出口の端末状態を教えて"
+        ],
+        "missing": [
+          "past",
+          "conditional",
+          "exit"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": true
+          },
+          {
+            "intent": "issues",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。 同じ実開場時間帯の今回の確定記録は 1回で、記録上の差は -7回です。両日の計測方式や停止時間の差は確認できていません。",
+          "取得記録では、入場 1回、退場 1回、差し引き 0人。\n出口の記録が集計に反映されていない可能性。根拠は出口の報告に未同期 7件。確認に必要なのは再同期後の台帳と人数の変化です。\n出口で計測が欠けた可能性。根拠は端末にカメラまたは認識の停止・異常報告。確認に必要なのは停止中の通過有無と現地の試験結果です。\n最新の端末報告は未同期0件。\n報告時刻や件数だけでは原因を確定できません。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "condition-plus-independent-13",
+        "kind": "forbidden",
+        "turns": [
+          "今年と去年の入場回数を比較して。前年より少なかったら原因を調べて。出口の端末状態を教えて"
+        ],
+        "missing": [
+          "past",
+          "conditional",
+          "exit"
+        ],
+        "plans": [
+          {
+            "intent": "compare",
+            "previousYear": true,
+            "compareDifference": true,
+            "comparisonMetric": "entries",
+            "focus": true,
+            "readOnly": true
+          },
+          {
+            "intent": "issues",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": true
+          }
+        ],
+        "answers": [
+          "2025-11-28（本番・確定）の入場 8回です。 同じ実開場時間帯の今回の確定記録は 1回で、記録上の差は -7回です。両日の計測方式や停止時間の差は確認できていません。",
+          "取得記録では、入場 1回、退場 1回、差し引き 0人。\n出口の記録が集計に反映されていない可能性。根拠は出口の報告に未同期 7件。確認に必要なのは再同期後の台帳と人数の変化です。\n出口で計測が欠けた可能性。根拠は端末にカメラまたは認識の停止・異常報告。確認に必要なのは停止中の通過有無と現地の試験結果です。\n最新の端末報告は未同期0件。\n報告時刻や件数だけでは原因を確定できません。",
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "test-no-write-4",
+        "kind": "forbidden",
+        "turns": [
+          "端末を再起動しないで。出口の端末状態を確認して"
+        ],
+        "missing": [
+          "exit"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": true,
+            "readOnly": true
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "test-no-write-12",
+        "kind": "forbidden",
+        "turns": [
+          "端末を再起動しないで。出口の端末状態を確認して"
+        ],
+        "missing": [
+          "exit"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": true,
+            "readOnly": true
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-0",
+        "kind": "stale",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-1",
+        "kind": "missing",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-2",
+        "kind": "malformed",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-3",
+        "kind": "forbidden",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "entry",
+          "exit-count",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-4",
+        "kind": "ambiguous-history",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-5",
+        "kind": "history-failure",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-6",
+        "kind": "test",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（試験）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（試験）。退場 1回。 ",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-7",
+        "kind": "current",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-8",
+        "kind": "stale",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-9",
+        "kind": "missing",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-10",
+        "kind": "malformed",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-11",
+        "kind": "forbidden",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "entry",
+          "exit-count",
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-12",
+        "kind": "ambiguous-history",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-13",
+        "kind": "history-failure",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと記録をCSVに書き出す方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "data.export",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（本番）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（本番）。退場 1回。 ",
+          "「来場者分析」の期間別集計から期間CSV・グラフPNG・印刷/PDF・開催日のJSONを選べます。「通過記録」にもCSVがあります。"
+        ]
+      },
+      {
+        "id": "guide-plus-counts-14",
+        "kind": "test",
+        "turns": [
+          "今日の入場と退場の回数をそれぞれ教えて。そのあと通過記録の出力方法を教えて"
+        ],
+        "missing": [
+          "export"
+        ],
+        "plans": [
+          {
+            "intent": "entries",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "exits",
+            "focus": false,
+            "readOnly": true
+          },
+          {
+            "intent": "briefing",
+            "guidanceId": "records",
+            "readOnly": true,
+            "focus": false
+          }
+        ],
+        "answers": [
+          "模擬文化祭（試験）。入場 1回（再入場を含む）。 ",
+          "模擬文化祭（試験）。退場 1回。 ",
+          "「通過記録」で入場・退場を絞り込めます。記録には自動・手動・無効などの状態が表示されます。"
+        ]
+      },
+      {
+        "id": "comparison-edit-2",
+        "kind": "forbidden",
+        "turns": [
+          "今年と去年の入場回数を比べて",
+          "出口端末の状態を確認して",
+          "年度比較を午前だけに絞って"
+        ],
+        "missing": [
+          "am"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-edit-10",
+        "kind": "forbidden",
+        "turns": [
+          "今年と去年の入場回数を比べて",
+          "出口端末の状態を確認して",
+          "年度比較を午前だけに絞って"
+        ],
+        "missing": [
+          "am"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "cancel-clears-scope-1",
+        "kind": "forbidden",
+        "turns": [
+          "今日の入場回数を教えて",
+          "依頼を取り消して",
+          "同じ条件でもう一度確認して"
+        ],
+        "missing": [
+          "clarify"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "cancel-clears-scope-9",
+        "kind": "forbidden",
+        "turns": [
+          "今日の入場回数を教えて",
+          "依頼を取り消して",
+          "同じ条件でもう一度確認して"
+        ],
+        "missing": [
+          "clarify"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "pending-after-camera-0",
+        "kind": "forbidden",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-1",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-2",
+        "kind": "history-failure",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-3",
+        "kind": "test",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-4",
+        "kind": "current",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-5",
+        "kind": "stale",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-6",
+        "kind": "missing",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-7",
+        "kind": "malformed",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-8",
+        "kind": "forbidden",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-9",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-10",
+        "kind": "history-failure",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-11",
+        "kind": "test",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-12",
+        "kind": "current",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-13",
+        "kind": "stale",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。"
+        ]
+      },
+      {
+        "id": "pending-after-camera-14",
+        "kind": "missing",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。"
+        ]
+      },
+      {
+        "id": "comparison-and-return-0",
+        "kind": "ambiguous-history",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-1",
+        "kind": "history-failure",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-2",
+        "kind": "test",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-3",
+        "kind": "current",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-4",
+        "kind": "stale",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-5",
+        "kind": "missing",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-6",
+        "kind": "malformed",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-7",
+        "kind": "forbidden",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-8",
+        "kind": "ambiguous-history",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-9",
+        "kind": "history-failure",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-10",
+        "kind": "test",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-11",
+        "kind": "current",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-12",
+        "kind": "stale",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-13",
+        "kind": "missing",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-14",
+        "kind": "malformed",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "permission-change-0",
+        "kind": "history-failure",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "permission-change-1",
+        "kind": "test",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "permission-change-2",
+        "kind": "current",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "permission-change-3",
+        "kind": "stale",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。"
+        ]
+      },
+      {
+        "id": "permission-change-4",
+        "kind": "missing",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。"
+        ]
+      },
+      {
+        "id": "permission-change-5",
+        "kind": "malformed",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "permission-change-6",
+        "kind": "forbidden",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "permission-change-7",
+        "kind": "ambiguous-history",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "permission-change-8",
+        "kind": "history-failure",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "permission-change-9",
+        "kind": "test",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "permission-change-10",
+        "kind": "current",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "permission-change-11",
+        "kind": "stale",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。"
+        ]
+      },
+      {
+        "id": "permission-change-12",
+        "kind": "missing",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。"
+        ]
+      },
+      {
+        "id": "permission-change-13",
+        "kind": "malformed",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "permission-change-14",
+        "kind": "forbidden",
+        "turns": [
+          "出口端末の状態を確認して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "forbidden"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-0",
+        "kind": "test",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-1",
+        "kind": "current",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-2",
+        "kind": "stale",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-3",
+        "kind": "missing",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-4",
+        "kind": "malformed",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-5",
+        "kind": "forbidden",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-6",
+        "kind": "ambiguous-history",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-7",
+        "kind": "history-failure",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-8",
+        "kind": "test",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-9",
+        "kind": "current",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-10",
+        "kind": "stale",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 最終通信を更新できていません。端末の現在の状態は未確認です。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-11",
+        "kind": "missing",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "選択中の運用区分で状態を取得できる出口端末がありません。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-12",
+        "kind": "malformed",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口端末の未同期件数を教えて"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-13",
+        "kind": "forbidden",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口の未送信は何件ありますか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "pending-after-cancellation-14",
+        "kind": "ambiguous-history",
+        "turns": [
+          "入口端末の状態を確認して",
+          "取り消して",
+          "出口側で同期できていない未同期記録は何件ですか"
+        ],
+        "missing": [
+          "pending"
+        ],
+        "plans": [
+          {
+            "intent": "stations",
+            "role": "out",
+            "focus": false,
+            "readOnly": false
+          }
+        ],
+        "answers": [
+          "出口「出口端末」 カメラ・映像の異常が報告されました。設置とカメラの許可を確認してください。"
+        ]
+      },
+      {
+        "id": "topic-revisit-4",
+        "kind": "forbidden",
+        "turns": [
+          "今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "年度比較を午前だけに絞って",
+          "同じ条件でもう一度確認して"
+        ],
+        "missing": [
+          "am"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "topic-revisit-12",
+        "kind": "forbidden",
+        "turns": [
+          "今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "年度比較を午前だけに絞って",
+          "同じ条件でもう一度確認して"
+        ],
+        "missing": [
+          "am"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "partial-after-why-3",
+        "kind": "forbidden",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて",
+          "出口端末の状態を確認して",
+          "同じ条件でもう一度確認して"
+        ],
+        "missing": [
+          "exit"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "partial-after-why-11",
+        "kind": "forbidden",
+        "turns": [
+          "今年の入場回数が去年より少ない理由を調べて",
+          "出口端末の状態を確認して",
+          "同じ条件でもう一度確認して"
+        ],
+        "missing": [
+          "exit"
+        ],
+        "plans": [],
+        "answers": []
+      }
+    ]
+  },
+  "now": {
+    "summary": {
+      "cases": 270,
+      "conversations": 120,
+      "complete": 256,
+      "completeConversations": 106,
+      "obligations": 405,
+      "met": 391,
+      "pendingRequests": 120,
+      "pendingMisses": 0,
+      "unsafe": 0,
+      "unsupportedPending": 0,
+      "reads": 95,
+      "shadowCandidates": 0,
+      "shadowFinalScored": 0,
+      "shadowFinalPassed": 0,
+      "byStructure": {
+        "pending": {
+          "cases": 15,
+          "complete": 15
+        },
+        "pending-plus-setup": {
+          "cases": 15,
+          "complete": 15
+        },
+        "pending-plus-export": {
+          "cases": 15,
+          "complete": 15
+        },
+        "pending-plus-ledger": {
+          "cases": 15,
+          "complete": 15
+        },
+        "pending-plus-history": {
+          "cases": 15,
+          "complete": 15
+        },
+        "why-fewer": {
+          "cases": 15,
+          "complete": 15
+        },
+        "why-fewer-plus-pending": {
+          "cases": 15,
+          "complete": 15
+        },
+        "condition-plus-independent": {
+          "cases": 15,
+          "complete": 15
+        },
+        "test-no-write": {
+          "cases": 15,
+          "complete": 15
+        },
+        "guide-plus-counts": {
+          "cases": 15,
+          "complete": 15
+        },
+        "comparison-edit": {
+          "cases": 15,
+          "complete": 15
+        },
+        "cancel-clears-scope": {
+          "cases": 15,
+          "complete": 15
+        },
+        "pending-after-camera": {
+          "cases": 15,
+          "complete": 15
+        },
+        "comparison-and-return": {
+          "cases": 15,
+          "complete": 1
+        },
+        "permission-change": {
+          "cases": 15,
+          "complete": 15
+        },
+        "pending-after-cancellation": {
+          "cases": 15,
+          "complete": 15
+        },
+        "topic-revisit": {
+          "cases": 15,
+          "complete": 15
+        },
+        "partial-after-why": {
+          "cases": 15,
+          "complete": 15
+        }
+      }
+    },
+    "p95Ms": 0.29496999999997797,
+    "failures": [
+      {
+        "id": "comparison-and-return-0",
+        "kind": "ambiguous-history",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-1",
+        "kind": "history-failure",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-2",
+        "kind": "test",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-3",
+        "kind": "current",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-4",
+        "kind": "stale",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-5",
+        "kind": "missing",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-6",
+        "kind": "malformed",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-8",
+        "kind": "ambiguous-history",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-9",
+        "kind": "history-failure",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-10",
+        "kind": "test",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-11",
+        "kind": "current",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-12",
+        "kind": "stale",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-13",
+        "kind": "missing",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      },
+      {
+        "id": "comparison-and-return-14",
+        "kind": "malformed",
+        "turns": [
+          "昨日の結果ではなく今年と去年の入場回数を比較して",
+          "出口端末の状態を確認して",
+          "比較の方を午後に修正して"
+        ],
+        "missing": [
+          "pm"
+        ],
+        "plans": [],
+        "answers": []
+      }
+    ]
+  }
+}

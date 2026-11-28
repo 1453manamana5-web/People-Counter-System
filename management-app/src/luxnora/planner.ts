@@ -1,3 +1,4 @@
+import {currentComparisonFallback, pendingAnswer, structureObjective} from "./objective";
 import {getCapability} from "./capabilities";
 import {answer, type Answer, type Evidence} from "./assistant";
 import type {ComparisonDay, ComparisonWindow} from "../counterComparisonMetrics";
@@ -88,7 +89,7 @@ const registry: {[K in Capability]: Definition<K>} = {
       if(goal.guidanceId) return [];
       if (goal.intent === "stations") return ["stations"];
       if (goal.intent === "issues" || goal.condition === "connection-restored") return ["ledger", "stations"];
-      if (historyGoal(goal)) return ["historical", "ledger"];
+      if (historyGoal(goal)) return goal.deliverable==="comparison-explanation"?["historical","ledger","stations"]:["historical", "ledger"];
       return ledgerGoal(goal) ? ["ledger"] : [];
     },
     key: plan => JSON.stringify(plan),
@@ -101,6 +102,8 @@ const registry: {[K in Capability]: Definition<K>} = {
       }
       if (goal.intent === "stations") {
         const stations=input("stations");
+        const objective=structureObjective(goal,evidence);
+        if(objective?.result==="pending-records") return pendingAnswer(objective,stations);
         const available=stations.filter(row=>row.quality==="current"&&row.value.station);
         const hasSignal=available.some(({value:{station}})=>station&&
           (station.pending!=null&&station.pending>0 || station.camera===false||station.ai===false||
@@ -129,8 +132,31 @@ const registry: {[K in Capability]: Definition<K>} = {
       }
       if (historyGoal(goal)) {
         const summary = input("historical");
-        return summary ? verifiedComparison(goal, summary, evidence, input("ledger")) : {target:"compare", text:
+        const ledger=input("ledger");
+        const comparison=summary?verifiedComparison(goal,summary,evidence,ledger):{target:"compare" as const,text:
           "前年の確定日を一意に特定できないか、記録を取得できませんでした。年度比較画面で対象日と通信状態を確認してください。"};
+        if(goal.deliverable!=="comparison-explanation") return comparison;
+        const delta=comparison.comparisonDelta;
+        const verified=delta!==undefined;
+        const contradicted=delta!==undefined && (goal.expectedDifference==="lower"&&delta>=0||
+          goal.expectedDifference==="higher"&&delta<=0);
+        if(contradicted) {
+          return {...comparison,text:comparison.text+(goal.expectedDifference==="lower"?
+            " 今回の記録は前年を下回っていません。":" 今回の記録は前年を上回っていません。"),
+            source:"確定した両開催日の通過台帳",
+            objective:{result:goal.deliverable,status:"verified"}};
+        }
+        const diagnosis=investigate(ledger,input("stations"));
+        const fallback=verified?undefined:currentComparisonFallback(goal,evidence,ledger);
+        const hypotheses=diagnosis.hypotheses.filter(row=>row.supporting.length);
+        const details=hypotheses.map(row=>row.label+"。根拠は"+row.supporting.join("、")+
+          "。確認に必要なのは"+row.missing.join("、")+"です。");
+        return {...comparison,text:[comparison.text,fallback?.text,
+          verified?"記録上の差から原因を確定することはできません。":"比較条件または前年の記録が不足しているため、差の原因は判断できません。",
+          ...details].filter(Boolean).join("\n"),
+          source:fallback?.source??(verified?"確定した両開催日の通過台帳":undefined),
+          objective:{result:goal.deliverable,status:verified||fallback?"partial":"missing",
+            missing:verified?["causal-evidence"]:["verified-comparison","causal-evidence"]}};
       }
       if (ledgerGoal(goal)) {
         const ledger = input("ledger");
@@ -186,6 +212,15 @@ export function compilePlan(request: Interpretation) {
     throw new Error("Invalid guidance goal");
   if (request.plans.some(goal=>goal.at!==undefined&&(!Number.isFinite(goal.at)||goal.intent!=="occupancy"||
     !goal.readOnly||goal.period!==undefined))) throw new Error("Invalid chart selection");
+  if(request.plans.some(goal=>goal.deliverable!==undefined &&
+    (!goal.readOnly||goal.operation||goal.schedule||goal.guidanceId||goal.at!==undefined||
+     (goal.deliverable==="pending-records"?goal.intent!=="stations"||goal.period!==undefined:
+      goal.deliverable!=="comparison-explanation"||!historyGoal(goal)))))
+    throw new Error("Invalid deliverable");
+  if(request.plans.some(goal=>goal.expectedDifference!==undefined&&
+    (goal.deliverable!=="comparison-explanation"||!["lower","higher"].includes(goal.expectedDifference)))) {
+    throw new Error("Invalid comparison premise");
+  }
   const edges=request.dependencies??[];
   if (new Set(edges.map(edge=>edge.task)).size!==edges.length || edges.some(edge=>
     !Number.isInteger(edge.task)||!Number.isInteger(edge.after)||edge.after<0||
@@ -225,8 +260,13 @@ export function compilePlan(request: Interpretation) {
     nodes.set(node.id,node);
     outputs.push(node);
   }
-  const referenced=new Set(outputs.flatMap(node=>[node,...node.dependencies]));
-  for(const node of nodes.values()) for(const dependency of node.dependencies) referenced.add(dependency);
+  const referenced=new Set<Node>();
+  function collect(node:Node) {
+    if(referenced.has(node)) return;
+    referenced.add(node);
+    node.dependencies.forEach(collect);
+  }
+  outputs.forEach(collect);
   const active=[...nodes.values()].filter(node=>referenced.has(node));
   const method = request.plans.some(plan => plan.intent === "issues" || plan.condition === "connection-restored") ? "advanced" :
     outputs.length > 1 || [...nodes.values()].some(node => node.cost === "network") ? "standard" : "light";
@@ -235,38 +275,52 @@ export function compilePlan(request: Interpretation) {
 
 type Trace = {capability: Capability; status: "completed" | "fallback"};
 export async function runPlan(request: Interpretation, context: Context, allowConfirmation: boolean) {
-  const {nodes, outputs, method} = compilePlan(request);
+  const {outputs, method} = compilePlan(request);
   const values: Output = new Map();
   const trace: Trace[] = [];
-  const remaining = new Set(nodes);
-  async function run(node: Node) {
-    const input = <I extends Capability>(name: I): Results[I] => {
-      const dependency = node.dependencies.find(dep => dep.capability === name);
-      if (!dependency || !values.has(dependency.id)) throw new Error("Missing capability input");
-      return values.get(dependency.id) as Results[I];
-    };
-    const prior=node.predicate?values.get(node.predicate.node.id) as Answer:undefined;
-    const condition=node.predicate?.when==="previous-year-lower" ?
-      (prior?.comparisonDelta===undefined?undefined:prior.comparisonDelta<0) : prior?.diagnosticSignal;
-    const skipped=Boolean(node.predicate)&&condition!==true;
-    const blocked = node.access === "confirmation" && !allowConfirmation;
-    const result = blocked ? {text:"操作候補が古くなりました。必要な場合はもう一度指示してください。"} :
-      skipped?{text:condition===false?"条件に当てはまらなかったため、追加の原因調査は行いませんでした。":
-        "条件を確認できなかったため、追加の原因調査は保留しました。"}:
-      await registry[node.capability].run(context, node.goal, input);
-    if (context.signal.aborted) throw new Error("Request cancelled");
-    values.set(node.id, result);
-    trace.push({capability: node.capability, status: blocked || skipped || node.capability === "historical" && result === undefined ? "fallback" : "completed"});
-    remaining.delete(node);
+  const work=new Map<string,Promise<void>>();
+  let networkTail=Promise.resolve();
+  function run(node:Node):Promise<void> {
+    const existing=work.get(node.id);
+    if(existing) return existing;
+    const task=(async()=>{
+      if (context.signal.aborted) throw new Error("Request cancelled");
+      // A false or unverified predicate leaves its private inputs unexecuted.
+      if(node.predicate) await run(node.predicate.node);
+      const prior=node.predicate?values.get(node.predicate.node.id) as Answer:undefined;
+      const condition=node.predicate?.when==="previous-year-lower" ?
+        (prior?.comparisonDelta===undefined?undefined:prior.comparisonDelta<0) : prior?.diagnosticSignal;
+      const skipped=Boolean(node.predicate)&&condition!==true;
+      const blocked = node.access === "confirmation" && !allowConfirmation;
+      let result:unknown;
+      if(blocked) result={text:"操作候補が古くなりました。必要な場合はもう一度指示してください。"};
+      else if(skipped) result={text:condition===false?"条件に当てはまらなかったため、追加の原因調査は行いませんでした。":
+        "条件を確認できなかったため、追加の原因調査は保留しました。"};
+      else {
+        await Promise.all(node.dependencies.map(run));
+        const input = <I extends Capability>(name: I): Results[I] => {
+          const dependency=node.dependencies.find(dep=>dep.capability===name);
+          if(!dependency||!values.has(dependency.id)) throw new Error("Missing capability input");
+          return values.get(dependency.id) as Results[I];
+        };
+        const execute=()=>{
+          if(context.signal.aborted) throw new Error("Request cancelled");
+          return registry[node.capability].run(context,node.goal,input);
+        };
+        if(node.cost==="network") {
+          const read=networkTail.then(execute);
+          networkTail=read.then(()=>{},()=>{});
+          result=await read;
+        } else result=await execute();
+      }
+      if(context.signal.aborted) throw new Error("Request cancelled");
+      values.set(node.id,result);
+      trace.push({capability:node.capability,status:blocked||skipped||
+        node.capability==="historical"&&result===undefined?"fallback":"completed"});
+    })();
+    work.set(node.id,task);
+    return task;
   }
-  while (remaining.size) {
-    if (context.signal.aborted) throw new Error("Request cancelled");
-    const ready = [...remaining].filter(node => node.dependencies.every(dep => values.has(dep.id)));
-    if (!ready.length) throw new Error("Unresolvable capability dependencies");
-    const local = ready.filter(node => node.cost === "local");
-    const network = ready.find(node => node.cost === "network");
-    // Leave spare capacity for the app and cap school-network reads at one.
-    await Promise.all([...local, ...(network ? [network] : [])].map(run));
-  }
-  return {answers: outputs.map(node => values.get(node.id) as Answer), method, trace};
+  await Promise.all(outputs.map(run));
+  return {answers:outputs.map(node=>values.get(node.id) as Answer),method,trace};
 }

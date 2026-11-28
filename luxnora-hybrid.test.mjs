@@ -38,10 +38,10 @@ test("a verified previous-year read is reused until authorization is uncertain",
   assert.match((await run(true)).answers[0].text,/入場 8回/);
   assert.match((await run(true)).answers[0].text,/入場 8回/);
   assert.equal(reads,1);
-  await run(false);
-  assert.equal(reads,2);
+  assert.doesNotMatch((await run(false)).answers[0].text,/8回/);
+  assert.equal(reads,1);
   await run(true);
-  assert.equal(reads,3);
+  assert.equal(reads,2);
   const authorized={evidence,catalog:{days:[past]},view:{page:"analysis",ready:true}};
   const later={...authorized,view:{...authorized.view,ready:false}};
   let observations=0;

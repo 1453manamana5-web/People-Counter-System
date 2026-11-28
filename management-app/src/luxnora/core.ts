@@ -29,6 +29,9 @@ export async function processLuxnoraRequest(input: {
   const context=scopedContext(input.context,initial.view?.ready?initial.evidence.scope:undefined);
   if(signal.aborted) return undefined;
   if(!initial.view?.ready) input.memo?.clear();
+  if(initial.view?.ready===false) {
+    return {request:{plans:[]},answers:[{text:"閲覧権限を確認できません。管理画面で権限を確認してから再度依頼してください。"}],experiences:[]};
+  }
   const workflow=countImprovement(text,initial.evidence);
   const mixed=workflow?undefined:mixedGuide(text,initial.view,part=>interpret(part).plans);
   const goal=workflow||mixed||contextualRevision(text,context,now)?undefined:applicationGoal(text,initial.view);
@@ -56,6 +59,8 @@ export async function processLuxnoraRequest(input: {
     if(child.aborted) return undefined;
     const scope=initial.evidence.scope;
     const current=observe();
+    if(current.evidence.scope!==scope||current.evidence.mode!==initial.evidence.mode||
+        current.view?.ready!==initial.view?.ready||current.view?.ready===false) return undefined;
     const reusable=scope&&initial.view?.ready&&current.view?.ready&&
       current.evidence.scope===scope&&!/最新|再取得|やり直/.test(text);
     const existing=reusable?input.memo?.get(scope,day,window,Date.now()):undefined;
@@ -63,7 +68,7 @@ export async function processLuxnoraRequest(input: {
       usedMemo=true;
       return existing;
     }
-    const key=JSON.stringify([day.id,window]);
+    const key=JSON.stringify([day.id,day.date,day.eventId,day.version,day.finalized,window]);
     if(cache.has(key)) return cache.get(key);
     try {
       const summary=await input.read(day,window,child);
@@ -98,6 +103,7 @@ export async function processLuxnoraRequest(input: {
     result=await runPlan(request,{...refreshed,read,signal,readDeadline},false);
     if(signal.aborted) return undefined;
     const latest=observe();
+    if(staleScope(latest)) return scopeChanged();
     if(latest.evidence!==refreshed.evidence || latest.catalog!==refreshed.catalog) {
       return {request:{plans:[]},answers:[{text:"確認中に運用データが更新されました。最新の結果が必要な場合は再度依頼してください。"}],experiences:[]};
     }

@@ -37,6 +37,7 @@ let dayEnded = loadEnded(settings);
 let assignedRole = loadAssignedRole(settings);
 let deniedStation = loadDeniedStation(settings);
 let stationNote = '';
+let pairingBusy=false;
 let control = loadControl(settings);
 let controlTimer;
 let controlFlight;
@@ -104,11 +105,11 @@ function renderStation() {
   const paired = dedicatedDay(settings);
   const invitation = paired ? load(pairingKey(settings)) : null;
   const remaining = invitation && device === invitation.device ? Math.max(0,300000 - (Date.now() - invitation.displayedAt)) : 0;
-  $('counterStationApply').textContent = paired ? '接続コードを表示' : '端末登録を申請';
-  $('counterStationApply').disabled = !settings || !device || dayEnded || !['unchecked','missing',...(paired ? ['pending','rejected','revoked'] : [])].includes(stationState) || remaining > 270000;
+  $('counterStationApply').textContent = '接続コードを再発行';
+  $('counterStationApply').disabled = pairingBusy || !settings || !device || dayEnded || !['unchecked','missing',...(paired ? ['pending','rejected','revoked'] : [])].includes(stationState) || remaining > 270000;
   $('counterPairCode').textContent = stationState === 'pending' && remaining > 0 ?
-    '管理画面に入力する接続コード　' + invitation.code + '　残り約 ' + Math.ceil(remaining/60000) + '分' :
-    stationState === 'pending' && paired ? '接続コードを再発行できます。' : '';
+    invitation.code : '';
+  $('pairExpiry').textContent = remaining > 0 && stationState === 'pending' ? '有効期限：残り約 '+Math.ceil(remaining/60000)+'分' : stationState==='pending' ? 'コードの有効期限が切れました。再発行してください。' : '';
   $('counterRemoteControl').textContent = captureBlockReason() || (control ? '管理画面の集計期間を使用しています。' : '');
 }
 async function remoteApi() {
@@ -490,8 +491,11 @@ $('ledgerEdit').addEventListener('submit', async event => {
 
 $('ledgerSetup').addEventListener('submit', async event => {
   event.preventDefault();
+  if(pairingBusy)return;
+  const wasPaired=pairingReady();
+  if(!wasPaired && !$('counterStationName').value.trim())return error('端末名を入力してください。');
   if (window.counterAdaptive?.isolated()) return error('認識設定の試験を終了してから運用設定を変更してください。');
-  if ($('startButton').disabled || !$('stopButton').disabled) return error('カメラを停止してから設定してください。');
+  if (! $('stopButton').disabled) return error('カメラを停止してから設定してください。');
   const eventId = $('ledgerEvent').value.trim();
   const opened = settings?.eventId===eventId ? settings.opened : Date.now();
   const closed = null;
@@ -525,6 +529,7 @@ $('ledgerSetup').addEventListener('submit', async event => {
     editing = false;
     $('ledgerTarget').value = '';
     error('');
+    if(!wasPaired){await requestPairing();}
     await refresh();
     selectRecord();
     schedule(0);
@@ -586,15 +591,22 @@ $('exportPendingJson').addEventListener('click', async () => {
     error('');
   } catch (cause) {error('未同期記録を出力できませんでした。 ' + cause.message);}
 });
-$('counterStationApply').addEventListener('click', async () => {
-  if (!settings || !device || $('counterStationApply').disabled) return;
+async function requestPairing() {
+  if (!settings || !device || dayEnded || pairingBusy) return;
   const config = settings;
   const name = $('counterStationName').value.trim();
   if (!name || name.length > 40) return error('端末名を1〜40文字で入力してください。');
   if (navigator.onLine === false) return error('端末登録にはインターネット接続が必要です。');
+  pairingBusy=true;
   $('counterStationApply').disabled = true;
+  $('pairSubmit').disabled=true;
   try {
     const remote = await deadline(remoteApi());
+    // Check existing approval before issuing a new code; never silently change a registered role.
+    const existing=await deadline(remote.readCounterStation(config.eventId));
+    if(existing?.status==='approved'){await checkStation(config,remote);return;}
+    const saved=load(pairingKey(config));
+    if(existing?.status==='pending'&&saved?.device===device&&Date.now()-saved.displayedAt<30000){await checkStation(config,remote);return;}
     const code = await deadline(remote.enrollCounterStation(config.eventId,{name,device,role:config.role},dedicatedDay(config)));
     if (code && settings === config) localStorage.setItem(pairingKey(config),JSON.stringify({code,displayedAt:Date.now(),device}));
     if (settings === config) {
@@ -604,8 +616,9 @@ $('counterStationApply').addEventListener('click', async () => {
     }
   } catch (e) {
     if (settings === config) error('端末登録を申請できませんでした。 ' + e.message);
-  } finally { renderStation(); }
-});
+  } finally { pairingBusy=false;$('pairSubmit').disabled=false;renderStation(); }
+}
+$('counterStationApply').addEventListener('click',()=>{if(!$('counterStationApply').disabled)void requestPairing();});
 $('syncLedger').addEventListener('click', () => schedule(0));
 window.addEventListener('online', () => {renderStation();window.dispatchEvent(new Event('pcs-counter-control-changed'));scheduleControl(0); schedule(500);});
 window.addEventListener('focus', () => {changed(); scheduleControl(0); schedule(500);});
@@ -630,7 +643,7 @@ function attach(value) {
   schedule(500);
   scheduleControl(500);
 }
-window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, paired: pairingReady, ended: () => dayEnded, refreshPairing: () => {scheduleControl(0);schedule(0);}, summary: () => result && resultScope === settings ? {entries:result.entries,exits:result.exits,occupancy:result.occupancy,mode:settings.mode} : null, attach, changed, captureBlockReason};
+window.counterLedger = {capture, role: () => settings?.role, configured: () => !!settings, pairingStatus: () => stationState, day: () => settings?.eventId, paired: pairingReady, ended: () => dayEnded, refreshPairing: () => {scheduleControl(0);schedule(0);}, summary: () => result && resultScope === settings ? {entries:result.entries,exits:result.exits,occupancy:result.occupancy,mode:settings.mode} : null, attach, changed, captureBlockReason};
 if (window.counterRecordStore) attach(window.counterRecordStore);
 fillRecord();
 renderState();
@@ -643,7 +656,7 @@ async function offlineLabel() {
   if (navigator.serviceWorker?.controller?.scriptURL.endsWith('/counter-offline.js') && load(preparedKey)) {
     try {
       const requests = await (await caches.open('pcs-counter-model-assets-v1')).keys();
-      ready = (await caches.keys()).includes('pcs-counter-v22') &&
+      ready = (await caches.keys()).includes('pcs-counter-v23') &&
         requests.some(r => r.url.endsWith('/efficientdet_lite0.tflite')) &&
         requests.some(r => r.url.endsWith('/quant2/075/model-stride16.json'));
     } catch {}

@@ -10,7 +10,8 @@
   "dependencies": {
     "firebase": "^12.16.0",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "@types/react": "^19.2.2",
@@ -22,6 +23,7 @@
     "react-test-renderer": "^19.2.7",
     "@types/node": "^22.0.0",
     "@firebase/rules-unit-testing": "^5.0.0",
-    "firebase-tools": "^14.0.0"
+    "firebase-tools": "^14.0.0",
+    "@types/qrcode": "^1.5.5"
   }
 }

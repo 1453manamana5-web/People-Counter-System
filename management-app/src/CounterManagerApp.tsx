@@ -440,7 +440,7 @@ function Dashboard({manager,authReady,recheck,lock,suggest}: {manager:CounterMan
             report={analysis} rows={operations} from={config.opened} to={config.closed??now} mode={mode} scope={eventId}
             name={eventName} venue={series?.venue} current={ready&&!invalidRows&&stationsCurrent&&pending===0}/>}
           {page==="analysis"&&catalog&&<div data-lux-focus="compare"><CounterComparison key={day?.eventId??"catalog"} catalog={catalog} initialSeriesId={day?.eventId} initialView={focusRequest?.target==="compare"?"year":undefined}/></div>}
-          {page==="stations"&&nativeDay&&<CounterPairPanel key={eventId} day={eventId} enabled={ready&&!working&&day?.stage!=="finished"}/>}
+          {page==="stations"&&nativeDay&&<CounterPairPanel key={eventId} day={eventId} eventName={eventName} enabled={ready&&!working&&day?.stage!=="finished"}/>}
           {page === "stations" && <StationList stations={stations} mode={mode} now={now} admin={admin} dedicated={nativeDay} enabled={ready&&!working}
             loading={data?.stations.source === "pending" || !data} perform={perform} eventId={eventId} version={day?.version} />}
           {page === "records" && <div data-lux-focus="records"><Records key={scope+":"+(direction??"all")} initialDirection={direction} eventId={eventId} mode={mode} rows={operations ?? []} enabled={ready&&!working}

@@ -3,6 +3,13 @@ const $=id=>document.getElementById(id);
 const pages=["capture","setup","adjust","records"];
 const workspace=$("stationWorkspace");
 let wasPaired=false;
+let editingPair=false;
+const query=new URLSearchParams(window.location.search);
+const incomingDay=query.get('day')||'';
+const validIncoming=/^[a-f0-9-]{36}_[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(incomingDay);
+const incomingRole=query.get('role');
+const incomingName=(query.get('name')||'').slice(0,100);
+let linkApplied=false;
 const paired=()=>window.counterLedger?.paired?.()===true;
 function show(page){
  if(!paired())page="setup";
@@ -21,7 +28,30 @@ function refreshStatus(){
  $("pairingIntro").hidden=approved;
  const ended=window.counterLedger?.ended?.()===true;
  $("pairingTitle").textContent=ended?"開催日が終了しました":"受付端末を接続";
- $("pairingHint").textContent=ended?"受付は解除されました。未同期記録は保持し、集計確定まで自動同期します。次の開催日のIDを設定してください。":"管理アプリで開催日を作成し、この端末を入口または出口として承認してください。";
+ $("pairingHint").textContent=ended?"受付は解除されました。未同期記録は保持します。次の開催日へ接続してください。":"管理アプリで表示した接続QRから開くと開催日IDの入力は不要です。";
+ const state=window.counterLedger?.pairingStatus?.();
+ const savedDay=window.counterLedger?.day?.();
+ if(!linkApplied&&validIncoming&&!approved&&!savedDay){
+  $("ledgerEvent").value=incomingDay;
+  if(incomingRole==="in"||incomingRole==="out")$("ledgerRole").value=incomingRole;
+  $("counterStationName").value=$("ledgerRole").value==="out"?"展示室 出口":"展示室 入口";
+  linkApplied=true;
+ }
+ const wait=!approved&&!ended&&state==="pending"&&!editingPair;
+ $("pairFormCard").hidden=wait;
+ $("pairWaitCard").hidden=!approved&&!wait;
+ $("pairWaitTitle").textContent=approved?"接続状態":"管理アプリで接続を承認";
+ $("pairFormTitle").textContent=approved?"開催日・運用設定":"接続先を設定";
+ $("pairSubmit").textContent=approved?"設定を保存":"接続コードを発行";
+ $("pairNameField").hidden=approved;
+ $("pairCodeGuide").hidden=approved;
+ $("pairEdit").hidden=approved;
+ $("pairRefresh").hidden=approved;
+ const linked=!approved&&validIncoming&&$("ledgerEvent").value===incomingDay&&!editingPair;
+ $("pairDayField").hidden=linked;
+ $("pairLinkSummary").hidden=!linked;
+ $("pairLinkSummary").textContent=(incomingName||"選択された開催日")+" · "+incomingDay.slice(-10);
+ if(wait)$("pairingHint").textContent="受付端末に表示されたコードを管理アプリで入力し、承認してください。";
  if(approved!==wasPaired){wasPaired=approved;show(approved?"capture":"setup");return;}
  if(!approved&&workspace.dataset.page!=="setup"){show("setup");return;}
 
@@ -45,6 +75,9 @@ const observer=new MutationObserver(refreshStatus);
 for(const id of ["counterStationState","counterRemoteControl","ledgerSummary","ledgerState","status","total"])observer.observe($(id),{childList:true,characterData:true,subtree:true});
 window.addEventListener("pcs-counter-role-changed",refreshStatus);
 window.addEventListener("pcs-counter-control-changed",refreshStatus);
+$("pairEdit").addEventListener("click",()=>{editingPair=true;refreshStatus();});
+$("ledgerSetup").addEventListener("submit",()=>{editingPair=false;});
+$("ledgerRole").addEventListener("change",()=>{if(!paired())$("counterStationName").value=$("ledgerRole").value==="out"?"展示室 出口":"展示室 入口";});
 $("pairRefresh").addEventListener("click",()=>window.counterLedger?.refreshPairing?.());
 window.addEventListener("online",refreshStatus);window.addEventListener("offline",refreshStatus);
 show("setup");

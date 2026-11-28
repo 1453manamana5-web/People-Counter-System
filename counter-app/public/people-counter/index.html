@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#f5f6f8">
 <meta name="description" content="交通研究部 人数計測アプリ。映像は保存・送信しません。">
 <title>人数計測 | 交通研究部</title>
-<link rel="stylesheet" href="./style.css?v=20">
+<link rel="stylesheet" href="./style.css?v=21">
 </head>
 <body>
 <div class="shell station-shell">
@@ -19,7 +19,7 @@
 </nav>
 <main class="station-main">
 <div id="stationStatus" class="station-status" aria-label="端末の状態"><p id="ledgerState" role="status" hidden></p><p id="stationCameraState" hidden></p><p id="message" hidden class="message" role="alert">初回はAIモデルの読込にインターネット接続が必要です。Safariでカメラの使用を許可してください。</p><p id="ledgerError" role="alert" class="message error"></p></div>
-<section id="pairingIntro" class="pairing-intro"><h1 id="pairingTitle">受付端末を接続</h1><p id="pairingHint">管理アプリで開催日を作成し、この端末を入口または出口として承認してください。</p></section>
+<section id="pairingIntro" class="pairing-intro"><h1 id="pairingTitle">受付端末を接続</h1><p id="pairingHint">管理アプリの「受付端末」で接続QRを読み取るか、開催日IDを入力してください。</p></section>
 <div class="station-workspace" id="stationWorkspace">
 <div class="card capture-card" data-screen="capture adjust" hidden>
             <div class="section-head">
@@ -62,23 +62,22 @@
 </section>
 <section class="station-panel" data-screen="setup">
 <div id="stationSetupHeading" class="page-heading" hidden><h1>端末設定</h1><p>開催日・役割の変更と接続の確認。</p></div>
-<section class="card config-card"><h2>1. 開催日と役割</h2><form id="ledgerSetup">
-          <label>開催日ID（管理アプリからコピー） <input id="ledgerEvent" required pattern="[a-zA-Z0-9_-]{1,160}" maxlength="160"></label>
+<section class="card config-card" id="pairFormCard"><h2 id="pairFormTitle">接続先を設定</h2><p id="pairLinkSummary" class="hint" hidden></p><form id="ledgerSetup">
+          <label id="pairDayField">開催日ID（管理アプリからコピー） <input id="ledgerEvent" required pattern="[a-zA-Z0-9_-]{1,160}" maxlength="160"></label>
           <label id="pairModeField">運用区分 <select id="ledgerMode"><option value="test">試験</option><option value="live">本番</option></select></label>
           <label>この端末 <select id="ledgerRole"><option value="in">入口</option><option value="out">出口</option></select></label>
           <label hidden>開場日時 <input id="ledgerOpen" type="datetime-local"></label>
           <label hidden>閉場日時 <input id="ledgerClose" type="datetime-local"></label>
           <label hidden><input id="ledgerVerified" type="checkbox"> 開閉場時は0人で、入口・出口とも同期完了・記録確認済み</label>
-          <button class="button primary">開催日・役割を設定</button>
+          <label id="pairNameField">端末名 <input id="counterStationName" maxlength="40" placeholder="例：展示室 入口"></label><button id="pairSubmit" class="button primary">接続コードを発行</button>
         </form></section>
-<section class="card config-card"><h2>2. 端末の接続</h2><fieldset class="area-controls">
-          <legend>管理アプリと接続</legend>
-          <label>端末名 <input id="counterStationName" maxlength="40" placeholder="例：展示室 入口"></label>
-          <button id="counterStationApply" class="button primary" type="button" disabled>端末登録を申請</button>
-          <p id="counterPairCode" class="hint" aria-live="polite"></p>
-          <p id="counterStationState" class="hint" role="status"></p><button id="pairRefresh" type="button" class="button secondary">承認状況を確認</button>
+<section id="pairWaitCard" class="card config-card" hidden><h2 id="pairWaitTitle">管理アプリで接続を承認</h2><fieldset class="area-controls">
+          <legend>接続状況</legend>
+          <button id="counterStationApply" class="button secondary" type="button" disabled>コードを再発行</button>
+          <p id="pairCodeGuide" class="hint">管理アプリの「受付端末」に下の6桁のコードを入力してください。</p><p id="counterPairCode" class="hint" aria-live="polite"></p><p id="pairExpiry" class="hint"></p>
+          <p id="counterStationState" class="hint" role="status"></p><button id="pairRefresh" type="button" class="button secondary">承認状況を確認</button><button id="pairEdit" type="button" class="button secondary">接続先を変更</button>
           <p id="counterRemoteControl" hidden class="hint" role="status"></p>
-          <a href="../counter-management/">人数カウント管理画面</a>
+          <a href="../counter-management/" target="_blank" rel="noopener noreferrer">管理アプリを開く</a>
         </fieldset><button hidden id="syncLedger" type="button" class="button secondary">今すぐ同期</button><p hidden id="clockState" class="hint"></p></section>
 <section id="stationOfflineCard" hidden class="card config-card"><h2>3. オフライン準備</h2><p class="hint">学校のWi-Fiが切れても計測できるよう、事前にモデルを準備します。</p><button id="prepareOffline" type="button" class="button primary">オフライン準備</button><p id="offlineState" role="status">この端末のオフライン準備を確認中</p></section>
 </section>
@@ -244,9 +243,9 @@
 <footer>人数計測 · 映像は保存しません</footer>
 </main>
 </div>
-<script type="module" src="./ledger-ui.mjs?v=21"></script>
+<script type="module" src="./ledger-ui.mjs?v=22"></script>
 <script type="module" src="./adaptive-ui.mjs?v=17"></script>
 <script type="module" src="./app.js?v=18"></script>
-<script type="module" src="./station-ui.mjs?v=4"></script>
+<script type="module" src="./station-ui.mjs?v=5"></script>
 </body>
 </html>

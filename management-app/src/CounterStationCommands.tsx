@@ -1,3 +1,4 @@
+import QRCode from "qrcode";
 import {useEffect,useState} from "react";
 import {collection,doc,getDocsFromServer,limit,onSnapshot,orderBy,query,runTransaction,serverTimestamp,Timestamp} from "firebase/firestore";
 import {getFirebaseDb,getFirebaseUid} from "../../counter-app/src/managerFirebaseClient";
@@ -46,7 +47,14 @@ async function issue(day:string,stationUid:string,action:Action) {
   });
 }
 
-export function CounterPairPanel({day,enabled}:{day:string;enabled:boolean}) {
+export function CounterPairPanel({day,enabled,eventName}:{day:string;enabled:boolean;eventName?:string}) {
+  const [linkRole,setLinkRole]=useState<"in"|"out">("in");
+  const link=new URL("../people-counter/",window.location.href);
+  link.searchParams.set("day",day);link.searchParams.set("role",linkRole);
+  if(eventName)link.searchParams.set("name",eventName.slice(0,100));
+  const qr=QRCode.create(link.href,{errorCorrectionLevel:"M"}).modules;
+  const qrPath=Array.from({length:qr.size},(_,y)=>Array.from({length:qr.size},(_,x)=>qr.get(y,x)?`M${x+4} ${y+4}h1v1h-1z`:"").join("")).join("");
+  async function copyLink(){try{await navigator.clipboard.writeText(link.href);setNote("接続リンクをコピーしました。受付端末で開いてください。");}catch{setNote("リンクを長押ししてコピーしてください。");}}
   const [code,setCode]=useState("");
   const [preview,setPreview]=useState<{code:string;station:CounterStation}|null>(null);
   const [busy,setBusy]=useState(false);
@@ -63,13 +71,25 @@ export function CounterPairPanel({day,enabled}:{day:string;enabled:boolean}) {
     setBusy(true);setNote("");
     try {
       await saveCounterStation(day,preview.station.uid,{name,role,status:"approved"},preview.code);
-      setPreview(null);setCode("");setNote("端末の接続を承認しました。端末側で入口・出口の設定を確認してください。");
+      setPreview(null);setCode("");setNote("接続しました。受付端末は自動で計測画面に切り替わります。");
     }catch(e){setNote(e instanceof Error&&!("code" in e)?e.message:"接続を承認できませんでした。コードの期限と端末の割り当てを確認してください。");}
     finally{setBusy(false);}
   }
   return <section className="cm-section">
-    <h2>受付端末をペアリング</h2>
-    <p className="cm-caption">計測端末にこの開催日IDを設定してください。<code>{day}</code>　端末に表示された6桁のコードを入力します。有効期限は5分です。</p>
+    <h2>受付端末を接続</h2>
+    {!enabled?<p className="cm-caption">現在は接続できません。開催日と管理画面の接続状態を確認してください。</p>:<div className="cm-pair-guide">
+      <div><h3>1. 受付端末でQRを読み取る</h3><p className="cm-caption">{eventName||"選択中のイベント"} · {day.slice(-10)}</p>
+      <div className="cm-pair-roles" aria-label="接続する端末の役割">
+        <button type="button" aria-pressed={linkRole==="in"} onClick={()=>setLinkRole("in")}>入口</button>
+        <button type="button" aria-pressed={linkRole==="out"} onClick={()=>setLinkRole("out")}>出口</button>
+      </div>
+      <p className="cm-caption">受付用iPadのカメラでQRを読み取り、Safariで開きます。</p>
+      <div className="cm-form"><button type="button" onClick={()=>void copyLink()}>接続リンクをコピー</button><a href={link.href} target="_blank" rel="noopener noreferrer">この端末で開く</a></div>
+      <details><summary>開催日IDを直接入力する場合</summary><p><code>{day}</code></p></details></div>
+      <svg className="cm-pair-qr" viewBox={`0 0 ${qr.size+8} ${qr.size+8}`} role="img" aria-label={linkRole==="in"?"入口受付の接続QR":"出口受付の接続QR"} shapeRendering="crispEdges"><rect width={qr.size+8} height={qr.size+8} fill="white"/><path d={qrPath} fill="#111"/></svg>
+    </div>}
+    <h3>2. 受付端末に表示された6桁のコードを入力</h3>
+    <p className="cm-caption">コードは5分間有効です。端末名と役割を確認して承認してください。</p>
     <form className="cm-form" onSubmit={e=>{e.preventDefault();void search();}}>
       <label>接続コード<input value={code} inputMode="numeric" autoComplete="off" required maxLength={6} pattern="[0-9]{6}"
         onChange={e=>{setCode(e.target.value.replace(/[^0-9]/g,""));setPreview(null);}} disabled={!enabled||busy}/></label>
